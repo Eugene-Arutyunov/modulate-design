@@ -20,9 +20,9 @@
 
 .ids__wrapper {
   position: relative;
-  width: 48%;
+  width: 90%;
   margin: 0 auto;
-  max-width: 1120px;
+  max-width: 1300px;
 
   @media (width < 768px) {
     width: 100%;

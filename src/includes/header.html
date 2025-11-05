@@ -1,0 +1,12 @@
+{% set nav = [ { title: 'Modulate Platform', href: '/' }, { title: 'Dashboard', href: '/ui/' }, { title: 'Sandbox', href: '/ui/' }, { title: 'Investigation', href: '/demo/' }, {
+title: 'Detection Configuration', href: '/ui/' }, { title: 'Administration', href: '/ui/' }, { title: 'Documentation', href: '/ui/' } ] %}
+
+<header class="header">
+  <nav class="nav">
+    {% for link in nav %} {% if link.href == page.url %}
+    <span>{{ link.title }}</span>
+    {% else %}
+    <a href="{{ link.href }}">{{ link.title }}</a>
+    {% endif %} {% endfor %}
+  </nav>
+</header>

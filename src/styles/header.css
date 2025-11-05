@@ -1,0 +1,15 @@
+.header {
+  padding: 0.8em 1em;
+
+  & nav {
+    display: flex;
+    gap: 0.7em;
+
+    & a,
+    span {
+      &:first-child {
+        font-weight: 650;
+      }
+    }
+  }
+}
