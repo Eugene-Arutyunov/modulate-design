@@ -4,6 +4,7 @@
   & nav {
     display: flex;
     gap: 0.7em;
+    flex-wrap: wrap;
 
     & a,
     span {
@@ -11,5 +12,7 @@
         font-weight: 650;
       }
     }
+
+
   }
 }

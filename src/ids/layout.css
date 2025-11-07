@@ -20,49 +20,17 @@
 
 .ids__wrapper {
   position: relative;
-  width: 90%;
+  width: 80%;
   margin: 0 auto;
-  max-width: 1300px;
+
 
   @media (width < 768px) {
     width: 100%;
-    margin: 0 auto;
     padding: 0 calc(var(--ids__density) * 0.4em);
-  }
-
-  &.L {
-    width: 60%;
-    margin: 0 auto;
-    max-width: 1120px;
-
-    @media (width < 768px) {
-      width: 100%;
-      margin: 0 auto;
-      padding: 0 calc(var(--ids__density) * 0.4em);
-    }
-  }
-
-  &.XL {
-    width: 100%;
-    margin: 0 auto;
-    /* padding: 0 calc(var(--ids__density) * 0.75em); */
-
-    @media (width < 768px) {
-      padding: 0 calc(var(--ids__density) * 0.6em);
-    }
-  }
-
-  &.XXL {
-    width: 100%;
-
-    @media (width < 768px) {
-      padding: 0;
-    }
   }
 
   & .ids__text-width {
     width: 80%;
-    max-width: 816px;
 
     @media (width < 768px) {
       width: 100%;

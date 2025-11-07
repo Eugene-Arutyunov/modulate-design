@@ -1,11 +1,156 @@
 {% extends 'layout.html' %} {% set pageTitle = 'Dodulate Platform Demo' %} {% block content %}
 
 <div class="ids__wrapper">
-  <div class="ids__space M"></div>
-  <div class="media-container ids__rounded"></div>
+  <div class="ids__space L"></div>
+  <div class="nav-container">
+    <div class="nav-link">
+      <a href="/">← <span class="nav-link-caption">Conversations</span></a>
+    </div>
+    <div class="nav-disclaimer">You're exploring a beta version. Features and visuals may change. Modulate doesn’t store any information.</div>
+  </div>
+  <div class="media-container sticky">
+    <div class="media-space"></div>
+    <div class="media-box ids__rounded"></div>
+  </div>
+  <div class="summary-container">
+    <h1>Interview with a dominant speaker and inappropriate language candidate</h1>
+    <!-- Have to be a text field -->
+    <!-- Rename, etc -->
+
+    <div class="ids__text-width">
+      <p>
+        Interview  ·  Dominant tone  ·  Interview between <strong>John</strong> (Interviewer) and <strong>Ben</strong> (Candidate). Ben was calm but showed minor tension when
+        discussing company policies. John maintained a professional tone with one instance of inappropriate language.
+      </p>
+    </div>
+  </div>
+  <div class="columns">
+    <div class="side-column">
+      <div class="summary-cards">
+        <div class="summary-card ids__rounded mode-switcher">
+          <div class="radio-switcher">
+            <input type="radio" id="speakers" name="mode" value="speakers" checked>
+            <input type="radio" id="behaviours" name="mode" value="behaviours">
+            <div class="radio-switcher-track">
+              <label for="speakers" class="radio-switcher-option">
+                <span>Speakers</span>
+              </label>
+              <label for="behaviours" class="radio-switcher-option">
+                <span>Behaviours</span>
+              </label>
+              <div class="radio-switcher-indicator ids__rounded"></div>
+            </div>
+          </div>
+        </div>
+        <div class="summary-card ids__rounded">
+          <h3>Interviewer</h3>
+          <p>English with Mediterranean accent · Perceived adult male · Human voice · Spoke 85% of the time · Low social positivity · High toxicity</p>
+          <p>Maintained professionalism throughout most of the call, though tone shifted slightly when discussing company policies.</p>
+          <div class="behaviours-section">
+            <h4>Adult Language (4) · 88% confidence</h4>
+            <p>I can't believe this task keeps</p>
+            <p>Way do you keep interrupting me like that?!</p>
+            <p>That's a ridiculous suggestion, come on!</p>
+            <p>This deadline is impossible, l'm not doing it!</p>
+          </div>
+          <div class="behaviours-section">
+            <h4>Harassment (2) · 86% confidence</h4>
+            <p>That's a ridiculous suggestion, come on!</p>
+            <p>I can't believe this task keeps</p>
+          </div>
+        </div>
+        <div class="summary-card ids__rounded">
+          <h3>Candidate</h3>
+          <p>English with British accent - Perceived adult femal · Human voice · Spoke 15% of the time · Neutral social positivity · Low toxicity</p>
+          <p>Started nervously but grew more confident as the conversation progressed, maintaining politeness throughout.</p>
+          <div class="behaviours-section">
+            <h4>Inappropriate Comment (1) · 91% confidence</h4>
+            <p>That's a ridiculous suggestion, come on!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="main-column">
+      <div class="transcript-container ids__rounded">
+        <div class="transcript-clip">
+          <div class="time">0:00</div>
+          <div class="name">Interviewer</div>
+          <p>Hi, welcome! Thanks for coming in today.</p>
+          <p>Calm · Welcoming</p>
+        </div>
+        <div class="transcript-clip">
+          <div class="time">0:03</div>
+          <div class="name">Candidate</div>
+          <p>Thanks for having me. I'm a bit excited, and nervous, to be honest.</p>
+          <p>Hesitant</p>
+        </div>
+        <div class="transcript-clip">
+          <div class="time">0:13</div>
+          <div class="name">Interviewer</div>
+          <p>No worries, take your time. Tell me a bit about what drew you to this role.</p>
+          <p>Encouraging · Thoughtful</p>
+        </div>
+        <div class="transcript-clip">
+          <div class="time">0:22</div>
+          <div class="name">Candidate</div>
+          <p>Why do you keep interrupting me like that? I'm trying to explain my point clearly here, and it's really frustrating.</p>
+          <p>Positive Impression · Adult Language</p>
+        </div>
+        <div class="transcript-clip">
+          <div class="time">0:24</div>
+          <div class="name">Candidate</div>
+          <p>Your Linkedin photo doesn't do you justice, by the way. You've got a really great presence.</p>
+          <p>Inappropriate Comment</p>
+        </div>
+        <div class="transcript-clip">
+          <div class="time">0:27</div>
+          <div class="name">Interviewer</div>
+          <p>Well, that's... good to know. But really, what drew you to this company?</p>
+          <p>Frustration</p>
+        </div>
+
+        <div class="transcript-clip">
+          <div class="time">0:31</div>
+          <div class="name">Candidate</div>
+          <p>Oh-right, sorry. Yeah, l've been really inspired by the team's work in Al ethics.</p>
+          <p>Recovery Attempt</p>
+        </div>
+        <div class="transcript-clip">
+          <div class="time">0:13</div>
+          <div class="name">Interviewer</div>
+          <p>No worries, take your time. Tell me a bit about what drew you to this role.</p>
+          <p>Encouraging · Thoughtful</p>
+        </div>
+        <div class="transcript-clip">
+          <div class="time">0:22</div>
+          <div class="name">Candidate</div>
+          <p>Why do you keep interrupting me like that? I'm trying to explain my point clearly here, and it's really frustrating.</p>
+          <p>Positive Impression · Adult Language</p>
+        </div>
+        <div class="transcript-clip">
+          <div class="time">0:24</div>
+          <div class="name">Candidate</div>
+          <p>Your Linkedin photo doesn't do you justice, by the way. You've got a really great presence.</p>
+          <p>Inappropriate Comment</p>
+        </div>
+        <div class="transcript-clip">
+          <div class="time">0:27</div>
+          <div class="name">Interviewer</div>
+          <p>Well, that's... good to know. But really, what drew you to this company?</p>
+          <p>Frustration</p>
+        </div>
+
+        <div class="transcript-clip">
+          <div class="time">0:31</div>
+          <div class="name">Candidate</div>
+          <p>Oh-right, sorry. Yeah, l've been really inspired by the team's work in Al ethics.</p>
+          <p>Recovery Attempt</p>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="ids__space XL"></div>
   <div class="ids__space XL"></div>
   <div class="ids__space XL"></div>
 </div>
-
 {% endblock %}
