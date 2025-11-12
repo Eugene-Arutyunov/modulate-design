@@ -178,69 +178,7 @@
   }
 }
 
-.media-box {
-  padding: 0.5em;
-}
 
-/* Player visualization timeline */
-.player-visualization {
-  position: relative;
-  height: 1em;
-  width: 100%;
-
-  & .transcript-clip {
-    position: absolute;
-    height: 1em;
-    top: 0;
-
-    /* Hide all text content */
-    & .clip-caption,
-    & .clip-text {
-      display: none;
-    }
-
-    /* Background colors based on behavior classes */
-    &.behaviour-neutral {
-      background-color: rgba(var(--behaviour-neutral-RGB), 1);
-    }
-
-    &.behaviour-confused {
-      background-color: rgba(var(--behaviour-confused-RGB), 1);
-    }
-
-    &.behaviour-frustrated {
-      background-color: rgba(var(--behaviour-frustrated-RGB), 1);
-    }
-
-    &.behaviour-apologetic {
-      background-color: rgba(var(--behaviour-apologetic-RGB), 1);
-    }
-
-    &.behaviour-annoyed {
-      background-color: rgba(var(--behaviour-annoyed-RGB), 1);
-    }
-
-    &.behaviour-assertive {
-      background-color: rgba(var(--behaviour-assertive-RGB), 1);
-    }
-
-    &.behaviour-demanding {
-      background-color: rgba(var(--behaviour-demanding-RGB), 1);
-    }
-
-    &.behaviour-angry {
-      background-color: rgba(var(--behaviour-angry-RGB), 1);
-    }
-
-    &.behaviour-threatening {
-      background-color: rgba(var(--behaviour-threatening-RGB), 1);
-    }
-
-    &.behaviour-exasperated {
-      background-color: rgba(var(--behaviour-exasperated-RGB), 1);
-    }
-  }
-}
 
 /* Behaviour tags color scheme based on Plutchik's wheel of emotions */
 .behaviour-tag {  

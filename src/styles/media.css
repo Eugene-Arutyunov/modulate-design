@@ -1,8 +1,8 @@
 .media-container {
   position: sticky;
   top: 0;
-  --initial-height: 12em;
-  --stuck-height: 10em;
+  --initial-height: 10em;
+  --stuck-height: 8em;
   height: calc(var(--initial-height) + 1em);
   z-index: 1;
 
@@ -19,9 +19,15 @@
 
 
   & .media-box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    --padding: 0.8em;
+    gap: 1em;
+    padding: var(--padding);
     height: var(--initial-height);
     background-color: rgba(var(--ids__accent-RGB), 1);
-    box-shadow: 0 1em 1em 0 rgba(var(--ids__background-RGB), 1);
+    box-shadow: 0 1em 1em 0 white;
     transition: height 0.2s ease;
   }
 
@@ -31,4 +37,138 @@
       transition: height 0.5s ease;
     }
   }
+}
+
+
+/* Player visualization timeline */
+.player-visualization {
+  position: relative;  
+  flex-grow: 1;
+  background-color: rgba(255,255,255,0.1);
+  height: 5em;
+
+  & .transcript-clip {
+    position: absolute;
+    height: 50%;
+    top: 0;
+    border: 1px solid white;
+    
+    &:hover {
+      filter: brightness(110%) saturate(105%);
+      border-color: rgba(255,255,255,0.3) !important;
+    }
+
+
+
+    &[data-speaker-index="1"] {
+      top: 50%;
+    }
+    &[data-speaker-index="2"] {
+      top: 0;
+    }
+
+    /* Background colors based on behavior classes */
+    &.behaviour-neutral {
+      background-color: rgba(var(--behaviour-neutral-RGB), 1);      
+      border-color: rgba(var(--behaviour-neutral-RGB), 1);      
+    }
+
+    &.behaviour-confused {
+      background-color: rgba(var(--behaviour-confused-RGB), 1);
+      border-color: rgba(var(--behaviour-confused-RGB), 1);
+    }
+
+    &.behaviour-frustrated {
+      background-color: rgba(var(--behaviour-frustrated-RGB), 1);
+      border-color: rgba(var(--behaviour-frustrated-RGB), 1);
+    }
+
+    &.behaviour-apologetic {
+      background-color: rgba(var(--behaviour-apologetic-RGB), 1);
+      border-color: rgba(var(--behaviour-apologetic-RGB), 1);
+    }
+
+    &.behaviour-annoyed {
+      background-color: rgba(var(--behaviour-annoyed-RGB), 1);
+      border-color: rgba(var(--behaviour-annoyed-RGB), 1);
+    }
+
+    &.behaviour-assertive {
+      background-color: rgba(var(--behaviour-assertive-RGB), 1);
+      border-color: rgba(var(--behaviour-assertive-RGB), 1);
+    }
+
+    &.behaviour-demanding {
+      background-color: rgba(var(--behaviour-demanding-RGB), 1);
+      border-color: rgba(var(--behaviour-demanding-RGB), 1);
+    }
+
+    &.behaviour-angry {
+      background-color: rgba(var(--behaviour-angry-RGB), 1);
+      border-color: rgba(var(--behaviour-angry-RGB), 1);
+    }
+
+    &.behaviour-threatening {
+      background-color: rgba(var(--behaviour-threatening-RGB), 1);
+      border-color: rgba(var(--behaviour-threatening-RGB), 1);
+    }
+
+    &.behaviour-exasperated {
+      background-color: rgba(var(--behaviour-exasperated-RGB), 1);
+      border-color: rgba(var(--behaviour-exasperated-RGB), 1);
+    }
+
+        
+        & .clip-caption,
+    & .clip-text {
+      display: none;
+    }
+  }
+}
+
+.player-controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.5em;
+
+  & a {
+    font-size: 0.8em;
+  }
+}
+
+.player-total-time {
+  position: absolute;
+  bottom: var(--padding);
+  right: var(--padding);
+
+  & span {
+    font-size: 0.8em;
+  }
+
+}
+
+.player-position-indicator {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--padding);
+  
+  & .player-position-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;  
+    border-left: 1px solid rgba(255,255,255,0.5);
+  }
+
+  & .player-position-caption {
+    position: absolute;
+    left: 0.1em;
+    bottom: var(--padding);
+
+    & span {
+      font-size: 0.8em;
+    }
+  }
+
 }
