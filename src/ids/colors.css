@@ -28,7 +28,8 @@ body {
 }
 
 .dark-mode {
-  --ids__background-RGB: 20, 20, 50;
+  --ids__background-RGB: 20, 20, 30;
+  --ids__surface-RGB: 40, 40, 60;
   --ids__text-RGB: 255, 255, 255;
   --ids__link-RGB: 255, 255, 255;
   --ids__hover-RGB: 255, 50, 50;

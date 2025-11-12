@@ -148,11 +148,16 @@
     background-color: rgba(var(--ids__surface-RGB), 1);
     padding: 0.7em;
 
+    border-radius: var(--ids__radius);
+  corner-shape: squircle;
+
     &[data-speaker-index="1"] {
-      margin-left: 2em;
+      margin-right: 2em;
+      border-radius: var(--ids__radius) var(--ids__radius) var(--ids__radius) 0;
     }
     &[data-speaker-index="2"] {
-      margin-right: 2em;
+      margin-left: 2em;
+      border-radius: var(--ids__radius) var(--ids__radius) 0 var(--ids__radius);
     }
 
     & .clip-caption {
@@ -171,6 +176,7 @@
         opacity: 0.5;        
       }
       & .language {
+        display: none;
         opacity: 0.5;        
       }
     }
