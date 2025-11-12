@@ -24,9 +24,31 @@ function initStickyObserver() {
   checkSticky();
 }
 
+function initPlayerVisualization() {
+  const visualization = document.querySelector(".player-visualization");
+  
+  if (!visualization) return;
+
+  const clips = visualization.querySelectorAll(".transcript-clip");
+
+  clips.forEach((clip) => {
+    const position = clip.getAttribute("data-position");
+    const width = clip.getAttribute("data-width");
+
+    if (position !== null && width !== null) {
+      clip.style.left = `${position}%`;
+      clip.style.width = `${width}%`;
+    }
+  });
+}
+
 // Initialize when DOM is ready
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initStickyObserver);
+  document.addEventListener("DOMContentLoaded", () => {
+    initStickyObserver();
+    initPlayerVisualization();
+  });
 } else {
   initStickyObserver();
+  initPlayerVisualization();
 }

@@ -58,10 +58,6 @@
   }
 }
 
-.transcript-container {
-  background-color: rgba(var(--ids__surface-RGB), 1);
-  padding: 0.7em;
-}
 
 .radio-switcher {
   position: relative;
@@ -139,4 +135,164 @@
   height: 100%;
   background-color: rgba(var(--ids__background-RGB), 0.5);
   transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+
+.transcript-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  
+  & .transcript-clip {
+    background-color: rgba(var(--ids__surface-RGB), 1);
+    padding: 0.7em;
+
+    &[data-speaker-index="1"] {
+      margin-left: 2em;
+    }
+    &[data-speaker-index="2"] {
+      margin-right: 2em;
+    }
+
+    & .clip-caption {
+      font-size: 0.8em;
+      display: flex;
+      gap: 0.5em;
+      margin-bottom: 0.4em;
+      
+      & .time {
+        opacity: 0.5;        
+      }
+      & .duration {
+        opacity: 0.5;        
+      }
+      & .name {
+        opacity: 0.5;        
+      }
+      & .language {
+        opacity: 0.5;        
+      }
+    }
+
+  }
+}
+
+.media-box {
+  padding: 0.5em;
+}
+
+/* Player visualization timeline */
+.player-visualization {
+  position: relative;
+  height: 1em;
+  width: 100%;
+
+  & .transcript-clip {
+    position: absolute;
+    height: 1em;
+    top: 0;
+
+    /* Hide all text content */
+    & .clip-caption,
+    & .clip-text {
+      display: none;
+    }
+
+    /* Background colors based on behavior classes */
+    &.behaviour-neutral {
+      background-color: rgba(var(--behaviour-neutral-RGB), 1);
+    }
+
+    &.behaviour-confused {
+      background-color: rgba(var(--behaviour-confused-RGB), 1);
+    }
+
+    &.behaviour-frustrated {
+      background-color: rgba(var(--behaviour-frustrated-RGB), 1);
+    }
+
+    &.behaviour-apologetic {
+      background-color: rgba(var(--behaviour-apologetic-RGB), 1);
+    }
+
+    &.behaviour-annoyed {
+      background-color: rgba(var(--behaviour-annoyed-RGB), 1);
+    }
+
+    &.behaviour-assertive {
+      background-color: rgba(var(--behaviour-assertive-RGB), 1);
+    }
+
+    &.behaviour-demanding {
+      background-color: rgba(var(--behaviour-demanding-RGB), 1);
+    }
+
+    &.behaviour-angry {
+      background-color: rgba(var(--behaviour-angry-RGB), 1);
+    }
+
+    &.behaviour-threatening {
+      background-color: rgba(var(--behaviour-threatening-RGB), 1);
+    }
+
+    &.behaviour-exasperated {
+      background-color: rgba(var(--behaviour-exasperated-RGB), 1);
+    }
+  }
+}
+
+/* Behaviour tags color scheme based on Plutchik's wheel of emotions */
+.behaviour-tag {  
+  border-radius: 0.3em;  
+  
+  /* Neutral - серый, нейтральный */
+  &.behaviour-neutral {
+    color: rgba(var(--behaviour-neutral-RGB), 1);    
+  }
+  
+  /* Confused - удивление (surprise) - голубой */
+  &.behaviour-confused {
+    color: rgba(var(--behaviour-confused-RGB), 1);    
+  }
+  
+  /* Frustrated - смесь гнева и печали - красно-синий */
+  &.behaviour-frustrated {
+    color: rgba(var(--behaviour-frustrated-RGB), 1);    
+  }
+  
+  /* Apologetic - смесь доверия и печали - зелено-синий */
+  &.behaviour-apologetic {
+    color: rgba(var(--behaviour-apologetic-RGB), 1);    
+  }
+  
+  /* Annoyed - гнев (anger) - красный */
+  &.behaviour-annoyed {
+    color: rgba(var(--behaviour-annoyed-RGB), 1);    
+  }
+  
+  /* Assertive - предвкушение/радость - оранжево-желтый */
+  &.behaviour-assertive {
+    color: rgba(var(--behaviour-assertive-RGB), 1);    
+  }
+  
+  /* Demanding - гнев/предвкушение - красно-оранжевый */
+  &.behaviour-demanding {
+    color: rgba(var(--behaviour-demanding-RGB), 1);    
+  }
+  
+  /* Angry - гнев (anger) - красный, более интенсивный */
+  &.behaviour-angry {
+    color: rgba(var(--behaviour-angry-RGB), 1);    
+  }
+  
+  /* Threatening - гнев/страх - красно-фиолетовый */
+  &.behaviour-threatening {
+    color: rgba(var(--behaviour-threatening-RGB), 1);    
+  }
+  
+  /* Exasperated - гнев/печаль - красно-синий, более интенсивный */
+  &.behaviour-exasperated {
+    color: rgba(var(--behaviour-exasperated-RGB), 1);    
+  }
 }
