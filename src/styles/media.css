@@ -1,5 +1,5 @@
 :root {
-  --initial-height: 12em;
+  --initial-height: 14em;
   --stuck-height: 8em;
   --player-visualization-height: 75%;
 }
@@ -69,7 +69,9 @@
         bottom: 0;        
       }
     
-    &:hover {
+    /* Hover styles specific to visualization */
+    &:hover,
+    &.hover {
       filter: brightness(140%) saturate(115%);
       transition: filter 0s ease;
       /* border-color: rgba(255,255,255,0.3) !important; */

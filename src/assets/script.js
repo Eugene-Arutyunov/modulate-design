@@ -31,7 +31,7 @@ function initPlayerVisualization() {
 
   const clips = visualization.querySelectorAll(".transcript-clip");
 
-  clips.forEach((clip) => {
+  clips.forEach((clip, index) => {
     const position = clip.getAttribute("data-position");
     const width = clip.getAttribute("data-width");
 
@@ -39,6 +39,9 @@ function initPlayerVisualization() {
       clip.style.left = `${position}%`;
       clip.style.width = `${width}%`;
     }
+    
+    // Add unique clip index for hover synchronization
+    clip.setAttribute("data-clip-index", index.toString());
   });
 }
 
@@ -223,6 +226,117 @@ function initAudioPlayer() {
       updatePlayerPosition(currentTime);
     }
   });
+  
+  // Return sound instance for use in transcript clips interaction
+  return sound;
+}
+
+// ==================== Transcript Clips Interaction ====================
+
+// Initialize transcript clips interaction (click and hover sync)
+function initTranscriptClipsInteraction(sound) {
+  if (!sound) return;
+  
+  const visualization = document.querySelector('.player-visualization');
+  const transcriptContainer = document.querySelector('.transcript-container');
+  
+  if (!visualization || !transcriptContainer) return;
+  
+  const visualizationClips = visualization.querySelectorAll('.transcript-clip');
+  const containerClips = transcriptContainer.querySelectorAll('.transcript-clip');
+  
+  // Add indices to container clips (visualization clips already have indices)
+  containerClips.forEach((clip, index) => {
+    clip.setAttribute("data-clip-index", index.toString());
+  });
+  
+  // Create mapping: clip index -> [visualization element, container element]
+  const clipMap = new Map();
+  visualizationClips.forEach((clip) => {
+    const index = clip.getAttribute("data-clip-index");
+    if (index !== null) {
+      if (!clipMap.has(index)) {
+        clipMap.set(index, { visualization: null, container: null });
+      }
+      clipMap.get(index).visualization = clip;
+    }
+  });
+  
+  containerClips.forEach((clip) => {
+    const index = clip.getAttribute("data-clip-index");
+    if (index !== null) {
+      if (!clipMap.has(index)) {
+        clipMap.set(index, { visualization: null, container: null });
+      }
+      clipMap.get(index).container = clip;
+    }
+  });
+  
+  // Function to sync hover between corresponding clips
+  function syncHover(clipElement, isHovering) {
+    const index = clipElement.getAttribute("data-clip-index");
+    if (index === null) return;
+    
+    const pair = clipMap.get(index);
+    if (!pair) return;
+    
+    // Clear all hover classes first to prevent stuck states
+    if (isHovering) {
+      document.querySelectorAll('.transcript-clip.hover').forEach(el => {
+        el.classList.remove('hover');
+      });
+    }
+    
+    // Add or remove hover class from both elements
+    if (pair.visualization) {
+      if (isHovering) {
+        pair.visualization.classList.add('hover');
+      } else {
+        pair.visualization.classList.remove('hover');
+      }
+    }
+    
+    if (pair.container) {
+      if (isHovering) {
+        pair.container.classList.add('hover');
+      } else {
+        pair.container.classList.remove('hover');
+      }
+    }
+  }
+  
+  // Add click handlers to container clips
+  containerClips.forEach((clip) => {
+    clip.addEventListener('click', function() {
+      const seekTime = parseFloat(clip.dataset.seekTime);
+      if (!isNaN(seekTime) && seekTime >= 0) {
+        sound.seek(seekTime);
+        if (!sound.playing()) {
+          sound.play();
+        }
+      }
+    });
+    
+    // Add hover handlers
+    clip.addEventListener('mouseenter', function() {
+      syncHover(clip, true);
+    });
+    
+    clip.addEventListener('mouseleave', function() {
+      syncHover(clip, false);
+    });
+  });
+  
+  // Add hover handlers to visualization clips
+  visualizationClips.forEach((clip) => {
+    clip.addEventListener('mouseenter', function() {
+      syncHover(clip, true);
+    });
+    
+    clip.addEventListener('mouseleave', function() {
+      syncHover(clip, false);
+    });
+  });
 }
 
 // Initialize when DOM is ready
@@ -230,10 +344,12 @@ if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
     initStickyObserver();
     initPlayerVisualization();
-    initAudioPlayer();
+    const sound = initAudioPlayer();
+    initTranscriptClipsInteraction(sound);
   });
 } else {
   initStickyObserver();
   initPlayerVisualization();
-  initAudioPlayer();
+  const sound = initAudioPlayer();
+  initTranscriptClipsInteraction(sound);
 }

@@ -22,8 +22,9 @@ Audio player built with Howler.js for the demo page.
 - `.player-position-indicator` - current playback position indicator
 
 ### Transcript Clips
-Each `.transcript-clip` in `.player-visualization` must have:
+Each `.transcript-clip` element (in both `.player-visualization` and `.transcript-container`) must have:
 - `data-seek-time` - time in seconds for seeking on click
+- `data-clip-index` - unique index added automatically during initialization (used for hover synchronization)
 
 ## JavaScript API
 
@@ -56,6 +57,14 @@ indicator_left = (position_percentage / 100) * width(.player-visualization)
 
 Note: `.player-visualization` now takes full width of parent, so padding is not used in calculation.
 
+#### `initTranscriptClipsInteraction(sound)`
+Initializes click and hover synchronization for transcript clips.
+- Adds `data-clip-index` to all transcript clips
+- Creates mapping between visualization and container clips
+- Sets up click handlers for seeking
+- Sets up hover handlers for synchronized highlighting
+- Requires sound instance from `initAudioPlayer()`
+
 ## Functionality
 
 ### Play/Pause
@@ -67,9 +76,18 @@ Note: `.player-visualization` now takes full width of parent, so padding is not 
 - Uses `sound.mute(true/false)`
 
 ### Seek on Click
-- Click on `.transcript-clip` seeks to time from `data-seek-time`
+- Click on `.transcript-clip` (in both `.player-visualization` and `.transcript-container`) seeks to time from `data-seek-time`
 - Uses `sound.seek(seconds)`
 - Automatically starts playback if sound was paused
+
+### Hover Synchronization
+- Hovering over a transcript clip in one area highlights the corresponding clip in the other area
+- Uses `data-clip-index` to match corresponding elements
+- Adds `.hover` class to both elements synchronously
+- Clears all previous hover states when starting a new hover to prevent stuck states
+- Hover styles are context-specific:
+  - `.player-visualization .transcript-clip:hover` - uses `filter: brightness(140%) saturate(115%)`
+  - `.transcript-container .transcript-clip:hover` - uses `background-color: rgba(var(--ids__hover-RGB), 0.1)`
 
 ### Position Update
 - Uses `requestAnimationFrame` for smooth updates during playback
@@ -93,11 +111,15 @@ Note: `.player-visualization` now takes full width of parent, so padding is not 
 
 Player initializes automatically on DOM load along with other functions:
 - `initStickyObserver()`
-- `initPlayerVisualization()`
-- `initAudioPlayer()`
+- `initPlayerVisualization()` - adds `data-clip-index` to visualization clips
+- `initAudioPlayer()` - returns sound instance
+- `initTranscriptClipsInteraction(sound)` - sets up click and hover sync
 
 ## CSS
 
 - `.transcript-clip` has `cursor: pointer` for visual feedback
 - `.player-position-indicator` is positioned absolutely relative to `.media-box`
 - Indicator position is set via `left` in pixels
+- Hover styles are isolated by context:
+  - `.player-visualization .transcript-clip:hover, .player-visualization .transcript-clip.hover` - defined in `media.css`
+  - `.transcript-container .transcript-clip:hover, .transcript-container .transcript-clip.hover` - defined in `demo.css`

@@ -6,7 +6,7 @@
     <div class="nav-link">
       <a href="/">← <span class="nav-link-caption">Conversations</span></a>
     </div>
-    <div class="nav-disclaimer">You're exploring a beta version. Features and visuals may change. Modulate doesn’t store any information.</div>
+    <div class="nav-disclaimer">This is a beta version. We don’t collect or store any information. Have fun!</div>
   </div>
   <div class="media-container sticky">
     <div class="media-space"></div>
@@ -15,12 +15,12 @@
         {% include "transcript-clips.html" %}
       </div>
       <div class="speaker-labels">
-        <div class="speaker-label" data-speaker-index="1">
-          <span>Customer support specialist</span>
+        <div class="speaker-label" data-speaker-index="2">
+          <span>Customer</span>
         </div>
-          <div class="speaker-label" data-speaker-index="2">
-            <span>Customer</span>
-          </div>
+        <div class="speaker-label" data-speaker-index="1">
+          <span>Support specialist</span>
+        </div>
       </div>
       <div class="player-controls">
         <div class="player-control">
@@ -48,14 +48,14 @@
 
     <div class="ids__text-width">
       <p>
-        Customer service  ·  Dispute  ·  Conversation between <strong>Customer</strong> and <strong>Customer support specialist</strong>. The customer disputed a missing delivery and requested a refund. Agent initially refused due to company policy but eventually processed both refund and credit after confirming a delivery error.
+        Customer service  ·  Dispute  ·  Conversation between <strong>Customer</strong> and <strong>Support specialist</strong>. The customer disputed a missing delivery and requested a refund. Agent initially refused due to company policy but eventually processed both refund and credit after confirming a delivery error.
       </p>
     </div>
   </div>
   <div class="columns">
     <div class="side-column">
       <div class="summary-cards">
-        <div class="summary-card ids__rounded mode-switcher">
+        <!-- <div class="summary-card ids__rounded mode-switcher">
           <div class="radio-switcher">
             <input type="radio" id="speakers" name="mode" value="speakers" checked />
             <input type="radio" id="behaviours" name="mode" value="behaviours" />
@@ -69,31 +69,64 @@
               <div class="radio-switcher-indicator ids__rounded"></div>
             </div>
           </div>
+        </div> -->
+        <div class="summary-card ids__rounded">
+          <h3>Customer</h3>
+          <p class="caption">English with American accent · Perceived adult male · Human voice · Spoke 85% of the time · Low social positivity · High toxicity</p>
+          <p class="caption"><em> Maintained professionalism throughout most of the call, though tone shifted slightly when discussing company policies.</em></p>
+          <div class="behaviours-section">
+            <hgroup class="behaviours-title">
+              <h4>Sense of Urgency</h4>
+              <span>88% confidence</span>
+            </hgroup>
+            <a class="transcript-sample" href="#" data-speaker-index="2">
+              <p>My order is missing, it's your job to make sure I get it.</p>
+            </a>
+            <a class="transcript-sample" href="#" data-speaker-index="2">
+              <p>Alright, well listen, Robert, this package has been delayed again, already, and it's very important to my business and health.
+            </p>
+          </a>
+            <a class="transcript-sample" href="#" data-speaker-index="2">
+              <p>Why not?</p>
+            </a>
+          </div>
+
+            
+          <div class="behaviours-section">
+            <hgroup class="behaviours-title">
+            <h4>Return Fraud Attempt</h4>
+            <span>86% confidence</span>
+          </hgroup>
+            <a class="transcript-sample" href="#" data-speaker-index="2">
+              <p>Stop stalling and just give me the damn refund, I don't even want the item now from you.</p>
+            </a>
+            <a class="transcript-sample" href="#" data-speaker-index="2">
+              <p>I can see it in the email!</p>
+            </a>
+            
+            <a class="transcript-sample" href="#" data-speaker-index="2">
+              <p>No, I don't have another house!</p>
+            </a>
+          </div>
         </div>
         <div class="summary-card ids__rounded">
-          <h3>Interviewer</h3>
-          <p>English with Mediterranean accent · Perceived adult male · Human voice · Spoke 85% of the time · Low social positivity · High toxicity</p>
-          <p>Maintained professionalism throughout most of the call, though tone shifted slightly when discussing company policies.</p>
+          <h3>Support specialist</h3>
+          <p class="caption">English with Eastern European accent · Perceived adult femal · Human voice · Spoke 15% of the time · Neutral social positivity · Low toxicity</p>
+          <p class="caption">Started nervously but grew more confident as the conversation progressed, maintaining politeness throughout.</p>
           <div class="behaviours-section">
-            <h4>Adult Language (4) · 88% confidence</h4>
-            <p>I can't believe this task keeps</p>
-            <p>Way do you keep interrupting me like that?!</p>
-            <p>That's a ridiculous suggestion, come on!</p>
-            <p>This deadline is impossible, l'm not doing it!</p>
-          </div>
-          <div class="behaviours-section">
-            <h4>Harassment (2) · 86% confidence</h4>
-            <p>That's a ridiculous suggestion, come on!</p>
-            <p>I can't believe this task keeps</p>
-          </div>
-        </div>
-        <div class="summary-card ids__rounded">
-          <h3>Candidate</h3>
-          <p>English with British accent - Perceived adult femal · Human voice · Spoke 15% of the time · Neutral social positivity · Low toxicity</p>
-          <p>Started nervously but grew more confident as the conversation progressed, maintaining politeness throughout.</p>
-          <div class="behaviours-section">
-            <h4>Inappropriate Comment (1) · 91% confidence</h4>
-            <p>That's a ridiculous suggestion, come on!</p>
+            <hgroup class="behaviours-title">
+            <h4>Common GenAI Failure Patterns</h4>
+            <span>80% confidence</span>
+          </hgroup>
+            <a class="transcript-sample" href="#" data-speaker-index="1">
+              <p>I'm sorry, sir, but it's against our policy to deliver personal information over the phone.
+              </p>
+            </a>
+            <a class="transcript-sample" href="#" data-speaker-index="1">
+              <p>I can't answer that, sir, I'm sorry.</p>
+            </a>
+            
+            
           </div>
         </div>
       </div>
