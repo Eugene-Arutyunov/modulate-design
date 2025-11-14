@@ -95,55 +95,55 @@
       }
     }
 
-    /* Background colors based on behavior classes */
-    &.behaviour-neutral {
-      background-color: rgba(var(--behaviour-neutral-RGB), 1);      
-      border-color: rgba(var(--behaviour-neutral-RGB), 1);      
+    /* Background colors based on emotion classes */
+    &.emotion-neutral {
+      background-color: rgba(var(--emotion-neutral-RGB), 1);      
+      border-color: rgba(var(--emotion-neutral-RGB), 1);      
     }
 
-    &.behaviour-confused {
-      background-color: rgba(var(--behaviour-confused-RGB), 1);
-      border-color: rgba(var(--behaviour-confused-RGB), 1);
+    &.emotion-confused {
+      background-color: rgba(var(--emotion-confused-RGB), 1);
+      border-color: rgba(var(--emotion-confused-RGB), 1);
     }
 
-    &.behaviour-frustrated {
-      background-color: rgba(var(--behaviour-frustrated-RGB), 1);
-      border-color: rgba(var(--behaviour-frustrated-RGB), 1);
+    &.emotion-frustrated {
+      background-color: rgba(var(--emotion-frustrated-RGB), 1);
+      border-color: rgba(var(--emotion-frustrated-RGB), 1);
     }
 
-    &.behaviour-apologetic {
-      background-color: rgba(var(--behaviour-apologetic-RGB), 1);
-      border-color: rgba(var(--behaviour-apologetic-RGB), 1);
+    &.emotion-apologetic {
+      background-color: rgba(var(--emotion-apologetic-RGB), 1);
+      border-color: rgba(var(--emotion-apologetic-RGB), 1);
     }
 
-    &.behaviour-annoyed {
-      background-color: rgba(var(--behaviour-annoyed-RGB), 1);
-      border-color: rgba(var(--behaviour-annoyed-RGB), 1);
+    &.emotion-annoyed {
+      background-color: rgba(var(--emotion-annoyed-RGB), 1);
+      border-color: rgba(var(--emotion-annoyed-RGB), 1);
     }
 
-    &.behaviour-assertive {
-      background-color: rgba(var(--behaviour-assertive-RGB), 1);
-      border-color: rgba(var(--behaviour-assertive-RGB), 1);
+    &.emotion-assertive {
+      background-color: rgba(var(--emotion-assertive-RGB), 1);
+      border-color: rgba(var(--emotion-assertive-RGB), 1);
     }
 
-    &.behaviour-demanding {
-      background-color: rgba(var(--behaviour-demanding-RGB), 1);
-      border-color: rgba(var(--behaviour-demanding-RGB), 1);
+    &.emotion-demanding {
+      background-color: rgba(var(--emotion-demanding-RGB), 1);
+      border-color: rgba(var(--emotion-demanding-RGB), 1);
     }
 
-    &.behaviour-angry {
-      background-color: rgba(var(--behaviour-angry-RGB), 1);
-      border-color: rgba(var(--behaviour-angry-RGB), 1);
+    &.emotion-angry {
+      background-color: rgba(var(--emotion-angry-RGB), 1);
+      border-color: rgba(var(--emotion-angry-RGB), 1);
     }
 
-    &.behaviour-threatening {
-      background-color: rgba(var(--behaviour-threatening-RGB), 1);
-      border-color: rgba(var(--behaviour-threatening-RGB), 1);
+    &.emotion-threatening {
+      background-color: rgba(var(--emotion-threatening-RGB), 1);
+      border-color: rgba(var(--emotion-threatening-RGB), 1);
     }
 
-    &.behaviour-exasperated {
-      background-color: rgba(var(--behaviour-exasperated-RGB), 1);
-      border-color: rgba(var(--behaviour-exasperated-RGB), 1);
+    &.emotion-exasperated {
+      background-color: rgba(var(--emotion-exasperated-RGB), 1);
+      border-color: rgba(var(--emotion-exasperated-RGB), 1);
     }
 
         
@@ -186,14 +186,67 @@
   }
 }
 
+.behaviour-labels {
+  position: absolute;
+  width: 100%;
+  height: var(--player-visualization-height);
+  pointer-events: none;
+
+  & .behaviour-label {
+    position: absolute;
+    font-size: 0.8em;
+    width: 10em;
+    display: flex;
+    align-items: flex-end;
+    padding-left: 0.1em;
+    height: 50%;
+    
+    &[data-speaker-index="1"] {
+      top: 50%;
+    }
+    &[data-speaker-index="2"] {
+      top: 0;
+    }
+  }
+}
+
 .player-controls {
   display: flex;
-  justify-content: center;
-  gap: 0.5em;
-  
+  align-items: center;
+  position: relative;
+  height: calc(100% - var(--player-visualization-height));
+  padding-top: var(--padding);
+
+  & .player-control-spacer {
+    flex: 1;
+  }
+
+  & .player-control-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  & .player-control-right {
+    margin-right: calc(var(--padding) + 3em);
+  }
 
   & a {
     font-size: 0.8em;
+  }
+
+  & .player-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2em;
+    height: 2em;
+
+    & svg {
+      width: 100%;
+      height: 100%;
+      fill: white;
+    }
   }
 }
 

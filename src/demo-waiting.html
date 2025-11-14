@@ -1,0 +1,89 @@
+
+{% extends 'layout.html' %} {% set pageTitle = 'Modulate Platform Demo - Waiting for Upload' %} {% block content %}
+
+<div class="ids__wrapper">
+  <div class="ids__space L"></div>
+  <div class="nav-container">
+    <div class="nav-link">
+      <a href="/">← <span class="nav-link-caption">Conversations</span></a>
+    </div>
+    <div class="nav-disclaimer">This is a beta version. We don't collect or store any information. Have fun!</div>
+  </div>
+  <div class="media-container sticky">
+    <div class="media-space"></div>
+    <div class="media-box ids__rounded dark-mode">
+      <div class="upload-area">
+        <div class="upload-text">Drop your audio or video file here</div>
+        <a href="#" class="upload-button">Choose file...</a>
+      </div>
+    </div>
+  </div>
+  <div class="demo-recordings-section">
+    <p>Or choose one of the pre-loaded demo recordings</p>
+    <table class="demo-recordings-table ids__rounded">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Title</th>
+          <th>Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2024-01-15</td>
+          <td>Customer service dispute over missing delivery</td>
+          <td>Customer support</td>
+        </tr>
+        <tr>
+          <td>2024-01-14</td>
+          <td>Technical interview with senior developer</td>
+          <td>Job interview</td>
+        </tr>
+        <tr>
+          <td>2024-01-13</td>
+          <td>Product feedback session</td>
+          <td>Customer support</td>
+        </tr>
+        <tr>
+          <td>2024-01-12</td>
+          <td>Sales call with potential client</td>
+          <td>Sales call</td>
+        </tr>
+        <tr>
+          <td>2024-01-11</td>
+          <td>Team standup meeting</td>
+          <td>Team meeting</td>
+        </tr>
+        <tr>
+          <td>2024-01-10</td>
+          <td>Billing inquiry resolution</td>
+          <td>Call center</td>
+        </tr>
+        <tr>
+          <td>2024-01-09</td>
+          <td>Technical support troubleshooting</td>
+          <td>Customer support</td>
+        </tr>
+        <tr>
+          <td>2024-01-08</td>
+          <td>Candidate screening interview</td>
+          <td>Job interview</td>
+        </tr>
+        <tr>
+          <td>2024-01-07</td>
+          <td>Account upgrade consultation</td>
+          <td>Sales call</td>
+        </tr>
+        <tr>
+          <td>2024-01-06</td>
+          <td>Refund request processing</td>
+          <td>Call center</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="ids__space XL"></div>
+
+{% endblock %}
+

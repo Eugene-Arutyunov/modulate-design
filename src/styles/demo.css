@@ -189,57 +189,106 @@
 
 
 
-/* Behaviour tags color scheme based on Plutchik's wheel of emotions */
-.behaviour-tag {  
+/* Demo recordings table */
+.demo-recordings-section {
+  margin: 2em 0;
+
+  & h2 {
+    font-size: 1.2em;
+    font-weight: 500;
+    margin-bottom: 1em;
+  }
+
+  & .demo-recordings-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(var(--ids__surface-RGB), 1);
+
+
+    & thead {
+      & th {
+        text-align: left;
+        padding: 0.7em;
+        font-weight: 500;
+        font-size: 0.9em;
+        border-bottom: 1px solid rgba(var(--ids__text-RGB), 0.2);
+        color: rgba(var(--ids__text-RGB), 0.7);
+      }
+    }
+
+    & tbody {
+      & tr {
+        border-bottom: 1px solid rgba(var(--ids__text-RGB), 0.1);
+        transition: background-color 0.2s ease;
+
+        &:hover {
+          background-color: rgba(var(--ids__text-RGB), 0.05);
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+
+      & td {
+        padding: 0.7em;
+        font-size: 0.9em;
+      }
+    }
+  }
+}
+
+/* Emotion tags color scheme based on Plutchik's wheel of emotions */
+.emotion-tag {  
   border-radius: 0.3em;  
   
   /* Neutral - серый, нейтральный */
-  &.behaviour-neutral {
-    color: rgba(var(--behaviour-neutral-RGB), 1);    
+  &.emotion-neutral {
+    color: rgba(var(--emotion-neutral-RGB), 1);    
   }
   
   /* Confused - удивление (surprise) - голубой */
-  &.behaviour-confused {
-    color: rgba(var(--behaviour-confused-RGB), 1);    
+  &.emotion-confused {
+    color: rgba(var(--emotion-confused-RGB), 1);    
   }
   
   /* Frustrated - смесь гнева и печали - красно-синий */
-  &.behaviour-frustrated {
-    color: rgba(var(--behaviour-frustrated-RGB), 1);    
+  &.emotion-frustrated {
+    color: rgba(var(--emotion-frustrated-RGB), 1);    
   }
   
   /* Apologetic - смесь доверия и печали - зелено-синий */
-  &.behaviour-apologetic {
-    color: rgba(var(--behaviour-apologetic-RGB), 1);    
+  &.emotion-apologetic {
+    color: rgba(var(--emotion-apologetic-RGB), 1);    
   }
   
   /* Annoyed - гнев (anger) - красный */
-  &.behaviour-annoyed {
-    color: rgba(var(--behaviour-annoyed-RGB), 1);    
+  &.emotion-annoyed {
+    color: rgba(var(--emotion-annoyed-RGB), 1);    
   }
   
   /* Assertive - предвкушение/радость - оранжево-желтый */
-  &.behaviour-assertive {
-    color: rgba(var(--behaviour-assertive-RGB), 1);    
+  &.emotion-assertive {
+    color: rgba(var(--emotion-assertive-RGB), 1);    
   }
   
   /* Demanding - гнев/предвкушение - красно-оранжевый */
-  &.behaviour-demanding {
-    color: rgba(var(--behaviour-demanding-RGB), 1);    
+  &.emotion-demanding {
+    color: rgba(var(--emotion-demanding-RGB), 1);    
   }
   
   /* Angry - гнев (anger) - красный, более интенсивный */
-  &.behaviour-angry {
-    color: rgba(var(--behaviour-angry-RGB), 1);    
+  &.emotion-angry {
+    color: rgba(var(--emotion-angry-RGB), 1);    
   }
   
   /* Threatening - гнев/страх - красно-фиолетовый */
-  &.behaviour-threatening {
-    color: rgba(var(--behaviour-threatening-RGB), 1);    
+  &.emotion-threatening {
+    color: rgba(var(--emotion-threatening-RGB), 1);    
   }
   
   /* Exasperated - гнев/печаль - красно-синий, более интенсивный */
-  &.behaviour-exasperated {
-    color: rgba(var(--behaviour-exasperated-RGB), 1);    
+  &.emotion-exasperated {
+    color: rgba(var(--emotion-exasperated-RGB), 1);    
   }
 }

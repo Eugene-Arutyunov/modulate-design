@@ -9,17 +9,17 @@
   --ids__surface-RGB: 238, 238, 240;
   --ids__background-RGB: 255, 255, 255;
 
-  /* Behaviour tags colors based on Plutchik's wheel of emotions */
-  --behaviour-neutral-RGB: 80, 80, 100;
-  --behaviour-confused-RGB: 0, 184, 255;
-  --behaviour-frustrated-RGB: 180, 60, 180;
-  --behaviour-apologetic-RGB: 0, 144, 200;
-  --behaviour-annoyed-RGB: 255, 100, 100;
-  --behaviour-assertive-RGB: 255, 180, 0;
-  --behaviour-demanding-RGB: 255, 140, 60;
-  --behaviour-angry-RGB: 255, 60, 60;
-  --behaviour-threatening-RGB: 200, 40, 180;
-  --behaviour-exasperated-RGB: 200, 50, 150;
+  /* Emotion tags colors based on Plutchik's wheel of emotions */
+  --emotion-neutral-RGB: 80, 80, 100;
+  --emotion-confused-RGB: 0, 184, 255;
+  --emotion-frustrated-RGB: 180, 60, 180;
+  --emotion-apologetic-RGB: 0, 144, 200;
+  --emotion-annoyed-RGB: 255, 100, 100;
+  --emotion-assertive-RGB: 255, 180, 0;
+  --emotion-demanding-RGB: 255, 140, 60;
+  --emotion-angry-RGB: 255, 60, 60;
+  --emotion-threatening-RGB: 200, 40, 180;
+  --emotion-exasperated-RGB: 200, 50, 150;
 }
 
 body {

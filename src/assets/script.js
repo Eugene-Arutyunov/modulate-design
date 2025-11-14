@@ -43,6 +43,20 @@ function initPlayerVisualization() {
     // Add unique clip index for hover synchronization
     clip.setAttribute("data-clip-index", index.toString());
   });
+
+  // Handle behaviour labels positioning
+  const mediaBox = visualization.closest(".media-box") || visualization.closest("#audio-player");
+  if (mediaBox) {
+    const behaviourLabels = mediaBox.querySelectorAll(".behaviour-label");
+    
+    behaviourLabels.forEach((label) => {
+      const position = label.getAttribute("data-position");
+      
+      if (position !== null) {
+        label.style.left = `${position}%`;
+      }
+    });
+  }
 }
 
 // ==================== Audio Player Functions ====================
@@ -112,19 +126,125 @@ function initAudioPlayer() {
     },
     onplay: function() {
       startPositionUpdate();
+      updatePlayPauseIcon();
     },
     onpause: function() {
       stopPositionUpdate();
+      updatePlayPauseIcon();
     },
     onend: function() {
       stopPositionUpdate();
       updatePlayerPosition(0);
+      updatePlayPauseIcon();
     }
   });
 
   // State variables
   let animationFrameId = null;
   let isUpdating = false;
+
+  // Load SVG icon from sprite file
+  async function loadIcon(container, iconId) {
+    try {
+      // Load the sprite file once and cache it
+      if (!loadIcon.spriteCache) {
+        const response = await fetch('/assets/icons/player-icons.svg');
+        const svgText = await response.text();
+        const parser = new DOMParser();
+        loadIcon.spriteCache = parser.parseFromString(svgText, 'image/svg+xml');
+        
+        // Cache styles from defs
+        const defs = loadIcon.spriteCache.querySelector('defs');
+        if (defs) {
+          loadIcon.spriteStyles = defs.innerHTML;
+        }
+      }
+      
+      // Find the icon group by id
+      const iconGroup = loadIcon.spriteCache.querySelector(`#${iconId}`);
+      if (iconGroup) {
+        // Create a temporary SVG to compute bounding box
+        const tempSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        tempSvg.setAttribute('viewBox', '0 0 220 220');
+        tempSvg.style.position = 'absolute';
+        tempSvg.style.visibility = 'hidden';
+        tempSvg.style.width = '0';
+        tempSvg.style.height = '0';
+        
+        // Clone the group and add styles to temp SVG
+        const tempGroup = iconGroup.cloneNode(true);
+        if (loadIcon.spriteStyles) {
+          const tempDefs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+          tempDefs.innerHTML = loadIcon.spriteStyles;
+          tempSvg.appendChild(tempDefs);
+        }
+        tempSvg.appendChild(tempGroup);
+        document.body.appendChild(tempSvg);
+        
+        // Get bounding box
+        const bbox = tempGroup.getBBox();
+        document.body.removeChild(tempSvg);
+        
+        // Create a new SVG with viewBox matching the icon's bounding box
+        const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svgElement.setAttribute('viewBox', `${bbox.x} ${bbox.y} ${bbox.width} ${bbox.height}`);
+        svgElement.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+        
+        // Add styles from defs if available
+        if (loadIcon.spriteStyles) {
+          const defsElement = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+          defsElement.innerHTML = loadIcon.spriteStyles;
+          svgElement.appendChild(defsElement);
+        }
+        
+        // Clone all children from the group
+        Array.from(iconGroup.children).forEach(child => {
+          svgElement.appendChild(child.cloneNode(true));
+        });
+        
+        container.innerHTML = '';
+        container.appendChild(svgElement);
+      }
+    } catch (error) {
+      console.error('Error loading icon:', error);
+    }
+  }
+
+  // Update play/pause icon (shows action that will happen)
+  function updatePlayPauseIcon() {
+    const playPauseBtn = audioPlayer.querySelector('[data-action="play-pause"]');
+    if (!playPauseBtn) return;
+    
+    const isPlaying = sound.playing();
+    // Show pause icon when playing (action: pause), show play icon when paused (action: play)
+    const iconId = isPlaying ? 'icon-pause' : 'icon-play';
+    playPauseBtn.setAttribute('data-playing', isPlaying ? 'true' : 'false');
+    loadIcon(playPauseBtn, iconId);
+  }
+
+  // Update mute/unmute icon (shows current status)
+  function updateMuteUnmuteIcon() {
+    const muteUnmuteBtn = audioPlayer.querySelector('[data-action="mute-unmute"]');
+    if (!muteUnmuteBtn) return;
+    
+    const isMuted = sound.mute();
+    // Show mute icon when muted (status: muted), show unmute icon when unmuted (status: unmuted)
+    const iconId = isMuted ? 'icon-mute' : 'icon-unmute';
+    muteUnmuteBtn.setAttribute('data-muted', isMuted ? 'true' : 'false');
+    loadIcon(muteUnmuteBtn, iconId);
+  }
+
+  // Initialize icons on load
+  const playPauseBtn = audioPlayer.querySelector('[data-action="play-pause"]');
+  const muteUnmuteBtn = audioPlayer.querySelector('[data-action="mute-unmute"]');
+  if (playPauseBtn) {
+    const initialIconId = playPauseBtn.getAttribute('data-icon-id') || 'icon-play';
+    loadIcon(playPauseBtn, initialIconId);
+  }
+  if (muteUnmuteBtn) {
+    const initialIconId = muteUnmuteBtn.getAttribute('data-icon-id') || 'icon-unmute';
+    loadIcon(muteUnmuteBtn, initialIconId);
+  }
 
   // Update player position and time
   function updatePlayerPosition(currentTime) {
@@ -180,7 +300,6 @@ function initAudioPlayer() {
   }
 
   // Play/Pause handler
-  const playPauseBtn = audioPlayer.querySelector('[data-action="play-pause"]');
   if (playPauseBtn) {
     playPauseBtn.addEventListener('click', function(e) {
       e.preventDefault();
@@ -189,16 +308,17 @@ function initAudioPlayer() {
       } else {
         sound.play();
       }
+      // Icon will be updated by onplay/onpause callbacks
     });
   }
 
   // Mute/Unmute handler
-  const muteUnmuteBtn = audioPlayer.querySelector('[data-action="mute-unmute"]');
   if (muteUnmuteBtn) {
     muteUnmuteBtn.addEventListener('click', function(e) {
       e.preventDefault();
       const isMuted = sound.mute();
       sound.mute(!isMuted);
+      updateMuteUnmuteIcon();
     });
   }
 

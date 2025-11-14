@@ -1,0 +1,35 @@
+/* Progress indicator skeleton */
+.skeleton-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9em;
+}
+
+/* Upload area skeleton */
+.upload-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 1em;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  padding: 2em;
+
+  & .upload-text {
+    font-size: 1em;
+  }
+
+  & .upload-button {
+    display: inline-block;
+    
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.9);
+
+  }
+}
+
