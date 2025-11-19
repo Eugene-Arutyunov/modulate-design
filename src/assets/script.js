@@ -136,12 +136,20 @@ function initAudioPlayer() {
       stopPositionUpdate();
       updatePlayerPosition(0);
       updatePlayPauseIcon();
+      // Clear playing clip when audio ends
+      if (clipMap) {
+        updatePlayingClip(null, clipMap);
+        currentClipIndex = null;
+      }
     }
   });
 
   // State variables
   let animationFrameId = null;
   let isUpdating = false;
+  let currentClipIndex = null;
+  let clipMetadata = [];
+  let clipMap = null;
 
   // Load SVG icon from sprite file
   async function loadIcon(container, iconId) {
@@ -281,6 +289,16 @@ function initAudioPlayer() {
       if (sound.playing()) {
         const currentTime = sound.seek();
         updatePlayerPosition(currentTime);
+        
+        // Update playing clip based on current time
+        if (clipMetadata.length > 0 && clipMap) {
+          const newClipIndex = getCurrentClipIndex(currentTime, clipMetadata);
+          if (newClipIndex !== currentClipIndex) {
+            currentClipIndex = newClipIndex;
+            updatePlayingClip(currentClipIndex, clipMap);
+          }
+        }
+        
         animationFrameId = requestAnimationFrame(update);
       } else {
         isUpdating = false;
@@ -335,6 +353,15 @@ function initAudioPlayer() {
             sound.play();
           }
           
+          // Update playing clip immediately after seek
+          if (clipMetadata.length > 0 && clipMap) {
+            const newClipIndex = getCurrentClipIndex(seekTime, clipMetadata);
+            if (newClipIndex !== currentClipIndex) {
+              currentClipIndex = newClipIndex;
+              updatePlayingClip(currentClipIndex, clipMap);
+            }
+          }
+          
           // Scroll to corresponding transcript clip
           const clipIndex = clip.getAttribute('data-clip-index');
           if (clipIndex !== null) {
@@ -356,11 +383,23 @@ function initAudioPlayer() {
     if (sound.playing() || sound.seek() > 0) {
       const currentTime = sound.seek();
       updatePlayerPosition(currentTime);
+      
+      // Update playing clip
+      if (clipMetadata.length > 0 && clipMap) {
+        const newClipIndex = getCurrentClipIndex(currentTime, clipMetadata);
+        if (newClipIndex !== currentClipIndex) {
+          currentClipIndex = newClipIndex;
+          updatePlayingClip(currentClipIndex, clipMap);
+        }
+      }
     }
   });
   
-  // Return sound instance for use in transcript clips interaction
-  return sound;
+  // Initialize clip metadata and tracking
+  clipMetadata = buildClipMetadata();
+  
+  // Return sound instance and metadata for use in transcript clips interaction
+  return { sound, clipMetadata, setClipMap: (map) => { clipMap = map; } };
 }
 
 // ==================== Scroll to Clip Functions ====================
@@ -396,16 +435,110 @@ function findFirstClipWithBehavior(behaviorName) {
   return null;
 }
 
+// ==================== Clip Playback Tracking ====================
+
+// Parse duration from clip element (e.g., "5s" -> 5)
+function parseClipDuration(clip) {
+  const durationElement = clip.querySelector('.duration');
+  if (!durationElement) return 0;
+  
+  const durationText = durationElement.textContent.trim();
+  const match = durationText.match(/^(\d+)s?$/);
+  if (match) {
+    return parseFloat(match[1]);
+  }
+  return 0;
+}
+
+// Build clip metadata array with start times, end times, and indices
+function buildClipMetadata() {
+  const visualization = document.querySelector('.player-visualization');
+  if (!visualization) return [];
+  
+  const clips = visualization.querySelectorAll('.transcript-clip');
+  const metadata = [];
+  
+  clips.forEach((clip, index) => {
+    const seekTime = parseFloat(clip.dataset.seekTime);
+    if (isNaN(seekTime)) return;
+    
+    const duration = parseClipDuration(clip);
+    const endTime = seekTime + duration;
+    
+    metadata.push({
+      index: index,
+      startTime: seekTime,
+      endTime: endTime,
+      duration: duration
+    });
+  });
+  
+  // Sort by start time to ensure correct order
+  metadata.sort((a, b) => a.startTime - b.startTime);
+  
+  return metadata;
+}
+
+// Get current clip index based on playback time
+function getCurrentClipIndex(currentTime, clipMetadata) {
+  if (!clipMetadata || clipMetadata.length === 0) return null;
+  
+  // Find the clip that contains the current time
+  // Iterate in reverse to handle overlapping clips (later clips take precedence)
+  for (let i = clipMetadata.length - 1; i >= 0; i--) {
+    const clip = clipMetadata[i];
+    // Check if currentTime is within this clip's range
+    if (currentTime >= clip.startTime && currentTime < clip.endTime) {
+      return clip.index;
+    }
+  }
+  
+  // Handle edge cases: before first clip or after last clip
+  if (currentTime < clipMetadata[0].startTime) {
+    return clipMetadata[0].index;
+  }
+  // For the last clip, check if we're at or past its start time
+  const lastClip = clipMetadata[clipMetadata.length - 1];
+  if (currentTime >= lastClip.startTime) {
+    return lastClip.index;
+  }
+  
+  return null;
+}
+
+// Update visual state of playing clip
+function updatePlayingClip(clipIndex, clipMap) {
+  // Remove playing class from all clips
+  document.querySelectorAll('.transcript-clip.playing').forEach(clip => {
+    clip.classList.remove('playing');
+  });
+  
+  // Add playing class to current clip if valid
+  if (clipIndex !== null && clipMap) {
+    const pair = clipMap.get(clipIndex.toString());
+    if (pair) {
+      if (pair.visualization) {
+        pair.visualization.classList.add('playing');
+      }
+      if (pair.container) {
+        pair.container.classList.add('playing');
+        // Scroll to the playing clip in transcript container
+        scrollToClipCenter(pair.container);
+      }
+    }
+  }
+}
+
 // ==================== Transcript Clips Interaction ====================
 
 // Initialize transcript clips interaction (click and hover sync)
-function initTranscriptClipsInteraction(sound) {
-  if (!sound) return;
+function initTranscriptClipsInteraction(sound, clipMetadata, updatePlayingClipFn, getCurrentClipIndexFn) {
+  if (!sound) return null;
   
   const visualization = document.querySelector('.player-visualization');
   const transcriptContainer = document.querySelector('.transcript-container');
   
-  if (!visualization || !transcriptContainer) return;
+  if (!visualization || !transcriptContainer) return null;
   
   const visualizationClips = visualization.querySelectorAll('.transcript-clip');
   const containerClips = transcriptContainer.querySelectorAll('.transcript-clip');
@@ -492,6 +625,12 @@ function initTranscriptClipsInteraction(sound) {
         if (!sound.playing()) {
           sound.play();
         }
+        
+        // Update playing clip immediately after seek
+        if (clipMetadata && clipMetadata.length > 0 && updatePlayingClipFn && getCurrentClipIndexFn) {
+          const newClipIndex = getCurrentClipIndexFn(seekTime, clipMetadata);
+          updatePlayingClipFn(newClipIndex, clipMap);
+        }
       }
     });
     
@@ -519,6 +658,9 @@ function initTranscriptClipsInteraction(sound) {
       // Don't fade out here - only fade out when leaving entire visualization
     });
   });
+  
+  // Return clipMap for use in playback tracking
+  return clipMap;
 }
 
 // Update emotion caption on hover (instant, no transition)
@@ -558,7 +700,7 @@ function fadeOutEmotionCaption() {
 }
 
 // Initialize behavior link handlers
-function initBehaviorLinkHandlers() {
+function initBehaviorLinkHandlers(sound) {
   // Handle detected-behaviour links
   const detectedBehaviourLinks = document.querySelectorAll('.detected-behaviour');
   detectedBehaviourLinks.forEach((link) => {
@@ -568,6 +710,17 @@ function initBehaviorLinkHandlers() {
       const targetClip = findFirstClipWithBehavior(behaviorName);
       if (targetClip) {
         scrollToClipCenter(targetClip);
+        
+        // Start playback from the clip's start time
+        if (sound) {
+          const seekTime = parseFloat(targetClip.dataset.seekTime);
+          if (!isNaN(seekTime) && seekTime >= 0) {
+            sound.seek(seekTime);
+            if (!sound.playing()) {
+              sound.play();
+            }
+          }
+        }
       }
     });
   });
@@ -600,6 +753,17 @@ function initBehaviorLinkHandlers() {
         const targetClip = findFirstClipWithBehavior(behaviorName);
         if (targetClip) {
           scrollToClipCenter(targetClip);
+          
+          // Start playback from the clip's start time
+          if (sound) {
+            const seekTime = parseFloat(targetClip.dataset.seekTime);
+            if (!isNaN(seekTime) && seekTime >= 0) {
+              sound.seek(seekTime);
+              if (!sound.playing()) {
+                sound.play();
+              }
+            }
+          }
         }
       }
     });
@@ -611,14 +775,48 @@ if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
     initStickyObserver();
     initPlayerVisualization();
-    const sound = initAudioPlayer();
-    initTranscriptClipsInteraction(sound);
-    initBehaviorLinkHandlers();
+    const audioPlayerResult = initAudioPlayer();
+    const clipMap = initTranscriptClipsInteraction(
+      audioPlayerResult.sound,
+      audioPlayerResult.clipMetadata,
+      updatePlayingClip,
+      getCurrentClipIndex
+    );
+    if (audioPlayerResult && audioPlayerResult.setClipMap) {
+      audioPlayerResult.setClipMap(clipMap);
+      // Update initial playing clip
+      if (audioPlayerResult.sound && clipMap) {
+        const currentTime = audioPlayerResult.sound.seek();
+        const clipMetadata = audioPlayerResult.clipMetadata;
+        if (clipMetadata && clipMetadata.length > 0) {
+          const initialClipIndex = getCurrentClipIndex(currentTime, clipMetadata);
+          updatePlayingClip(initialClipIndex, clipMap);
+        }
+      }
+    }
+    initBehaviorLinkHandlers(audioPlayerResult.sound);
   });
 } else {
   initStickyObserver();
   initPlayerVisualization();
-  const sound = initAudioPlayer();
-  initTranscriptClipsInteraction(sound);
-  initBehaviorLinkHandlers();
+    const audioPlayerResult = initAudioPlayer();
+    const clipMap = initTranscriptClipsInteraction(
+      audioPlayerResult.sound,
+      audioPlayerResult.clipMetadata,
+      updatePlayingClip,
+      getCurrentClipIndex
+    );
+    if (audioPlayerResult && audioPlayerResult.setClipMap) {
+      audioPlayerResult.setClipMap(clipMap);
+      // Update initial playing clip
+      if (audioPlayerResult.sound && clipMap) {
+        const currentTime = audioPlayerResult.sound.seek();
+        const clipMetadata = audioPlayerResult.clipMetadata;
+        if (clipMetadata && clipMetadata.length > 0) {
+          const initialClipIndex = getCurrentClipIndex(currentTime, clipMetadata);
+          updatePlayingClip(initialClipIndex, clipMap);
+        }
+      }
+    }
+  initBehaviorLinkHandlers(audioPlayerResult.sound);
 }

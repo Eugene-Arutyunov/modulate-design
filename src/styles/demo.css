@@ -1,3 +1,13 @@
+/* Keyframe animation for playing clip background */
+@keyframes playing-pulse {
+  0%, 100% {
+    background-color: rgb(var(--ids__hover-RGB), 0.2);
+  }
+  50% {
+    background-color: rgb(var(--ids__hover-RGB), 0.3);
+  }
+}
+
 .nav-container {
   display: flex;
   --gap: 1em;
@@ -115,6 +125,11 @@ a.detected-behaviour {
       
 
 
+    }
+
+    /* Playing state - highlight currently playing clip */
+    &.playing {
+      animation: playing-pulse 1s ease-in-out infinite;
     }
 
     & .clip-caption {

@@ -137,6 +137,9 @@
       }
     }
 
+    /* Playing state - highlight currently playing clip */
+    
+
     & .clip-visualization {
       position: absolute;
       left: 0;
