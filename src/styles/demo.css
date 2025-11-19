@@ -16,6 +16,12 @@
 .summary-container {
   width: 98%;
   margin: 1em auto;
+
+  & .summary-table {
+    & p {
+      margin-bottom: 0.2em;
+    }
+  }
   
 }
 
@@ -50,10 +56,14 @@ a.detected-behaviour {
     transition: color 0.5s ease, background-color 0.5s ease;
     --ids__radius: 2em;
 
+    & .clip-visualization {
+      display: none;
+    }
+
     border-radius: var(--ids__radius);
     corner-shape: squircle;
 
-    &[data-speaker-index="2"] {
+    &[data-speaker-index="1"] {
       margin-right: 3em;
       border-radius:  0 var(--ids__radius) var(--ids__radius) var(--ids__radius);
 
@@ -70,7 +80,7 @@ a.detected-behaviour {
     
         
     }
-    &[data-speaker-index="1"] {
+    &[data-speaker-index="2"] {
       margin-left: 3em;
       border-radius: var(--ids__radius) 0 var(--ids__radius) var(--ids__radius);
 

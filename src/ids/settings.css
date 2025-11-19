@@ -30,6 +30,7 @@ body {
   font-family: var(--sans);
   -webkit-font-smoothing: antialiased;
   font-weight: 400;
+  font-synthesis: none;
 }
 
 /* Density */
@@ -42,6 +43,7 @@ body {
 body {
   font-size: 1em;
   line-height: var(--ids__density);
+
 }
 
 html {

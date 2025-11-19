@@ -54,6 +54,7 @@
     &.caption {
       font-size: 0.8em;
       margin-bottom: 0.4em;
+      opacity: 0.5;
     }
 
     
@@ -62,6 +63,7 @@
 
   & span.caption {
     font-size: 0.8em;
+    opacity: 0.5;
 
   }
 
@@ -252,7 +254,7 @@
 
       & td {
         padding: 0.3em 1em 0.2em 0;
-        border-top: 1px solid rgba(var(--ids__text-RGB), 0.3);
+        border-top: 1px solid rgba(var(--ids__text-RGB), 0.2);
         vertical-align: top;
 
       }

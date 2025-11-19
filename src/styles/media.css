@@ -1,8 +1,22 @@
 :root {
   --initial-height: 14em;
-  --stuck-height: 8em;
+  --stuck-height: 9em;
   --player-visualization-height: 75%;
   --player-visualization-mobile-height: 65%;
+  
+  /* Emotion color animation timing */
+  --emotion-color-delay: 0.5s;
+  --emotion-color-duration: 2s;
+}
+
+/* Keyframe animation for emotion color fade-in */
+@keyframes emotion-color-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .media-container {
@@ -28,12 +42,28 @@
     display: flex;
     flex-direction: column;
     --padding: 0.5em;
-    
+    --speaker-count: 2;
 
     height: var(--initial-height);
     background-color: rgba(var(--ids__accent-RGB), 1);
     box-shadow: 0 1em 1em 0 white;
     transition: height 0.2s ease;
+
+    &[data-speaker-count="1"] {
+      --speaker-count: 1;
+    }
+    &[data-speaker-count="2"] {
+      --speaker-count: 2;
+    }
+    &[data-speaker-count="3"] {
+      --speaker-count: 3;
+    }
+    &[data-speaker-count="4"] {
+      --speaker-count: 4;
+    }
+    &[data-speaker-count="5"] {
+      --speaker-count: 5;
+    }
   }
 
   &.stuck {
@@ -46,6 +76,15 @@
         height: var(--player-visualization-mobile-height);
         transition: height 0.5s ease;
       }
+    }
+
+    & .speaker-labels {
+      height: var(--player-visualization-mobile-height);
+      transition: height 0.5s ease;
+    }
+    & .behaviour-labels {
+      height: var(--player-visualization-mobile-height);
+      transition: height 0.5s ease;
     }
 
     & .player-controls {
@@ -81,99 +120,105 @@
 
   & .transcript-clip {
     position: absolute;
-    height: 50%;
+    height: 100%;
     top: 0;
-    border: 1px solid white;
     cursor: pointer;
-    transition: filter 0.1s ease;
 
-    &:before {
-      position: absolute;
-        content: '';
-        border: 1px solid transparent;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;        
-      }
-    
     /* Hover styles specific to visualization */
     &:hover,
     &.hover {
-      filter: brightness(140%) saturate(115%);
-      transition: filter 0s ease;
-      /* border-color: rgba(255,255,255,0.3) !important; */
+      & .clip-visualization {
+        filter: brightness(140%) saturate(115%);
+        transition: filter 0s ease;
+        
+        &::after {
+          filter: brightness(140%) saturate(115%);
+        }
+      }
     }
 
-
-
-    &[data-speaker-index="1"] {
-      top: 50%;
-
-      &:before {
-        top: -100%;
-      }
-
+    & .clip-visualization {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: calc(100% / var(--speaker-count));
+      transition: filter 0.1s ease;
+      /* Initial neutral color for all clips */
+      background-color: rgba(var(--emotion-neutral-RGB), 1);
+      border-color: rgba(var(--emotion-neutral-RGB), 1);
       
-    }
-    &[data-speaker-index="2"] {
-      top: 0;
-      &:before {
-        bottom: -100%;
+      /* ::after pseudo-element for emotion color overlay */
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        pointer-events: none;
+        /* Animation applied to all emotion colors except neutral */
+        animation: emotion-color-fade-in var(--emotion-color-duration) ease-in var(--emotion-color-delay) forwards;
       }
     }
 
-    /* Background colors based on emotion classes */
-    &.emotion-neutral {
-      background-color: rgba(var(--emotion-neutral-RGB), 1);      
-      border-color: rgba(var(--emotion-neutral-RGB), 1);      
+    &[data-speaker-index="1"] .clip-visualization {
+      top: calc((1 - 1) * (100% / var(--speaker-count)));
+    }
+    &[data-speaker-index="2"] .clip-visualization {
+      top: calc((2 - 1) * (100% / var(--speaker-count)));
+    }
+    &[data-speaker-index="3"] .clip-visualization {
+      top: calc((3 - 1) * (100% / var(--speaker-count)));
+    }
+    &[data-speaker-index="4"] .clip-visualization {
+      top: calc((4 - 1) * (100% / var(--speaker-count)));
+    }
+    &[data-speaker-index="5"] .clip-visualization {
+      top: calc((5 - 1) * (100% / var(--speaker-count)));
     }
 
-    &.emotion-confused {
+    /* Background colors based on emotion classes with animation using ::after */
+    &.emotion-neutral .clip-visualization::after {
+      /* No overlay needed - already neutral color */
+      animation: none;
+    }
+
+    &.emotion-confused .clip-visualization::after {
       background-color: rgba(var(--emotion-confused-RGB), 1);
-      border-color: rgba(var(--emotion-confused-RGB), 1);
     }
 
-    &.emotion-frustrated {
+    &.emotion-frustrated .clip-visualization::after {
       background-color: rgba(var(--emotion-frustrated-RGB), 1);
-      border-color: rgba(var(--emotion-frustrated-RGB), 1);
     }
 
-    &.emotion-apologetic {
+    &.emotion-apologetic .clip-visualization::after {
       background-color: rgba(var(--emotion-apologetic-RGB), 1);
-      border-color: rgba(var(--emotion-apologetic-RGB), 1);
     }
 
-    &.emotion-annoyed {
+    &.emotion-annoyed .clip-visualization::after {
       background-color: rgba(var(--emotion-annoyed-RGB), 1);
-      border-color: rgba(var(--emotion-annoyed-RGB), 1);
     }
 
-    &.emotion-assertive {
+    &.emotion-assertive .clip-visualization::after {
       background-color: rgba(var(--emotion-assertive-RGB), 1);
-      border-color: rgba(var(--emotion-assertive-RGB), 1);
     }
 
-    &.emotion-demanding {
+    &.emotion-demanding .clip-visualization::after {
       background-color: rgba(var(--emotion-demanding-RGB), 1);
-      border-color: rgba(var(--emotion-demanding-RGB), 1);
     }
 
-    &.emotion-angry {
+    &.emotion-angry .clip-visualization::after {
       background-color: rgba(var(--emotion-angry-RGB), 1);
-      border-color: rgba(var(--emotion-angry-RGB), 1);
     }
 
-    &.emotion-threatening {
+    &.emotion-threatening .clip-visualization::after {
       background-color: rgba(var(--emotion-threatening-RGB), 1);
-      border-color: rgba(var(--emotion-threatening-RGB), 1);
     }
 
-    &.emotion-exasperated {
+    &.emotion-exasperated .clip-visualization::after {
       background-color: rgba(var(--emotion-exasperated-RGB), 1);
-      border-color: rgba(var(--emotion-exasperated-RGB), 1);
     }
-
     
     & .clip-caption,
     & .clip-text {
@@ -186,25 +231,36 @@
   position: absolute;
   width: 100%;
   height: var(--player-visualization-height);
+  transition: height 0.2s ease;
   pointer-events: none;
+  font-size: 0.8em;
 
   & .speaker-label {
     position: absolute;
     display: flex;
     align-items: flex-end;
     padding-left: 0.1em;
-    height: 50%;
+    height: calc(100% / var(--speaker-count));
 
     &[data-speaker-index="1"] {
-      top: 50%;
+      top: calc((1 - 1) * (100% / var(--speaker-count)));
     }
     &[data-speaker-index="2"] {
-      top: 0;
+      top: calc((2 - 1) * (100% / var(--speaker-count)));
+    }
+    &[data-speaker-index="3"] {
+      top: calc((3 - 1) * (100% / var(--speaker-count)));
+    }
+    &[data-speaker-index="4"] {
+      top: calc((4 - 1) * (100% / var(--speaker-count)));
+    }
+    &[data-speaker-index="5"] {
+      top: calc((5 - 1) * (100% / var(--speaker-count)));
     }
 
     & span {
-      font-size: 0.8em;
-      line-height: 1;
+      
+      
       background-color: rgba(var(--ids__surface-RGB), 1);
       padding: 0.1em 0.2em 0 0;
       color: rgba(var(--ids__text-RGB), 0.3);
@@ -218,52 +274,84 @@
   position: absolute;
   width: 100%;
   height: var(--player-visualization-height);
+  transition: height 0.2s ease;
   pointer-events: none;
   
 
   & .behaviour-label {
     position: absolute;
     font-size: 0.8em;
-    /* width: 10em; */
+    width: 10em;
     display: flex;
     align-items: flex-end;
-    padding-left: 0.1em;
-    height: 50%;    
+    padding-bottom: 0.4em;
+    height: calc(100% / var(--speaker-count));
+    /* border-left: 2px solid white; */
+
+    &:after {
+      content: '';
+      position: absolute;
+      width: 0.4em;
+      height: 0.4em;
+      border-radius: 50%;
+      background-color: white;
+      bottom: -0.2em;
+      left: 0;
+    }
     
     
     &[data-speaker-index="1"] {
-      top: 50%;
+      top: calc((1 - 1) * (100% / var(--speaker-count)));
     }
     &[data-speaker-index="2"] {
-      top: 0;
+      top: calc((2 - 1) * (100% / var(--speaker-count)));
+    }
+    &[data-speaker-index="3"] {
+      top: calc((3 - 1) * (100% / var(--speaker-count)));
+    }
+    &[data-speaker-index="4"] {
+      top: calc((4 - 1) * (100% / var(--speaker-count)));
+    }
+    &[data-speaker-index="5"] {
+      top: calc((5 - 1) * (100% / var(--speaker-count)));
     }
 
     & a {
+      pointer-events: auto;      
+      text-decoration: none;
       display: block;
-      
-      /* text-decoration-thickness: 2px;
-      text-decoration-color: rgba(var(--ids__link-RGB), 1); */
+
+      &:hover {
+        color: rgba(var(--ids__link-RGB), 1);
+
+        & span {
+          
+          
+          transform: translateX(0.2em);
+          transition: transform 0s ease;
+        }
+      }      
 
       & span {
-        /* font-weight: 600; */
+        display: inline-block;          
+        font-weight: 600;
+        transition: transform 0.5s ease;
       }
     }
   }
 }
 
 .player-controls {
+  position: relative;
   display: flex;
   align-items: center;
-  position: relative;
   height: calc(100% - var(--player-visualization-height));
   transition: height 0.2s ease;
+  z-index: 1;
   
   
   padding-top: 1em;
 
-  & .player-control-spacer {
-    flex: 1;
-  }
 
   & .player-control-center {
     position: absolute;
@@ -271,20 +359,12 @@
     transform: translateX(-50%);
   }
 
-  & .player-control-right {
-    margin-right: calc(var(--padding) + 3em);
-  }
-
-  & a {
-    font-size: 0.8em;
-  }
-
   & .player-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 1.8em;
-    height: 1.8em;
+    width: 1.5em;
+    height: 1.5em;
     cursor: pointer;
     
     transition: transform 0.2s ease;
@@ -321,6 +401,13 @@
 
   & .emotion-caption {
     font-size: 0.8em;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    
+    &.visible {
+      opacity: 1;
+      transition: opacity 0s ease;
+    }
   }
   & .total-time {
     opacity: 0.5;
@@ -348,9 +435,9 @@
     left: 0.1em;
     top: var(--player-visualization-height);
     transition: top 0.2s ease;
-
+    font-size: 0.8em;
+    
     & span {
-      font-size: 0.8em;
     }
   }
 

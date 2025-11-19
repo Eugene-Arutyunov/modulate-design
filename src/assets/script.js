@@ -334,6 +334,18 @@ function initAudioPlayer() {
           if (!sound.playing()) {
             sound.play();
           }
+          
+          // Scroll to corresponding transcript clip
+          const clipIndex = clip.getAttribute('data-clip-index');
+          if (clipIndex !== null) {
+            const transcriptContainer = document.querySelector('.transcript-container');
+            if (transcriptContainer) {
+              const transcriptClip = transcriptContainer.querySelector(`.transcript-clip[data-clip-index="${clipIndex}"]`);
+              if (transcriptClip) {
+                scrollToClipCenter(transcriptClip);
+              }
+            }
+          }
         }
       });
     });
@@ -349,6 +361,39 @@ function initAudioPlayer() {
   
   // Return sound instance for use in transcript clips interaction
   return sound;
+}
+
+// ==================== Scroll to Clip Functions ====================
+
+// Scroll to center a clip element in the viewport
+function scrollToClipCenter(clipElement) {
+  if (!clipElement) return;
+  
+  const elementRect = clipElement.getBoundingClientRect();
+  const absoluteElementTop = elementRect.top + window.pageYOffset;
+  const middle = absoluteElementTop - (window.innerHeight / 2) + (elementRect.height / 2);
+  
+  window.scrollTo({
+    top: middle,
+    behavior: 'smooth'
+  });
+}
+
+// Find first clip with matching behavior name
+function findFirstClipWithBehavior(behaviorName) {
+  const transcriptContainer = document.querySelector('.transcript-container');
+  if (!transcriptContainer) return null;
+  
+  const clips = transcriptContainer.querySelectorAll('.transcript-clip.evidence');
+  
+  for (const clip of clips) {
+    const behaviourElement = clip.querySelector('.behaviour');
+    if (behaviourElement && behaviourElement.textContent.trim() === behaviorName.trim()) {
+      return clip;
+    }
+  }
+  
+  return null;
 }
 
 // ==================== Transcript Clips Interaction ====================
@@ -425,6 +470,19 @@ function initTranscriptClipsInteraction(sound) {
     }
   }
   
+  // Track if mouse is over visualization area
+  let isOverVisualization = false;
+  
+  // Handle mouse enter/leave for entire visualization area
+  visualization.addEventListener('mouseenter', function() {
+    isOverVisualization = true;
+  });
+  
+  visualization.addEventListener('mouseleave', function() {
+    isOverVisualization = false;
+    fadeOutEmotionCaption();
+  });
+  
   // Add click handlers to container clips
   containerClips.forEach((clip) => {
     clip.addEventListener('click', function() {
@@ -440,10 +498,12 @@ function initTranscriptClipsInteraction(sound) {
     // Add hover handlers
     clip.addEventListener('mouseenter', function() {
       syncHover(clip, true);
+      updateEmotionCaption(clip);
     });
     
     clip.addEventListener('mouseleave', function() {
       syncHover(clip, false);
+      // Don't fade out here - only fade out when leaving entire visualization
     });
   });
   
@@ -451,10 +511,97 @@ function initTranscriptClipsInteraction(sound) {
   visualizationClips.forEach((clip) => {
     clip.addEventListener('mouseenter', function() {
       syncHover(clip, true);
+      updateEmotionCaption(clip);
     });
     
     clip.addEventListener('mouseleave', function() {
       syncHover(clip, false);
+      // Don't fade out here - only fade out when leaving entire visualization
+    });
+  });
+}
+
+// Update emotion caption on hover (instant, no transition)
+function updateEmotionCaption(clip) {
+  const emotionCaption = document.querySelector('.emotion-caption');
+  if (!emotionCaption) return;
+  
+  // Extract emotion name from class (e.g., "emotion-angry" -> "angry")
+  const emotionClasses = Array.from(clip.classList).filter(cls => cls.startsWith('emotion-'));
+  if (emotionClasses.length === 0) return;
+  
+  const emotionName = emotionClasses[0].replace('emotion-', '');
+  
+  // Update text (don't clear, just update)
+  emotionCaption.textContent = emotionName;
+  
+  // Apply color using CSS variable
+  const emotionColorVar = `--emotion-${emotionName}-RGB`;
+  const computedStyle = getComputedStyle(document.documentElement);
+  const colorValue = computedStyle.getPropertyValue(emotionColorVar).trim();
+  
+  if (colorValue) {
+    emotionCaption.style.color = `rgba(${colorValue}, 1)`;
+  }
+  
+  // Show instantly (no transition)
+  emotionCaption.classList.add('visible');
+}
+
+// Fade out emotion caption when leaving visualization area (with transition)
+function fadeOutEmotionCaption() {
+  const emotionCaption = document.querySelector('.emotion-caption');
+  if (!emotionCaption) return;
+  
+  // Remove visible class to trigger fade out transition
+  emotionCaption.classList.remove('visible');
+}
+
+// Initialize behavior link handlers
+function initBehaviorLinkHandlers() {
+  // Handle detected-behaviour links
+  const detectedBehaviourLinks = document.querySelectorAll('.detected-behaviour');
+  detectedBehaviourLinks.forEach((link) => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const behaviorName = link.textContent.trim();
+      const targetClip = findFirstClipWithBehavior(behaviorName);
+      if (targetClip) {
+        scrollToClipCenter(targetClip);
+      }
+    });
+  });
+  
+  // Handle behaviour-label links
+  const behaviourLabelLinks = document.querySelectorAll('.behaviour-label a');
+  behaviourLabelLinks.forEach((link) => {
+    const behaviourLabel = link.closest('.behaviour-label');
+    
+    // Add hover handlers for border color change
+    link.addEventListener('mouseenter', function() {
+      if (behaviourLabel) {
+        behaviourLabel.classList.add('hover');
+      }
+    });
+    
+    link.addEventListener('mouseleave', function() {
+      if (behaviourLabel) {
+        behaviourLabel.classList.remove('hover');
+      }
+    });
+    
+    // Handle click
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation(); // Prevent click from reaching the clip underneath
+      const span = link.querySelector('span');
+      if (span) {
+        const behaviorName = span.textContent.trim();
+        const targetClip = findFirstClipWithBehavior(behaviorName);
+        if (targetClip) {
+          scrollToClipCenter(targetClip);
+        }
+      }
     });
   });
 }
@@ -466,10 +613,12 @@ if (document.readyState === "loading") {
     initPlayerVisualization();
     const sound = initAudioPlayer();
     initTranscriptClipsInteraction(sound);
+    initBehaviorLinkHandlers();
   });
 } else {
   initStickyObserver();
   initPlayerVisualization();
   const sound = initAudioPlayer();
   initTranscriptClipsInteraction(sound);
+  initBehaviorLinkHandlers();
 }
