@@ -151,6 +151,16 @@ function initAudioPlayer() {
       autoScrollEnabled = true;
       startPositionUpdate();
       updatePlayPauseIcon();
+      
+      // Immediately scroll to current clip when playback starts
+      if (clipMetadata.length > 0 && clipMap) {
+        const currentTime = sound.seek();
+        const clipIndex = getCurrentClipIndex(currentTime, clipMetadata);
+        if (clipIndex !== null) {
+          updatePlayingClip(clipIndex, clipMap, autoScrollEnabled, (flag) => { isProgrammaticScroll = flag; });
+          currentClipIndex = clipIndex;
+        }
+      }
     },
     onpause: function() {
       stopPositionUpdate();
@@ -391,25 +401,11 @@ function initAudioPlayer() {
             sound.play();
           }
           
-          // Update playing clip immediately after seek
+          // Update playing clip immediately after seek (always update to ensure scroll happens)
           if (clipMetadata.length > 0 && clipMap) {
             const newClipIndex = getCurrentClipIndex(seekTime, clipMetadata);
-            if (newClipIndex !== currentClipIndex) {
-              currentClipIndex = newClipIndex;
-              updatePlayingClip(currentClipIndex, clipMap, autoScrollEnabled, (flag) => { isProgrammaticScroll = flag; });
-            }
-          }
-          
-          // Scroll to corresponding transcript clip
-          const clipIndex = clip.getAttribute('data-clip-index');
-          if (clipIndex !== null) {
-            const transcriptContainer = document.querySelector('.transcript-container');
-            if (transcriptContainer) {
-              const transcriptClip = transcriptContainer.querySelector(`.transcript-clip[data-clip-index="${clipIndex}"]`);
-              if (transcriptClip) {
-                scrollToClipCenter(transcriptClip, (flag) => { isProgrammaticScroll = flag; });
-              }
-            }
+            currentClipIndex = newClipIndex;
+            updatePlayingClip(currentClipIndex, clipMap, autoScrollEnabled, (flag) => { isProgrammaticScroll = flag; });
           }
         }
       });

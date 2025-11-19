@@ -4,9 +4,10 @@
   <div class="ids__space S"></div>
   <div class="nav-container">
     <div class="nav-link">
-      <a href="/">← <span class="nav-link-caption">Conversations</span></a>
+      <p style="font-size: 0.8em"><a href="/">← <span class="nav-link-caption">Conversations</span></a></p>
     </div>
-    <div class="nav-disclaimer">This is a beta version. We don’t collect or store any information. Have fun!</div>
+    <div class="nav-disclaimer">
+      <p class="caption"> This is a beta version. We don’t collect or store any information. Have fun!</p></div>
   </div>
   <div class="media-container sticky">
     <div class="media-space"></div>
@@ -117,10 +118,39 @@
   </div>
   <div class="transcript-container">
     {% include "transcript-clips.html" %}
-
-  </div>
-  <div class="ids__space XL"></div>
-  
+    <div class="ids__space XL"></div>
+  </div>  
 </div>
+<div class="ids__wrapper">
+  <div class="ids__space L"></div>
+  
+  <div class="ids__space" style="height: 0.5em"></div>
+  <div class="cta">
+    <div class="cta-column">
+      <div class="cta-section idea ids__rounded">
+        <p>This is a beta version. We don’t collect or store any information. Feel free to try your own audio. Have fun!</p>
+      </div>
+      <div class="cta-section form ids__rounded dark-mode">
+        <h2>Talk to our team</h2>  
+        <p>Curious how this could work on your data—from fraud and scams to customer experience and hiring? Drop your email and we’ll follow up.</p>
+        <form action="" class="schedule-form">
+          <input type="email" placeholder="Enter your email" class="schedule-form-input">
+          <button type="submit" class="schedule-form-button ids__rounded">Send</button>
+        </form>
+      </div>
+    </div>
 
+    <div class="cta-column">
+      <div class="cta-section idea ids__rounded">
+        <p>Have thoughts on what you just saw?</p><p><strong><a href="#">Tell us!</a></strong></p>
+      </div>
+      <div class="cta-section kit ids__rounded">
+        <p>Ready to spread the word about us?</p><p><strong><a href="#">Download the press kit</a></strong></p>
+      </div>
+    </div>
+  </div>  
+  <div class="ids__space XL"></div>
+
+</div>
+  
 {% endblock %}
