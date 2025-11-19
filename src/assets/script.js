@@ -68,6 +68,29 @@ function formatTime(seconds) {
   return `${mins}:${secs.toString().padStart(2, '0')}`;
 }
 
+// Get precise start time from clip - uses data-time if available, otherwise data-seek-time
+function getClipStartTime(clip) {
+  // First try to use precise data-time from .time element
+  const timeElement = clip.querySelector('.time');
+  if (timeElement) {
+    const dataTime = timeElement.dataset.time;
+    if (dataTime) {
+      const time = parseFloat(dataTime);
+      if (!isNaN(time)) {
+        return time;
+      }
+    }
+  }
+  
+  // Fallback to data-seek-time on clip element
+  const seekTime = parseFloat(clip.dataset.seekTime);
+  if (!isNaN(seekTime)) {
+    return seekTime;
+  }
+  
+  return null;
+}
+
 // Helper function: get padding in pixels from CSS variable
 function getPaddingInPixels(element) {
   const computedStyle = getComputedStyle(element);
@@ -125,12 +148,18 @@ function initAudioPlayer() {
       console.error('Error loading audio:', error);
     },
     onplay: function() {
+      autoScrollEnabled = true;
       startPositionUpdate();
       updatePlayPauseIcon();
     },
     onpause: function() {
       stopPositionUpdate();
       updatePlayPauseIcon();
+      // Clear playing clip when audio is paused
+      if (clipMap) {
+        updatePlayingClip(null, clipMap);
+        currentClipIndex = null;
+      }
     },
     onend: function() {
       stopPositionUpdate();
@@ -150,6 +179,12 @@ function initAudioPlayer() {
   let currentClipIndex = null;
   let clipMetadata = [];
   let clipMap = null;
+  
+  // Auto-scroll tracking
+  let autoScrollEnabled = true;
+  let lastScrollPosition = window.pageYOffset;
+  let lastScrollTime = Date.now();
+  let isProgrammaticScroll = false;
 
   // Load SVG icon from sprite file
   async function loadIcon(container, iconId) {
@@ -295,7 +330,7 @@ function initAudioPlayer() {
           const newClipIndex = getCurrentClipIndex(currentTime, clipMetadata);
           if (newClipIndex !== currentClipIndex) {
             currentClipIndex = newClipIndex;
-            updatePlayingClip(currentClipIndex, clipMap);
+            updatePlayingClip(currentClipIndex, clipMap, autoScrollEnabled, (flag) => { isProgrammaticScroll = flag; });
           }
         }
         
@@ -346,8 +381,11 @@ function initAudioPlayer() {
     const clips = visualization.querySelectorAll('.transcript-clip');
     clips.forEach((clip) => {
       clip.addEventListener('click', function() {
-        const seekTime = parseFloat(clip.dataset.seekTime);
-        if (!isNaN(seekTime) && seekTime >= 0) {
+        const seekTime = getClipStartTime(clip);
+        if (seekTime !== null && seekTime >= 0) {
+          // Enable auto-scroll when clicking on clip
+          autoScrollEnabled = true;
+          
           sound.seek(seekTime);
           if (!sound.playing()) {
             sound.play();
@@ -358,7 +396,7 @@ function initAudioPlayer() {
             const newClipIndex = getCurrentClipIndex(seekTime, clipMetadata);
             if (newClipIndex !== currentClipIndex) {
               currentClipIndex = newClipIndex;
-              updatePlayingClip(currentClipIndex, clipMap);
+              updatePlayingClip(currentClipIndex, clipMap, autoScrollEnabled, (flag) => { isProgrammaticScroll = flag; });
             }
           }
           
@@ -369,7 +407,7 @@ function initAudioPlayer() {
             if (transcriptContainer) {
               const transcriptClip = transcriptContainer.querySelector(`.transcript-clip[data-clip-index="${clipIndex}"]`);
               if (transcriptClip) {
-                scrollToClipCenter(transcriptClip);
+                scrollToClipCenter(transcriptClip, (flag) => { isProgrammaticScroll = flag; });
               }
             }
           }
@@ -378,6 +416,29 @@ function initAudioPlayer() {
     });
   }
 
+  // Handle user scroll to detect when auto-scroll should be disabled
+  window.addEventListener('scroll', function() {
+    // Ignore programmatic scrolls
+    if (isProgrammaticScroll) {
+      return;
+    }
+    
+    const currentScrollPosition = window.pageYOffset;
+    const currentTime = Date.now();
+    const scrollDistance = Math.abs(currentScrollPosition - lastScrollPosition);
+    const timeDelta = currentTime - lastScrollTime;
+    
+    // Check if user scrolled more than half viewport height in less than 1 second
+    const halfViewportHeight = window.innerHeight / 2;
+    if (scrollDistance >= halfViewportHeight && timeDelta <= 1000) {
+      autoScrollEnabled = false;
+    }
+    
+    // Update tracking variables
+    lastScrollPosition = currentScrollPosition;
+    lastScrollTime = currentTime;
+  });
+  
   // Update position on window resize
   window.addEventListener('resize', function() {
     if (sound.playing() || sound.seek() > 0) {
@@ -389,7 +450,7 @@ function initAudioPlayer() {
         const newClipIndex = getCurrentClipIndex(currentTime, clipMetadata);
         if (newClipIndex !== currentClipIndex) {
           currentClipIndex = newClipIndex;
-          updatePlayingClip(currentClipIndex, clipMap);
+          updatePlayingClip(currentClipIndex, clipMap, autoScrollEnabled, (flag) => { isProgrammaticScroll = flag; });
         }
       }
     }
@@ -399,14 +460,27 @@ function initAudioPlayer() {
   clipMetadata = buildClipMetadata();
   
   // Return sound instance and metadata for use in transcript clips interaction
-  return { sound, clipMetadata, setClipMap: (map) => { clipMap = map; } };
+  return { 
+    sound, 
+    clipMetadata, 
+    setClipMap: (map) => { clipMap = map; },
+    getAutoScrollEnabled: () => autoScrollEnabled,
+    setAutoScrollEnabled: (enabled) => { autoScrollEnabled = enabled; },
+    getSetProgrammaticScrollCallback: () => (flag) => { isProgrammaticScroll = flag; }
+  };
 }
 
 // ==================== Scroll to Clip Functions ====================
 
 // Scroll to center a clip element in the viewport
-function scrollToClipCenter(clipElement) {
+// Accepts optional callback to set programmatic scroll flag
+function scrollToClipCenter(clipElement, setProgrammaticFlagCallback = null) {
   if (!clipElement) return;
+  
+  // Set flag if callback provided
+  if (setProgrammaticFlagCallback) {
+    setProgrammaticFlagCallback(true);
+  }
   
   const elementRect = clipElement.getBoundingClientRect();
   const absoluteElementTop = elementRect.top + window.pageYOffset;
@@ -416,6 +490,13 @@ function scrollToClipCenter(clipElement) {
     top: middle,
     behavior: 'smooth'
   });
+  
+  // Reset flag after scroll completes (smooth scroll takes ~500ms)
+  if (setProgrammaticFlagCallback) {
+    setTimeout(() => {
+      setProgrammaticFlagCallback(false);
+    }, 600);
+  }
 }
 
 // Find first clip with matching behavior name
@@ -437,11 +518,21 @@ function findFirstClipWithBehavior(behaviorName) {
 
 // ==================== Clip Playback Tracking ====================
 
-// Parse duration from clip element (e.g., "5s" -> 5)
+// Parse duration from clip element - uses data-duration if available, otherwise parses text
 function parseClipDuration(clip) {
   const durationElement = clip.querySelector('.duration');
   if (!durationElement) return 0;
   
+  // First try to use precise data-duration attribute
+  const dataDuration = durationElement.dataset.duration;
+  if (dataDuration) {
+    const duration = parseFloat(dataDuration);
+    if (!isNaN(duration)) {
+      return duration;
+    }
+  }
+  
+  // Fallback to parsing text (e.g., "5s" -> 5)
   const durationText = durationElement.textContent.trim();
   const match = durationText.match(/^(\d+)s?$/);
   if (match) {
@@ -459,15 +550,15 @@ function buildClipMetadata() {
   const metadata = [];
   
   clips.forEach((clip, index) => {
-    const seekTime = parseFloat(clip.dataset.seekTime);
-    if (isNaN(seekTime)) return;
+    const startTime = getClipStartTime(clip);
+    if (startTime === null) return;
     
     const duration = parseClipDuration(clip);
-    const endTime = seekTime + duration;
+    const endTime = startTime + duration;
     
     metadata.push({
       index: index,
-      startTime: seekTime,
+      startTime: startTime,
       endTime: endTime,
       duration: duration
     });
@@ -483,31 +574,61 @@ function buildClipMetadata() {
 function getCurrentClipIndex(currentTime, clipMetadata) {
   if (!clipMetadata || clipMetadata.length === 0) return null;
   
+  // Use a small epsilon for floating point comparison to handle precision issues
+  const epsilon = 0.001; // 1ms tolerance
+  
   // Find the clip that contains the current time
   // Iterate in reverse to handle overlapping clips (later clips take precedence)
   for (let i = clipMetadata.length - 1; i >= 0; i--) {
     const clip = clipMetadata[i];
     // Check if currentTime is within this clip's range
-    if (currentTime >= clip.startTime && currentTime < clip.endTime) {
+    // Use epsilon to handle floating point precision issues
+    // Use <= for endTime to include the exact end time (important for precise timing)
+    if (currentTime >= (clip.startTime - epsilon) && currentTime <= (clip.endTime + epsilon)) {
       return clip.index;
     }
   }
   
-  // Handle edge cases: before first clip or after last clip
-  if (currentTime < clipMetadata[0].startTime) {
-    return clipMetadata[0].index;
+  // If no clip contains the time, find the nearest clip
+  // This handles gaps between clips - show the last clip we passed
+  
+  // Before first clip
+  const firstClip = clipMetadata[0];
+  if (currentTime < firstClip.startTime) {
+    return firstClip.index;
   }
-  // For the last clip, check if we're at or past its start time
+  
+  // After last clip - return last clip
   const lastClip = clipMetadata[clipMetadata.length - 1];
-  if (currentTime >= lastClip.startTime) {
+  if (currentTime > lastClip.endTime) {
     return lastClip.index;
   }
   
-  return null;
+  // Between clips - return the clip we've most recently passed (the one that ended)
+  // This ensures smooth transition: once a clip ends, we show it until the next one starts
+  for (let i = clipMetadata.length - 1; i >= 0; i--) {
+    const clip = clipMetadata[i];
+    // If we've passed this clip's end time, return it (or the next one if we're closer to it)
+    if (currentTime >= clip.endTime) {
+      // Check if there's a next clip and if we're closer to it
+      if (i < clipMetadata.length - 1) {
+        const nextClip = clipMetadata[i + 1];
+        // If we're closer to the next clip's start, return it
+        if (currentTime >= nextClip.startTime - epsilon) {
+          return nextClip.index;
+        }
+      }
+      // Otherwise, return the clip we just passed
+      return clip.index;
+    }
+  }
+  
+  // Fallback: return first clip
+  return firstClip.index;
 }
 
 // Update visual state of playing clip
-function updatePlayingClip(clipIndex, clipMap) {
+function updatePlayingClip(clipIndex, clipMap, shouldScroll = true, setProgrammaticFlagCallback = null) {
   // Remove playing class from all clips
   document.querySelectorAll('.transcript-clip.playing').forEach(clip => {
     clip.classList.remove('playing');
@@ -522,8 +643,10 @@ function updatePlayingClip(clipIndex, clipMap) {
       }
       if (pair.container) {
         pair.container.classList.add('playing');
-        // Scroll to the playing clip in transcript container
-        scrollToClipCenter(pair.container);
+        // Scroll to the playing clip in transcript container only if shouldScroll is true
+        if (shouldScroll) {
+          scrollToClipCenter(pair.container, setProgrammaticFlagCallback);
+        }
       }
     }
   }
@@ -532,7 +655,7 @@ function updatePlayingClip(clipIndex, clipMap) {
 // ==================== Transcript Clips Interaction ====================
 
 // Initialize transcript clips interaction (click and hover sync)
-function initTranscriptClipsInteraction(sound, clipMetadata, updatePlayingClipFn, getCurrentClipIndexFn) {
+function initTranscriptClipsInteraction(sound, clipMetadata, updatePlayingClipFn, getCurrentClipIndexFn, getAutoScrollEnabledFn, setAutoScrollEnabledFn, getSetProgrammaticScrollCallbackFn) {
   if (!sound) return null;
   
   const visualization = document.querySelector('.player-visualization');
@@ -619,8 +742,13 @@ function initTranscriptClipsInteraction(sound, clipMetadata, updatePlayingClipFn
   // Add click handlers to container clips
   containerClips.forEach((clip) => {
     clip.addEventListener('click', function() {
-      const seekTime = parseFloat(clip.dataset.seekTime);
-      if (!isNaN(seekTime) && seekTime >= 0) {
+      const seekTime = getClipStartTime(clip);
+      if (seekTime !== null && seekTime >= 0) {
+        // Enable auto-scroll when clicking on clip
+        if (setAutoScrollEnabledFn) {
+          setAutoScrollEnabledFn(true);
+        }
+        
         sound.seek(seekTime);
         if (!sound.playing()) {
           sound.play();
@@ -629,7 +757,9 @@ function initTranscriptClipsInteraction(sound, clipMetadata, updatePlayingClipFn
         // Update playing clip immediately after seek
         if (clipMetadata && clipMetadata.length > 0 && updatePlayingClipFn && getCurrentClipIndexFn) {
           const newClipIndex = getCurrentClipIndexFn(seekTime, clipMetadata);
-          updatePlayingClipFn(newClipIndex, clipMap);
+          const autoScrollEnabled = getAutoScrollEnabledFn ? getAutoScrollEnabledFn() : true;
+          const setProgrammaticScrollCallback = getSetProgrammaticScrollCallbackFn ? getSetProgrammaticScrollCallbackFn() : null;
+          updatePlayingClipFn(newClipIndex, clipMap, autoScrollEnabled, setProgrammaticScrollCallback);
         }
       }
     });
@@ -700,7 +830,7 @@ function fadeOutEmotionCaption() {
 }
 
 // Initialize behavior link handlers
-function initBehaviorLinkHandlers(sound) {
+function initBehaviorLinkHandlers(sound, setAutoScrollEnabledFn, getSetProgrammaticScrollCallbackFn) {
   // Handle detected-behaviour links
   const detectedBehaviourLinks = document.querySelectorAll('.detected-behaviour');
   detectedBehaviourLinks.forEach((link) => {
@@ -709,12 +839,18 @@ function initBehaviorLinkHandlers(sound) {
       const behaviorName = link.textContent.trim();
       const targetClip = findFirstClipWithBehavior(behaviorName);
       if (targetClip) {
-        scrollToClipCenter(targetClip);
+        // Enable auto-scroll when clicking on behavior link
+        if (setAutoScrollEnabledFn) {
+          setAutoScrollEnabledFn(true);
+        }
+        
+        const setProgrammaticScrollCallback = getSetProgrammaticScrollCallbackFn ? getSetProgrammaticScrollCallbackFn() : null;
+        scrollToClipCenter(targetClip, setProgrammaticScrollCallback);
         
         // Start playback from the clip's start time
         if (sound) {
-          const seekTime = parseFloat(targetClip.dataset.seekTime);
-          if (!isNaN(seekTime) && seekTime >= 0) {
+          const seekTime = getClipStartTime(targetClip);
+          if (seekTime !== null && seekTime >= 0) {
             sound.seek(seekTime);
             if (!sound.playing()) {
               sound.play();
@@ -752,12 +888,18 @@ function initBehaviorLinkHandlers(sound) {
         const behaviorName = span.textContent.trim();
         const targetClip = findFirstClipWithBehavior(behaviorName);
         if (targetClip) {
-          scrollToClipCenter(targetClip);
+          // Enable auto-scroll when clicking on behavior link
+          if (setAutoScrollEnabledFn) {
+            setAutoScrollEnabledFn(true);
+          }
+          
+          const setProgrammaticScrollCallback = getSetProgrammaticScrollCallbackFn ? getSetProgrammaticScrollCallbackFn() : null;
+          scrollToClipCenter(targetClip, setProgrammaticScrollCallback);
           
           // Start playback from the clip's start time
           if (sound) {
-            const seekTime = parseFloat(targetClip.dataset.seekTime);
-            if (!isNaN(seekTime) && seekTime >= 0) {
+            const seekTime = getClipStartTime(targetClip);
+            if (seekTime !== null && seekTime >= 0) {
               sound.seek(seekTime);
               if (!sound.playing()) {
                 sound.play();
@@ -780,21 +922,16 @@ if (document.readyState === "loading") {
       audioPlayerResult.sound,
       audioPlayerResult.clipMetadata,
       updatePlayingClip,
-      getCurrentClipIndex
+      getCurrentClipIndex,
+      audioPlayerResult.getAutoScrollEnabled,
+      audioPlayerResult.setAutoScrollEnabled,
+      audioPlayerResult.getSetProgrammaticScrollCallback
     );
     if (audioPlayerResult && audioPlayerResult.setClipMap) {
       audioPlayerResult.setClipMap(clipMap);
-      // Update initial playing clip
-      if (audioPlayerResult.sound && clipMap) {
-        const currentTime = audioPlayerResult.sound.seek();
-        const clipMetadata = audioPlayerResult.clipMetadata;
-        if (clipMetadata && clipMetadata.length > 0) {
-          const initialClipIndex = getCurrentClipIndex(currentTime, clipMetadata);
-          updatePlayingClip(initialClipIndex, clipMap);
-        }
-      }
+      // Don't set initial playing clip on page load - only when playback starts
     }
-    initBehaviorLinkHandlers(audioPlayerResult.sound);
+    initBehaviorLinkHandlers(audioPlayerResult.sound, audioPlayerResult.setAutoScrollEnabled, audioPlayerResult.getSetProgrammaticScrollCallback);
   });
 } else {
   initStickyObserver();
@@ -808,15 +945,7 @@ if (document.readyState === "loading") {
     );
     if (audioPlayerResult && audioPlayerResult.setClipMap) {
       audioPlayerResult.setClipMap(clipMap);
-      // Update initial playing clip
-      if (audioPlayerResult.sound && clipMap) {
-        const currentTime = audioPlayerResult.sound.seek();
-        const clipMetadata = audioPlayerResult.clipMetadata;
-        if (clipMetadata && clipMetadata.length > 0) {
-          const initialClipIndex = getCurrentClipIndex(currentTime, clipMetadata);
-          updatePlayingClip(initialClipIndex, clipMap);
-        }
-      }
+      // Don't set initial playing clip on page load - only when playback starts
     }
   initBehaviorLinkHandlers(audioPlayerResult.sound);
 }
