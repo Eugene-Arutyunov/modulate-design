@@ -1,7 +1,7 @@
 {% extends 'layout.html' %} {% set pageTitle = 'Modulate Platform Demo' %} {% block content %}
 
 <div class="ids__wrapper">
-  <div class="ids__space L"></div>
+  <div class="ids__space S"></div>
   <div class="nav-container">
     <div class="nav-link">
       <a href="/">← <span class="nav-link-caption">Conversations</span></a>
@@ -24,13 +24,13 @@
       </div>
       <div class="behaviour-labels">
         <div class="behaviour-label" data-speaker-index="2" data-position="15.71">
-          Sense of Urgency
+          <a href="#"><span> Sense of Urgency</span></a>
         </div>
         <div class="behaviour-label" data-speaker-index="2" data-position="51.43">
-          Return Fraud Attempt
+          <a href="#"><span> Return Fraud Attempt</span></a>
         </div>
         <div class="behaviour-label" data-speaker-index="1" data-position="14.29">
-          Common GenAI Failure Patterns
+          <a href="#"><span> Common GenAI Failure Patterns</span></a>
         </div>
       </div>
       <div class="player-controls">
@@ -40,15 +40,12 @@
             <!-- SVG will be loaded here by JavaScript -->
           </a>
         </div>
-        <!-- <div class="player-control player-control-right">
-          <a href="#" data-action="mute-unmute" class="player-icon" data-muted="false" data-icon-id="icon-unmute">
-            
-          </a>
-        </div> -->
+
       </div>
       
-        <div class="player-total-time">
-          <span data-total-time>4:40</span>
+        <div class="player-status-caption">
+          <span class="emotion-caption">angry</span>
+          <span class="total-time" data-total-time>4:40</span>
         </div>
         <div class="player-position-indicator">
           <div class="player-position-line"></div>
@@ -60,100 +57,70 @@
     </div>
   </div>
   <div class="summary-container">
-    <h1>Customer service dispute over missing delivery and refund resolution</h1>
+    <h1>Dispute over missing delivery and refund</h1>
 
-    <div class="ids__text-width">
-      <p>
-        Customer service  ·  Dispute  ·  Conversation between <strong>Customer</strong> and <strong>Support specialist</strong>. The customer disputed a missing delivery and requested a refund. Agent initially refused due to company policy but eventually processed both refund and credit after confirming a delivery error.
-      </p>
-    </div>
-  </div>
-  <div class="columns">
-    <div class="side-column">
-      <div class="summary-cards">
-        <!-- <div class="summary-card ids__rounded mode-switcher">
-          <div class="radio-switcher">
-            <input type="radio" id="speakers" name="mode" value="speakers" checked />
-            <input type="radio" id="behaviours" name="mode" value="behaviours" />
-            <div class="radio-switcher-track">
-              <label for="speakers" class="radio-switcher-option">
-                <span>Speakers</span>
-              </label>
-              <label for="behaviours" class="radio-switcher-option">
-                <span>Behaviours</span>
-              </label>
-              <div class="radio-switcher-indicator ids__rounded"></div>
-            </div>
-          </div>
-        </div> -->
-        <div class="summary-card ids__rounded">
-          <h3>Customer</h3>
-          <p class="caption">English with American accent · Perceived adult male · Human voice · Spoke 85% of the time · Low social positivity · High toxicity</p>
-          <!-- <p class="caption"><em> Maintained professionalism throughout most of the call, though tone shifted slightly when discussing company policies.</em></p> -->
-          <div class="behaviours-section">
-            <hgroup class="behaviours-title">
-              <h4>Sense of Urgency</h4>
-              <span>88% confidence</span>
-            </hgroup>
-            <a class="transcript-sample" href="#" data-speaker-index="2">
-              <p>My order is missing, it's your job to make sure I get it.</p>
-            </a>
-            <a class="transcript-sample" href="#" data-speaker-index="2">
-              <p>Alright, well listen, Robert, this package has been delayed again, already, and it's very important to my business and health.
+    <table>
+      <tbody>
+
+        <tr>
+          <td>
+            <p class="caption"><em>Speakers</em></p>
+          <td>
+            <p>Customer</p>
+            <p class="caption">English with American accent</p>
+          </td>
+          <td>
+            <p>Support specialist</p>
+            <p class="caption">English with Eastern European accent</p>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            <p class="caption"><em>Behaviours</em></p>
+          </td>
+          <td>
+            <p>
+              <a href="#" class="detected-behaviour">Sense of Urgency</a> <span class="caption">88% confidence</span>
             </p>
-          </a>
-            <a class="transcript-sample" href="#" data-speaker-index="2">
-              <p>Why not?</p>
-            </a>
-          </div>
+            <p>
+              <a href="#" class="detected-behaviour">Return Fraud Attempt</a> <span class="caption">86% confidence</span>
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="#" class="detected-behaviour">Common GenAI Failure Patterns</a> <span class="caption">80% confidence</span>
+            </p>
+          </td>
+          
+        </tr>
+        <tr>
+          <td>
+            <p class="caption"><em>Summary</em></p>
+            
+          </td>
+          <td colspan="2">
 
+            <p class="caption"> 
+              The <strong>Customer</strong> disputed a missing delivery and requested a refund. <strong>Support specialist</strong> initially refused due to company policy but eventually processed both refund and credit after confirming a delivery error.
+            </p>
             
-          <div class="behaviours-section">
-            <hgroup class="behaviours-title">
-            <h4>Return Fraud Attempt</h4>
-            <span>86% confidence</span>
-          </hgroup>
-            <a class="transcript-sample" href="#" data-speaker-index="2">
-              <p>Stop stalling and just give me the damn refund, I don't even want the item now from you.</p>
-            </a>
-            <a class="transcript-sample" href="#" data-speaker-index="2">
-              <p>I can see it in the email!</p>
-            </a>
-            
-            <a class="transcript-sample" href="#" data-speaker-index="2">
-              <p>No, I don't have another house!</p>
-            </a>
-          </div>
-        </div>
-        <div class="summary-card ids__rounded">
-          <h3>Support specialist</h3>
-          <p class="caption">English with Eastern European accent · Perceived adult femal · Human voice · Spoke 15% of the time · Neutral social positivity · Low toxicity</p>
-          <p class="caption">Started nervously but grew more confident as the conversation progressed, maintaining politeness throughout.</p>
-          <div class="behaviours-section">
-            <hgroup class="behaviours-title">
-            <h4>Common GenAI Failure Patterns</h4>
-            <span>80% confidence</span>
-          </hgroup>
-            <a class="transcript-sample" href="#" data-speaker-index="1">
-              <p>I'm sorry, sir, but it's against our policy to deliver personal information over the phone.
-              </p>
-            </a>
-            <a class="transcript-sample" href="#" data-speaker-index="1">
-              <p>I can't answer that, sir, I'm sorry.</p>
-            </a>
-            
-            
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="main-column">
-      <div class="transcript-container">
-        {% include "transcript-clips.html" %}
+          </td>
+          
+        </tr>
+      </tbody>
 
-      </div>
-    </div>
+    </table>
+    
+
+
   </div>
+  <div class="transcript-container">
+    {% include "transcript-clips.html" %}
+
+  </div>
+  <div class="ids__space XL"></div>
+  
 </div>
 
 {% endblock %}

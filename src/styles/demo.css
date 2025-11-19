@@ -14,153 +14,97 @@
 }
 
 .summary-container {
-  margin: 2em 0 1em;
-
-  & .summary-tags {
-    margin-bottom: 1em;
-  }
+  width: 98%;
+  margin: 1em auto;
+  
 }
 
-.columns {
-  display: flex;
-  flex-wrap: wrap;
-  --gap: 1.4em;
-  gap: var(--gap);
 
-  & .side-column {
-    width: calc(32% - (var(--gap) / 2));
+a.detected-behaviour {
+  font-weight: 700;
+  text-decoration-thickness: 3px;
+  text-decoration-color: rgba(var(--ids__link-RGB), 1);
 
-    @media (width < 768px) {
-      width: 100%;
-    }
-  }
-
-  & .main-column {
-    width: calc(68% - (var(--gap) / 2));
-
-    @media (width < 768px) {
-      width: 100%;
-    }
-  }
-}
-
-.summary-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-
-  & .summary-card {
-    background-color: rgba(var(--ids__surface-RGB), 1);
-    padding: 0.7em;
-
-    & h3 {
-      font-size: 1em;
-      font-weight: 500;
-      border-bottom: 1px solid rgba(var(--ids__text-RGB), 0.3);
-      padding-bottom: 0.2em;
-    }
-
-    & .caption {
-      font-size: 0.8em;
-    }
-
-    & .behaviours-section {
-      width: 100%;
-      overflow: hidden;
-      margin-bottom: 0.5em;
-
-      & .behaviours-title {
-        margin-bottom: 0.3em;
-
-        & h4 {
-          font-weight: 700;
-          display: inline;
-          font-size: 1em;
-          
-        }
-
-        & span {
-          font-size: 0.8em;
-          opacity: 0.5;
-        }
-      }
-
-
-      & .transcript-sample { 
-        position: relative;
-        display: inline-block;
-        max-width: 100%;
-        border: 1px solid rgba(var(--ids__text-RGB), 0.3);
-        transition: color 0.5s ease, border 0.5s ease;
-        overflow: hidden;
-        /* margin-bottom: 0.1em; */
-        padding: 0.2em 0 0.2em 0.2em ;
-        corner-shape: squircle;
-        border-radius: 0 0.8em 0.8em 0.8em;
-        overflow: hidden;
-
-        &:hover {
-          border: 1px solid rgba(var(--ids__hover-RGB), 0.3);
-          transition: color 0s ease, border 0s ease;
-        }
-
-        & p {
-          white-space: nowrap;
-          overflow: hidden;
-          font-size: 0.8em;
-          line-height: 1;
-          margin-bottom: 0;
-          padding-right: 1em;
-
-          &:after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 1.25em;
-            bottom: 0;
-            background-image: linear-gradient(to right, transparent, rgba(var(--ids__surface-RGB), 1));
-            
-          }
-          
-        }
-
-      }
-
-    }
-
+  
+  &:hover {    
+    text-decoration-color: rgba(var(--ids__hover-RGB), 1);
   }
 }
 
 
 .transcript-container {
+  width: 98%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 0.5em;
   
+  @media (width < 768px) {
+    width: 100%;
+  }
+  
   & .transcript-clip {
     background-color: rgba(var(--ids__surface-RGB), 1);
-    padding: 0.7em;
+    padding: 0.7em 3.7em 0.7em 0.7em;
     cursor: pointer;
-    transition: filter 0.1s ease;
+    transition: color 0.5s ease, background-color 0.5s ease;
+    --ids__radius: 2em;
 
     border-radius: var(--ids__radius);
-  corner-shape: squircle;
+    corner-shape: squircle;
 
     &[data-speaker-index="2"] {
-      margin-right: 2em;
+      margin-right: 3em;
       border-radius:  0 var(--ids__radius) var(--ids__radius) var(--ids__radius);
+
+      @supports not (corner-shape: squircle) {
+        --ids__radius: 2.5em;
+        border-radius: 0;
+        border-radius: initial;
+        mask:
+          
+          url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><path d="m0,0 l99,0 c1,0 1,0 1,1 l0,99 l-100,0 l0,-100 Z"/></svg>') top right / calc(var(--ids__radius) * 100) no-repeat intersect,
+          url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><path d="m0,0 l100,0 l0,99 c0,1 -0,1 -1,1 l-99,0 Z"/></svg>') bottom right / calc(var(--ids__radius) * 100) no-repeat intersect,
+          url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><path d="m0,0 l100,0 l0,100 l-99,0 c-1,0 -1,-0 -1,-1 Z"/></svg>') bottom left / calc(var(--ids__radius) * 100) no-repeat intersect;
+      }
+    
+        
     }
     &[data-speaker-index="1"] {
-      margin-left: 2em;
+      margin-left: 3em;
       border-radius: var(--ids__radius) 0 var(--ids__radius) var(--ids__radius);
+
+      @supports not (corner-shape: squircle) {
+        --ids__radius: 2.5em;
+        border-radius: 0;
+        border-radius: initial;
+        mask:
+      url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><path d="m0,1 c0,-1 0,-1 1,-1 l99,0 l0,100 l-100,0 Z"/></svg>') top left / calc(var(--ids__radius) * 100) no-repeat intersect,
+      url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><path d="m0,0 l100,0 l0,99 c0,1 -0,1 -1,1 l-99,0 Z"/></svg>') bottom right / calc(var(--ids__radius) * 100) no-repeat intersect,
+      url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><path d="m0,0 l100,0 l0,100 l-99,0 c-1,0 -1,-0 -1,-1 Z"/></svg>') bottom left / calc(var(--ids__radius) * 100) no-repeat intersect;
+      }
     }
     
     /* Hover styles specific to transcript container */
     &:hover,
     &.hover {
-      background-color: rgb(var(--ids__surface-RGB), 0.9);
-      transition: filter 0s ease;
+      color: rgb(var(--ids__hover-RGB), 1);
+      background-color: rgb(var(--ids__hover-RGB), 0.15);
+      transition: color 0s ease, background-color 0s ease;
+
+      & .clip-caption {
+
+
+        & .behaviour {
+          color: rgb(var(--ids__hover-RGB));
+          text-decoration-color: rgba(var(--ids__hover-RGB), 1);
+          transition: color 0s ease, text-decoration 0s ease;
+        }
+      }
+
+      
+
+
     }
 
     & .clip-caption {
@@ -173,14 +117,29 @@
         opacity: 0.5;        
       }
       & .duration {
+        display: none;
         opacity: 0.5;        
       }
       & .name {
         opacity: 0.5;        
       }
+      & .behaviour {
+        font-weight: 600;
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 0.2em;
+        text-decoration-skip-ink: none;
+        transition: color 0.5s ease, text-decoration 0.5s ease;
+      }
       & .language {
         display: none;
         opacity: 0.5;        
+      }
+    }
+
+    &.evidence {
+      & .clip-text {
+        font-size: 1.5em;
       }
     }
 
