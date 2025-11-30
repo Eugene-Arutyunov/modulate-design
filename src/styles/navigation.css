@@ -1,0 +1,61 @@
+.nav-container {
+  position: relative;
+  font-size: 0.8em;
+  display: flex;
+  gap: 0.5em;
+
+  @media (width < 768px) {
+    flex-wrap: wrap;
+  }
+
+  & .nav-link {
+    background-color: rgba(var(--ids__surface-RGB), 1);
+    padding: 0.7em 1em;
+    cursor: pointer;
+    transition: color 0.5s ease, background-color 0.5s ease;
+    text-decoration: none;
+    color: inherit;
+
+    @media (width < 768px) {
+      &:first-of-type {
+        order: 1;
+      }
+      &:last-of-type {
+        order: 2;
+      }
+    }
+
+    &:hover {
+      color: rgb(var(--ids__hover-RGB), 1);
+      background-color: rgb(var(--ids__hover-RGB), 0.15);
+      transition: color 0s ease, background-color 0s ease;
+    }
+  }
+
+  & .nav-disclaimer {
+    background-color: rgba(var(--ids__surface-RGB), 1);
+    padding: 0.7em;
+    flex: 1;
+
+    @media (width < 768px) {
+      flex-basis: 100%;
+      order: 4;
+    }
+  }
+
+  & .share-button-wrapper {
+    position: relative;
+    
+    @media (width < 768px) {
+      order: 3;
+      flex: 1;
+    }
+  }
+
+  & .share-button {
+    width: 100%;
+    padding: 0.7em 1em;
+    height: 100%;
+    font-size: inherit;
+  }
+}

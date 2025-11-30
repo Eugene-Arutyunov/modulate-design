@@ -1,0 +1,142 @@
+// Map individual emotions to their group CSS variables
+export const emotionGroupMap = {
+  // no strong signal
+  'neutral': 'neutral',
+  'unknown': 'neutral',
+  // attack / rejection
+  'angry': 'angry',
+  'contemptuous': 'angry',
+  'disgusted': 'angry',
+  // threat / uncertainty
+  'afraid': 'fear',
+  'anxious': 'fear',
+  'stressed': 'fear',
+  'surprised': 'fear',
+  'ashamed': 'fear',
+  'frustrated': 'fear',
+  // calm / grounded
+  'calm': 'positive-low-energy',
+  'confident': 'positive-low-energy',
+  'interested': 'positive-low-energy',
+  // excited / engaged
+  'affectionate': 'positive-high-energy',
+  'amused': 'positive-high-energy',
+  'excited': 'positive-high-energy',
+  'happy': 'positive-high-energy',
+  'hopeful': 'positive-high-energy',
+  'proud': 'positive-high-energy',
+  'relieved': 'positive-high-energy',
+  'curious': 'positive-high-energy',
+  // low energy, negative
+  'sad': 'sad',
+  'disappointed': 'sad',
+  'bored': 'sad',
+  'tired': 'sad',
+  'concerned': 'sad',
+  'confused': 'sad'
+};
+
+// Update emotion caption on hover (instant, no transition)
+export function updateEmotionCaption(clip, captionSelector = '.emotion-caption') {
+  const emotionCaption = document.querySelector(captionSelector);
+  if (!emotionCaption) return;
+  
+  // Extract emotion name from class (e.g., "emotion-angry" -> "angry")
+  const emotionClasses = Array.from(clip.classList).filter(cls => cls.startsWith('emotion-'));
+  if (emotionClasses.length === 0) return;
+  
+  const emotionName = emotionClasses[0].replace('emotion-', '');
+  
+  // Update text (don't clear, just update)
+  emotionCaption.textContent = emotionName;
+  
+  // Get color directly from emotion CSS variable (each emotion has its own variable)
+  const emotionColorVar = `--emotion-${emotionName}-RGB`;
+  const computedStyle = getComputedStyle(document.documentElement);
+  const colorValue = computedStyle.getPropertyValue(emotionColorVar).trim();
+  
+  if (colorValue) {
+    emotionCaption.style.color = `rgba(${colorValue}, 1)`;
+  }
+  
+  // Show instantly (no transition)
+  emotionCaption.classList.add('visible');
+}
+
+// Update fingerprint emotion caption on hover
+export function updateFingerprintEmotionCaption(clip, speakerIndex) {
+  const emotionCaption = document.querySelector(`.fingerprint-emotion-caption[data-speaker-index="${speakerIndex}"]`);
+  if (!emotionCaption) return;
+  
+  // Extract emotion name from class (e.g., "emotion-angry" -> "angry")
+  const emotionClasses = Array.from(clip.classList).filter(cls => cls.startsWith('emotion-'));
+  if (emotionClasses.length === 0) return;
+  
+  const emotionName = emotionClasses[0].replace('emotion-', '');
+  
+  // Update text to show emotion
+  emotionCaption.textContent = emotionName;
+  
+  // Get color directly from emotion CSS variable (each emotion has its own variable)
+  const emotionColorVar = `--emotion-${emotionName}-RGB`;
+  const computedStyle = getComputedStyle(document.documentElement);
+  const colorValue = computedStyle.getPropertyValue(emotionColorVar).trim();
+  
+  if (colorValue) {
+    emotionCaption.style.color = `rgba(${colorValue}, 1)`;
+  }
+  
+  // Add class to indicate showing emotion
+  emotionCaption.classList.add('showing-emotion');
+}
+
+// Fade out fingerprint emotion caption when leaving fingerprint area
+export function fadeOutFingerprintEmotionCaption(speakerIndex) {
+  const emotionCaption = document.querySelector(`.fingerprint-emotion-caption[data-speaker-index="${speakerIndex}"]`);
+  if (!emotionCaption) return;
+  
+  // Restore language/accent text from data attribute
+  const language = emotionCaption.getAttribute('data-language');
+  if (language) {
+    emotionCaption.textContent = language;
+  }
+  
+  // Reset color to default text color
+  emotionCaption.style.color = '';
+  
+  // Remove showing-emotion class
+  emotionCaption.classList.remove('showing-emotion');
+}
+
+// Fade out emotion caption when leaving visualization area (with transition)
+export function fadeOutEmotionCaption() {
+  const emotionCaption = document.querySelector('.emotion-caption');
+  if (!emotionCaption) return;
+  
+  // Remove visible class to trigger fade out transition
+  emotionCaption.classList.remove('visible');
+}
+
+// Function to determine emotion group priority for sorting
+export function getEmotionGroupPriority(emotionClass) {
+  const emotionName = emotionClass.replace('emotion-', '');
+  
+  const groupMapping = {
+    'attack-rejection': ['angry', 'contemptuous', 'disgusted'],
+    'threat-uncertainty': ['afraid', 'anxious', 'stressed', 'surprised', 'ashamed', 'frustrated', 'fear'],
+    'excited-engaged': ['affectionate', 'amused', 'excited', 'happy', 'hopeful', 'proud', 'relieved', 'curious'],
+    'low-energy-negative': ['disappointed', 'bored', 'tired', 'concerned', 'confused', 'sad'],
+    'calm-grounded': ['calm', 'confident', 'interested'],
+    'neutral': ['neutral', 'unknown']
+  };
+  
+  const groupOrder = ['attack-rejection', 'threat-uncertainty', 'excited-engaged', 'low-energy-negative', 'calm-grounded', 'neutral'];
+  
+  for (let i = 0; i < groupOrder.length; i++) {
+    if (groupMapping[groupOrder[i]].includes(emotionName)) {
+      return i + 1; // Return 1-6
+    }
+  }
+  
+  return 6; // Default to neutral
+}

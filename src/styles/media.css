@@ -184,51 +184,6 @@
       top: calc((5 - 1) * (100% / var(--speaker-count)));
     }
 
-    /* Background colors based on emotion classes with animation using ::after - using individual emotion variables */
-    /* no strong signal */
-    &.emotion-neutral .clip-visualization::after {
-      /* No overlay needed - already neutral color */
-      animation: none;
-    }
-    &.emotion-unknown .clip-visualization::after {
-      background-color: rgba(var(--emotion-unknown-RGB), 1);
-    }
-
-    /* attack / rejection */
-    &.emotion-angry .clip-visualization::after { background-color: rgba(var(--emotion-angry-RGB), 1); }
-    &.emotion-contemptuous .clip-visualization::after { background-color: rgba(var(--emotion-contemptuous-RGB), 1); }
-    &.emotion-disgusted .clip-visualization::after { background-color: rgba(var(--emotion-disgusted-RGB), 1); }
-
-    /* threat / uncertainty */
-    &.emotion-afraid .clip-visualization::after { background-color: rgba(var(--emotion-afraid-RGB), 1); }
-    &.emotion-anxious .clip-visualization::after { background-color: rgba(var(--emotion-anxious-RGB), 1); }
-    &.emotion-stressed .clip-visualization::after { background-color: rgba(var(--emotion-stressed-RGB), 1); }
-    &.emotion-surprised .clip-visualization::after { background-color: rgba(var(--emotion-surprised-RGB), 1); }
-    &.emotion-ashamed .clip-visualization::after { background-color: rgba(var(--emotion-ashamed-RGB), 1); }
-    &.emotion-frustrated .clip-visualization::after { background-color: rgba(var(--emotion-frustrated-RGB), 1); }
-
-    /* calm / grounded */
-    &.emotion-calm .clip-visualization::after { background-color: rgba(var(--emotion-calm-RGB), 1); }
-    &.emotion-confident .clip-visualization::after { background-color: rgba(var(--emotion-confident-RGB), 1); }
-    &.emotion-interested .clip-visualization::after { background-color: rgba(var(--emotion-interested-RGB), 1); }
-
-    /* excited / engaged */
-    &.emotion-affectionate .clip-visualization::after { background-color: rgba(var(--emotion-affectionate-RGB), 1); }
-    &.emotion-amused .clip-visualization::after { background-color: rgba(var(--emotion-amused-RGB), 1); }
-    &.emotion-excited .clip-visualization::after { background-color: rgba(var(--emotion-excited-RGB), 1); }
-    &.emotion-happy .clip-visualization::after { background-color: rgba(var(--emotion-happy-RGB), 1); }
-    &.emotion-hopeful .clip-visualization::after { background-color: rgba(var(--emotion-hopeful-RGB), 1); }
-    &.emotion-proud .clip-visualization::after { background-color: rgba(var(--emotion-proud-RGB), 1); }
-    &.emotion-relieved .clip-visualization::after { background-color: rgba(var(--emotion-relieved-RGB), 1); }
-    &.emotion-curious .clip-visualization::after { background-color: rgba(var(--emotion-curious-RGB), 1); }
-
-    /* low energy, negative */
-    &.emotion-sad .clip-visualization::after { background-color: rgba(var(--emotion-sad-RGB), 1); }
-    &.emotion-disappointed .clip-visualization::after { background-color: rgba(var(--emotion-disappointed-RGB), 1); }
-    &.emotion-bored .clip-visualization::after { background-color: rgba(var(--emotion-bored-RGB), 1); }
-    &.emotion-tired .clip-visualization::after { background-color: rgba(var(--emotion-tired-RGB), 1); }
-    &.emotion-concerned .clip-visualization::after { background-color: rgba(var(--emotion-concerned-RGB), 1); }
-    &.emotion-confused .clip-visualization::after { background-color: rgba(var(--emotion-confused-RGB), 1); }
     
     & .clip-caption,
     & .clip-text {

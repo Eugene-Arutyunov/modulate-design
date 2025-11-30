@@ -1,0 +1,89 @@
+.cta {
+  display: flex;
+  --gap: 0.5em;
+  gap: var(--gap);
+
+  @media (width < 768px) {
+    flex-direction: column;
+  }
+
+  & .cta-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);    
+
+    &:first-child {
+      width: 70%;
+      @media (width < 768px) {
+        width: 100%;
+      }
+    }
+    &:last-child {
+      width: 30%;
+      @media (width < 768px) {
+        width: 100%;
+      }
+    }
+
+  }
+}
+
+.cta-section {
+  
+  background-color: rgba(var(--ids__accent-RGB), 0.1);
+  /* height: 100%; */
+  padding: 1em 1em 1em 1em;
+
+  &.form {
+    background-color: rgba(var(--ids__surface-RGB), 1);
+    padding: 1em 3em 2em 1em;
+  }
+}
+
+.schedule-form {
+  display: flex;
+  gap: 0.5em;
+  margin-top: 1em;
+
+  & .schedule-form-input {
+    flex: 1;
+    padding: 0.4em 0.6em;
+    border: 0px solid rgba(var(--ids__text-RGB), 0.2);
+    border-radius: 0.1em;
+    font-family: var(--sans);
+    font-size: 1em;
+    background-color: rgba(var(--ids__background-RGB), 1);
+    color: rgb(var(--ids__text-RGB));
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: rgba(var(--ids__link-RGB), 0.5);
+    }
+
+    &::placeholder {
+      color: rgba(var(--ids__text-RGB), 0.5);
+    }
+  }
+
+  & .schedule-form-button {
+    padding: 0.5em 1.5em;
+    background-color: rgb(var(--ids__link-RGB));
+    color: rgb(var(--ids__background-RGB));
+    border: none;
+    font-family: var(--sans);
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: rgb(var(--ids__hover-RGB));
+      transition: background-color 0s ease;
+    }
+
+    &:active {
+      background-color: rgb(var(--ids__accent-RGB));
+    }
+  }
+}

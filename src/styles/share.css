@@ -1,0 +1,128 @@
+/* Share button styles */
+
+.share-button {
+  height: 2em;
+  background-color: rgba(var(--ids__surface-RGB), 1);
+  color: rgb(var(--ids__text-RGB));
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+  padding: 0 0.6em;
+  font-size: 1em;
+  font-family: inherit;
+  transition: color 0.5s ease, background-color 0.5s ease;
+
+  &:hover {
+    color: rgb(var(--ids__hover-RGB), 1);
+    background-color: rgb(var(--ids__hover-RGB), 0.15);
+    transition: color 0s ease, background-color 0s ease;
+  }
+
+  & .share-icon {
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+  }
+
+  & .share-text {
+    font-size: 1em;
+    line-height: 1;
+  }
+}
+
+.share-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & .share-button-wrapper {
+    position: relative;
+  }
+}
+
+/* Share popover styles */
+.share-popover {
+  position: absolute;
+  background-color: rgba(var(--ids__surface-RGB), 1);
+  padding: 1em;
+  display: none;
+  z-index: 1000;
+  box-shadow: 0 0 1em 0 white;
+
+  &.visible {
+    display: block;
+  }
+
+  & p {
+    margin: 0 0 0.5em 0;
+    font-size: 0.9em;
+    line-height: 1.4;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  & .share-download-links {
+    display: flex;
+    gap: 1em;
+  }
+
+  & .share-download-link {
+    color: rgb(var(--ids__link-RGB));
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    text-decoration-skip-ink: none;
+    text-decoration-color: rgba(var(--ids__link-RGB), 0.2);
+    transition: color 0.5s ease, text-decoration 0.5s ease;
+
+    &:hover {
+      color: rgb(var(--ids__hover-RGB));
+      text-decoration-color: rgba(var(--ids__hover-RGB), 0.2);
+      transition: color 0s ease, text-decoration 0s ease;
+    }
+  }
+}
+
+/* Popover in nav-container (first share button) */
+.nav-container {
+  
+  & .share-popover {
+    width: 26em;    
+
+    top: -0.3em;
+    right: -0.3em;
+    
+
+    @media (width < 768px) {      
+      top: 0;
+      width: 100%;
+      left: 0;
+      
+    }
+  }
+}
+
+/* Popover in share-container (second share button) */
+.share-container {
+  & .share-button-wrapper .share-popover {
+    width: 26em;
+
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    @media (width < 768px) {
+      font-size: 0.8em;
+      top: 0;
+      width: 100%;
+      left: 0;
+      transform: none
+    }
+  }
+}
