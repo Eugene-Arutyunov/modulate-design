@@ -1,1 +1,154 @@
-{% extends 'layout.html' %} {% block content %} {% endblock %}
+{% extends 'layout.html' %} {% block content %}
+
+<div class="ids__wrapper">
+  <div class="ids__space L"></div>
+  
+  <h1>Emotion Colors</h1>
+  <p class="caption">Color samples grouped by emotion buckets</p>
+  
+  <div class="ids__space M"></div>
+  
+  <div class="emotion-colors-showcase">
+    <!-- no strong signal -->
+    <div class="emotion-group">
+      <div class="emotion-group-header">
+        <h3>no strong signal</h3>
+      </div>
+      <div class="emotion-items">
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-neutral-RGB), 1);">
+          <span class="emotion-name">Neutral</span>
+        </div>
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-unknown-RGB), 1);">
+          <span class="emotion-name">Unknown</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- attack / rejection -->
+    <div class="emotion-group">
+      <div class="emotion-group-header">
+        <h3>attack / rejection</h3>
+      </div>
+      <div class="emotion-items">
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-angry-RGB), 1);">
+          <span class="emotion-name">Angry</span>
+        </div>
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-contemptuous-RGB), 1);">
+          <span class="emotion-name">Contemptuous</span>
+        </div>
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-disgusted-RGB), 1);">
+          <span class="emotion-name">Disgusted</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- threat / uncertainty -->
+    <div class="emotion-group">
+      <div class="emotion-group-header">
+        <h3>threat / uncertainty</h3>
+      </div>
+      <div class="emotion-items">
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-afraid-RGB), 1);">
+          <span class="emotion-name">Afraid</span>
+        </div>
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-anxious-RGB), 1);">
+          <span class="emotion-name">Anxious</span>
+        </div>
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-stressed-RGB), 1);">
+          <span class="emotion-name">Stressed</span>
+        </div>
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-surprised-RGB), 1);">
+          <span class="emotion-name">Surprised</span>
+        </div>
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-ashamed-RGB), 1);">
+          <span class="emotion-name">Ashamed</span>
+        </div>
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-frustrated-RGB), 1);">
+          <span class="emotion-name">Frustrated</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- calm / grounded -->
+    <div class="emotion-group">
+      <div class="emotion-group-header">
+        <h3>calm / grounded</h3>
+      </div>
+      <div class="emotion-items">
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-calm-RGB), 1);">
+          <span class="emotion-name">Calm</span>
+        </div>
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-confident-RGB), 1);">
+          <span class="emotion-name">Confident</span>
+        </div>
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-interested-RGB), 1);">
+          <span class="emotion-name">Interested</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- excited / engaged -->
+    <div class="emotion-group">
+      <div class="emotion-group-header">
+        <h3>excited / engaged</h3>
+      </div>
+      <div class="emotion-items">
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-affectionate-RGB), 1);">
+          <span class="emotion-name">Affectionate</span>
+        </div>
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-amused-RGB), 1);">
+          <span class="emotion-name">Amused</span>
+        </div>
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-excited-RGB), 1);">
+          <span class="emotion-name">Excited</span>
+        </div>
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-happy-RGB), 1);">
+          <span class="emotion-name">Happy</span>
+        </div>
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-hopeful-RGB), 1);">
+          <span class="emotion-name">Hopeful</span>
+        </div>
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-proud-RGB), 1);">
+          <span class="emotion-name">Proud</span>
+        </div>
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-relieved-RGB), 1);">
+          <span class="emotion-name">Relieved</span>
+        </div>
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-curious-RGB), 1);">
+          <span class="emotion-name">Curious</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- low energy, negative -->
+    <div class="emotion-group">
+      <div class="emotion-group-header">
+        <h3>low energy, negative</h3>
+      </div>
+      <div class="emotion-items">
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-sad-RGB), 1);">
+          <span class="emotion-name">Sad</span>
+        </div>
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-disappointed-RGB), 1);">
+          <span class="emotion-name">Disappointed</span>
+        </div>
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-bored-RGB), 1);">
+          <span class="emotion-name">Bored</span>
+        </div>
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-tired-RGB), 1);">
+          <span class="emotion-name">Tired</span>
+        </div>
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-concerned-RGB), 1);">
+          <span class="emotion-name">Concerned</span>
+        </div>
+        <div class="emotion-color-sample" style="background-color: rgba(var(--emotion-confused-RGB), 1);">
+          <span class="emotion-name">Confused</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="ids__space XL"></div>
+</div>
+
+{% endblock %}
