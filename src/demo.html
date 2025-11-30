@@ -14,9 +14,7 @@
     </a>
     <div class="share-button-wrapper">
       <button class="share-button ids__rounded" type="button" aria-label="Share">
-        <svg class="share-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 197.841 127.466">
-          <path fill="currentColor" d="M197.841,59.587L121.671,0v31.856C47.201,48.004,0,109.248,0,127.466c29.764-27.575,82.077-40.148,121.671-40.148v31.857l76.17-59.587Z"/>
-        </svg>
+        {% include "share-icon.html" %}
         <span class="share-text">Share</span>
       </button>
     </div>
@@ -49,8 +47,8 @@
       </div>
       <div class="player-controls">
         <div class="player-control-spacer"></div>
-        <div class="player-control player-control-center">
-          <a href="#" data-action="play-pause" class="player-icon" data-playing="false" data-icon-id="icon-play">
+        <div class="player-control player-control-center" data-action="play-pause">
+          <a href="#" class="player-icon" data-playing="false" data-icon-id="icon-play">
             <!-- SVG will be loaded here by JavaScript -->
           </a>
         </div>
@@ -65,6 +63,12 @@
           <div class="player-position-line"></div>
           <div class="player-position-caption">
             <span data-current-time>0:00</span>
+          </div>
+        </div>
+        <div class="player-hover-position-indicator">
+          <div class="player-hover-position-line"></div>
+          <div class="player-hover-position-caption">
+            <span data-hover-time>0:00</span>
           </div>
         </div>
       
@@ -92,7 +96,7 @@
           <td class="speaker-name-column">
             <div class="speaker-name-input-wrapper">
               <input type="text" value="Customer" data-speaker-index="1" class="speaker-name-input" maxlength="50">
-              <svg class="speaker-name-input-icon" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+              {% include "speaker-name-input-icon.html" %}
             </div>
           </td>
           <td class="speaker-info-column">
@@ -117,7 +121,7 @@
           <td class="speaker-name-column">
             <div class="speaker-name-input-wrapper">
               <input type="text" value="Support specialist" data-speaker-index="2" class="speaker-name-input" maxlength="50">
-              <svg class="speaker-name-input-icon" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+              {% include "speaker-name-input-icon.html" %}
             </div>
           </td>
           <td class="speaker-info-column">
@@ -152,9 +156,7 @@
   <div class="share-container">
     <div class="share-button-wrapper">
       <button class="share-button ids__rounded" type="button" aria-label="Share your conversation fingerprint experience">
-        <svg class="share-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 197.841 127.466">
-          <path fill="currentColor" d="M197.841,59.587L121.671,0v31.856C47.201,48.004,0,109.248,0,127.466c29.764-27.575,82.077-40.148,121.671-40.148v31.857l76.17-59.587Z"/>
-        </svg>
+        {% include "share-icon.html" %}
         <span class="share-text">Share this conversation fingerprint</span>
       </button>
       {% include "share-popover.html" %}

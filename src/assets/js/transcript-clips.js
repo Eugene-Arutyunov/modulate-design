@@ -1,4 +1,4 @@
-import { getClipStartTime } from './utils.js';
+import { getClipStartTime, formatTime } from './utils.js';
 import { getCurrentClipIndex } from './clip-metadata.js';
 import { updatePlayingClip } from './clip-metadata.js';
 import { scrollToClipCenter } from './utils.js';
@@ -10,6 +10,10 @@ export function initTranscriptClipsInteraction(sound, clipMetadata, updatePlayin
   
   const visualization = document.querySelector('.player-visualization');
   const transcriptContainer = document.querySelector('.transcript-container');
+  const audioPlayer = document.getElementById('audio-player');
+  const hoverIndicator = audioPlayer ? audioPlayer.querySelector('.player-hover-position-indicator') : null;
+  const hoverTimeElement = hoverIndicator ? hoverIndicator.querySelector('[data-hover-time]') : null;
+  const mediaBox = audioPlayer ? audioPlayer.closest('.media-box') : null;
   
   if (!visualization || !transcriptContainer) return null;
   
@@ -42,6 +46,50 @@ export function initTranscriptClipsInteraction(sound, clipMetadata, updatePlayin
       clipMap.get(index).container = clip;
     }
   });
+  
+  // Function to update hover position indicator
+  function updateHoverPositionIndicator(clipElement) {
+    if (!hoverIndicator || !hoverTimeElement || !visualization) return;
+    
+    const clipStartTime = getClipStartTime(clipElement);
+    if (clipStartTime === null || clipStartTime < 0) return;
+    
+    const duration = sound.duration();
+    if (!duration || duration <= 0) return;
+    
+    // Calculate position percentage
+    const percentage = (clipStartTime / duration) * 100;
+    
+    // Get visualization width
+    const visualizationRect = visualization.getBoundingClientRect();
+    const visualizationWidth = visualizationRect.width;
+    
+    // Calculate indicator position
+    const indicatorLeft = (percentage / 100) * visualizationWidth;
+    hoverIndicator.style.left = `${indicatorLeft}px`;
+    
+    // Update time display
+    hoverTimeElement.textContent = formatTime(clipStartTime);
+    
+    // Show indicator
+    hoverIndicator.classList.add('active');
+    
+    // Add class to media-box for browsers without :has() support
+    if (mediaBox) {
+      mediaBox.classList.add('has-hover-indicator');
+    }
+  }
+  
+  // Function to hide hover position indicator
+  function hideHoverPositionIndicator() {
+    if (hoverIndicator) {
+      hoverIndicator.classList.remove('active');
+    }
+    // Remove class from media-box for browsers without :has() support
+    if (mediaBox) {
+      mediaBox.classList.remove('has-hover-indicator');
+    }
+  }
   
   // Function to sync hover between corresponding clips (including speaker-fingerprint)
   function syncHover(clipElement, isHovering) {
@@ -85,6 +133,19 @@ export function initTranscriptClipsInteraction(sound, clipMetadata, updatePlayin
         el.classList.remove('hover');
       });
     }
+    
+    // Update hover position indicator only for visualization clips
+    const isVisualizationClip = clipElement.closest('.player-visualization') !== null;
+    if (isVisualizationClip) {
+      if (isHovering) {
+        updateHoverPositionIndicator(clipElement);
+      } else {
+        hideHoverPositionIndicator();
+      }
+    } else if (!isHovering) {
+      // Hide indicator when leaving transcript container clip (if it was shown from visualization)
+      hideHoverPositionIndicator();
+    }
   }
   
   // Track if mouse is over visualization area
@@ -98,11 +159,16 @@ export function initTranscriptClipsInteraction(sound, clipMetadata, updatePlayin
   visualization.addEventListener('mouseleave', function() {
     isOverVisualization = false;
     fadeOutEmotionCaption();
+    // Hide hover indicator when leaving visualization area
+    hideHoverPositionIndicator();
   });
   
   // Add click handlers to container clips
   containerClips.forEach((clip) => {
     clip.addEventListener('click', function() {
+      // Hide hover indicator when clicking on clip
+      hideHoverPositionIndicator();
+      
       const seekTime = getClipStartTime(clip);
       if (seekTime !== null && seekTime >= 0) {
         // Enable auto-scroll when clicking on clip
@@ -139,6 +205,11 @@ export function initTranscriptClipsInteraction(sound, clipMetadata, updatePlayin
   
   // Add hover handlers to visualization clips
   visualizationClips.forEach((clip) => {
+    // Add click handler to hide hover indicator when clicking on visualization clip
+    clip.addEventListener('click', function() {
+      hideHoverPositionIndicator();
+    });
+    
     clip.addEventListener('mouseenter', function() {
       syncHover(clip, true);
       updateEmotionCaption(clip);

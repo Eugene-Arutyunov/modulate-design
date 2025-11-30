@@ -153,14 +153,17 @@ export function initAudioPlayer() {
 
   // Update play/pause icon (shows action that will happen)
   function updatePlayPauseIcon() {
-    const playPauseBtn = audioPlayer.querySelector('[data-action="play-pause"]');
-    if (!playPauseBtn) return;
+    const playPauseContainer = audioPlayer.querySelector('[data-action="play-pause"]');
+    if (!playPauseContainer) return;
+    
+    const playPauseIcon = playPauseContainer.querySelector('.player-icon');
+    if (!playPauseIcon) return;
     
     const isPlaying = sound.playing();
     // Show pause icon when playing (action: pause), show play icon when paused (action: play)
     const iconId = isPlaying ? 'icon-pause' : 'icon-play';
-    playPauseBtn.setAttribute('data-playing', isPlaying ? 'true' : 'false');
-    loadIcon(playPauseBtn, iconId);
+    playPauseIcon.setAttribute('data-playing', isPlaying ? 'true' : 'false');
+    loadIcon(playPauseIcon, iconId);
   }
 
   // Update mute/unmute icon (shows current status)
@@ -176,11 +179,14 @@ export function initAudioPlayer() {
   }
 
   // Initialize icons on load
-  const playPauseBtn = audioPlayer.querySelector('[data-action="play-pause"]');
+  const playPauseContainer = audioPlayer.querySelector('[data-action="play-pause"]');
   const muteUnmuteBtn = audioPlayer.querySelector('[data-action="mute-unmute"]');
-  if (playPauseBtn) {
-    const initialIconId = playPauseBtn.getAttribute('data-icon-id') || 'icon-play';
-    loadIcon(playPauseBtn, initialIconId);
+  if (playPauseContainer) {
+    const playPauseIcon = playPauseContainer.querySelector('.player-icon');
+    if (playPauseIcon) {
+      const initialIconId = playPauseIcon.getAttribute('data-icon-id') || 'icon-play';
+      loadIcon(playPauseIcon, initialIconId);
+    }
   }
   if (muteUnmuteBtn) {
     const initialIconId = muteUnmuteBtn.getAttribute('data-icon-id') || 'icon-unmute';
@@ -251,6 +257,7 @@ export function initAudioPlayer() {
   }
 
   // Play/Pause handler
+  const playPauseBtn = audioPlayer.querySelector('[data-action="play-pause"]');
   if (playPauseBtn) {
     playPauseBtn.addEventListener('click', function(e) {
       e.preventDefault();
