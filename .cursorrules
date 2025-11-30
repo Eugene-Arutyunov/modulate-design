@@ -1,0 +1,15 @@
+# Commit Message Guidelines
+When generating commit messages, follow these rules:
+
+## Format
+- Keep subject line concise: maximum 72 characters
+- Start with a capital letter
+
+## Examples of Good Commit Messages
+- "Add dark mode toggle to settings"
+- "Fix audio player pause behavior"
+- "Update IDS color variables"
+- "Refactor transcript clip component"
+- "Fix responsive layout for mobile"
+
+
