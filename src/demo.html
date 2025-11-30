@@ -3,11 +3,24 @@
 <div class="ids__wrapper">
   <div class="ids__space S"></div>
   <div class="nav-container">
-    <div class="nav-link">
-      <p style="font-size: 0.8em"><a href="/">← <span class="nav-link-caption">Conversations</span></a></p>
+    <a href="/" class="nav-link ids__rounded">
+      ← Fingerprints
+    </a>
+    <div class="nav-disclaimer ids__rounded">
+      This is a beta. We don’t collect or store any information. Have fun!
     </div>
-    <div class="nav-disclaimer">
-      <p class="caption"> This is a beta version. We don’t collect or store any information. Have fun!</p></div>
+    <a href="/" class="nav-link ids__rounded">
+      Contact us
+    </a>
+    <div class="share-button-wrapper">
+      <button class="share-button ids__rounded" type="button" aria-label="Share">
+        <svg class="share-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 197.841 127.466">
+          <path fill="currentColor" d="M197.841,59.587L121.671,0v31.856C47.201,48.004,0,109.248,0,127.466c29.764-27.575,82.077-40.148,121.671-40.148v31.857l76.17-59.587Z"/>
+        </svg>
+        <span class="share-text">Share</span>
+      </button>
+    </div>
+    {% include "share-popover.html" %}
   </div>
   <div class="media-container sticky">
     <div class="media-space"></div>
@@ -136,11 +149,18 @@
 </div>
 <div class="ids__wrapper">
 
-  <div class="ids__space L"></div>
   <div class="share-container">
-    
+    <div class="share-button-wrapper">
+      <button class="share-button ids__rounded" type="button" aria-label="Share your conversation fingerprint experience">
+        <svg class="share-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 197.841 127.466">
+          <path fill="currentColor" d="M197.841,59.587L121.671,0v31.856C47.201,48.004,0,109.248,0,127.466c29.764-27.575,82.077-40.148,121.671-40.148v31.857l76.17-59.587Z"/>
+        </svg>
+        <span class="share-text">Share this conversation fingerprint</span>
+      </button>
+      {% include "share-popover.html" %}
+    </div>
   </div>
-  <div class="ids__space L"></div>
+  <div class="ids__space XL"></div>
   
   <div class="ids__space" style="height: 0.5em"></div>
   <div class="cta">

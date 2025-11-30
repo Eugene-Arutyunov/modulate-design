@@ -22,14 +22,14 @@
 .media-container {
   position: sticky;
   top: 0;
-  height: calc(var(--initial-height) + 1em);
+  height: calc(var(--initial-height) + 0.5em);
   z-index: 1;
 
 
   & .media-space {
     background-color: rgba(var(--ids__background-RGB), 1);
     height: 5em;
-    margin-bottom: -4em;
+    margin-bottom: -4.5em;
 
     @media (width < 768px) {
       margin-bottom: -4.5em;
