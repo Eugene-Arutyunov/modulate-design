@@ -46,7 +46,7 @@
 
     height: var(--initial-height);
     background-color: rgba(var(--ids__accent-RGB), 1);
-    box-shadow: 0 1em 1em 0 white;
+    box-shadow: 0 0.5em 0.5em 0 white;
     transition: height 0.2s ease;
 
     &[data-speaker-count="1"] {
@@ -67,9 +67,12 @@
   }
 
   &.stuck {
+    pointer-events: none;
+    
     & .media-box {
       height: var(--stuck-height);
       transition: height 0.5s ease;
+      pointer-events: auto;
       
       
       & .player-visualization {

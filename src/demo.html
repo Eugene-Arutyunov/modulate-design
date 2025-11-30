@@ -59,52 +59,66 @@
   </div>
   <div class="summary-container">
     <h1>Dispute over missing delivery and refund</h1>
+    <div class="share-container">
+    
+    </div>
     <p> 
-      The <strong>Customer</strong> disputed a missing delivery and requested a refund. <strong>Support specialist</strong> initially refused due to company policy but eventually processed both refund and credit after confirming a delivery error.
+      <strong>Customer</strong> disputed a missing delivery and requested a refund. <strong>Support specialist</strong> initially refused but eventually processed both refund and credit after confirming a delivery error.
     </p>
 
     <table class="summary-table">
+      <thead>
+        <tr>
+          <th class="speaker-name-column">Speakers</th>
+          <th class="speaker-info-column">Speaking time</th>
+          <th class="behaviours-column">Detected behaviours, confidence</th>
+        </tr>
+      </thead>
       <tbody>
         <tr>
           <td class="speaker-name-column">
-            <p>Customer</p>
+            <div class="speaker-name-input-wrapper">
+              <input type="text" value="Customer" data-speaker-index="1" class="speaker-name-input" maxlength="50">
+              <svg class="speaker-name-input-icon" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+            </div>
           </td>
           <td class="speaker-info-column">
             <div class="speaker-fingerprint-wrapper">
               <div class="speaker-fingerprint" data-speaker-index="1"></div>
               <div class="speaker-time-info">
                 <div class="speaker-time-percent">59%</div>
-                <div class="speaker-time-label">speaking</div>
               </div>
             </div>
+            <div class="fingerprint-emotion-caption" data-speaker-index="1" data-language="English, American accent"></div>
             
           </td>
           <td class="behaviours-column">
-            <p class="caption">English with American accent</p>            
-            <p><a href="#" class="detected-behaviour">Sense of Urgency</a>              <span class="caption">88% confidence</span>
+            <p><a href="#" class="detected-behaviour">Sense of Urgency</a>              <span class="caption">88%</span>
             </p>
-            <p><a href="#" class="detected-behaviour">Return Fraud Attempt</a><span class="caption">86% confidence</span>
+            <p><a href="#" class="detected-behaviour">Return Fraud Attempt</a> <span class="caption">86%</span>
             </p>
           </td>
         </tr>
         
         <tr>
           <td class="speaker-name-column">
-            <p>Support specialist</p>
+            <div class="speaker-name-input-wrapper">
+              <input type="text" value="Support specialist" data-speaker-index="2" class="speaker-name-input" maxlength="50">
+              <svg class="speaker-name-input-icon" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+            </div>
           </td>
           <td class="speaker-info-column">
             <div class="speaker-fingerprint-wrapper">
               <div class="speaker-fingerprint" data-speaker-index="2"></div>
               <div class="speaker-time-info">
                 <div class="speaker-time-percent">41%</div>
-                <div class="speaker-time-label">speaking</div>
               </div>
             </div>
+            <div class="fingerprint-emotion-caption" data-speaker-index="2" data-language="English, Eastern European accent"></div>
             
           </td>
           <td class="behaviours-column">
-            <p class="caption">English with Eastern European accent</p>
-            <p><a href="#" class="detected-behaviour">Common GenAI Failure Patterns</a><span class="caption">80% confidence</span>
+            <p><a href="#" class="detected-behaviour">Common GenAI Failure Patterns</a> <span class="caption">80%</span>
             </p>
           </td>
         </tr>
@@ -121,6 +135,11 @@
   </div>  
 </div>
 <div class="ids__wrapper">
+
+  <div class="ids__space L"></div>
+  <div class="share-container">
+    
+  </div>
   <div class="ids__space L"></div>
   
   <div class="ids__space" style="height: 0.5em"></div>
