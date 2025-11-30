@@ -115,6 +115,32 @@ Player initializes automatically on DOM load along with other functions:
 - `initAudioPlayer()` - returns sound instance
 - `initTranscriptClipsInteraction(sound)` - sets up click and hover sync
 
+### Speaker Fingerprint Visualization
+Mini-diagrams showing speaker clips in the summary table.
+
+**HTML Structure:**
+```html
+<div class="speaker-fingerprint-wrapper">
+  <div class="speaker-fingerprint" data-speaker-index="1"></div>
+</div>
+```
+
+- `.speaker-fingerprint-wrapper` - wrapper container for width control (70% width)
+- `.speaker-fingerprint` - container for dynamically generated clip rectangles
+- `data-speaker-index` - speaker index (1, 2, etc.) to filter clips
+
+**Functionality:**
+- Shows only clips for the specific speaker, placed sequentially without gaps
+- Clips are visualized as colored rectangles based on emotion classes
+- All speaker fingerprints use the same scale (based on maximum speaker total duration) for comparison
+- Full hover and click synchronization with `.player-visualization` and `.transcript-container`
+- Click on a clip seeks to that position in the player and starts playback
+
+**Initialization:**
+- `initSpeakerFingerprints()` - creates fingerprint visualizations dynamically
+- Called after `initTranscriptClipsInteraction()` to access `clipMap`
+- Requires: `sound`, `clipMap`, `clipMetadata`, and related functions
+
 ## CSS
 
 - `.transcript-clip` has `cursor: pointer` for visual feedback
@@ -123,3 +149,6 @@ Player initializes automatically on DOM load along with other functions:
 - Hover styles are isolated by context:
   - `.player-visualization .transcript-clip:hover, .player-visualization .transcript-clip.hover` - defined in `media.css`
   - `.transcript-container .transcript-clip:hover, .transcript-container .transcript-clip.hover` - defined in `demo.css`
+- `.speaker-fingerprint-wrapper` - 70% width wrapper for fingerprint container
+- `.speaker-fingerprint` - 2em height, 100% width of wrapper, flex layout with no gap
+- `.speaker-fingerprint-clip` - colored rectangles with emotion-based background colors, min-width 2px

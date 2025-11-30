@@ -28,9 +28,120 @@
   margin: 1em auto;
 
   & .summary-table {
+    width: 100%;
+
+    & tr {
+      & td {
+        padding-bottom: 0.5em;
+        vertical-align: top;
+      }
+
+      & .speaker-name-column {
+        width: 25%;
+      }
+
+      & .speaker-info-column {
+        width: 35%;
+      }
+
+      & .behaviours-column {
+        width: 40%;
+      }
+    }
+    
     & p {
       margin-bottom: 0.2em;
     }
+  }
+
+  & .speaker-fingerprint-wrapper {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.3em;
+    margin-bottom: 0.1em;
+  }
+
+  & .speaker-fingerprint {
+    height: 2.15em;
+    flex-shrink: 0;
+    display: flex;
+    gap: 0;
+    border-radius: 0.2em;
+    overflow: hidden;
+    --base-width: 70%;
+
+    & .speaker-fingerprint-clip {
+      min-width: 2px;
+      height: 100%;
+      cursor: pointer;
+      transition: filter 0.2s ease, opacity 0.2s ease;
+
+      &:hover,
+      &.hover {
+        filter: brightness(140%) saturate(115%);
+        z-index: 1;
+        position: relative;
+        transition: filter 0s ease, opacity 0s ease;
+      }
+
+      /* Emotion colors */
+      &.emotion-neutral {
+        background-color: rgba(var(--emotion-neutral-RGB), 1);
+      }
+
+      &.emotion-confused {
+        background-color: rgba(var(--emotion-confused-RGB), 1);
+      }
+
+      &.emotion-frustrated {
+        background-color: rgba(var(--emotion-frustrated-RGB), 1);
+      }
+
+      &.emotion-apologetic {
+        background-color: rgba(var(--emotion-apologetic-RGB), 1);
+      }
+
+      &.emotion-annoyed {
+        background-color: rgba(var(--emotion-annoyed-RGB), 1);
+      }
+
+      &.emotion-assertive {
+        background-color: rgba(var(--emotion-assertive-RGB), 1);
+      }
+
+      &.emotion-demanding {
+        background-color: rgba(var(--emotion-demanding-RGB), 1);
+      }
+
+      &.emotion-angry {
+        background-color: rgba(var(--emotion-angry-RGB), 1);
+      }
+
+      &.emotion-threatening {
+        background-color: rgba(var(--emotion-threatening-RGB), 1);
+      }
+
+      &.emotion-exasperated {
+        background-color: rgba(var(--emotion-exasperated-RGB), 1);
+      }
+    }
+  }
+
+  & .speaker-time-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+    flex-shrink: 0;
+  }
+
+  & .speaker-time-percent {    
+    font-size: 1em;
+    font-weight: 500;
+  }
+
+  & .speaker-time-label {
+    font-size: 0.8em;
+    opacity: 0.7;
   }
   
 }

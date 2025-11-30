@@ -689,7 +689,7 @@ function initTranscriptClipsInteraction(sound, clipMetadata, updatePlayingClipFn
     }
   });
   
-  // Function to sync hover between corresponding clips
+  // Function to sync hover between corresponding clips (including speaker-fingerprint)
   function syncHover(clipElement, isHovering) {
     const index = clipElement.getAttribute("data-clip-index");
     if (index === null) return;
@@ -699,7 +699,7 @@ function initTranscriptClipsInteraction(sound, clipMetadata, updatePlayingClipFn
     
     // Clear all hover classes first to prevent stuck states
     if (isHovering) {
-      document.querySelectorAll('.transcript-clip.hover').forEach(el => {
+      document.querySelectorAll('.transcript-clip.hover, .speaker-fingerprint-clip.hover').forEach(el => {
         el.classList.remove('hover');
       });
     }
@@ -719,6 +719,17 @@ function initTranscriptClipsInteraction(sound, clipMetadata, updatePlayingClipFn
       } else {
         pair.container.classList.remove('hover');
       }
+    }
+    
+    // Also sync with speaker-fingerprint clips
+    if (isHovering) {
+      document.querySelectorAll(`.speaker-fingerprint-clip[data-clip-index="${index}"]`).forEach(el => {
+        el.classList.add('hover');
+      });
+    } else {
+      document.querySelectorAll(`.speaker-fingerprint-clip[data-clip-index="${index}"]`).forEach(el => {
+        el.classList.remove('hover');
+      });
     }
   }
   
@@ -825,6 +836,182 @@ function fadeOutEmotionCaption() {
   emotionCaption.classList.remove('visible');
 }
 
+// ==================== Speaker Fingerprint Visualization ====================
+
+// Sync hover for speaker-fingerprint clips with all other visualizations
+function syncFingerprintHover(fingerprintClip, isHovering, clipMap) {
+  const index = fingerprintClip.getAttribute("data-clip-index");
+  if (index === null) return;
+  
+  const pair = clipMap.get(index);
+  if (!pair) return;
+  
+  // Clear all hover classes first to prevent stuck states
+  if (isHovering) {
+    document.querySelectorAll('.transcript-clip.hover, .speaker-fingerprint-clip.hover').forEach(el => {
+      el.classList.remove('hover');
+    });
+  }
+  
+  // Add or remove hover class from visualization element
+  if (pair.visualization) {
+    if (isHovering) {
+      pair.visualization.classList.add('hover');
+    } else {
+      pair.visualization.classList.remove('hover');
+    }
+  }
+  
+  // Add or remove hover class from container element
+  if (pair.container) {
+    if (isHovering) {
+      pair.container.classList.add('hover');
+    } else {
+      pair.container.classList.remove('hover');
+    }
+  }
+  
+  // Add or remove hover class from all speaker-fingerprint clips with same index
+  if (isHovering) {
+    document.querySelectorAll(`.speaker-fingerprint-clip[data-clip-index="${index}"]`).forEach(el => {
+      el.classList.add('hover');
+    });
+  } else {
+    document.querySelectorAll(`.speaker-fingerprint-clip[data-clip-index="${index}"]`).forEach(el => {
+      el.classList.remove('hover');
+    });
+  }
+}
+
+// Initialize speaker fingerprint visualizations
+function initSpeakerFingerprints(sound, clipMap, clipMetadata, updatePlayingClipFn, getCurrentClipIndexFn, setAutoScrollEnabledFn, getSetProgrammaticScrollCallbackFn) {
+  const visualization = document.querySelector('.player-visualization');
+  if (!visualization) return;
+  
+  const allClips = visualization.querySelectorAll('.transcript-clip');
+  if (allClips.length === 0) return;
+  
+  // Group clips by speaker index
+  const clipsBySpeaker = new Map();
+  
+  allClips.forEach((clip) => {
+    const speakerIndex = clip.getAttribute('data-speaker-index');
+    if (!speakerIndex) return;
+    
+    const clipIndex = clip.getAttribute('data-clip-index');
+    if (clipIndex === null) return;
+    
+    if (!clipsBySpeaker.has(speakerIndex)) {
+      clipsBySpeaker.set(speakerIndex, []);
+    }
+    
+    clipsBySpeaker.get(speakerIndex).push({
+      element: clip,
+      clipIndex: clipIndex,
+      duration: parseClipDuration(clip),
+      emotionClass: Array.from(clip.classList).find(cls => cls.startsWith('emotion-')) || 'emotion-neutral',
+      seekTime: getClipStartTime(clip)
+    });
+  });
+  
+  // Calculate total duration for each speaker
+  const speakerTotalDurations = new Map();
+  clipsBySpeaker.forEach((clips, speakerIndex) => {
+    const totalDuration = clips.reduce((sum, clip) => sum + clip.duration, 0);
+    speakerTotalDurations.set(speakerIndex, totalDuration);
+  });
+  
+  // Find maximum total duration for scaling
+  const maxTotalDuration = Math.max(...Array.from(speakerTotalDurations.values()));
+  if (maxTotalDuration === 0) return;
+  
+  // Create fingerprint visualizations for each speaker
+  clipsBySpeaker.forEach((clips, speakerIndex) => {
+    const fingerprintContainer = document.querySelector(`.speaker-fingerprint[data-speaker-index="${speakerIndex}"]`);
+    if (!fingerprintContainer) return;
+    
+    // Get wrapper and parent td to calculate base width
+    const wrapper = fingerprintContainer.closest('.speaker-fingerprint-wrapper');
+    if (!wrapper) return;
+    const parentTd = wrapper.closest('td');
+    if (!parentTd) return;
+    
+    // Calculate speaker's total duration
+    const speakerTotalDuration = clips.reduce((sum, clip) => sum + clip.duration, 0);
+    
+    // Calculate actual width based on speaker's percentage of max duration
+    // Base width is 70% of parent td, scale it by speaker's percentage
+    const parentTdWidth = parentTd.getBoundingClientRect().width;
+    const baseWidthPercent = 70; // Base width percentage
+    const baseWidth = (parentTdWidth / 100) * baseWidthPercent;
+    const actualWidth = baseWidth * (speakerTotalDuration / maxTotalDuration);
+    fingerprintContainer.style.width = `${actualWidth}px`;
+    
+    // Clear existing content
+    fingerprintContainer.innerHTML = '';
+    
+    // Sort clips by their original order (by clipIndex)
+    clips.sort((a, b) => parseInt(a.clipIndex) - parseInt(b.clipIndex));
+    
+    // Create clip rectangles
+    clips.forEach((clipData) => {
+      const clipRect = document.createElement('div');
+      clipRect.className = `speaker-fingerprint-clip ${clipData.emotionClass}`;
+      clipRect.setAttribute('data-clip-index', clipData.clipIndex);
+      if (clipData.seekTime !== null) {
+        clipRect.setAttribute('data-seek-time', clipData.seekTime.toString());
+      }
+      
+      // Calculate width as percentage of speaker's total duration (not max)
+      // This ensures clips fill the entire fingerprint width
+      const widthPercent = speakerTotalDuration > 0 ? (clipData.duration / speakerTotalDuration) * 100 : 0;
+      clipRect.style.width = `${widthPercent}%`;
+      clipRect.style.minWidth = '2px';
+      
+      // Add hover handlers
+      clipRect.addEventListener('mouseenter', function() {
+        syncFingerprintHover(clipRect, true, clipMap);
+        // Also update emotion caption if the original clip is available
+        const originalClip = clipData.element;
+        if (originalClip) {
+          updateEmotionCaption(originalClip);
+        }
+      });
+      
+      clipRect.addEventListener('mouseleave', function() {
+        syncFingerprintHover(clipRect, false, clipMap);
+      });
+      
+      // Add click handler
+      clipRect.addEventListener('click', function() {
+        const seekTime = clipData.seekTime;
+        if (seekTime !== null && seekTime >= 0 && sound) {
+          // Enable auto-scroll when clicking on clip
+          if (setAutoScrollEnabledFn) {
+            setAutoScrollEnabledFn(true);
+          }
+          
+          sound.seek(seekTime);
+          if (!sound.playing()) {
+            sound.play();
+          }
+          
+          // Update playing clip immediately after seek
+          if (clipMetadata && clipMetadata.length > 0 && updatePlayingClipFn && getCurrentClipIndexFn) {
+            const newClipIndex = getCurrentClipIndexFn(seekTime, clipMetadata);
+            const autoScrollEnabled = setAutoScrollEnabledFn ? setAutoScrollEnabledFn() : true;
+            const setProgrammaticScrollCallback = getSetProgrammaticScrollCallbackFn ? getSetProgrammaticScrollCallbackFn() : null;
+            updatePlayingClipFn(newClipIndex, clipMap, autoScrollEnabled, setProgrammaticScrollCallback);
+          }
+        }
+      });
+      
+      fingerprintContainer.appendChild(clipRect);
+    });
+  });
+  
+}
+
 // Initialize behavior link handlers
 function initBehaviorLinkHandlers(sound, setAutoScrollEnabledFn, getSetProgrammaticScrollCallbackFn) {
   // Handle detected-behaviour links
@@ -927,6 +1114,15 @@ if (document.readyState === "loading") {
       audioPlayerResult.setClipMap(clipMap);
       // Don't set initial playing clip on page load - only when playback starts
     }
+    initSpeakerFingerprints(
+      audioPlayerResult.sound,
+      clipMap,
+      audioPlayerResult.clipMetadata,
+      updatePlayingClip,
+      getCurrentClipIndex,
+      audioPlayerResult.setAutoScrollEnabled,
+      audioPlayerResult.getSetProgrammaticScrollCallback
+    );
     initBehaviorLinkHandlers(audioPlayerResult.sound, audioPlayerResult.setAutoScrollEnabled, audioPlayerResult.getSetProgrammaticScrollCallback);
   });
 } else {
@@ -943,5 +1139,14 @@ if (document.readyState === "loading") {
       audioPlayerResult.setClipMap(clipMap);
       // Don't set initial playing clip on page load - only when playback starts
     }
+    initSpeakerFingerprints(
+      audioPlayerResult.sound,
+      clipMap,
+      audioPlayerResult.clipMetadata,
+      updatePlayingClip,
+      getCurrentClipIndex,
+      audioPlayerResult.setAutoScrollEnabled,
+      audioPlayerResult.getSetProgrammaticScrollCallback
+    );
   initBehaviorLinkHandlers(audioPlayerResult.sound);
 }
