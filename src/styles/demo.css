@@ -75,6 +75,8 @@
       height: 100%;
       cursor: pointer;
       transition: filter 0.2s ease, opacity 0.2s ease;
+      /* Default background color - will be overridden by emotion classes */
+      background-color: rgba(var(--emotion-neutral-RGB), 1);
 
       &:hover,
       &.hover {
@@ -84,46 +86,47 @@
         transition: filter 0s ease, opacity 0s ease;
       }
 
-      /* Emotion colors */
-      &.emotion-neutral {
-        background-color: rgba(var(--emotion-neutral-RGB), 1);
-      }
+      /* Emotion colors - using individual emotion variables */
+      
+      /* no strong signal */
+      &.emotion-neutral { background-color: rgba(var(--emotion-neutral-RGB), 1); }
+      &.emotion-unknown { background-color: rgba(var(--emotion-unknown-RGB), 1); }
 
-      &.emotion-confused {
-        background-color: rgba(var(--emotion-confused-RGB), 1);
-      }
+      /* attack / rejection */
+      &.emotion-angry { background-color: rgba(var(--emotion-angry-RGB), 1); }
+      &.emotion-contemptuous { background-color: rgba(var(--emotion-contemptuous-RGB), 1); }
+      &.emotion-disgusted { background-color: rgba(var(--emotion-disgusted-RGB), 1); }
 
-      &.emotion-frustrated {
-        background-color: rgba(var(--emotion-frustrated-RGB), 1);
-      }
+      /* threat / uncertainty */
+      &.emotion-afraid { background-color: rgba(var(--emotion-afraid-RGB), 1); }
+      &.emotion-anxious { background-color: rgba(var(--emotion-anxious-RGB), 1); }
+      &.emotion-stressed { background-color: rgba(var(--emotion-stressed-RGB), 1); }
+      &.emotion-surprised { background-color: rgba(var(--emotion-surprised-RGB), 1); }
+      &.emotion-ashamed { background-color: rgba(var(--emotion-ashamed-RGB), 1); }
+      &.emotion-frustrated { background-color: rgba(var(--emotion-frustrated-RGB), 1); }
 
-      &.emotion-apologetic {
-        background-color: rgba(var(--emotion-apologetic-RGB), 1);
-      }
+      /* calm / grounded */
+      &.emotion-calm { background-color: rgba(var(--emotion-calm-RGB), 1); }
+      &.emotion-confident { background-color: rgba(var(--emotion-confident-RGB), 1); }
+      &.emotion-interested { background-color: rgba(var(--emotion-interested-RGB), 1); }
 
-      &.emotion-annoyed {
-        background-color: rgba(var(--emotion-annoyed-RGB), 1);
-      }
+      /* excited / engaged */
+      &.emotion-affectionate { background-color: rgba(var(--emotion-affectionate-RGB), 1); }
+      &.emotion-amused { background-color: rgba(var(--emotion-amused-RGB), 1); }
+      &.emotion-excited { background-color: rgba(var(--emotion-excited-RGB), 1); }
+      &.emotion-happy { background-color: rgba(var(--emotion-happy-RGB), 1); }
+      &.emotion-hopeful { background-color: rgba(var(--emotion-hopeful-RGB), 1); }
+      &.emotion-proud { background-color: rgba(var(--emotion-proud-RGB), 1); }
+      &.emotion-relieved { background-color: rgba(var(--emotion-relieved-RGB), 1); }
+      &.emotion-curious { background-color: rgba(var(--emotion-curious-RGB), 1); }
 
-      &.emotion-assertive {
-        background-color: rgba(var(--emotion-assertive-RGB), 1);
-      }
-
-      &.emotion-demanding {
-        background-color: rgba(var(--emotion-demanding-RGB), 1);
-      }
-
-      &.emotion-angry {
-        background-color: rgba(var(--emotion-angry-RGB), 1);
-      }
-
-      &.emotion-threatening {
-        background-color: rgba(var(--emotion-threatening-RGB), 1);
-      }
-
-      &.emotion-exasperated {
-        background-color: rgba(var(--emotion-exasperated-RGB), 1);
-      }
+      /* low energy, negative */
+      &.emotion-sad { background-color: rgba(var(--emotion-sad-RGB), 1); }
+      &.emotion-disappointed { background-color: rgba(var(--emotion-disappointed-RGB), 1); }
+      &.emotion-bored { background-color: rgba(var(--emotion-bored-RGB), 1); }
+      &.emotion-tired { background-color: rgba(var(--emotion-tired-RGB), 1); }
+      &.emotion-concerned { background-color: rgba(var(--emotion-concerned-RGB), 1); }
+      &.emotion-confused { background-color: rgba(var(--emotion-confused-RGB), 1); }
     }
   }
 
@@ -335,59 +338,49 @@ a.detected-behaviour {
   }
 }
 
-/* Emotion tags color scheme based on Plutchik's wheel of emotions */
+/* Emotion tags color scheme - using individual emotion variables */
 .emotion-tag {  
   border-radius: 0.3em;  
   
-  /* Neutral - серый, нейтральный */
-  &.emotion-neutral {
-    color: rgba(var(--emotion-neutral-RGB), 1);    
-  }
-  
-  /* Confused - удивление (surprise) - голубой */
-  &.emotion-confused {
-    color: rgba(var(--emotion-confused-RGB), 1);    
-  }
-  
-  /* Frustrated - смесь гнева и печали - красно-синий */
-  &.emotion-frustrated {
-    color: rgba(var(--emotion-frustrated-RGB), 1);    
-  }
-  
-  /* Apologetic - смесь доверия и печали - зелено-синий */
-  &.emotion-apologetic {
-    color: rgba(var(--emotion-apologetic-RGB), 1);    
-  }
-  
-  /* Annoyed - гнев (anger) - красный */
-  &.emotion-annoyed {
-    color: rgba(var(--emotion-annoyed-RGB), 1);    
-  }
-  
-  /* Assertive - предвкушение/радость - оранжево-желтый */
-  &.emotion-assertive {
-    color: rgba(var(--emotion-assertive-RGB), 1);    
-  }
-  
-  /* Demanding - гнев/предвкушение - красно-оранжевый */
-  &.emotion-demanding {
-    color: rgba(var(--emotion-demanding-RGB), 1);    
-  }
-  
-  /* Angry - гнев (anger) - красный, более интенсивный */
-  &.emotion-angry {
-    color: rgba(var(--emotion-angry-RGB), 1);    
-  }
-  
-  /* Threatening - гнев/страх - красно-фиолетовый */
-  &.emotion-threatening {
-    color: rgba(var(--emotion-threatening-RGB), 1);    
-  }
-  
-  /* Exasperated - гнев/печаль - красно-синий, более интенсивный */
-  &.emotion-exasperated {
-    color: rgba(var(--emotion-exasperated-RGB), 1);    
-  }
+  /* no strong signal */
+  &.emotion-neutral { color: rgba(var(--emotion-neutral-RGB), 1); }
+  &.emotion-unknown { color: rgba(var(--emotion-unknown-RGB), 1); }
+
+  /* attack / rejection */
+  &.emotion-angry { color: rgba(var(--emotion-angry-RGB), 1); }
+  &.emotion-contemptuous { color: rgba(var(--emotion-contemptuous-RGB), 1); }
+  &.emotion-disgusted { color: rgba(var(--emotion-disgusted-RGB), 1); }
+
+  /* threat / uncertainty */
+  &.emotion-afraid { color: rgba(var(--emotion-afraid-RGB), 1); }
+  &.emotion-anxious { color: rgba(var(--emotion-anxious-RGB), 1); }
+  &.emotion-stressed { color: rgba(var(--emotion-stressed-RGB), 1); }
+  &.emotion-surprised { color: rgba(var(--emotion-surprised-RGB), 1); }
+  &.emotion-ashamed { color: rgba(var(--emotion-ashamed-RGB), 1); }
+  &.emotion-frustrated { color: rgba(var(--emotion-frustrated-RGB), 1); }
+
+  /* calm / grounded */
+  &.emotion-calm { color: rgba(var(--emotion-calm-RGB), 1); }
+  &.emotion-confident { color: rgba(var(--emotion-confident-RGB), 1); }
+  &.emotion-interested { color: rgba(var(--emotion-interested-RGB), 1); }
+
+  /* excited / engaged */
+  &.emotion-affectionate { color: rgba(var(--emotion-affectionate-RGB), 1); }
+  &.emotion-amused { color: rgba(var(--emotion-amused-RGB), 1); }
+  &.emotion-excited { color: rgba(var(--emotion-excited-RGB), 1); }
+  &.emotion-happy { color: rgba(var(--emotion-happy-RGB), 1); }
+  &.emotion-hopeful { color: rgba(var(--emotion-hopeful-RGB), 1); }
+  &.emotion-proud { color: rgba(var(--emotion-proud-RGB), 1); }
+  &.emotion-relieved { color: rgba(var(--emotion-relieved-RGB), 1); }
+  &.emotion-curious { color: rgba(var(--emotion-curious-RGB), 1); }
+
+  /* low energy, negative */
+  &.emotion-sad { color: rgba(var(--emotion-sad-RGB), 1); }
+  &.emotion-disappointed { color: rgba(var(--emotion-disappointed-RGB), 1); }
+  &.emotion-bored { color: rgba(var(--emotion-bored-RGB), 1); }
+  &.emotion-tired { color: rgba(var(--emotion-tired-RGB), 1); }
+  &.emotion-concerned { color: rgba(var(--emotion-concerned-RGB), 1); }
+  &.emotion-confused { color: rgba(var(--emotion-confused-RGB), 1); }
 }
 
 

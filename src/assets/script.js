@@ -800,6 +800,44 @@ function initTranscriptClipsInteraction(sound, clipMetadata, updatePlayingClipFn
   return clipMap;
 }
 
+// Map individual emotions to their group CSS variables
+const emotionGroupMap = {
+  // no strong signal
+  'neutral': 'neutral',
+  'unknown': 'neutral',
+  // attack / rejection
+  'angry': 'angry',
+  'contemptuous': 'angry',
+  'disgusted': 'angry',
+  // threat / uncertainty
+  'afraid': 'fear',
+  'anxious': 'fear',
+  'stressed': 'fear',
+  'surprised': 'fear',
+  'ashamed': 'fear',
+  'frustrated': 'fear',
+  // calm / grounded
+  'calm': 'positive-low-energy',
+  'confident': 'positive-low-energy',
+  'interested': 'positive-low-energy',
+  // excited / engaged
+  'affectionate': 'positive-high-energy',
+  'amused': 'positive-high-energy',
+  'excited': 'positive-high-energy',
+  'happy': 'positive-high-energy',
+  'hopeful': 'positive-high-energy',
+  'proud': 'positive-high-energy',
+  'relieved': 'positive-high-energy',
+  'curious': 'positive-high-energy',
+  // low energy, negative
+  'sad': 'sad',
+  'disappointed': 'sad',
+  'bored': 'sad',
+  'tired': 'sad',
+  'concerned': 'sad',
+  'confused': 'sad'
+};
+
 // Update emotion caption on hover (instant, no transition)
 function updateEmotionCaption(clip) {
   const emotionCaption = document.querySelector('.emotion-caption');
@@ -814,8 +852,9 @@ function updateEmotionCaption(clip) {
   // Update text (don't clear, just update)
   emotionCaption.textContent = emotionName;
   
-  // Apply color using CSS variable
-  const emotionColorVar = `--emotion-${emotionName}-RGB`;
+  // Map emotion to its group and get the group CSS variable
+  const emotionGroup = emotionGroupMap[emotionName] || 'neutral';
+  const emotionColorVar = `--emotion-${emotionGroup}-RGB`;
   const computedStyle = getComputedStyle(document.documentElement);
   const colorValue = computedStyle.getPropertyValue(emotionColorVar).trim();
   
