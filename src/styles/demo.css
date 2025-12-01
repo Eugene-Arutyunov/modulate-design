@@ -83,7 +83,6 @@
       & th {
         color: rgb(var(--ids__text-RGB));
         font-size: 0.8em;
-        font-weight: normal;
         text-align: left;
         vertical-align: top;
         padding-bottom: 0.5em;
@@ -382,56 +381,6 @@ a.detected-behaviour {
 
 
 
-/* Demo recordings table */
-.demo-recordings-section {
-  margin: 2em 0;
-
-  & h2 {
-    font-size: 1.2em;
-    font-weight: 500;
-    margin-bottom: 1em;
-  }
-
-  & .demo-recordings-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: rgba(var(--ids__surface-RGB), 1);
-
-
-    & thead {
-      & th {
-        text-align: left;
-        padding: 0.7em;
-        font-weight: 500;
-        font-size: 0.9em;
-        border-bottom: 1px solid rgba(var(--ids__text-RGB), 0.2);
-        color: rgba(var(--ids__text-RGB), 0.7);
-      }
-    }
-
-    & tbody {
-      & tr {
-        border-bottom: 1px solid rgba(var(--ids__text-RGB), 0.1);
-        transition: background-color 0.2s ease;
-
-        &:hover {
-          background-color: rgba(var(--ids__text-RGB), 0.05);
-        }
-
-        &:last-child {
-          border-bottom: none;
-        }
-      }
-
-      & td {
-        padding: 0.7em;
-        font-size: 0.9em;
-      }
-    }
-  }
-}
-
-
 .cta {
   display: flex;
   --gap: 0.5em;
@@ -460,16 +409,17 @@ a.detected-behaviour {
     }
 
   }
-}
-& .cta-section {
-  
-  background-color: rgba(var(--ids__accent-RGB), 0.1);
-  /* height: 100%; */
-  padding: 1em 1em 1em 1em;
 
-  &.form {
-    background-color: rgba(var(--ids__surface-RGB), 1);
-    padding: 1em 3em 2em 1em;
+  & .cta-section {
+  
+    background-color: rgba(var(--ids__accent-RGB), 0.1);
+    /* height: 100%; */
+    padding: 1em 1em 1em 1em;
+
+    &.form {
+      background-color: rgba(var(--ids__surface-RGB), 1);
+      padding: 1em 3em 2em 1em;
+    }
   }
 }
 

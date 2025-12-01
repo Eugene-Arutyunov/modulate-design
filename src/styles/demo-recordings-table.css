@@ -1,0 +1,242 @@
+/* Demo recordings table styles */
+
+.demo-recordings-section {
+  margin: 2em 0;
+
+  & h2 {
+    font-size: 1.2em;
+    font-weight: 500;
+    margin-bottom: 1em;
+  }
+
+  & .demo-recordings-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(var(--ids__surface-RGB), 1);
+
+    & thead {
+      & th {
+        font-size: 0.8em;
+        font-weight: 400;
+        text-align: left;        
+        padding: 0.7em 0.3em 0.5em 0.5em;
+        
+      }
+    }
+
+    & tbody {
+      & tr {
+        background-color: rgba(var(--ids__surface-RGB), 1);
+        border-bottom: 1px solid rgba(var(--ids__text-RGB), 0.1);
+        cursor: pointer;
+        transition: color 0.5s ease, background-color 0.5s ease;
+
+        &:hover {
+          color: rgb(var(--ids__hover-RGB), 1);
+          background-color: rgb(var(--ids__hover-RGB), 0.15);
+          transition: color 0s ease, background-color 0s ease;
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+
+      & td {
+        padding: 0.5em 0.3em 0.5em 0.5em;
+        vertical-align: top;
+        font-size: 0.8em;
+      }
+
+      & td:first-child {
+        width: 20%;
+        
+      }
+
+      & td:nth-child(2) {
+        width: 44%;
+        font-size: 1em;
+        padding: 0.22em 0.3em 0.7em 0.5em;
+      }
+
+      & td:nth-child(3) {
+        width: 15%;
+      }
+
+      & td:nth-child(4) {
+        width: 18%;
+
+      }
+    }
+  }
+}
+
+/* Table fingerprint diagrams */
+
+.table-fingerprint-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.3em;
+}
+
+.table-fingerprint {
+  position: relative;
+  height: 1.35em;
+  background-color: rgba(var(--ids__surface-RGB), 1);
+  border-radius: 0.2em;
+  overflow: hidden;
+  flex-shrink: 1;
+}
+
+.table-fingerprint-clip {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  width: 0;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border-radius: 0;
+  pointer-events: none;
+  cursor: default;
+}
+
+.table-fingerprint-visualization {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: calc(100% / var(--speaker-count));
+  background-color: rgba(var(--emotion-neutral-RGB), 1);
+  pointer-events: none;
+}
+
+.table-fingerprint-clip[data-speaker-index="1"] .table-fingerprint-visualization {
+  top: calc((1 - 1) * (100% / var(--speaker-count)));
+}
+
+.table-fingerprint-clip[data-speaker-index="2"] .table-fingerprint-visualization {
+  top: calc((2 - 1) * (100% / var(--speaker-count)));
+}
+
+.table-fingerprint-clip[data-speaker-index="3"] .table-fingerprint-visualization {
+  top: calc((3 - 1) * (100% / var(--speaker-count)));
+}
+
+.table-fingerprint-clip[data-speaker-index="4"] .table-fingerprint-visualization {
+  top: calc((4 - 1) * (100% / var(--speaker-count)));
+}
+
+/* Emotion colors for table fingerprint visualizations */
+.table-fingerprint-clip.emotion-neutral .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-neutral-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-angry .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-angry-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-contemptuous .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-contemptuous-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-disgusted .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-disgusted-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-afraid .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-afraid-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-anxious .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-anxious-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-stressed .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-stressed-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-surprised .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-surprised-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-ashamed .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-ashamed-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-frustrated .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-frustrated-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-calm .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-calm-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-confident .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-confident-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-interested .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-interested-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-affectionate .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-affectionate-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-amused .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-amused-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-excited .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-excited-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-happy .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-happy-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-hopeful .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-hopeful-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-proud .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-proud-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-relieved .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-relieved-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-curious .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-curious-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-sad .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-sad-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-disappointed .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-disappointed-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-bored .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-bored-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-tired .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-tired-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-concerned .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-concerned-RGB), 1);
+}
+
+.table-fingerprint-clip.emotion-confused .table-fingerprint-visualization {
+  background-color: rgba(var(--emotion-confused-RGB), 1);
+}
+
+.table-fingerprint-time {
+  white-space: nowrap;
+}
+
