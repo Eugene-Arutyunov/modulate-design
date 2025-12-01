@@ -10,10 +10,24 @@ import { getCurrentClipIndex } from './clip-metadata.js';
 import { updatePlayingClip } from './clip-metadata.js';
 import { scrollToClipCenter } from './utils.js';
 
+// Initialize clickable table rows
+function initClickableTableRows() {
+  const rows = document.querySelectorAll('tr[data-href]');
+  rows.forEach(row => {
+    row.addEventListener('click', (e) => {
+      const href = row.getAttribute('data-href');
+      if (href) {
+        window.location.href = href;
+      }
+    });
+  });
+}
+
 // Initialize when DOM is ready
 function init() {
   initStickyObserver();
   initPlayerVisualization();
+  initClickableTableRows();
   const audioPlayerResult = initAudioPlayer();
   
   if (!audioPlayerResult) {
