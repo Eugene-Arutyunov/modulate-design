@@ -190,4 +190,16 @@ export function initEditableSpeakerNames() {
     const initialValue = input.getAttribute('value') || input.value;
     input.dataset.originalValue = initialValue;
   });
+
+  // Update icon positions on window resize
+  let resizeTimeout;
+  window.addEventListener('resize', function() {
+    // Debounce resize events for better performance
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(function() {
+      speakerInputs.forEach((input) => {
+        adjustIconPosition(input);
+      });
+    }, 100);
+  });
 }
