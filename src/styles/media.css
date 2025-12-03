@@ -133,11 +133,91 @@
       }
     }    
   }
+}
 
+/* Base transcript visualization styles - global */
+.transcript-visualization {
+  position: relative;  
+  background-color: rgba(var(--ids__surface-RGB), 1);
+  height: var(--player-visualization-height);
+  transition: height 0.2s ease;
 
-  /* Player visualization timeline */
+  & .transcript-clip {
+    position: absolute;
+    height: 100%;
+    top: 0;
+
+    /* Hover styles specific to visualization */
+    &:hover,
+    &.hover {
+      & .clip-visualization {
+        filter: brightness(140%) saturate(115%);
+        transition: filter 0s ease;
+        
+        &::after {
+          filter: brightness(140%) saturate(115%);
+        }
+      }
+    }
+
+    & .clip-visualization {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: calc(100% / var(--speaker-count));
+      transition: filter 0.1s ease;
+      /* Initial neutral color for all clips */
+      background-color: rgba(var(--emotion-neutral-RGB), 1);
+      border-color: rgba(var(--emotion-neutral-RGB), 1);
+      
+      /* ::after pseudo-element for emotion color overlay */
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        pointer-events: none;
+        /* Animation applied to all emotion colors except neutral */
+        animation: emotion-color-fade-in var(--emotion-color-duration) ease-in var(--emotion-color-delay) forwards;
+      }
+    }
+
+    &[data-speaker-index="1"] .clip-visualization {
+      top: calc((1 - 1) * (100% / var(--speaker-count)));
+    }
+    &[data-speaker-index="2"] .clip-visualization {
+      top: calc((2 - 1) * (100% / var(--speaker-count)));
+    }
+    &[data-speaker-index="3"] .clip-visualization {
+      top: calc((3 - 1) * (100% / var(--speaker-count)));
+    }
+    &[data-speaker-index="4"] .clip-visualization {
+      top: calc((4 - 1) * (100% / var(--speaker-count)));
+    }
+    &[data-speaker-index="5"] .clip-visualization {
+      top: calc((5 - 1) * (100% / var(--speaker-count)));
+    }
+
+    & .clip-caption,
+    & .clip-text {
+      display: none;
+    }
+  }
+
+  /* Static version - no pointer cursor, no interactivity */
+  &--static {
+    & .transcript-clip {
+      cursor: default;
+    }
+  }
+}
+
+.media-container {
+  /* Player visualization timeline - extends base transcript visualization */
   & .player-visualization {
-
     position: relative;  
     background-color: rgba(var(--ids__surface-RGB), 1);
     height: var(--player-visualization-height);
@@ -161,9 +241,6 @@
           }
         }
       }
-
-      /* Playing state - highlight currently playing clip */
-      
 
       & .clip-visualization {
         position: absolute;
@@ -206,7 +283,6 @@
         top: calc((5 - 1) * (100% / var(--speaker-count)));
       }
 
-      
       & .clip-caption,
       & .clip-text {
         display: none;
@@ -377,7 +453,7 @@
     }
 
     & .player-control-center:hover {
-      background-color: rgba(var(--ids__accent-RGB), 1);
+      background-color: rgba(var(--ids__surface-RGB), 0.3);
       filter: brightness(125%) saturate(125%);
       transition: background-color 0s ease;
 
@@ -489,6 +565,164 @@
       font-size: 0.8em;
       background-color: rgba(var(--ids__accent-RGB), 1);
 
+    }
+  }
+}
+
+/* Static fingerprint visualization styles */
+.fingerprint-visualization-container {
+  margin: 1em 0;
+  --visualization-height: 83%;
+  
+  & .fingerprint-visualization-box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    --padding: 0.5em;
+    --speaker-count: 2;
+    height: 7em;
+    background-color: rgba(var(--ids__accent-RGB), 1);
+    overflow: hidden;
+
+    &[data-speaker-count="1"] {
+      --speaker-count: 1;
+    }
+    &[data-speaker-count="2"] {
+      --speaker-count: 2;
+    }
+    &[data-speaker-count="3"] {
+      --speaker-count: 3;
+    }
+    &[data-speaker-count="4"] {
+      --speaker-count: 4;
+    }
+    &[data-speaker-count="5"] {
+      --speaker-count: 5;
+    }
+
+    & .transcript-visualization {
+      height: var(--visualization-height);
+    }
+
+    & .speaker-labels {
+      position: absolute;
+      width: 100%;
+      height: var(--visualization-height);
+      transition: height 0.2s ease;
+      pointer-events: none;
+      font-size: 0.8em;
+
+      & .speaker-label {
+        position: absolute;
+        display: flex;
+        align-items: flex-end;
+        padding-left: 0.1em;
+        height: calc(100% / var(--speaker-count));
+
+        &[data-speaker-index="1"] {
+          top: calc((1 - 1) * (100% / var(--speaker-count)));
+        }
+        &[data-speaker-index="2"] {
+          top: calc((2 - 1) * (100% / var(--speaker-count)));
+        }
+        &[data-speaker-index="3"] {
+          top: calc((3 - 1) * (100% / var(--speaker-count)));
+        }
+        &[data-speaker-index="4"] {
+          top: calc((4 - 1) * (100% / var(--speaker-count)));
+        }
+        &[data-speaker-index="5"] {
+          top: calc((5 - 1) * (100% / var(--speaker-count)));
+        }
+
+        & span {
+          background-color: rgba(var(--ids__surface-RGB), 1);
+          padding: 0.1em 0.2em 0 0;
+          color: rgba(var(--ids__text-RGB), 0.3);
+        }
+      }
+    }
+
+    & .behaviour-labels {
+      position: absolute;
+      width: 100%;
+      height: var(--visualization-height);
+      transition: height 0.2s ease;
+      pointer-events: none;
+      z-index: 1;
+
+      & .behaviour-label {
+        position: absolute;
+        font-size: 0.8em;
+        line-height: 1.1;
+        width: 10em;
+        display: flex;
+        align-items: flex-end;
+        padding-bottom: 0.4em;
+        height: calc(100% / var(--speaker-count));
+
+        &:after {
+          content: '';
+          position: absolute;
+          width: 0.4em;
+          height: 0.4em;
+          border-radius: 50%;
+          background-color: white;
+          bottom: -0.2em;
+          left: 0;
+        }
+
+        &[data-speaker-index="1"] {
+          top: calc((1 - 1) * (100% / var(--speaker-count)));
+        }
+        &[data-speaker-index="2"] {
+          top: calc((2 - 1) * (100% / var(--speaker-count)));
+        }
+        &[data-speaker-index="3"] {
+          top: calc((3 - 1) * (100% / var(--speaker-count)));
+        }
+        &[data-speaker-index="4"] {
+          top: calc((4 - 1) * (100% / var(--speaker-count)));
+        }
+        &[data-speaker-index="5"] {
+          top: calc((5 - 1) * (100% / var(--speaker-count)));
+        }
+
+        & a {
+          pointer-events: none;
+          text-decoration: none;
+          display: block;
+          cursor: default;
+
+          & span {
+            display: inline-block;
+            font-weight: 600;
+            transition: transform 0.5s ease;
+          }
+        }
+      }
+    }
+
+    & .fingerprint-status-caption {
+      display: flex;
+      gap: 0.5em;
+      position: absolute;
+      top: var(--visualization-height);
+      transition: top 0.2s ease;
+      bottom: var(--padding);
+      right: var(--padding);
+      pointer-events: none;
+
+      & .emotion-caption {
+        font-size: 0.8em;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        
+        &.visible {
+          opacity: 1;
+          transition: opacity 0s ease;
+        }
+      }
     }
   }
 }

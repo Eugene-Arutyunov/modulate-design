@@ -1,0 +1,37 @@
+.upload-area-container {
+  /* Контейнер для зоны загрузки без sticky поведения */
+}
+
+.upload-area-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(var(--ids__surface-RGB), 1);
+}
+
+.upload-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 10em;
+  gap: 1em;
+  color: rgba(var(--ids__text-RGB), 1);
+  text-align: center;
+  padding: 2em;
+
+  & .upload-text {
+    font-size: 1em;
+  }
+
+  & .upload-button {
+    display: inline-block;
+    text-decoration: none;
+    color: rgba(var(--ids__link-RGB), 1);
+    
+    &:hover {
+      color: rgba(var(--ids__hover-RGB), 1);
+    }
+  }
+}
+

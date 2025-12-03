@@ -11,11 +11,13 @@ import { getCurrentClipIndex } from './clip-metadata.js';
 import { updatePlayingClip } from './clip-metadata.js';
 import { scrollToClipCenter } from './utils.js';
 import { initClickableTableRows, initTableFingerprints } from './demo-recordings-table.js';
+import { initFingerprintVisualization } from './fingerprint-visualization.js';
 
 // Initialize when DOM is ready
 function init() {
   initStickyObserver();
   initPlayerVisualization();
+  initFingerprintVisualization();
   initClickableTableRows();
   initTableFingerprints();
   const audioPlayerResult = initAudioPlayer();

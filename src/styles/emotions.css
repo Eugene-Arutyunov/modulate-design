@@ -104,7 +104,8 @@
 }
 
 /* Emotion colors for player visualization clips */
-.player-visualization .transcript-clip {
+.player-visualization .transcript-clip,
+.transcript-visualization .transcript-clip {
   /* Background colors based on emotion classes with animation using ::after - using individual emotion variables */
   /* no strong signal */
   &.emotion-neutral .clip-visualization::after {
@@ -113,43 +114,122 @@
   }
   &.emotion-unknown .clip-visualization::after {
     background-color: rgba(var(--emotion-unknown-RGB), 1);
+    opacity: 1;
   }
 
   /* attack / rejection */
-  &.emotion-angry .clip-visualization::after { background-color: rgba(var(--emotion-angry-RGB), 1); }
-  &.emotion-contemptuous .clip-visualization::after { background-color: rgba(var(--emotion-contemptuous-RGB), 1); }
-  &.emotion-disgusted .clip-visualization::after { background-color: rgba(var(--emotion-disgusted-RGB), 1); }
+  &.emotion-angry .clip-visualization::after { 
+    background-color: rgba(var(--emotion-angry-RGB), 1);
+    opacity: 1;
+  }
+  &.emotion-contemptuous .clip-visualization::after { 
+    background-color: rgba(var(--emotion-contemptuous-RGB), 1);
+    opacity: 1;
+  }
+  &.emotion-disgusted .clip-visualization::after { 
+    background-color: rgba(var(--emotion-disgusted-RGB), 1);
+    opacity: 1;
+  }
 
   /* threat / uncertainty */
-  &.emotion-afraid .clip-visualization::after { background-color: rgba(var(--emotion-afraid-RGB), 1); }
-  &.emotion-anxious .clip-visualization::after { background-color: rgba(var(--emotion-anxious-RGB), 1); }
-  &.emotion-stressed .clip-visualization::after { background-color: rgba(var(--emotion-stressed-RGB), 1); }
-  &.emotion-surprised .clip-visualization::after { background-color: rgba(var(--emotion-surprised-RGB), 1); }
-  &.emotion-ashamed .clip-visualization::after { background-color: rgba(var(--emotion-ashamed-RGB), 1); }
-  &.emotion-frustrated .clip-visualization::after { background-color: rgba(var(--emotion-frustrated-RGB), 1); }
+  &.emotion-afraid .clip-visualization::after { 
+    background-color: rgba(var(--emotion-afraid-RGB), 1);
+    opacity: 1;
+  }
+  &.emotion-anxious .clip-visualization::after { 
+    background-color: rgba(var(--emotion-anxious-RGB), 1);
+    opacity: 1;
+  }
+  &.emotion-stressed .clip-visualization::after { 
+    background-color: rgba(var(--emotion-stressed-RGB), 1);
+    opacity: 1;
+  }
+  &.emotion-surprised .clip-visualization::after { 
+    background-color: rgba(var(--emotion-surprised-RGB), 1);
+    opacity: 1;
+  }
+  &.emotion-ashamed .clip-visualization::after { 
+    background-color: rgba(var(--emotion-ashamed-RGB), 1);
+    opacity: 1;
+  }
+  &.emotion-frustrated .clip-visualization::after { 
+    background-color: rgba(var(--emotion-frustrated-RGB), 1);
+    opacity: 1;
+  }
 
   /* calm / grounded */
-  &.emotion-calm .clip-visualization::after { background-color: rgba(var(--emotion-calm-RGB), 1); }
-  &.emotion-confident .clip-visualization::after { background-color: rgba(var(--emotion-confident-RGB), 1); }
-  &.emotion-interested .clip-visualization::after { background-color: rgba(var(--emotion-interested-RGB), 1); }
+  &.emotion-calm .clip-visualization::after { 
+    background-color: rgba(var(--emotion-calm-RGB), 1);
+    opacity: 1;
+  }
+  &.emotion-confident .clip-visualization::after { 
+    background-color: rgba(var(--emotion-confident-RGB), 1);
+    opacity: 1;
+  }
+  &.emotion-interested .clip-visualization::after { 
+    background-color: rgba(var(--emotion-interested-RGB), 1);
+    opacity: 1;
+  }
 
   /* excited / engaged */
-  &.emotion-affectionate .clip-visualization::after { background-color: rgba(var(--emotion-affectionate-RGB), 1); }
-  &.emotion-amused .clip-visualization::after { background-color: rgba(var(--emotion-amused-RGB), 1); }
-  &.emotion-excited .clip-visualization::after { background-color: rgba(var(--emotion-excited-RGB), 1); }
-  &.emotion-happy .clip-visualization::after { background-color: rgba(var(--emotion-happy-RGB), 1); }
-  &.emotion-hopeful .clip-visualization::after { background-color: rgba(var(--emotion-hopeful-RGB), 1); }
-  &.emotion-proud .clip-visualization::after { background-color: rgba(var(--emotion-proud-RGB), 1); }
-  &.emotion-relieved .clip-visualization::after { background-color: rgba(var(--emotion-relieved-RGB), 1); }
-  &.emotion-curious .clip-visualization::after { background-color: rgba(var(--emotion-curious-RGB), 1); }
+  &.emotion-affectionate .clip-visualization::after { 
+    background-color: rgba(var(--emotion-affectionate-RGB), 1);
+    opacity: 1;
+  }
+  &.emotion-amused .clip-visualization::after { 
+    background-color: rgba(var(--emotion-amused-RGB), 1);
+    opacity: 1;
+  }
+  &.emotion-excited .clip-visualization::after { 
+    background-color: rgba(var(--emotion-excited-RGB), 1);
+    opacity: 1;
+  }
+  &.emotion-happy .clip-visualization::after { 
+    background-color: rgba(var(--emotion-happy-RGB), 1);
+    opacity: 1;
+  }
+  &.emotion-hopeful .clip-visualization::after { 
+    background-color: rgba(var(--emotion-hopeful-RGB), 1);
+    opacity: 1;
+  }
+  &.emotion-proud .clip-visualization::after { 
+    background-color: rgba(var(--emotion-proud-RGB), 1);
+    opacity: 1;
+  }
+  &.emotion-relieved .clip-visualization::after { 
+    background-color: rgba(var(--emotion-relieved-RGB), 1);
+    opacity: 1;
+  }
+  &.emotion-curious .clip-visualization::after { 
+    background-color: rgba(var(--emotion-curious-RGB), 1);
+    opacity: 1;
+  }
 
   /* low energy, negative */
-  &.emotion-sad .clip-visualization::after { background-color: rgba(var(--emotion-sad-RGB), 1); }
-  &.emotion-disappointed .clip-visualization::after { background-color: rgba(var(--emotion-disappointed-RGB), 1); }
-  &.emotion-bored .clip-visualization::after { background-color: rgba(var(--emotion-bored-RGB), 1); }
-  &.emotion-tired .clip-visualization::after { background-color: rgba(var(--emotion-tired-RGB), 1); }
-  &.emotion-concerned .clip-visualization::after { background-color: rgba(var(--emotion-concerned-RGB), 1); }
-  &.emotion-confused .clip-visualization::after { background-color: rgba(var(--emotion-confused-RGB), 1); }
+  &.emotion-sad .clip-visualization::after { 
+    background-color: rgba(var(--emotion-sad-RGB), 1);
+    opacity: 1;
+  }
+  &.emotion-disappointed .clip-visualization::after { 
+    background-color: rgba(var(--emotion-disappointed-RGB), 1);
+    opacity: 1;
+  }
+  &.emotion-bored .clip-visualization::after { 
+    background-color: rgba(var(--emotion-bored-RGB), 1);
+    opacity: 1;
+  }
+  &.emotion-tired .clip-visualization::after { 
+    background-color: rgba(var(--emotion-tired-RGB), 1);
+    opacity: 1;
+  }
+  &.emotion-concerned .clip-visualization::after { 
+    background-color: rgba(var(--emotion-concerned-RGB), 1);
+    opacity: 1;
+  }
+  &.emotion-confused .clip-visualization::after { 
+    background-color: rgba(var(--emotion-confused-RGB), 1);
+    opacity: 1;
+  }
 }
 
 /* Emotion tags color scheme - using individual emotion variables */
@@ -201,15 +281,14 @@
 .emotion-colors-showcase {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1em;
+  gap: 0.2em;
   margin-bottom: 2em;
 }
 
 .emotion-group {
   background-color: rgba(var(--ids__surface-RGB), 1);
-  padding: 0.8em;
-  border-radius: 0.4em;
-  border: 1px solid rgba(var(--ids__text-RGB), 0.1);
+  padding: 0.8em 2em 2em 1em;
+  
 }
 
 .emotion-group-header {
@@ -218,41 +297,21 @@
 
 .emotion-group-header h3 {
   margin: 0;
-  font-size: 0.85em;
+
   font-weight: 500;
-  text-transform: lowercase;
+
   color: rgba(var(--ids__text-RGB), 0.7);
 }
 
 .emotion-items {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4em;
+  gap: 0.1em;
 }
 
-.emotion-color-sample {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 80px;
-  height: 2em;
+.emotion-color-sample {  
   padding: 0.3em 0.6em;
-  border-radius: 0.25em;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  position: relative;
+  color: white;
 }
 
-.emotion-color-sample:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-}
 
-.emotion-color-sample .emotion-name {
-  font-size: 0.75em;
-  color: rgba(255, 255, 255, 0.95);
-  text-align: center;
-  font-weight: 500;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  white-space: nowrap;
-}

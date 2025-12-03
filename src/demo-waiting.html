@@ -4,15 +4,7 @@
 <div class="ids__wrapper">
   <div class="ids__space L"></div>
 
-  <div class="media-container sticky">
-    <div class="media-space"></div>
-    <div class="media-box ids__rounded dark-mode">
-      <div class="upload-area">
-        <div class="upload-text">Drop your audio or video file here</div>
-        <a href="#" class="upload-button">Choose file...</a>
-      </div>
-    </div>
-  </div>
+  {% include "upload-area.html" %}
   <div class="demo-recordings-section">
     <p>Or choose one of the pre-loaded demo recordings</p>
     {% include "demo-recordings-table.html" %}

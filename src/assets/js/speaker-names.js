@@ -147,7 +147,7 @@ export function initEditableSpeakerNames() {
       }
     });
 
-    // Restore original value on Esc
+    // Restore original value on Esc, apply changes and blur on Enter
     input.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' || e.key === 'Esc' || e.code === 'Escape') {
         e.preventDefault();
@@ -163,6 +163,26 @@ export function initEditableSpeakerNames() {
         setTimeout(() => {
           input.blur();
         }, 0);
+      } else if (e.key === 'Enter' || e.code === 'Enter') {
+        e.preventDefault();
+        e.stopPropagation();
+        // Apply changes and blur (same logic as blur handler)
+        let trimmedValue = input.value.trim();
+        
+        // If empty or only whitespace, restore original value
+        if (!trimmedValue) {
+          trimmedValue = input.dataset.originalValue || input.getAttribute('value') || '';
+          input.value = trimmedValue;
+          updateSpeakerName(speakerIndex, trimmedValue);
+        } else {
+          // Update with trimmed value
+          input.value = trimmedValue;
+          updateSpeakerName(speakerIndex, trimmedValue);
+        }
+        
+        input.dataset.originalValue = trimmedValue;
+        adjustIconPosition(input);
+        input.blur();
       }
     });
 
