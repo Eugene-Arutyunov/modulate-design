@@ -4,6 +4,7 @@ import { initAudioPlayer } from './audio-player.js';
 import { initTranscriptClipsInteraction } from './transcript-clips.js';
 import { initSpeakerFingerprints } from './speaker-fingerprints.js';
 import { initBehaviorLinkHandlers } from './behavior-links.js';
+import { initBehaviorNavigation } from './behavior-navigation.js';
 import { initEditableSpeakerNames } from './speaker-names.js';
 import { initSharePopover } from './share-popover.js';
 import { getCurrentClipIndex } from './clip-metadata.js';
@@ -56,6 +57,12 @@ function init() {
   );
   
   initBehaviorLinkHandlers(
+    audioPlayerResult.sound,
+    audioPlayerResult.setAutoScrollEnabled,
+    audioPlayerResult.getSetProgrammaticScrollCallback
+  );
+  
+  initBehaviorNavigation(
     audioPlayerResult.sound,
     audioPlayerResult.setAutoScrollEnabled,
     audioPlayerResult.getSetProgrammaticScrollCallback

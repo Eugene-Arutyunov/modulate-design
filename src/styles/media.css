@@ -5,8 +5,8 @@
   --player-visualization-mobile-height: 65%;
   
   /* Emotion color animation timing */
-  --emotion-color-delay: 0.5s;
-  --emotion-color-duration: 2s;
+  --emotion-color-delay: 0s;
+  --emotion-color-duration: 0.2s;
 }
 
 /* Keyframe animation for emotion color fade-in */
