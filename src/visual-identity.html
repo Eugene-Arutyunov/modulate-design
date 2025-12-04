@@ -1,0 +1,330 @@
+{% extends 'layout.html' %} {% set pageTitle = 'Modulate Platform Demo' %} {%
+block content %}
+
+<div class="ids__wrapper">
+  <div class="ids__space L"></div>
+
+  <div class="ids__text-width">
+    <h1>Thoughts on visual identity</h1>
+    <p class="caption">
+      By Eugene Arutyunov and Ilya Sinelnikov, December 2025
+    </p>
+
+    <div class="ids__space S"></div>
+
+    <p class="caption"><a href="#color">Color palette</a></p>
+    <p class="caption">
+      <a href="#normality-vs-authenticity">Normality vs Authenticity</a>
+    </p>
+    <p class="caption"><a href="#square">Something has to be 1:1</a></p>
+    <p class="caption">
+      <a href="#modulate-brand-identity-sketch">Modulate logo sketch</a>
+    </p>
+  </div>
+</div>
+<div class="ids__wrapper">
+  <div class="ids__space L"></div>
+  <h2>Color palette</h2>
+  <div class="ids__text-width">
+    <p>
+      The color solution for brand communication should be aligned with two
+      functional color palettes
+    </p>
+  </div>
+  <div class="ids__sequence XL gap-S">
+    <div class="ids__sequence-item">
+      <div
+        class="color-palette interface-color-palette dark-mode ids__rounded"></div>
+    </div>
+    <div class="ids__sequence-item">
+      <div class="color-palette emotions-color-palette dark-mode ids__rounded">
+        <!-- Attack / rejection -->
+        <span
+          class="emotion-group-title"
+          style="color: rgba(var(--emotion-attack-rejection-group-RGB), 1)"
+          >Attack / rejection</span
+        >
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-angry-RGB), 1)">
+          Angry
+        </div>
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-contemptuous-RGB), 1)">
+          Contemptuous
+        </div>
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-disgusted-RGB), 1)">
+          Disgusted
+        </div>
+
+        <!-- Threat / uncertainty -->
+        <span
+          class="emotion-group-title"
+          style="color: rgba(var(--emotion-threat-uncertainty-group-RGB), 1)"
+          >Threat / uncertainty</span
+        >
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-afraid-RGB), 1)">
+          Afraid
+        </div>
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-anxious-RGB), 1)">
+          Anxious
+        </div>
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-stressed-RGB), 1)">
+          Stressed
+        </div>
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-surprised-RGB), 1)">
+          Surprised
+        </div>
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-ashamed-RGB), 1)">
+          Ashamed
+        </div>
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-frustrated-RGB), 1)">
+          Frustrated
+        </div>
+
+        <!-- Excited / engaged -->
+        <span
+          class="emotion-group-title"
+          style="color: rgba(var(--emotion-excited-engaged-group-RGB), 1)"
+          >Excited / engaged</span
+        >
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-affectionate-RGB), 1)">
+          Affectionate
+        </div>
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-amused-RGB), 1)">
+          Amused
+        </div>
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-excited-RGB), 1)">
+          Excited
+        </div>
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-happy-RGB), 1)">
+          Happy
+        </div>
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-hopeful-RGB), 1)">
+          Hopeful
+        </div>
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-proud-RGB), 1)">
+          Proud
+        </div>
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-relieved-RGB), 1)">
+          Relieved
+        </div>
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-curious-RGB), 1)">
+          Curious
+        </div>
+
+        <!-- Low energy, negative -->
+        <span
+          class="emotion-group-title"
+          style="color: rgba(var(--emotion-low-energy-negative-group-RGB), 1)"
+          >Low energy, negative</span
+        >
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-sad-RGB), 1)">
+          Sad
+        </div>
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-disappointed-RGB), 1)">
+          Disappointed
+        </div>
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-bored-RGB), 1)">
+          Bored
+        </div>
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-tired-RGB), 1)">
+          Tired
+        </div>
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-concerned-RGB), 1)">
+          Concerned
+        </div>
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-confused-RGB), 1)">
+          Confused
+        </div>
+
+        <!-- Calm / grounded -->
+        <span
+          class="emotion-group-title"
+          style="color: rgba(var(--emotion-calm-grounded-group-RGB), 1)"
+          >Calm / grounded</span
+        >
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-calm-RGB), 1)">
+          Calm
+        </div>
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-confident-RGB), 1)">
+          Confident
+        </div>
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-interested-RGB), 1)">
+          Interested
+        </div>
+
+        <!-- No strong signal -->
+        <span
+          class="emotion-group-title"
+          style="color: rgba(var(--emotion-neutral-group-RGB), 1)"
+          >No strong signal</span
+        >
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-neutral-RGB), 1)">
+          Neutral
+        </div>
+        <div
+          class="emotion-color-sample"
+          style="background-color: rgba(var(--emotion-unknown-RGB), 1)">
+          Unknown
+        </div>
+      </div>
+    </div>
+  </div>
+  <p>
+    Probably, the solution is to choose one primary brand color and stick to it;
+    perhaps it shouldn't be bright, it should be subtle. And always limit
+    multicolor to a certain area, make it an accent.
+  </p>
+  <div class="ids__sequence">
+    <div class="ids__sequence-item">
+      <div class="brand-color-palette dark-mode"></div>
+    </div>
+    <div class="ids__sequence-item">
+      <div class="brand-color-palette dark-mode"></div>
+    </div>
+  </div>
+</div>
+<div class="ids__wrapper">
+  <div class="ids__space L"></div>
+  <h2>Normality vs Authenticity</h2>
+  <div class="ids__text-width">
+    <p>
+      The task of developing our own visual language comes down to finding a
+      balance between identification in the existing competitive landscape
+      (Modulate = AI company, Modulate = Tech company, Modulate = year 2026) and
+      creating a memorable authentic image.
+    </p>
+    <div class="ids__sequence">
+      <div class="ids__sequence-item">
+        <p>identification in the existing competitive landscape:</p>
+        <ul>
+          <li>Modulate looks like a Tech company,</li>
+          <li>Modulate looks like an AI company,</li>
+          <li>Modulate looks like it's 2026</li>
+        </ul>
+        <p>Achieved through "normalization" relative to key players.</p>
+      </div>
+      <div class="ids__sequence-item">
+        <p>creating a memorable authentic image:</p>
+        <ul>
+          <li>Modulate looks like Modulate,</li>
+          <li>Modulate feels modulatish,</li>
+          <li>Modulate gives Modulate vibes</li>
+        </ul>
+        <p>
+          Achieved through a directed search through completely random images
+          and an attempt to see ourselves in them. At the same time, it's useful
+          to be peripherally aware of existing artifacts and remember brand
+          values.
+        </p>
+      </div>
+    </div>
+    <p>This is how I see normality.</p>
+    <figure>
+      <img src="/assets/identity-draft/norm1.png" />
+      <figcaption>
+        Of course, I chose examples that I like. This is not an objective
+        sample, but cherry-picking. This is how I see normality at its best, not
+        in its mediocre form.
+      </figcaption>
+    </figure>
+    <p>Observations</p>
+    <ul>
+      <li>the primary color is black or dark</li>
+      <li>the graphics are very simple</li>
+      <li>uppercase is not used (exception — Anthropic)</li>
+      <li>
+        for wordmarks, low-contrast closed grotesques are used (a long-standing
+        trend of the 2020s), a pleasant exception — Elevenlabs, a grotesque with
+        increased contrast
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="ids__wrapper">
+  <div class="ids__space L"></div>
+  <h2>Something has to be 1:1</h2>
+  <div class="ids__text-width">
+    <p>
+      The logo construction should be: something square + wordmark. If we don't
+      have a recognizable brand element with square proportions, we'll have to
+      invent it every time we create a social media account or an app icon for
+      any platform.
+    </p>
+  </div>
+
+  <figure>
+    <img src="/assets/identity-draft/square1.png" />
+  </figure>
+  <div class="ids__text-width">
+    <p>
+      On the left: the logo doesn't provide an answer to the question "what will
+      we have as an icon", we have to invent something each time, and this
+      doesn't work for brand recognition and consistency.
+    </p>
+    <p>
+      In the middle: the logo is text-based, a special symbol that isn't part of
+      the logo is used for the icon. (OpenAI's guidelines say that Blossom
+      cannot be used as primary branding, but in fact this is their main
+      identifier.)
+    </p>
+    <p>
+      On the right: the logo has a square symbol and it's used when a square
+      icon is needed.
+    </p>
+  </div>
+</div>
+
+{% endblock %}

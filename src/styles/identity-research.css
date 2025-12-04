@@ -1,0 +1,101 @@
+.companies-list-container {
+  max-height: 25em;
+  column-count: 5;
+  column-gap: 1em;
+  font-size: 0.85em;
+  line-height: 1.3;
+
+  & h2 {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 1em;
+    font-size: 1em;
+  }
+
+  & .company-item {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 0.2em;
+  }
+}
+
+.companies-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+.company-card {
+  width: 20em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  padding: 1em;
+  border: 1px solid rgba(var(--ids__text-RGB), 0.2);
+  border-radius: var(--ids__radius);
+
+  & .company-name {
+    font-size: 1em;
+    font-weight: 500;
+  }
+
+  & .brand-kit-link {
+    font-size: 0.9em;
+    color: rgba(var(--ids__link-RGB), 1);
+
+    &:hover {
+      color: rgba(var(--ids__hover-RGB), 1);
+    }
+  }
+
+  & .brand-kit-unavailable {
+    font-size: 0.85em;
+    color: rgba(var(--ids__text-RGB), 0.6);
+    font-style: italic;
+  }
+
+  & .logo-section,
+  & .symbol-section,
+  & .wordmark-section {
+    margin-top: 0.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+
+    & .logo-label,
+    & .symbol-label,
+    & .wordmark-label {
+      font-size: 0.75em;
+      color: rgba(var(--ids__text-RGB), 0.7);
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    & .logo-image,
+    & .symbol-image,
+    & .wordmark-image {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid rgba(var(--ids__text-RGB), 0.1);
+      border-radius: 0.2em;
+      background: rgba(var(--ids__surface-RGB), 1);
+      padding: 0.5em;
+    }
+
+    & .symbol-image {
+      max-width: 80px;
+      max-height: 80px;
+      object-fit: contain;
+    }
+
+    & .not-found {
+      font-size: 0.8em;
+      color: rgba(var(--ids__text-RGB), 0.5);
+      font-style: italic;
+    }
+  }
+}
+
+.color-palette {
+  padding: 1em;
+}
