@@ -2,7 +2,7 @@
 
 .share-button {
   height: 2em;
-  background-color: rgba(var(--ids__surface-RGB), 1);
+  background-color: rgba(var(--ids__bg-surface-RGB), 1);
   color: rgb(var(--ids__text-RGB));
   border: none;
   cursor: pointer;
@@ -16,8 +16,8 @@
   transition: color 0.5s ease, background-color 0.5s ease;
 
   &:hover {
-    color: rgb(var(--ids__hover-RGB), 1);
-    background-color: rgb(var(--ids__hover-RGB), 0.15);
+    color: rgb(var(--ids__text-hover-RGB), 1);
+    background-color: rgb(var(--ids__bg-hover-RGB), 0.15);
     transition: color 0s ease, background-color 0s ease;
   }
 
@@ -47,7 +47,7 @@
 /* Share popover styles */
 .share-popover {
   position: absolute;
-  background-color: rgba(var(--ids__surface-RGB), 1);
+  background-color: rgba(var(--ids__bg-surface-RGB), 1);
   padding: 1em;
   display: none;
   z-index: 1000;
@@ -73,17 +73,17 @@
   }
 
   & .share-download-link {
-    color: rgb(var(--ids__link-RGB));
+    color: rgb(var(--ids__text-link-RGB));
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.2em;
     text-decoration-skip-ink: none;
-    text-decoration-color: rgba(var(--ids__link-RGB), 0.2);
+    text-decoration-color: rgba(var(--ids__text-link-RGB), 0.2);
     transition: color 0.5s ease, text-decoration 0.5s ease;
 
     &:hover {
-      color: rgb(var(--ids__hover-RGB));
-      text-decoration-color: rgba(var(--ids__hover-RGB), 0.2);
+      color: rgb(var(--ids__text-hover-RGB));
+      text-decoration-color: rgba(var(--ids__text-hover-RGB), 0.2);
       transition: color 0s ease, text-decoration 0s ease;
     }
   }

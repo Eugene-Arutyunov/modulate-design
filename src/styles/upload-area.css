@@ -6,7 +6,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  background-color: rgba(var(--ids__surface-RGB), 1);
+  background-color: rgba(var(--ids__bg-surface-RGB), 1);
 }
 
 .upload-area {
@@ -27,10 +27,10 @@
   & .upload-button {
     display: inline-block;
     text-decoration: none;
-    color: rgba(var(--ids__link-RGB), 1);
+    color: rgba(var(--ids__text-link-RGB), 1);
     
     &:hover {
-      color: rgba(var(--ids__hover-RGB), 1);
+      color: rgba(var(--ids__text-hover-RGB), 1);
     }
   }
 }

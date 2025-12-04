@@ -3,5 +3,5 @@
   padding: 4em;
   text-align: center;
   font-size: 0.8em;
-  background-color: rgba(var(--ids__surface-RGB), 1);
+  background-color: rgba(var(--ids__bg-surface-RGB), 1);
 }

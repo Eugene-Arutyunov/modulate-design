@@ -41,10 +41,10 @@
 
   & .brand-kit-link {
     font-size: 0.9em;
-    color: rgba(var(--ids__link-RGB), 1);
+    color: rgba(var(--ids__text-link-RGB), 1);
 
     &:hover {
-      color: rgba(var(--ids__hover-RGB), 1);
+      color: rgba(var(--ids__text-hover-RGB), 1);
     }
   }
 
@@ -78,7 +78,7 @@
       height: auto;
       border: 1px solid rgba(var(--ids__text-RGB), 0.1);
       border-radius: 0.2em;
-      background: rgba(var(--ids__surface-RGB), 1);
+      background: rgba(var(--ids__bg-surface-RGB), 1);
       padding: 0.5em;
     }
 
@@ -98,4 +98,26 @@
 
 .color-palette {
   padding: 1em;
+}
+
+.guide-color-plate {
+  padding: 0.5em 0.5em 2.15em 0.5em;
+  font-size: 0.7em;
+  line-height: 1;
+}
+
+/* Скрыть RGB значения на странице visual-identity */
+.interface-color-palette .guide-color-plate p:last-child {
+  display: none;
+}
+
+/* Скрыть лейблы в fingerprint visualization на странице visual-identity */
+.fingerprint-visualization-wrapper {
+  & .fingerprint-visualization-container {
+    margin: 0.5em 0;
+  }
+}
+.fingerprint-visualization-wrapper .speaker-labels,
+.fingerprint-visualization-wrapper .behaviour-labels {
+  display: none;
 }

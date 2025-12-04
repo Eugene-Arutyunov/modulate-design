@@ -1,17 +1,17 @@
 .ids {
   & a {
-    color: rgb(var(--ids__link-RGB));
+    color: rgb(var(--ids__text-link-RGB));
     text-decoration: underline;
     will-change: color;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.2em;
     text-decoration-skip-ink: none;
-    text-decoration-color: rgba(var(--ids__link-RGB), 0.2);
+    text-decoration-color: rgba(var(--ids__text-link-RGB), 0.2);
     transition: color 0.5s ease, text-decoration 0.5s ease, -webkit-text-decoration 0.5s ease;
 
     &:hover {
-      color: rgb(var(--ids__hover-RGB));
-      text-decoration-color: rgba(var(--ids__hover-RGB), 0.2);
+      color: rgb(var(--ids__text-hover-RGB));
+      text-decoration-color: rgba(var(--ids__text-hover-RGB), 0.2);
       transition: color 0s ease, text-decoration 0s ease, -webkit-text-decoration 0s ease;
     }
   }
@@ -135,7 +135,7 @@
 
   & mark {
     color: rgb(var(--ids__text-RGB));
-    background-color: rgb(var(--ids__mark-RGB));
+    background-color: rgb(var(--ids__bg-mark-RGB));
   }
 
   & ul,
@@ -185,7 +185,7 @@
   & aside {
     margin: 0;
     margin-bottom: calc(var(--ids__density) * 0.5em);
-    background: rgb(var(--ids__surface-RGB));
+    background: rgb(var(--ids__bg-surface-RGB));
     padding-top: calc(var(--ids__density) * 0.4em);
     padding-right: calc(var(--ids__density) * 1.5em);
     padding-bottom: calc(var(--ids__density) * 0.4em);
@@ -204,9 +204,9 @@
     font-weight: 450;
     padding: 0.1em 0.25em;
     border-radius: 0.2em;
-    color: rgba(var(--ids__code-RGB), 1);
-    border: 1px solid rgba(var(--ids__code-RGB), 0.1);
-    background: rgba(var(--ids__code-RGB), 0.1);
+    color: rgba(var(--ids__text-RGB), 1);
+    border: 1px solid rgba(var(--ids__text-RGB), 0.1);
+    background: rgba(var(--ids__text-RGB), 0.1);
   }
 
   & figure {
@@ -282,14 +282,14 @@
     font-family: var(--mono);
     display: inline-block;
     padding: 0.5em 1em;
-    background-color: rgb(var(--ids__accent-RGB));
+    background-color: rgb(var(--ids__bg-accent-RGB));
     text-decoration: none;
     color: white;
     border-radius: 0.25em;
     transition: background-color 0.5s ease;
 
     &:hover {
-      background-color: rgb(var(--ids__hover-RGB));
+      background-color: rgb(var(--ids__bg-hover-RGB));
       transition: background-color 0s;
       color: white;
     }

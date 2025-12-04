@@ -56,7 +56,7 @@
         }
         
         &:focus {
-          background-color: rgba(var(--ids__hover-RGB), 0.15);
+          background-color: rgba(var(--ids__bg-hover-RGB), 0.15);
           color: rgba(var(--ids__text-RGB), 1);
         }
       }
@@ -172,10 +172,10 @@
 a.detected-behaviour {
   font-weight: 700;
   text-decoration-thickness: 3px;
-  text-decoration-color: rgba(var(--ids__link-RGB), 1);
+  text-decoration-color: rgba(var(--ids__text-link-RGB), 1);
 
   
   &:hover {    
-    text-decoration-color: rgba(var(--ids__hover-RGB), 1);
+    text-decoration-color: rgba(var(--ids__text-hover-RGB), 1);
   }
 }

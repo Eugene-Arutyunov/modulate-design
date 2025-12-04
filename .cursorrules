@@ -1,11 +1,14 @@
 # Commit Message Guidelines
+
 When generating commit messages, follow these rules:
 
 ## Format
+
 - Keep subject line concise: maximum 72 characters
 - Start with a capital letter
 
 ## Examples of Good Commit Messages
+
 - "Add dark mode toggle to settings"
 - "Fix audio player pause behavior"
 - "Update IDS color variables"
@@ -13,6 +16,13 @@ When generating commit messages, follow these rules:
 - "Fix responsive layout for mobile"
 
 # Plan Guidelines
+
 When creating plans, always write them in Russian language.
 
+# Typography Guidelines for English Text
 
+When working with English text, use proper typographic characters:
+
+- Use curly quotes for quotation marks: “ and ” (not straight quotes: " and ")
+- Use curly apostrophe: ’ (not straight apostrophe: ')
+- Always replace straight quotes (", ", ') with their typographic equivalents in English text

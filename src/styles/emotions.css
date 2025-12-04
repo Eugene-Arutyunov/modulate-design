@@ -396,7 +396,7 @@
 }
 
 .emotion-group {
-  background-color: rgba(var(--ids__surface-RGB), 1);
+  background-color: rgba(var(--ids__bg-surface-RGB), 1);
   padding: 0.8em 2em 2em 1em;
 }
 

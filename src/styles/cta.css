@@ -30,12 +30,12 @@
 
 .cta-section {
   
-  background-color: rgba(var(--ids__accent-RGB), 0.1);
+  background-color: rgba(var(--ids__bg-accent-RGB), 0.1);
   /* height: 100%; */
   padding: 1em 1em 1em 1em;
 
   &.form {
-    background-color: rgba(var(--ids__surface-RGB), 1);
+    background-color: rgba(var(--ids__bg-surface-RGB), 1);
     padding: 1em 3em 2em 1em;
   }
 }
@@ -58,7 +58,7 @@
 
     &:focus {
       outline: none;
-      border-color: rgba(var(--ids__link-RGB), 0.5);
+      border-color: rgba(var(--ids__text-link-RGB), 0.5);
     }
 
     &::placeholder {
@@ -68,7 +68,7 @@
 
   & .schedule-form-button {
     padding: 0.5em 1.5em;
-    background-color: rgb(var(--ids__link-RGB));
+    background-color: rgb(var(--ids__text-link-RGB));
     color: rgb(var(--ids__background-RGB));
     border: none;
     font-family: var(--sans);
@@ -78,12 +78,12 @@
     transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: rgb(var(--ids__hover-RGB));
+      background-color: rgb(var(--ids__bg-hover-RGB));
       transition: background-color 0s ease;
     }
 
     &:active {
-      background-color: rgb(var(--ids__accent-RGB));
+      background-color: rgb(var(--ids__bg-accent-RGB));
     }
   }
 }

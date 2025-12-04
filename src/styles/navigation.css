@@ -9,7 +9,7 @@
   }
 
   & .nav-link {
-    background-color: rgba(var(--ids__surface-RGB), 1);
+    background-color: rgba(var(--ids__bg-surface-RGB), 1);
     padding: 0.7em 1em;
     cursor: pointer;
     transition: color 0.5s ease, background-color 0.5s ease;
@@ -26,14 +26,14 @@
     }
 
     &:hover {
-      color: rgb(var(--ids__hover-RGB), 1);
-      background-color: rgb(var(--ids__hover-RGB), 0.15);
+      color: rgb(var(--ids__text-hover-RGB), 1);
+      background-color: rgb(var(--ids__bg-hover-RGB), 0.15);
       transition: color 0s ease, background-color 0s ease;
     }
   }
 
   & .nav-disclaimer {
-    background-color: rgba(var(--ids__surface-RGB), 1);
+    background-color: rgba(var(--ids__bg-surface-RGB), 1);
     padding: 0.7em;
     flex: 1;
 
