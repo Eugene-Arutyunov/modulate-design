@@ -18,17 +18,16 @@
       & th {
         font-size: 0.8em;
         font-weight: 400;
-        text-align: left;        
+        text-align: left;
         padding: 0.7em 0.3em 0.5em 0.5em;
-        
       }
     }
 
     & tbody {
       & tr {
-        background-color: rgba(var(--ids__bg-surface-RGB), 1);        
+        background-color: rgba(var(--ids__bg-surface-RGB), 1);
         cursor: pointer;
-        transition: color 0.5s ease, background-color 0.5s ease;
+        transition: color 0.3s ease, background-color 0.3s ease;
 
         &:hover {
           color: rgb(var(--ids__text-hover-RGB), 1);
@@ -50,7 +49,6 @@
 
       & td:first-child {
         width: 20%;
-        
       }
 
       & td:nth-child(2) {
@@ -65,7 +63,6 @@
 
       & td:nth-child(4) {
         width: 18%;
-
       }
     }
   }
@@ -111,19 +108,23 @@
   pointer-events: none;
 }
 
-.table-fingerprint-clip[data-speaker-index="1"] .table-fingerprint-visualization {
+.table-fingerprint-clip[data-speaker-index="1"]
+  .table-fingerprint-visualization {
   top: calc((1 - 1) * (100% / var(--speaker-count)));
 }
 
-.table-fingerprint-clip[data-speaker-index="2"] .table-fingerprint-visualization {
+.table-fingerprint-clip[data-speaker-index="2"]
+  .table-fingerprint-visualization {
   top: calc((2 - 1) * (100% / var(--speaker-count)));
 }
 
-.table-fingerprint-clip[data-speaker-index="3"] .table-fingerprint-visualization {
+.table-fingerprint-clip[data-speaker-index="3"]
+  .table-fingerprint-visualization {
   top: calc((3 - 1) * (100% / var(--speaker-count)));
 }
 
-.table-fingerprint-clip[data-speaker-index="4"] .table-fingerprint-visualization {
+.table-fingerprint-clip[data-speaker-index="4"]
+  .table-fingerprint-visualization {
   top: calc((4 - 1) * (100% / var(--speaker-count)));
 }
 
@@ -239,4 +240,3 @@
 .table-fingerprint-time {
   white-space: nowrap;
 }
-

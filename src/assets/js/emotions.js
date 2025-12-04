@@ -85,9 +85,6 @@ export function updateFingerprintEmotionCaption(clip, speakerIndex) {
   if (colorValue) {
     emotionCaption.style.color = `rgba(${colorValue}, 1)`;
   }
-  
-  // Add class to indicate showing emotion
-  emotionCaption.classList.add('showing-emotion');
 }
 
 // Fade out fingerprint emotion caption when leaving fingerprint area
@@ -103,9 +100,6 @@ export function fadeOutFingerprintEmotionCaption(speakerIndex) {
   
   // Reset color to default text color
   emotionCaption.style.color = '';
-  
-  // Remove showing-emotion class
-  emotionCaption.classList.remove('showing-emotion');
 }
 
 // Fade out emotion caption when leaving visualization area (with transition)

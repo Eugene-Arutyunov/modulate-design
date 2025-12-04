@@ -49,12 +49,12 @@
         cursor: text;
         box-sizing: border-box;
         transition: color 0.5s ease, background-color 0.5s ease;
-        
+
         &:hover {
           color: rgba(var(--ids__text-RGB), 0.8);
           transition: color 0s ease, background-color 0s ease;
         }
-        
+
         &:focus {
           background-color: rgba(var(--ids__bg-hover-RGB), 0.15);
           color: rgba(var(--ids__text-RGB), 1);
@@ -73,13 +73,15 @@
         visibility: visible;
         transition: opacity 0.2s ease, left 0.1s ease, visibility 0s ease;
         color: inherit;
-        
+
         .speaker-name-input-wrapper:hover & {
           opacity: 1;
         }
       }
-      
-      & .speaker-name-input-wrapper:has(.speaker-name-input:focus) .speaker-name-input-icon {
+
+      &
+        .speaker-name-input-wrapper:has(.speaker-name-input:focus)
+        .speaker-name-input-icon {
         opacity: 0;
         visibility: hidden;
       }
@@ -93,7 +95,7 @@
         padding-right: 0;
       }
     }
-    
+
     & p {
       margin-bottom: 0.2em;
     }
@@ -108,14 +110,9 @@
 
   & .fingerprint-emotion-caption {
     font-size: 0.8em;
-    opacity: 0.5;
+    color: rgba(var(--ids__text-caption-RGB), 1);
     margin-top: 0.2em;
     min-height: 1.2em;
-    
-    &.showing-emotion {
-      opacity: 1;
-      transition: opacity 0s ease;
-    }
   }
 
   & .speaker-fingerprint {
@@ -166,7 +163,6 @@
     font-size: 0.8em;
     opacity: 0.7;
   }
-  
 }
 
 a.detected-behaviour {
@@ -174,8 +170,7 @@ a.detected-behaviour {
   text-decoration-thickness: 3px;
   text-decoration-color: rgba(var(--ids__text-link-RGB), 1);
 
-  
-  &:hover {    
+  &:hover {
     text-decoration-color: rgba(var(--ids__text-hover-RGB), 1);
   }
 }

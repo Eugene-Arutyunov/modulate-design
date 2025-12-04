@@ -4,7 +4,7 @@
   --ids__text-RGB: 30, 30, 35;
   --ids__text-link-RGB: 50, 50, 70;
   --ids__text-hover-RGB: 110, 140, 190;
-  --ids__text-caption-RGB: 165, 165, 180;
+  --ids__text-caption-RGB: 150, 150, 170;
   --ids__text-inverted-RGB: 242, 242, 246;
 
   /* BACKGROUND */
@@ -16,7 +16,7 @@
 
   /* UI */
   --ids__UI-control-RGB: var(--ids__bg-surface-RGB);
-  --ids__UI-border-RGB: 200, 200, 210;
+  --ids__UI-border-RGB: 220, 220, 230;
   --ids__UI-error-RGB: 255, 53, 84;
   --ids__UI-success-RGB: 21, 207, 135;
 }
@@ -31,7 +31,7 @@
 
   /* BACKGROUND */
   --ids__background-RGB: 30, 30, 35;
-  --ids__bg-surface-RGB: 40, 40, 60;
+  --ids__bg-surface-RGB: 50, 50, 70;
   --ids__bg-accent-RGB: 20, 20, 50;
   --ids__bg-hover-RGB: 100, 110, 140;
   --ids__bg-mark-RGB: 255, 200, 29;
