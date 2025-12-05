@@ -1,0 +1,256 @@
+{% extends 'layout.html' %} {% set pageTitle = 'Modulate Platform Demo' %} {%
+block content %}
+
+<div class="ids__wrapper">
+  <div class="ids__space S"></div>
+  {% include 'header.html' %}
+  <div class="media-container sticky">
+    <div class="media-space"></div>
+    <div
+      class="media-box ids__rounded dark-mode"
+      id="audio-player"
+      data-audio-src="/assets/fdf1fec4-59d6-4518-8721-4199fa646afc.mp3"
+      data-speaker-count="2">
+      <div class="player-visualization" data-total-duration="">
+        {% include "transcript-clips.html" %}
+      </div>
+      <div class="speaker-labels">
+        <div class="speaker-label" data-speaker-index="1">
+          <span>Customer</span>
+        </div>
+        <div class="speaker-label" data-speaker-index="2">
+          <span>Support specialist</span>
+        </div>
+      </div>
+      <div class="behaviour-labels">
+        <div
+          class="behaviour-label"
+          data-speaker-index="1"
+          data-position="15.71">
+          <a href="#"><span> Sense of Urgency</span></a>
+        </div>
+        <div
+          class="behaviour-label"
+          data-speaker-index="1"
+          data-position="51.43">
+          <a href="#"><span> Return Fraud Attempt</span></a>
+        </div>
+        <div
+          class="behaviour-label"
+          data-speaker-index="2"
+          data-position="14.29">
+          <a href="#"><span> Common GenAI Failure Patterns</span></a>
+        </div>
+      </div>
+      <div class="player-controls">
+        <div class="player-control-spacer"></div>
+        <div
+          class="player-control player-control-center"
+          data-action="play-pause">
+          <a
+            href="#"
+            class="player-icon"
+            data-playing="false"
+            data-icon-id="icon-play">
+            <!-- SVG will be loaded here by JavaScript -->
+          </a>
+        </div>
+      </div>
+
+      <div class="player-status-caption">
+        <span class="emotion-caption"></span>
+        <span class="total-time" data-total-time>4:40</span>
+      </div>
+      <div class="player-position-indicator">
+        <div class="player-position-line"></div>
+        <div class="player-position-caption">
+          <span data-current-time>0:00</span>
+        </div>
+      </div>
+      <div class="player-hover-position-indicator">
+        <div class="player-hover-position-line"></div>
+        <div class="player-hover-position-caption">
+          <span data-hover-time>0:00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="summary-container">
+    <h1>Dispute over missing delivery and refund</h1>
+    <div class="share-container"></div>
+    <p>
+      <strong>Customer</strong> disputed a missing delivery and requested a
+      refund. <strong>Support specialist</strong> initially refused but
+      eventually processed both refund and credit after confirming a delivery
+      error.
+    </p>
+
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th class="speaker-name-column">Speakers</th>
+          <th class="speaker-info-column">Speaking time</th>
+          <th class="behaviours-column">Detected behaviours, confidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="speaker-name-column">
+            <div class="speaker-name-input-wrapper">
+              <input
+                type="text"
+                value="Customer"
+                data-speaker-index="1"
+                class="speaker-name-input"
+                maxlength="50" />
+              {% include "speaker-name-input-icon.html" %}
+            </div>
+          </td>
+          <td class="speaker-info-column">
+            <div class="speaker-fingerprint-wrapper">
+              <div class="speaker-fingerprint" data-speaker-index="1"></div>
+              <div class="speaker-time-info">
+                <div class="speaker-time-percent">59%</div>
+              </div>
+            </div>
+            <div
+              class="fingerprint-emotion-caption"
+              data-speaker-index="1"
+              data-language="English, American accent"></div>
+          </td>
+          <td class="behaviours-column">
+            <p>
+              <a href="#" class="detected-behaviour">Sense of Urgency</a>
+              <span class="caption">88%</span>
+            </p>
+            <p>
+              <a href="#" class="detected-behaviour">Return Fraud Attempt</a>
+              <span class="caption">86%</span>
+            </p>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="speaker-name-column">
+            <div class="speaker-name-input-wrapper">
+              <input
+                type="text"
+                value="Support specialist"
+                data-speaker-index="2"
+                class="speaker-name-input"
+                maxlength="50" />
+              {% include "speaker-name-input-icon.html" %}
+            </div>
+          </td>
+          <td class="speaker-info-column">
+            <div class="speaker-fingerprint-wrapper">
+              <div class="speaker-fingerprint" data-speaker-index="2"></div>
+              <div class="speaker-time-info">
+                <div class="speaker-time-percent">41%</div>
+              </div>
+            </div>
+            <div
+              class="fingerprint-emotion-caption"
+              data-speaker-index="2"
+              data-language="English, Eastern European accent"></div>
+          </td>
+          <td class="behaviours-column">
+            <p>
+              <a href="#" class="detected-behaviour"
+                >Common GenAI Failure Patterns</a
+              >
+              <span class="caption">80%</span>
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="transcript-container">
+    {% include "transcript-clips.html" %}
+    <div class="ids__space XL"></div>
+  </div>
+  <div class="next-clip-wrapper">
+    <div class="next-clip-container">
+      <div class="clip-link previous-clip-link">
+        <a href="#" class="previous-clip-link">↖</a>
+      </div>
+      <div class="clip-link next-clip-link">
+        <a href="#" class="next-clip-link">Next detected behaviour ↘</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ids__wrapper">
+  <div class="ids__space XL"></div>
+
+  <div class="share-container">
+    <div class="share-button-wrapper">
+      <button
+        class="share-button ids__rounded"
+        type="button"
+        aria-label="Share your conversation fingerprint experience">
+        {% include "share-icon.html" %}
+        <span class="share-text">Share!</span>
+      </button>
+      {% include "share-popover.html" %}
+    </div>
+  </div>
+  <div class="ids__space XL"></div>
+  <div class="ids__space XL"></div>
+  {% include "upload-area.html" %}
+
+  <div class="demo-recordings-section">
+    <p>Check out other pre-loaded demo recordings</p>
+    {% include "demo-recordings-table.html" %}
+  </div>
+  <div class="ids__space XL"></div>
+
+  <div class="ids__space" style="height: 0.5em"></div>
+  <div class="ids__text-width">
+    <p>
+      Modulate proactively detects key behaviors to help customers manage risk
+      and improve experiences for their employees and users alike.
+    </p>
+  </div>
+  <div class="ids__space XS"></div>
+
+  <div class="cta" id="contact">
+    <div class="cta-column">
+      <div class="cta-section form ids__rounded dark-mode">
+        <h2>Talk to our team</h2>
+        <p>
+          Curious how this could work on your data—from fraud and scams to
+          customer experience and hiring? Drop your email and we’ll follow up.
+        </p>
+        <form action="" class="schedule-form">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            class="schedule-form-input" />
+          <button type="submit" class="schedule-form-button ids__rounded">
+            Send
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="cta-column">
+      <div class="cta-section idea ids__rounded">
+        <p>Have thoughts on what you just saw?</p>
+        <p>
+          <strong><a href="#">Tell us!</a></strong>
+        </p>
+      </div>
+      <div class="cta-section kit ids__rounded">
+        <p>Ready to spread the word about us?</p>
+        <p>
+          <strong><a href="#">Download the press kit</a></strong>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="ids__space XL"></div>
+</div>
+
+{% endblock %}
