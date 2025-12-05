@@ -1,0 +1,43 @@
+{% extends 'layout.html' %} {% set pageTitle = 'Modulate Platform Demo' %} {%
+block content %}
+
+<div class="ids__wrapper">
+  <div class="ids__space S"></div>
+  {% include 'landing-header.html' %}
+  <div class="ids__space L"></div>
+
+  <div class="ids__text-width">
+    <h1 class="L">See conversations the way no LLM can</h1>
+    <div class="ids__space S"></div>
+
+    <p class="loud">
+      Experience the world’s first Ensemble Language Model (ELM) through an
+      interactive demo that visualizes the signals inside human speech —
+      emotion, behavior, fraud risk, intent, authenticity, and more.
+    </p>
+    <p>
+      This demo analyzes a short audio clip using Modulate’s ELM, a new AI
+      architecture designed for real-world voice interactions. Within seconds,
+      you’ll see a <strong>conversation fingerprint</strong> — a
+      first-of-its-kind visualization of everything happening between the lines.
+    </p>
+    {% include "fingerprint-visualization.html" %}
+
+    <p>
+      It works on any conversation: customer service calls, fraud attempts,
+      interviews, online interactions, and more.
+    </p>
+    <div class="ids__space S"></div>
+    <p>Give it a try:</p>
+  </div>
+
+  {% include "upload-area.html" %}
+
+  <div class="demo-recordings-section">
+    <p>Or choose one of the pre-loaded demo recordings</p>
+    {% include "demo-recordings-table.html" %}
+  </div>
+  <div class="ids__space L"></div>
+</div>
+
+{% endblock %}
