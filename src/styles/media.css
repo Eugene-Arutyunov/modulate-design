@@ -464,13 +464,20 @@
         visibility: visible;
       }
 
-      /* Если подпись справа не помещается, разместить слева от иконки */
+      /* If label doesn't fit on the right, position it to the left of the icon */
       & .behaviour-label-text.position-left {
-        order: 1; /* Лейбл слева от иконки */
-        margin-right: 0.3em;
-        margin-left: 0; /* Убрать отрицательный margin когда лейбл слева */
-        padding-left: 0.2em; /* Убрать левый паддинг когда лейбл слева */
+        position: absolute;
+        right: 100%; /* Position the right edge of the label at the left edge of the icon */
+        margin-left: 0; /* Remove negative margin when label is on the left */
+        padding-left: 0.2em; /* Remove left padding when label is on the left */
+        padding-right: calc(
+          1em + 0.1em + 0.15em
+        ); /* Right padding includes icon width + gap + additional offset, so the background extends under the icon on the right */
+        margin-right: calc(
+          -1em - 0.3em - 0.15em + 0.15em + 0.15em + 0.1em
+        ); /* Negative margin compensates for padding-right, shifting the label to the right, while the background still extends under the icon on the right */
         text-align: right;
+        /* order is not needed, as absolute positioning removes the element from flex flow */
       }
     }
   }
