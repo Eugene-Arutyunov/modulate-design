@@ -4,10 +4,9 @@ block content %}
 <div class="ids__wrapper">
   <div class="ids__space S"></div>
   <div class="nav-container">
-    <a href="/" class="nav-link ids__rounded"> ← Fingerprints </a>
-    <div class="nav-disclaimer ids__rounded">
-      This is a beta. We don’t collect or store any information. Have fun!
-    </div>
+    <a href="/" class="nav-link ids__rounded"> ← Back </a>
+    <div style="flex-grow: 1"></div>
+
     <a href="#contact" class="nav-link ids__rounded"> Contact us </a>
     <div class="share-button-wrapper">
       <button
@@ -15,7 +14,7 @@ block content %}
         type="button"
         aria-label="Share">
         {% include "share-icon.html" %}
-        <span class="share-text">Share</span>
+        <span class="share-text">Share this conversation</span>
       </button>
     </div>
     {% include "share-popover.html" %}
@@ -202,7 +201,7 @@ block content %}
   </div>
   <div class="transcript-container">
     {% include "transcript-clips.html" %}
-    <div class="ids__space XL"></div>
+    <div class="ids__space M"></div>
   </div>
   <div class="next-clip-wrapper">
     <div class="next-clip-container">
@@ -216,8 +215,6 @@ block content %}
   </div>
 </div>
 <div class="ids__wrapper">
-  <div class="ids__space XL"></div>
-
   <div class="share-container">
     <div class="share-button-wrapper">
       <button
@@ -225,17 +222,18 @@ block content %}
         type="button"
         aria-label="Share your conversation fingerprint experience">
         {% include "share-icon.html" %}
-        <span class="share-text">Share!</span>
+        <span class="share-text">Share this conversation</span>
       </button>
       {% include "share-popover.html" %}
     </div>
   </div>
-  <div class="ids__space XL"></div>
-  <div class="ids__space XL"></div>
-  {% include "upload-area.html" %}
 
+  <div class="ids__space XL"></div>
+  <h2>Give it a try</h2>
+  {% include "upload-area.html" %}
+  <div class="ids__space L"></div>
+  <h2>Preloaded demo recordings</h2>
   <div class="demo-recordings-section">
-    <p>Check out other pre-loaded demo recordings</p>
     {% include "demo-recordings-table.html" %}
   </div>
   <div class="ids__space XL"></div>
