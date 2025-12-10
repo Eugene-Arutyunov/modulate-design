@@ -167,10 +167,26 @@
 
 a.detected-behaviour {
   font-weight: 700;
-  text-decoration-thickness: 3px;
-  text-decoration-color: rgba(var(--ids__text-link-RGB), 1);
+  text-decoration: none;
+  border-bottom: 3px solid currentColor;
+  transition: color 0.5s ease, border-color 0.5s ease;
+  margin-bottom: 0.5em;
 
   &:hover {
-    text-decoration-color: rgba(var(--ids__text-hover-RGB), 1);
+    border-color: currentColor;
+    transition: color 0s ease, border-color 0s ease;
+  }
+
+  & .behaviour-icon {
+    display: inline-block;
+    width: 0.8em;
+    height: 0.8em;
+    margin-right: -0.1em;
+  }
+
+  & .behaviour-icon--kiki,
+  & .behaviour-icon--buba {
+    position: relative;
+    top: 0.05em;
   }
 }

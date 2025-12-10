@@ -1,5 +1,7 @@
 <div class="fingerprint-visualization-container">
-  <div class="fingerprint-visualization-box ids__rounded dark-mode" data-speaker-count="2">
+  <div
+    class="fingerprint-visualization-box ids__rounded dark-mode"
+    data-speaker-count="2">
     <div class="transcript-visualization transcript-visualization--static">
       {% include "transcript-clips.html" %}
     </div>
@@ -13,13 +15,25 @@
     </div>
     <div class="behaviour-labels">
       <div class="behaviour-label" data-speaker-index="1" data-position="15.71">
-        <a href="#"><span> Sense of Urgency</span></a>
+        <a href="#"
+          >{% include "behaviour-icon-kiki.html" %}<span>
+            Sense of Urgency</span
+          ></a
+        >
       </div>
       <div class="behaviour-label" data-speaker-index="1" data-position="51.43">
-        <a href="#"><span> Return Fraud Attempt</span></a>
+        <a href="#"
+          >{% include "behaviour-icon-kiki.html" %}<span>
+            Return Fraud Attempt</span
+          ></a
+        >
       </div>
       <div class="behaviour-label" data-speaker-index="2" data-position="14.29">
-        <a href="#"><span> Common GenAI Failure Patterns</span></a>
+        <a href="#"
+          >{% include "behaviour-icon-kiki.html" %}<span>
+            Common GenAI Failure Patterns</span
+          ></a
+        >
       </div>
     </div>
     <div class="fingerprint-status-caption">
@@ -27,4 +41,3 @@
     </div>
   </div>
 </div>
-
