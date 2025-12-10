@@ -82,11 +82,9 @@
 
       & .clip-caption {
         & .behaviour {
-          & a {
-            color: rgb(var(--ids__text-hover-RGB));
-            border-color: currentColor;
-            transition: color 0s ease, border-color 0s ease;
-          }
+          color: rgb(var(--ids__text-hover-RGB));
+          border-color: currentColor;
+          transition: color 0s ease, border-color 0s ease;
         }
       }
     }
@@ -119,14 +117,12 @@
       & .behaviour {
         font-weight: 600;
         transition: color 0.5s ease, text-decoration 0.5s ease;
-
-        & a {
-          text-decoration: none;
-          border-bottom: 2px solid currentColor;
-          line-height: 1.2;
-          color: inherit;
-          transition: color 0.5s ease, border-color 0.5s ease;
-        }
+        text-decoration: none;
+        border-bottom: 2px solid currentColor;
+        line-height: 1.2;
+        color: inherit;
+        transition: color 0.5s ease, border-color 0.5s ease;
+        display: inline-block;
 
         & .behaviour-icon {
           display: inline-block;

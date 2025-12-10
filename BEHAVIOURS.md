@@ -1,120 +1,131 @@
-# Behaviours — Документация
+# Behaviours Documentation
 
-## Обзор
+## Overview
 
-Behaviours (поведения) — это обнаруженные системой паттерны поведения в транскриптах аудио/видео записей. Они представляют собой ключевые моменты разговора, которые система анализирует и выделяет для пользователя.
+Behaviours are detected behavioral patterns in audio/video transcripts. They represent key conversation moments that the system analyzes and highlights for users.
 
-## Структура данных
+## Data Structure
 
-### Clip (Клип транскрипта)
+### Clip
 
-Каждый клип транскрипта может содержать один или несколько behaviours.
+Each transcript clip can contain one or more behaviours.
 
-**Ключевые элементы:**
+**Key elements:**
 
-- `.behaviour` — элемент, содержащий название обнаруженного поведения
-- Класс `.evidence` на клипе указывает, что клип содержит обнаруженное поведение
-- `data-seek-time` — время начала клипа для навигации и воспроизведения
+- `.behaviour` — element containing the detected behaviour name
+- `.evidence` class on a clip indicates it contains detected behaviours
+- `data-seek-time` — clip start time for navigation and playback
+- `data-behaviour-type` — type of behaviour (`kiki` or `buba`)
 
-## Отображение behaviours
+## Display
 
-### 1. В транскрипте (Transcript Container)
+### 1. Transcript Container
 
-Behaviours отображаются внутри `.clip-caption` каждого клипа транскрипта.
+Behaviours are displayed inside `.clip-caption` of each transcript clip. They are not clickable (no links), but maintain visual styling with underline.
 
-### 2. В таблице сводки (Summary Table)
+### 2. Summary Table
 
-В таблице сводки behaviours отображаются как кликабельные ссылки в колонке "Detected behaviours, confidence". Используется класс `.detected-behaviour`.
+Behaviours appear as clickable links in the "Detected behaviours, confidence" column using `.detected-behaviour` class.
 
-### 3. В визуализации плеера (Player Visualization)
+### 3. Player Visualization
 
-Behaviours отображаются как метки на временной шкале плеера. Используется класс `.behaviour-label`.
+Behaviours are displayed as icon indicators in a separate layer (`.behaviour-indicators`), positioned at the bottom-left corner of their corresponding clips.
 
-**Атрибуты:**
+**Key characteristics:**
 
-- `data-speaker-index` — индекс спикера (1, 2, 3...)
-- `data-position` — позиция на временной шкале в процентах
+- Icons are white-filled SVG (no stroke)
+- Positioned absolutely in a separate layer, not nested in clips
+- Aligned to the bottom of each speaker's zone (not the entire visualization)
+- Multiple behaviours stack vertically (up to 3 per clip)
+- Text labels are hidden by default, shown on clip hover
+- Labels can position left or right of icons based on available space
+- Icons and labels have elevated z-index when visible to appear above other indicators
 
-### 4. В статической визуализации отпечатка (Fingerprint Visualization)
+**Attributes on `.behaviour-indicator`:**
 
-Аналогично визуализации плеера, behaviours отображаются как метки на статической временной шкале. В отличие от плеера, ссылки в статической визуализации не интерактивны.
+- `data-clip-position` — clip position percentage
+- `data-clip-width` — clip width percentage
+- `data-clip-index` — clip index for hover synchronization
+- `data-behaviour-index` — index within clip (1, 2, 3) for vertical stacking
+- `data-behaviour-type` — behaviour type (`kiki` or `buba`)
+- `data-emotion` — clip emotion for potential future use
+- `data-speaker-index` — speaker index for vertical positioning
 
-## JavaScript функциональность
+**JavaScript:** `initPlayerVisualization()` creates indicator elements dynamically from clip data and handles hover synchronization.
 
-### 1. Навигация между behaviours
+### 4. Fingerprint Visualization
 
-Модуль `behavior-navigation.js` обеспечивает навигацию между клипами с behaviours.
+Similar to player visualization, behaviours appear as indicators on a static timeline. Links are not interactive in the static version.
 
-**Функция:** `initBehaviorNavigation`
+## JavaScript Functionality
 
-**Функциональность:**
+### 1. Navigation Between Behaviours
 
-- Находит все клипы с behaviours в хронологическом порядке
-- Отслеживает текущую позицию воспроизведения
-- Обновляет состояние кнопок "Next" и "Previous"
-- При клике переходит к соответствующему клипу, прокручивает страницу и запускает воспроизведение
+`behavior-navigation.js` provides navigation between clips with behaviours.
 
-**Вспомогательная функция:** `findAllBehaviorClips` — находит все клипы с behaviours и сортирует их по времени начала.
+**Function:** `initBehaviorNavigation`
 
-### 2. Обработка кликов по behaviours
+- Finds all clips with behaviours chronologically
+- Tracks current playback position
+- Updates "Next" and "Previous" button states
+- On click, navigates to the corresponding clip, scrolls page, and starts playback
 
-Модуль `behavior-links.js` обрабатывает клики по ссылкам behaviours.
+**Helper:** `findAllBehaviorClips` — finds and sorts clips by start time.
 
-**Функция:** `initBehaviorLinkHandlers`
+### 2. Behaviour Link Handling
 
-**Обрабатываемые элементы:**
+`behavior-links.js` handles clicks on behaviour links.
 
-- `.detected-behaviour` — ссылки в таблице сводки
-- `.behaviour-label a` — ссылки в метках на временной шкале
+**Function:** `initBehaviorLinkHandlers`
 
-**Действия при клике:**
+**Handles:**
 
-1. Находит первый клип с соответствующим поведением
-2. Прокручивает страницу к клипу
-3. Перематывает аудио к началу клипа
-4. Запускает воспроизведение (если не играет)
+- `.detected-behaviour` — links in summary table
+- `.behaviour-label a` — links in timeline labels (legacy, now hidden)
 
-### 3. Позиционирование меток behaviours
+**On click:**
 
-Модули `player-visualization.js` и `fingerprint-visualization.js` позиционируют метки behaviours на временной шкале.
+1. Finds first clip with the corresponding behaviour
+2. Scrolls page to clip
+3. Seeks audio to clip start
+4. Starts playback (if not playing)
 
-**Функции:**
+### 3. Indicator Positioning
 
-- `initPlayerVisualization` — позиционирует метки в плеере
-- `initFingerprintVisualization` — позиционирует метки в статической визуализации
+`player-visualization.js` creates and positions behaviour indicators in the player visualization.
 
-## Утилиты
+**Function:** `initPlayerVisualization`
 
-### Поиск клипов с behaviours
+- Creates `.behaviour-indicator` elements in `.behaviour-indicators` container
+- Positions indicators using clip coordinates (`data-position`, `data-width`)
+- Limits to 3 behaviours per clip
+- Synchronizes hover: shows labels when corresponding clip is hovered
+- Calculates label positioning (left/right of icon)
 
-**Функция:** `findFirstClipWithBehavior` — находит первый клип с указанным поведением.
+## Integration
 
-## Интеграция с другими компонентами
+### Transcript Clips
 
-### Связь с клипами транскрипта
+- Clips with behaviours have `.evidence` class
+- `.behaviour` elements are inside `.clip-caption`
+- Start time stored in `data-seek-time` or `.time` element's `data-time`
 
-- Клипы с behaviours имеют класс `.evidence`
-- Элемент `.behaviour` находится внутри `.clip-caption`
-- Время начала клипа хранится в `data-seek-time` или `data-time` элемента `.time`
+### Visualization
 
-### Связь с визуализацией
+- Indicators positioned by clip coordinates in a separate layer
+- Vertical positioning based on `data-speaker-index`
+- Hover synchronization via `data-clip-index`
 
-- Метки behaviours позиционируются относительно временной шкалы
-- Позиция определяется атрибутом `data-position` (в процентах)
-- Метки привязаны к конкретному спикеру через `data-speaker-index`
+### Navigation
 
-### Связь с навигацией
+- Navigation works with clips having `.evidence` class
+- Clips sorted by start time (`data-time` or `data-seek-time`)
+- Current position tracked based on playback time
 
-- Навигация работает только с клипами, имеющими класс `.evidence`
-- Клипы сортируются по времени начала (`data-time` или `data-seek-time`)
-- Текущая позиция отслеживается на основе времени воспроизведения
+## Dependencies
 
-## Зависимости
-
-Behaviours зависят от следующих модулей:
-
-- `utils.js` — утилиты для работы с клипами и временем
-- `player-visualization.js` — позиционирование меток в плеере
-- `fingerprint-visualization.js` — позиционирование меток в статической визуализации
-- `behavior-navigation.js` — навигация между behaviours
-- `behavior-links.js` — обработка кликов по behaviours
+- `utils.js` — clip and time utilities
+- `player-visualization.js` — indicator creation and positioning
+- `fingerprint-visualization.js` — static visualization positioning
+- `behavior-navigation.js` — navigation between behaviours
+- `behavior-links.js` — link click handling

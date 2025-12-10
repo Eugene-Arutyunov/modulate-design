@@ -82,6 +82,10 @@
       height: var(--player-visualization-mobile-height);
       transition: height 0.5s ease;
     }
+    & .behaviour-indicators {
+      height: var(--player-visualization-mobile-height);
+      transition: height 0.5s ease;
+    }
     & .behaviour-labels {
       height: var(--player-visualization-mobile-height);
       transition: height 0.5s ease;
@@ -284,6 +288,14 @@
       & .clip-text {
         display: none;
       }
+
+      /* Hide behaviour text in visualization, show only icons */
+      & .clip-caption .behaviour {
+        &::after {
+          content: attr(data-behaviour-type);
+          display: none;
+        }
+      }
     }
   }
 
@@ -326,6 +338,143 @@
     }
   }
 
+  & .behaviour-indicators {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--player-visualization-height);
+    transition: height 0.2s ease;
+    pointer-events: none;
+    z-index: 2; /* выше клипов, но ниже индикаторов позиции */
+    overflow: visible;
+
+    & .behaviour-indicator {
+      position: absolute;
+      bottom: 0;
+      display: flex;
+      align-items: flex-end;
+      gap: 0.1em;
+      font-size: 0.8em;
+      line-height: 1.2;
+      padding-bottom: 0; /* Убрали приподнятие, чтобы низ фона лейбла выровнялся с низом уровня */
+
+      /* Позиционирование по вертикали в зависимости от спикера */
+      /* Выравнивание по низу зоны каждого спикера */
+      &[data-speaker-index="1"] {
+        bottom: calc(
+          (var(--speaker-count) - 1) * (100% / var(--speaker-count))
+        );
+        top: auto;
+      }
+      &[data-speaker-index="2"] {
+        bottom: calc(
+          (var(--speaker-count) - 2) * (100% / var(--speaker-count))
+        );
+        top: auto;
+      }
+      &[data-speaker-index="3"] {
+        bottom: calc(
+          (var(--speaker-count) - 3) * (100% / var(--speaker-count))
+        );
+        top: auto;
+      }
+      &[data-speaker-index="4"] {
+        bottom: calc(
+          (var(--speaker-count) - 4) * (100% / var(--speaker-count))
+        );
+        top: auto;
+      }
+      &[data-speaker-index="5"] {
+        bottom: calc(
+          (var(--speaker-count) - 5) * (100% / var(--speaker-count))
+        );
+        top: auto;
+      }
+
+      /* Вертикальное расположение нескольких бихевиоров внутри одного клипа */
+      &[data-behaviour-index="1"] {
+        transform: translateY(0);
+      }
+      &[data-behaviour-index="2"] {
+        transform: translateY(calc(-1 * 1.2em));
+      }
+      &[data-behaviour-index="3"] {
+        transform: translateY(calc(-2 * 1.2em));
+      }
+      /* Ограничение до 3 бихевиоров на клип уже реализовано в JavaScript через slice(0, 3) */
+
+      & .behaviour-icon {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        flex-shrink: 0;
+        order: 2; /* Иконка всегда справа в flex порядке */
+        position: relative;
+        z-index: 1;
+        margin-top: -1px; /* Приподнять иконки примерно на пиксель для лучшего выравнивания с лейблами */
+
+        & svg {
+          width: 100%;
+          height: 100%;
+          fill: white;
+        }
+      }
+
+      /* При ховере поднимаем z-index иконки и лейбла */
+      &.visible {
+        z-index: 10;
+
+        & .behaviour-icon {
+          z-index: 15; /* Поднимаем выше фона лейбла (z-index: 12) */
+        }
+
+        & .behaviour-label-text {
+          z-index: 12;
+        }
+      }
+
+      & .behaviour-label-text {
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        /* Убрана анимация - мгновенное появление/скрытие */
+        font-weight: 600;
+        color: white;
+        order: 3; /* Лейбл справа от иконки по умолчанию */
+        background-color: rgba(
+          var(--ids__bg-surface-RGB),
+          1
+        ); /* Непрозрачный фон вместо тени */
+        padding: 0.05em 0.2em;
+        padding-left: calc(
+          1em + 0.1em
+        ); /* Левый паддинг включает ширину иконки + gap, чтобы фон продлевался под иконку */
+        margin-top: 0.15em; /* Опустить лейбл еще больше относительно иконок */
+        margin-left: calc(
+          -1em - 0.1em
+        ); /* Отрицательный margin чтобы фон перекрывал иконку */
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Показывать подпись при ховере клипа */
+      &.visible .behaviour-label-text {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Если подпись справа не помещается, разместить слева от иконки */
+      & .behaviour-label-text.position-left {
+        order: 1; /* Лейбл слева от иконки */
+        margin-right: 0.3em;
+        margin-left: 0; /* Убрать отрицательный margin когда лейбл слева */
+        padding-left: 0.2em; /* Убрать левый паддинг когда лейбл слева */
+        text-align: right;
+      }
+    }
+  }
+
   & .behaviour-labels {
     position: absolute;
     width: 100%;
@@ -333,6 +482,7 @@
     transition: height 0.2s ease;
     pointer-events: none;
     z-index: 1;
+    display: none; /* скрыты, заменены на behaviour-indicators */
 
     & .behaviour-label {
       position: absolute;
