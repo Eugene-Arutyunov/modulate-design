@@ -6,18 +6,7 @@ function updateSpeakerName(speakerIndex, newName) {
     speakerLabel.textContent = newName;
   }
 
-  // 2. Update text in summary paragraph (inside <strong> tags)
-  const summaryParagraph = document.querySelector('.summary-container p');
-  if (summaryParagraph) {
-    const strongElements = summaryParagraph.querySelectorAll('strong');
-    // First strong is speaker 1, second is speaker 2
-    const strongIndex = parseInt(speakerIndex) - 1;
-    if (strongElements[strongIndex]) {
-      strongElements[strongIndex].textContent = newName;
-    }
-  }
-
-  // 3. Update all transcript clip names
+  // 2. Update all transcript clip names
   const transcriptClips = document.querySelectorAll(`.transcript-clip[data-speaker-index="${speakerIndex}"] .name`);
   transcriptClips.forEach((nameElement) => {
     nameElement.textContent = newName;

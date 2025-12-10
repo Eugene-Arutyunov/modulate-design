@@ -8,6 +8,13 @@
     flex-wrap: wrap;
   }
 
+  & .nav-spacer {
+    flex-grow: 1;
+    @media (width < 768px) {
+      display: none;
+    }
+  }
+
   & .nav-link {
     background-color: rgba(var(--ids__bg-surface-RGB), 1);
     padding: 0.7em 1em;
@@ -45,7 +52,7 @@
 
   & .share-button-wrapper {
     position: relative;
-    
+
     @media (width < 768px) {
       order: 3;
       flex: 1;

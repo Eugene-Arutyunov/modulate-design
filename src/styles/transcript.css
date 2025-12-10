@@ -29,6 +29,10 @@
     transition: color 0.5s ease, background-color 0.5s ease;
     --ids__radius: 2em;
 
+    @media (width < 768px) {
+      padding: 0.7em 1.7em 0.7em 0.7em;
+    }
+
     & .clip-visualization {
       display: none;
     }
@@ -93,10 +97,14 @@
     }
 
     & .clip-caption {
-      font-size: 0.8em;
+      font-size: 0.75em;
       display: flex;
-      gap: 0.5em;
+      flex-wrap: wrap;
+      gap: 0.6em;
       margin-bottom: 0.4em;
+      @media (width < 768px) {
+        font-size: 0.7em;
+      }
 
       & .time {
         opacity: 0.5;
