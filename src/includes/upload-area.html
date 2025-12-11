@@ -1,8 +1,64 @@
-<div class="upload-area-container">
+<div class="upload-area-container state-initial">
+  <div class="state-switcher dark-mode">
+    <label>
+      <input type="radio" name="upload-state" value="initial" checked />
+      <span>initial</span>
+    </label>
+    <label>
+      <input type="radio" name="upload-state" value="file-dropping" />
+      <span>file-dropping</span>
+    </label>
+    <label>
+      <input type="radio" name="upload-state" value="accept" />
+      <span>accept</span>
+    </label>
+    <label>
+      <input type="radio" name="upload-state" value="uploading" />
+      <span>uploading</span>
+    </label>
+  </div>
   <div class="upload-area-box dark-mode ids__rounded">
     <div class="upload-area">
-      <div class="upload-text">Drop your audio or video file here</div>
-      <a href="#" class="upload-button">Choose file...</a>
+      <div class="initial-state">
+        Drop your conversation audio <code>.mp3,</code>
+        <code>.wav</code> or <code>.mov</code> file here.
+      </div>
+      <div class="initial-state">
+        <a href="#" class="upload-button">Choose file...</a>
+      </div>
+      <div class="accept-state">
+        <div class="ids__space S"></div>
+        <p>
+          You are about to upload
+          <code>MyZoomCallJobInterview_1_11dec2025.mp3</code>
+        </p>
+        <p>Please, confirm you have the right to upload this audio</p>
+        <div class="ids__space S"></div>
+      </div>
+
+      <div class="accept-state">
+        <form action="" class="upload-form">
+          <label for="terms-checkbox" class="terms-checkbox-label">
+            <input type="checkbox" id="terms-checkbox" class="terms-checkbox" />
+            I agree to the Terms of Use and Privacy Notice and confirm I have
+            the right to upload this audio
+          </label>
+          <button
+            type="submit"
+            class="schedule-form-button ids__rounded"
+            disabled>
+            Upload and Analize
+          </button>
+        </form>
+      </div>
+      <div class="uploading-state">
+        <div class="uploading-status">
+          <div class="uploading-status-text">Uploading...</div>
+          <div class="uploading-status-progress">
+            <div class="uploading-status-progress-bar"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

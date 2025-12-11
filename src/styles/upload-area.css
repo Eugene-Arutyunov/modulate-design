@@ -1,5 +1,164 @@
 .upload-area-container {
   /* Контейнер для зоны загрузки без sticky поведения */
+  position: relative;
+}
+
+/* Управление видимостью элементов по состояниям */
+.upload-area-container .initial-state,
+.upload-area-container .accept-state,
+.upload-area-container .uploading-state {
+  display: none;
+}
+
+/* Состояние: initial */
+.upload-area-container.state-initial .initial-state {
+  display: block;
+}
+
+/* Состояние: file-dropping (то же что initial, но с активным фоном) */
+.upload-area-container.state-file-dropping .initial-state {
+  display: block;
+  opacity: 0.6;
+}
+
+.upload-area-container.state-file-dropping .upload-area-box {
+  background-color: rgba(var(--ids__bg-hover-RGB), 1);
+}
+
+/* Состояние: accept */
+.upload-area-container.state-accept .accept-state {
+  display: block;
+}
+
+/* Состояние: uploading */
+.upload-area-container.state-uploading .uploading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  width: 100%;
+}
+
+.uploading-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+  width: 80%;
+}
+
+.uploading-status-text {
+  color: rgba(var(--ids__text-RGB), 1);
+  font-size: 0.9em;
+}
+
+.uploading-status-progress {
+  width: 100%;
+  height: 0.3em;
+  background-color: rgba(var(--ids__bg-hover-RGB), 0.3);
+  border-radius: 0.15em;
+  overflow: hidden;
+  position: relative;
+}
+
+.uploading-status-progress-bar {
+  height: 100%;
+  background-color: rgba(var(--ids__bg-hover-RGB), 1);
+  border-radius: 0.15em;
+  width: 0%;
+  animation: uploading-progress 6s ease-in-out infinite;
+}
+
+@keyframes uploading-progress {
+  0% {
+    width: 0%;
+  }
+  10% {
+    width: 15%;
+  }
+  15% {
+    width: 15%;
+  }
+  25% {
+    width: 35%;
+  }
+  30% {
+    width: 35%;
+  }
+  40% {
+    width: 50%;
+  }
+  45% {
+    width: 50%;
+  }
+  55% {
+    width: 70%;
+  }
+  60% {
+    width: 70%;
+  }
+  75% {
+    width: 90%;
+  }
+  80% {
+    width: 90%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Переключалка состояний для тестирования */
+.upload-area-container .state-switcher {
+  position: absolute;
+  bottom: 0.5em;
+  left: 0.5em;
+  display: none;
+  z-index: 10;
+  background-color: rgba(var(--ids__bg-surface-RGB), 0.95);
+  border: 1px solid rgba(var(--ids__UI-border-RGB), 1);
+  border-radius: 0.2em;
+  padding: 0.15em;
+  gap: 0.15em;
+  flex-direction: row;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.upload-area-container:hover .state-switcher {
+  display: flex;
+}
+
+.state-switcher {
+  color: rgba(var(--ids__text-RGB), 1);
+}
+
+.state-switcher label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 0.6em;
+  padding: 0.15em 0.3em;
+  border-radius: 0.15em;
+  transition: background-color 0.2s ease;
+  user-select: none;
+}
+
+.state-switcher label:hover {
+  background-color: rgba(var(--ids__bg-hover-RGB), 0.5);
+}
+
+.state-switcher input[type="radio"] {
+  margin: 0;
+  margin-right: 0.15em;
+  cursor: pointer;
+  accent-color: rgba(var(--ids__text-link-RGB), 1);
+  width: 0.7em;
+  height: 0.7em;
+}
+
+.state-switcher input[type="radio"]:checked + span {
+  font-weight: 600;
 }
 
 .upload-area-box {
@@ -14,24 +173,118 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 10em;
+  min-height: 15em;
   gap: 1em;
   color: rgba(var(--ids__text-RGB), 1);
   text-align: center;
-  padding: 2em;
-
-  & .upload-text {
-    font-size: 1em;
-  }
+  padding: 2em 2em 3em 2em;
 
   & .upload-button {
     display: inline-block;
     text-decoration: none;
     color: rgba(var(--ids__text-link-RGB), 1);
-    
+    border: 1px solid rgba(var(--ids__text-link-RGB), 0.5);
+    padding: 0.3em 1em;
+    border-radius: 0.5em;
+    transition: border 0.2s ease, color 0.2s ease;
+
     &:hover {
       color: rgba(var(--ids__text-hover-RGB), 1);
+      border-color: rgba(var(--ids__text-hover-RGB), 0.6);
+      transition: border 0s ease, color 0s ease;
     }
   }
 }
 
+.upload-form {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.terms-checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5em;
+  cursor: pointer;
+  color: rgba(var(--ids__text-RGB), 1);
+  text-align: left;
+  user-select: none;
+  flex: 3;
+  min-width: 0;
+  font-size: 0.8em;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: rgba(var(--ids__text-hover-RGB), 1);
+    transition: color 0s ease;
+
+    .terms-checkbox {
+      border-color: rgba(var(--ids__text-hover-RGB), 0.5);
+      transition: border-color 0s ease;
+
+      &:checked {
+        border-color: rgba(var(--ids__text-hover-RGB), 0.8);
+      }
+    }
+  }
+}
+
+.terms-checkbox {
+  margin-top: 0.2em;
+  width: 1.2em;
+  height: 1.2em;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-size: 0.8em;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: transparent;
+  border: 1px solid rgba(var(--ids__text-RGB), 0.5);
+  border-radius: 0.2em;
+  position: relative;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: rgba(var(--ids__text-hover-RGB), 0.5);
+  }
+
+  &:checked {
+    background-color: transparent;
+    border-color: rgba(var(--ids__text-RGB), 0.8);
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0.15em;
+      left: 0.35em;
+      width: 0.3em;
+      height: 0.5em;
+      border: solid white;
+      border-width: 0 0.15em 0.15em 0;
+      transform: rotate(45deg);
+    }
+  }
+
+  &:hover:checked {
+    border-color: rgba(var(--ids__text-hover-RGB), 0.8);
+  }
+}
+
+.schedule-form-button {
+  min-width: 13em;
+
+  &:disabled {
+    background-color: rgba(var(--ids__text-caption-RGB), 1);
+    color: rgba(var(--ids__text-RGB), 0.5);
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: rgba(var(--ids__text-caption-RGB), 1);
+      color: rgba(var(--ids__text-RGB), 0.5);
+    }
+  }
+}
