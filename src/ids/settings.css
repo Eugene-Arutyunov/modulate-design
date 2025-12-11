@@ -18,8 +18,16 @@
   src: url("fonts/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "CoFoGothic";
+  font-style: normal;
+  font-display: swap;
+  src: url("fonts/CoFoGothic-VF-Trial.ttf") format("truetype");
+}
+
 :root {
   --sans: "Inter";
+  --gothic: "CoFoGothic";
 }
 
 body {

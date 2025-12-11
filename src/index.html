@@ -2,28 +2,42 @@
 block content %}
 
 <div class="ids__wrapper">
-  <div class="ids__space L"></div>
+  <div class="ids__space M"></div>
 
+  <h1 class="L">See conversations the way no LLM can</h1>
+  <div class="ids__space S"></div>
+
+  <p class="loud">
+    Experience the world’s first Ensemble Language Model (ELM) through an
+    interactive demo that visualizes the signals inside human speech — emotion,
+    behavior, fraud risk, intent, authenticity, and more.
+  </p>
   <div class="ids__text-width">
-    <h1 class="L">Modulate Platform Demo</h1>
-    <div class="ids__space S"></div>
-
-    <p class="loud">
-      Modulate helps with understanding human behavior by analyzing audio
-      content. It can be used to analyze customer service calls, sales calls,
-      interviews, and more.
-    </p>
-    <p>
-      This demo shows the platform in action. Once you upload a file, the
-      platform will analyze it and display what we call
-      <strong>conversation fingerprint</strong> — a visual representation of the
-      conversation, showing detected behaviors and emotions of the participants.
-    </p>
     {% include "fingerprint-visualization.html" %}
+    <div class="ids__space M"></div>
+    <p>
+      Modulate is a frontier voice Al lab which developed a new kind of Al model
+      for voice understanding that's 100x faster, cheaper, and more accurate
+      than LLMs. Built on our history in the gaming world, understanding highly
+      nuanced and emotional conversations, our models can recognize subtle hints
+      like sarcasm and truly understand the meaning behind a conversation.
+    </p>
+    <p>
+      Our proprietary model is now available to directly power voice Al agents,
+      compliance software, and improved conversational analytics, while our
+      platform allows businesses to seamlessly access this intelligence without
+      need of costly and difficult prompting or retraining.
+    </p>
+    <p>
+      This demo analyzes a short audio clip using Modulate’s ELM, a new AI
+      architecture designed for real-world voice interactions. Within seconds,
+      you’ll see a <strong>conversation fingerprint</strong> — a
+      first-of-its-kind visualization of everything happening between the lines.
+    </p>
 
     <p>
-      And below the fingerprint, you can see a summary of the conversation with
-      detailed breakdown of detected behaviors and emotions of the participants.
+      It works on any conversation: customer service calls, fraud attempts,
+      interviews, online interactions, and more.
     </p>
     <div class="ids__space S"></div>
     <h2>Give it a try</h2>
@@ -36,6 +50,7 @@ block content %}
     {% include "demo-recordings-table.html" %}
   </div>
   <div class="ids__space L"></div>
+  {% include "cta.html" %}
 </div>
 
 {% endblock %}

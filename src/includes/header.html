@@ -1,20 +1,26 @@
-{% set nav = [ { title: 'Modulate ELM Demo', href: '/' }, { title: 'About
-Modulate', href: '/about' }, { title: 'Conversations', href: '/conversations/'
-}, { title: 'Upload audio', href: '/upload/' } ] %}
+{% set nav = [ { title: 'Conversations', href: '/conversations/' }, { title:
+'Company', href: '/about' }, { title: 'Contact', href: '/contact' }] %}
 
 <div class="ids__wrapper">
   <header class="header">
     <nav class="nav">
-      <div class="logo-container">
-        <img
-          src="/assets/identity-draft/modulate-sign-draft.svg"
-          alt="Modulate Sign" />
-      </div>
+      <a href="/" class="nav-link">
+        <div class="logo-container">
+          <img
+            src="/assets/identity-draft/modulate-sign-draft.svg"
+            alt="Modulate Sign" />
+        </div>
+        <span class="nav-logo-wordmark">Modulate ELM Demo</span>
+      </a>
+      <div class="nav-spacer"></div>
       {% for link in nav %} {% if link.href == page.url %}
       <span class="nav-link">{{ link.title }}</span>
       {% else %}
       <a href="{{ link.href }}" class="nav-link">{{ link.title }}</a>
       {% endif %} {% endfor %}
+      <a href="/upload/" class="nav-link nav-link-button ids__rounded"
+        >Upload audio</a
+      >
     </nav>
   </header>
 </div>

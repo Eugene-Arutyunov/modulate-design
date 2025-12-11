@@ -23,30 +23,14 @@
     margin-bottom: calc(var(--ids__density) * 0.4em);
 
     &.loud {
-      font-size: 1.5em;
-      line-height: 1.15;
+      font-family: var(--gothic);
+      font-size: 1.7em;
+      line-height: 1.1;
       font-weight: 450;
-
-      & em {
-        font-size: 1.02em;
-      }
+      color: rgba(var(--ids__text-accent-RGB), 1);
 
       @media (width < 768px) {
         font-size: 1.35em;
-      }
-
-      &.serif {
-        font-size: 1.44em;
-        line-height: 1.2;
-      }
-
-      &.mono {
-        font-size: 1.35em;
-        line-height: 1.25;
-
-        & em {
-          font-size: 1.05em;
-        }
       }
     }
 
@@ -79,7 +63,13 @@
     margin-bottom: 0.2em;
 
     &.L {
-      font-size: 3em;
+      font-family: var(--gothic);
+      font-size: 5.5em;
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      font-weight: 550;
+      color: rgba(var(--ids__text-accent-RGB), 1);
+      margin-bottom: 0.1em;
     }
   }
 
