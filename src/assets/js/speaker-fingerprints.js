@@ -47,6 +47,17 @@ function syncFingerprintHover(fingerprintClip, isHovering, clipMap) {
       el.classList.remove('hover');
     });
   }
+  
+  // Sync with behaviour indicators
+  if (isHovering) {
+    document.querySelectorAll(`.behaviour-indicator[data-clip-index="${index}"]`).forEach(el => {
+      el.classList.add('hover');
+    });
+  } else {
+    document.querySelectorAll(`.behaviour-indicator[data-clip-index="${index}"]`).forEach(el => {
+      el.classList.remove('hover');
+    });
+  }
 }
 
 // Initialize speaker fingerprint visualizations

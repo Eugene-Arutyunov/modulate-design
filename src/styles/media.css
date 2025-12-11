@@ -358,6 +358,7 @@
       font-size: 0.8em;
       line-height: 1.2;
       padding-bottom: 0; /* Убрали приподнятие, чтобы низ фона лейбла выровнялся с низом уровня */
+      z-index: 1; /* Базовый z-index для обычных индикаторов */
 
       /* Позиционирование по вертикали в зависимости от спикера */
       /* Выравнивание по низу зоны каждого спикера */
@@ -413,12 +414,136 @@
         position: relative;
         z-index: 1;
         margin-top: -1px; /* Приподнять иконки примерно на пиксель для лучшего выравнивания с лейблами */
+        transition: filter 0.1s ease;
 
         & svg {
           width: 100%;
           height: 100%;
           fill: white;
         }
+
+        /* Outline формы по умолчанию прозрачные */
+        & .behaviour-icon__outline {
+          fill: transparent;
+        }
+      }
+
+      /* Окрашивание outline в цвет эмоции клипа */
+      &[data-emotion="angry"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-angry-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="contemptuous"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-contemptuous-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="disgusted"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-disgusted-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="afraid"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-afraid-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="anxious"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-anxious-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="stressed"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-stressed-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="surprised"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-surprised-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="ashamed"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-ashamed-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="frustrated"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-frustrated-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="fear"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-fear-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="affectionate"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-affectionate-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="amused"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-amused-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="excited"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-excited-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="happy"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-happy-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="hopeful"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-hopeful-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="proud"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-proud-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="relieved"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-relieved-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="curious"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-curious-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="disappointed"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-disappointed-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="bored"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-bored-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="tired"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-tired-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="concerned"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-concerned-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="confused"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-confused-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="sad"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-sad-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="calm"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-calm-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="confident"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-confident-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="interested"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-interested-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="neutral"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-neutral-RGB), 1);
+        transition: fill 0.2s ease;
+      }
+      &[data-emotion="unknown"] .behaviour-icon .behaviour-icon__outline {
+        fill: rgba(var(--emotion-unknown-RGB), 1);
+        transition: fill 0.2s ease;
       }
 
       /* При ховере поднимаем z-index иконки и лейбла */
@@ -427,11 +552,32 @@
 
         & .behaviour-icon {
           z-index: 15; /* Поднимаем выше фона лейбла (z-index: 12) */
+
+          /* При появлении лейбла делаем outline прозрачным мгновенно */
+          & .behaviour-icon__outline {
+            fill: transparent;
+            transition: fill 0s ease;
+          }
         }
 
         & .behaviour-label-text {
           z-index: 12;
         }
+      }
+
+      /* Фильтр яркости для всей иконки при подсветке клипа */
+      &.hover {
+        z-index: 20; /* Поднимаем весь индикатор выше всех при hover извне */
+
+        & .behaviour-icon {
+          filter: brightness(140%) saturate(115%);
+          transition: filter 0s ease;
+        }
+      }
+
+      /* Комбинированный случай: hover + visible */
+      &.hover.visible {
+        z-index: 20; /* Приоритет hover над visible */
       }
 
       & .behaviour-label-text {
@@ -826,6 +972,7 @@
         font-size: 0.8em;
         line-height: 1.2;
         padding-bottom: 0;
+        z-index: 1; /* Базовый z-index для обычных индикаторов */
 
         /* Позиционирование по вертикали в зависимости от спикера */
         /* Выравнивание по низу зоны каждого спикера */
@@ -880,12 +1027,147 @@
           position: relative;
           z-index: 1;
           margin-top: -1px;
+          transition: filter 0.1s ease;
 
           & svg {
             width: 100%;
             height: 100%;
             fill: white;
           }
+
+          /* Outline формы по умолчанию прозрачные */
+          & .behaviour-icon__outline {
+            fill: transparent;
+          }
+
+          /* Transition для svg при возврате фильтра */
+          & svg {
+            transition: filter 0.1s ease;
+          }
+        }
+
+        /* Окрашивание outline в цвет эмоции клипа для fingerprint-visualization */
+        &[data-emotion="angry"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-angry-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="contemptuous"]
+          .behaviour-icon
+          .behaviour-icon__outline {
+          fill: rgba(var(--emotion-contemptuous-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="disgusted"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-disgusted-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="afraid"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-afraid-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="anxious"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-anxious-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="stressed"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-stressed-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="surprised"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-surprised-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="ashamed"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-ashamed-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="frustrated"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-frustrated-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="fear"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-fear-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="affectionate"]
+          .behaviour-icon
+          .behaviour-icon__outline {
+          fill: rgba(var(--emotion-affectionate-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="amused"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-amused-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="excited"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-excited-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="happy"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-happy-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="hopeful"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-hopeful-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="proud"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-proud-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="relieved"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-relieved-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="curious"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-curious-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="disappointed"]
+          .behaviour-icon
+          .behaviour-icon__outline {
+          fill: rgba(var(--emotion-disappointed-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="bored"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-bored-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="tired"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-tired-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="concerned"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-concerned-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="confused"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-confused-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="sad"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-sad-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="calm"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-calm-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="confident"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-confident-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="interested"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-interested-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="neutral"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-neutral-RGB), 1);
+          transition: fill 0.2s ease;
+        }
+        &[data-emotion="unknown"] .behaviour-icon .behaviour-icon__outline {
+          fill: rgba(var(--emotion-unknown-RGB), 1);
+          transition: fill 0.2s ease;
         }
 
         /* При ховере поднимаем z-index иконки и лейбла */
@@ -894,11 +1176,32 @@
 
           & .behaviour-icon {
             z-index: 15;
+
+            /* При появлении лейбла делаем outline прозрачным мгновенно */
+            & .behaviour-icon__outline {
+              fill: transparent;
+              transition: fill 0s ease;
+            }
           }
 
           & .behaviour-label-text {
             z-index: 12;
           }
+        }
+
+        /* Фильтр яркости для всей иконки при подсветке клипа */
+        &.hover {
+          z-index: 20; /* Поднимаем весь индикатор выше всех при hover извне */
+
+          & .behaviour-icon {
+            filter: brightness(140%) saturate(115%);
+            transition: filter 0s ease;
+          }
+        }
+
+        /* Комбинированный случай: hover + visible */
+        &.hover.visible {
+          z-index: 20; /* Приоритет hover над visible */
         }
 
         & .behaviour-label-text {

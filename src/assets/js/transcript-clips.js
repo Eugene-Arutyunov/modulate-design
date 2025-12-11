@@ -134,6 +134,17 @@ export function initTranscriptClipsInteraction(sound, clipMetadata, updatePlayin
       });
     }
     
+    // Sync with behaviour indicators
+    if (isHovering) {
+      document.querySelectorAll(`.behaviour-indicator[data-clip-index="${index}"]`).forEach(el => {
+        el.classList.add('hover');
+      });
+    } else {
+      document.querySelectorAll(`.behaviour-indicator[data-clip-index="${index}"]`).forEach(el => {
+        el.classList.remove('hover');
+      });
+    }
+    
     // Update hover position indicator only for visualization clips
     const isVisualizationClip = clipElement.closest('.player-visualization') !== null;
     if (isVisualizationClip) {
