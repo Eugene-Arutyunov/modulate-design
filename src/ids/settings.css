@@ -4,9 +4,6 @@
 
 /* Fonts */
 
-
-
-
 @font-face {
   font-family: "Inter";
   font-style: normal;
@@ -20,7 +17,6 @@
   font-display: swap;
   src: url("fonts/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype");
 }
-
 
 :root {
   --sans: "Inter";
@@ -43,17 +39,16 @@ body {
 body {
   font-size: 1em;
   line-height: var(--ids__density);
-
 }
 
 html {
   /* Font-size calculation using variables */
 
-  --mobile-font-size-min: 14;
-  --mobile-font-size-max: 32;
+  --mobile-font-size-min: 13;
+  --mobile-font-size-max: 34;
 
-  --desktop-font-size-min: 9.3;
-  --desktop-font-size-max: 20;
+  --desktop-font-size-min: 9.7;
+  --desktop-font-size-max: 19.8;
 
   --mobile-viewport-min: 320;
   --mobile-desktop-breakpoint: 768;
@@ -62,11 +57,25 @@ html {
   font-size: calc(var(--mobile-font-size-min) * 1px);
 
   @media screen and (min-width: 320px) {
-    font-size: calc(var(--mobile-font-size-min) * 1px + (var(--mobile-font-size-max) - var(--mobile-font-size-min)) * ((100vw - var(--mobile-viewport-min) * 1px) / (var(--mobile-desktop-breakpoint) - var(--mobile-viewport-min))));
+    font-size: calc(
+      var(--mobile-font-size-min) * 1px +
+        (var(--mobile-font-size-max) - var(--mobile-font-size-min)) *
+        (
+          (100vw - var(--mobile-viewport-min) * 1px) /
+            (var(--mobile-desktop-breakpoint) - var(--mobile-viewport-min))
+        )
+    );
   }
 
   @media screen and (min-width: 768px) {
-    font-size: calc(var(--desktop-font-size-min) * 1px + (var(--desktop-font-size-max) - var(--desktop-font-size-min)) * ((100vw - var(--mobile-desktop-breakpoint) * 1px) / (var(--desktop-viewport-max) - var(--mobile-desktop-breakpoint))));
+    font-size: calc(
+      var(--desktop-font-size-min) * 1px +
+        (var(--desktop-font-size-max) - var(--desktop-font-size-min)) *
+        (
+          (100vw - var(--mobile-desktop-breakpoint) * 1px) /
+            (var(--desktop-viewport-max) - var(--mobile-desktop-breakpoint))
+        )
+    );
   }
 
   @media screen and (min-width: 1500px) {
