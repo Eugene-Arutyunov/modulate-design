@@ -71,6 +71,15 @@
       color: rgba(var(--ids__text-accent-RGB), 1);
       margin-bottom: 0.1em;
     }
+    &.M {
+      font-family: var(--gothic);
+      font-size: 3.5em;
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      font-weight: 550;
+      color: rgba(var(--ids__text-accent-RGB), 1);
+      margin-bottom: 0.1em;
+    }
   }
 
   & h2 {
