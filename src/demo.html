@@ -7,16 +7,6 @@ block content %}
     <div class="nav-spacer"></div>
 
     <a href="#contact" class="nav-link ids__rounded"> Contact us </a>
-    <div class="share-button-wrapper">
-      <button
-        class="share-button ids__rounded"
-        type="button"
-        aria-label="Share">
-        {% include "share-icon.html" %}
-        <span class="share-text">Share this conversation</span>
-      </button>
-    </div>
-    {% include "share-popover.html" %}
   </div> -->
   <div class="media-container sticky">
     <div class="media-space"></div>
@@ -25,6 +15,16 @@ block content %}
       id="audio-player"
       data-audio-src="/assets/fdf1fec4-59d6-4518-8721-4199fa646afc.mp3"
       data-speaker-count="2">
+      <div class="share-button-wrapper player-share-button">
+        <button
+          class="share-button ids__rounded"
+          type="button"
+          aria-label="Share">
+          {% include "share-icon.html" %}
+          <span class="share-text">Share</span>
+        </button>
+        {% include "share-popover.html" %}
+      </div>
       <div class="player-visualization" data-total-duration="">
         {% include "transcript-clips.html" %}
       </div>

@@ -12,7 +12,7 @@
   --ids__background-RGB: 255, 255, 255;
   --ids__bg-surface-RGB: 242, 242, 246;
   --ids__bg-accent-RGB: 20, 20, 50;
-  --ids__bg-hover-RGB: var(--ids__text-hover-RGB);
+  --ids__bg-hover-RGB: 90, 120, 180;
   --ids__bg-mark-RGB: 255, 200, 29;
 
   /* UI */
@@ -28,7 +28,7 @@
   --ids__text-caption-RGB: 128, 128, 128;
   --ids__text-link-RGB: 255, 255, 255;
   --ids__text-inverted-RGB: 20, 20, 30;
-  --ids__text-hover-RGB: 110, 140, 190;
+  --ids__text-hover-RGB: 120, 180, 255;
 
   /* BACKGROUND */
   --ids__background-RGB: 30, 30, 35;

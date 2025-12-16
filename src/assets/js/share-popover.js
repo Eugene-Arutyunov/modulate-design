@@ -7,7 +7,9 @@ export function initSharePopover() {
   
   // Function to get popover for a button
   function getPopoverForButton(button) {
-    const container = button.closest('.nav-container') || button.closest('.share-container');
+    const container = button.closest('.nav-container') || 
+                      button.closest('.share-container') || 
+                      button.closest('.share-button-wrapper');
     if (!container) return null;
     return container.querySelector('.share-popover');
   }

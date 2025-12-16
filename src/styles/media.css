@@ -787,7 +787,7 @@
     top: var(--player-visualization-height);
     transition: top 0.2s ease;
     bottom: var(--padding);
-    right: var(--padding);
+    right: calc(var(--padding) + 12em);
     pointer-events: none;
 
     & .emotion-caption {
@@ -875,6 +875,14 @@
       font-size: 0.8em;
       background-color: rgba(var(--ids__bg-accent-RGB), 1);
     }
+  }
+
+  & .player-share-button {
+    position: absolute;
+    bottom: var(--padding);
+    right: var(--padding);
+    z-index: 10;
+    pointer-events: auto;
   }
 }
 
