@@ -5,7 +5,6 @@ import { initTranscriptClipsInteraction } from './transcript-clips.js';
 import { initSpeakerFingerprints } from './speaker-fingerprints.js';
 import { initBehaviorLinkHandlers } from './behavior-links.js';
 import { initBehaviorNavigation } from './behavior-navigation.js';
-import { initEditableSpeakerNames } from './speaker-names.js';
 import { initSharePopover } from './share-popover.js';
 import { getCurrentClipIndex } from './clip-metadata.js';
 import { updatePlayingClip } from './clip-metadata.js';
@@ -27,7 +26,6 @@ function init() {
   
   if (!audioPlayerResult) {
     // If audio player failed to initialize, still initialize other components
-    initEditableSpeakerNames();
     initSharePopover();
     return;
   }
@@ -73,7 +71,6 @@ function init() {
     audioPlayerResult.getSetProgrammaticScrollCallback
   );
   
-  initEditableSpeakerNames();
   initSharePopover();
 }
 
