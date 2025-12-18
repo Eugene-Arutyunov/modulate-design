@@ -1,0 +1,397 @@
+{% extends 'layout.html' %} {% block content %}
+
+<div class="ids__wrapper">
+  <h1>Models</h1>
+  <div id="models-behaviours-graph" class="models-behaviours-graph"></div>
+  <table class="table" style="font-size: 0.8em">
+    <thead>
+      <tr>
+        <th>Model Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody id="detection-models-table">
+      <tr>
+        <td><strong>Interruption</strong></td>
+        <td>Identifies when speakers interrupt each other</td>
+      </tr>
+
+      <tr>
+        <td><strong>Speech Pattern Analyzer</strong></td>
+        <td>Analyzes speech patterns like pace and volume</td>
+      </tr>
+
+      <tr>
+        <td><strong>Adult Language</strong></td>
+        <td>Identifies inappropriate language</td>
+      </tr>
+
+      <tr>
+        <td><strong>Synthetic Voice</strong></td>
+        <td>Identifies artificially generated or synthetic voices</td>
+      </tr>
+
+      <tr>
+        <td><strong>Synthetic Conversation</strong></td>
+        <td>Detects patterns indicating automated or bot responses</td>
+      </tr>
+
+      <tr>
+        <td><strong>Response Timing Analysis</strong></td>
+        <td>Analyzes response latency patterns</td>
+      </tr>
+
+      <tr>
+        <td><strong>Topic Coherence Analysis</strong></td>
+        <td>Measures how well conversation stays on topic</td>
+      </tr>
+
+      <tr>
+        <td><strong>Conversation Relevance Scoring</strong></td>
+        <td>Scores relevance of discussion to main topic</td>
+      </tr>
+
+      <tr>
+        <td><strong>Prompt Injection</strong></td>
+        <td>Identifies attempts at prompt injection attacks</td>
+      </tr>
+
+      <tr>
+        <td><strong>Sexual Content</strong></td>
+        <td>Identifies sexual content or innuendo</td>
+      </tr>
+
+      <tr>
+        <td><strong>Social Pressure and Manipulation</strong></td>
+        <td>Detects social pressure tactics and manipulation attempts</td>
+      </tr>
+
+      <tr>
+        <td><strong>Sexual Harassment</strong></td>
+        <td>Identifies sexual harassment and inappropriate advances</td>
+      </tr>
+
+      <tr>
+        <td><strong>Bullying</strong></td>
+        <td>Detects bullying behaviors and intimidation tactics</td>
+      </tr>
+
+      <tr>
+        <td><strong>Hatespeech</strong></td>
+        <td>Identifies hate speech and extremist language</td>
+      </tr>
+
+      <tr>
+        <td><strong>Violent Content</strong></td>
+        <td>Detects threats and discussions of violence</td>
+      </tr>
+
+      <tr>
+        <td><strong>Radicalization</strong></td>
+        <td>Identifies radicalization attempts and extremist recruitment</td>
+      </tr>
+
+      <tr>
+        <td><strong>Child Safety</strong></td>
+        <td>Detects content harmful to children or grooming attempts</td>
+      </tr>
+
+      <tr>
+        <td><strong>Next Steps Agreement</strong></td>
+        <td>Identifies agreements on next actions or follow-ups</td>
+      </tr>
+
+      <tr>
+        <td><strong>Bypassing Protocol</strong></td>
+        <td>Detects attempts to circumvent established procedures</td>
+      </tr>
+
+      <tr>
+        <td><strong>Vishing/Phishing</strong></td>
+        <td>Identifies voice phishing and social engineering attempts</td>
+      </tr>
+
+      <tr>
+        <td><strong>Scripted Scenario</strong></td>
+        <td>Detects pre-scripted or rehearsed conversations</td>
+      </tr>
+
+      <tr>
+        <td><strong>Audio Assault</strong></td>
+        <td>Identifies harmful audio patterns or sonic attacks</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Behaviours</h2>
+  <table class="table" style="font-size: 0.8em">
+    <thead>
+      <tr>
+        <th>Behavior</th>
+        <th>Description</th>
+        <th>Detection Models</th>
+      </tr>
+    </thead>
+    <tbody id="behaviors-table">
+      <tr>
+        <td>Self Harm and Self Injury Glorification</td>
+        <td>
+          Speech that characterizes self harm or self injury as trivial,
+          divinely ordained, socially required, efficient, or positive in any
+          regard
+        </td>
+        <td>Violent Content</td>
+      </tr>
+
+      <tr>
+        <td>Hate</td>
+        <td>
+          Hate speech, hateful ideology content, and speech based discrimination
+          on the basis of identity factors (gender, race, sexuality, etc.)
+        </td>
+        <td>Hatespeech, Radicalization</td>
+      </tr>
+
+      <tr>
+        <td>Graphic Content</td>
+        <td>
+          Speech that describes situations of harm, with the potential to do
+          harm via exposure
+        </td>
+        <td>Sexual Content, Violent Content, Adult Language, Audio Assault</td>
+      </tr>
+
+      <tr>
+        <td>Suicidal and Self Injurious Ideation</td>
+        <td>
+          Subtle or direct signals of thoughts of harming oneself or committing
+          suicide
+        </td>
+        <td>Violent Content</td>
+      </tr>
+
+      <tr>
+        <td>Social Boundary Setting</td>
+        <td>
+          Setting social containers for interactions to become more pro social
+        </td>
+        <td><span class="badge bg-secondary">None</span></td>
+      </tr>
+
+      <tr>
+        <td>Social Inclusion</td>
+        <td>
+          Attempts at setting values in space that include people from various
+          backgrounds
+        </td>
+        <td><span class="badge bg-secondary">None</span></td>
+      </tr>
+
+      <tr>
+        <td>Social Etiquette</td>
+        <td>signals of politeness, manners, or culture being observed.</td>
+        <td><span class="badge bg-secondary">None</span></td>
+      </tr>
+
+      <tr>
+        <td>Teaching/Coaching</td>
+        <td>
+          Instructional language intent on sharing information about a skill or
+          topic.
+        </td>
+        <td><span class="badge bg-secondary">None</span></td>
+      </tr>
+
+      <tr>
+        <td>Encouragement</td>
+        <td>Supporting others actions, ideas, or behavior.</td>
+        <td><span class="badge bg-secondary">None</span></td>
+      </tr>
+
+      <tr>
+        <td>Respectful Interaction</td>
+        <td>Maintaining professional courtesy and respect</td>
+        <td>Response Timing Analysis, Interruption, Speech Pattern Analyzer</td>
+      </tr>
+
+      <tr>
+        <td>Signaling Virtues</td>
+        <td>
+          explaining values or core beliefs, presenting them in a biased way
+          that paints them as positive or negative to have.
+        </td>
+        <td><span class="badge bg-secondary">None</span></td>
+      </tr>
+
+      <tr>
+        <td>Empathetic Responding</td>
+        <td>Showing understanding and concern for others' perspectives</td>
+        <td><span class="badge bg-secondary">None</span></td>
+      </tr>
+
+      <tr>
+        <td>Active Listening</td>
+        <td>Demonstrating engaged attention and understanding</td>
+        <td><span class="badge bg-secondary">None</span></td>
+      </tr>
+
+      <tr>
+        <td>Monologuing/Narration</td>
+        <td>
+          narrative exposition that explains someone’s internal thoughts or
+          feelings, past events or context, etc.
+        </td>
+        <td>Scripted Scenario</td>
+      </tr>
+
+      <tr>
+        <td>Personal Vulnerability</td>
+        <td>
+          sharing statements that express ways of feeling, inner thoughts, and
+          personal philosophies.
+        </td>
+      </tr>
+
+      <tr>
+        <td>Professional Impoliteness</td>
+        <td>
+          Speech that violates professional etiquette through rudeness,
+          disrespect, inappropriate language, or disregard for expected
+          workplace manners
+        </td>
+        <td>
+          Hatespeech, Sexual Content, Interruption, Violent Content, Adult
+          Language, Bullying
+        </td>
+      </tr>
+
+      <tr>
+        <td>Social Impoliteness</td>
+        <td>denying etiquette, signals of disrepect</td>
+        <td>
+          Hatespeech, Sexual Content, Interruption, Violent Content, Adult
+          Language, Bullying
+        </td>
+      </tr>
+
+      <tr>
+        <td>Social Disruption</td>
+        <td>Attempts to shift power dynamics, or change social context</td>
+      </tr>
+
+      <tr>
+        <td>Return Fraud Attempt</td>
+        <td>Customer attempting fraudulent product return</td>
+        <td>Scripted Scenario, Bypassing Protocol</td>
+      </tr>
+
+      <tr>
+        <td>Account Impersonation</td>
+        <td>Customer attempting to fraudulently access an account</td>
+        <td>Vishing/Phishing</td>
+      </tr>
+
+      <tr>
+        <td>Scripted Conversation</td>
+        <td>Representative following fraudulent script</td>
+        <td>Scripted Scenario</td>
+      </tr>
+
+      <tr>
+        <td>Synthetic Voice</td>
+        <td>Representative using artificial voice generation</td>
+        <td>Synthetic Voice</td>
+      </tr>
+
+      <tr>
+        <td>Social Engineering</td>
+        <td>
+          Attempts to manipulate, coerce, pressure, or otherwise force an agent
+          or support staff to do something against their interest.
+        </td>
+        <td>Social Pressure and Manipulation</td>
+      </tr>
+
+      <tr>
+        <td>Vishing Attempt</td>
+        <td>Representative attempting voice phishing</td>
+        <td>Vishing/Phishing</td>
+      </tr>
+
+      <tr>
+        <td>Child Safety Violation</td>
+        <td>
+          Any behavior involved in soliciting, creating, or perpetrating the
+          trafficking or sexual exploitation of children
+        </td>
+        <td>Child Safety</td>
+      </tr>
+
+      <tr>
+        <td>Radical Ideology Propagation</td>
+        <td>promotion of hateful ideologies</td>
+        <td>Hatespeech, Radicalization</td>
+      </tr>
+
+      <tr>
+        <td>Conversation Disruption</td>
+        <td>Disrupting normal conversation flow</td>
+        <td>Interruption, Topic Coherence Analysis</td>
+      </tr>
+
+      <tr>
+        <td>Harassment</td>
+        <td>
+          Persistent, unwanted, and unwarranted targeted speech or behavior
+          directed at the same target
+        </td>
+        <td>Sexual Harassment, Bullying</td>
+      </tr>
+
+      <tr>
+        <td>Followup Scheduled</td>
+        <td>Prospect agrees to a specific follow-up meeting</td>
+        <td>Next Steps Agreement</td>
+      </tr>
+
+      <tr>
+        <td>Missed Question or Vague Answer</td>
+        <td>Representative or Agent fails to address prospect's question</td>
+        <td>Speech Pattern Analyzer</td>
+      </tr>
+
+      <tr>
+        <td>Inappropriate Language</td>
+        <td>
+          Interviewee uses profane, offensive, or sexually inappropriate
+          language
+        </td>
+        <td>
+          Hatespeech, Sexual Content, Adult Language, Sexual Harassment,
+          Bullying
+        </td>
+      </tr>
+
+      <tr>
+        <td>Off-Topic Discussion</td>
+        <td>Interviewer diverts to topics completely unrelated to the job</td>
+        <td>Topic Coherence Analysis, Conversation Relevance Scoring</td>
+      </tr>
+
+      <tr>
+        <td>Synthetic responses</td>
+        <td>Speaker appears to be an AI or automated system</td>
+        <td>
+          Response Timing Analysis, Synthetic Voice, Synthetic Conversation
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="ids__space XL"></div>
+</div>
+
+<script type="module" src="/assets/js/color-display.js"></script>
+<script type="module" src="/assets/js/models-behaviours-graph.js"></script>
+
+{% endblock %}

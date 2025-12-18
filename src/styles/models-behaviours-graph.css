@@ -1,0 +1,55 @@
+.models-behaviours-graph {
+  width: 100%;
+  margin: 2rem 0;
+  padding: 1rem 0;
+}
+
+.models-behaviours-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 400px;
+}
+
+.models-behaviours-svg .connection-line {
+  stroke: rgba(var(--ids__text-RGB), 0.25);
+  stroke-width: 1.2;
+  transition: stroke-opacity 0.2s ease;
+}
+
+.models-behaviours-svg .model-label,
+.models-behaviours-svg .behaviour-label {
+  font-family: inherit;
+  font-size: 13px;
+  fill: rgba(var(--ids__text-RGB), 1);
+  white-space: nowrap;
+  dominant-baseline: middle;
+}
+
+.models-behaviours-svg .model-label {
+  text-anchor: end;
+}
+
+.models-behaviours-svg .connection-line--none {
+  opacity: 0.2;
+}
+
+.models-behaviours-svg .model-label--none {
+  opacity: 0.4;
+}
+
+.models-behaviours-svg .behaviour-label {
+  text-anchor: start;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .models-behaviours-svg {
+    min-height: 300px;
+  }
+
+  .models-behaviours-svg .model-label,
+  .models-behaviours-svg .behaviour-label {
+    font-size: 11px;
+  }
+}

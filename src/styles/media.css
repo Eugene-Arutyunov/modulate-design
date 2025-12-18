@@ -787,7 +787,7 @@
     top: var(--player-visualization-height);
     transition: top 0.2s ease;
     bottom: var(--padding);
-    right: calc(var(--padding) + 12em);
+    right: var(--padding);
     pointer-events: none;
 
     & .emotion-caption {
