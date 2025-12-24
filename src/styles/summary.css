@@ -23,25 +23,39 @@
         padding-right: 0.3em;
         vertical-align: top;
       }
-
-      & .speaker-name-column {
-        width: 28%;
-      }
-
-      & .speaker-info-column {
-        width: 33%;
-      }
-
-      & .behaviours-column {
-        width: 39%;
-        padding-right: 0;
-      }
     }
 
     & p {
       margin-bottom: 0.2em;
     }
   }
+
+  &.speech-summary {
+    & .speaker-name-column {
+      /* width: 28%; */
+    }
+
+    & .speaker-info-column {
+      /* width: 33%; */
+    }
+
+    & .behaviours-column {
+      /* width: 39%; */
+      /* padding-right: 0; */
+    }
+  }
+
+  &.behaviours-summary {
+    & .behaviour-name-column {
+      /* width: 28%; */
+    }
+
+    & .behaviour-desc-column {
+      /* width: 33%; */
+    }
+  }
+
+  /* to sort among tables */
 
   & .speaker-fingerprint-wrapper {
     display: flex;
@@ -228,21 +242,5 @@ a.detected-behaviour {
   & .behaviour-icon--buba {
     position: relative;
     top: 0.05em;
-  }
-}
-
-.models-container {
-  font-size: 0.6em;
-  display: flex;
-  flex-wrap: wrap;
-  --gap: 0.4em;
-  gap: var(--gap);
-  --columns: 6;
-
-  & .model-item {
-    width: calc((100% - var(--gap) * (var(--columns) - 1)) / var(--columns));
-    border: 1px solid rgba(var(--ids__text-RGB), 0.1);
-    border-radius: 0.2em;
-    padding: 0.5em;
   }
 }

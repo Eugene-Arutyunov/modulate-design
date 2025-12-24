@@ -2,29 +2,9 @@
 block content %}
 
 <div class="ids__wrapper">
-  <!-- <div class="nav-container">
-    <a href="/" class="nav-link ids__rounded"> ← Back </a>
-    <div class="nav-spacer"></div>
-
-    <a href="#contact" class="nav-link ids__rounded"> Contact us </a>
-  </div> -->
   <div class="ids__space M"></div>
-  <h1>Audio analysis report</h1>
-  <!-- <p>
-    ELM (Ensemble Listening Model) is a new architecture for voice intelligence
-    that combines multiple specialized models to analyze different aspects of
-    voice interactions. <a href="https://modulate.ai">Learn more</a>
-  </p>
+  <h1>Audio analysis <span>Dispute over missing delivery and refund</span></h1>
 
-  <div class="ids__space S"></div>
-  <h2>Conversation: Dispute over missing delivery and refund</h2> -->
-
-  <p>
-    <strong>Dispute over missing delivery and refund.</strong>
-    Customer disputed a missing delivery and requested a refund. Support
-    specialist initially refused but eventually processed both refund and credit
-    after confirming a delivery error.
-  </p>
   <div class="media-container sticky">
     <div class="media-space"></div>
     <div
@@ -90,118 +70,26 @@ block content %}
     </div>
   </div>
   <div class="ids__space S"></div>
-  <div class="models-container">
-    <div class="model-item">
-      <strong>Transcription</strong>
-    </div>
-
-    <div class="model-item">
-      <strong>Emotions</strong>
-    </div>
-    <div class="model-item">
-      <strong>Interruption</strong>
-      <p>Identifies when speakers interrupt each other</p>
-    </div>
-
-    <div class="model-item">
-      <strong>Synthetic Voice</strong>
-      <p>Identifies artificially generated or synthetic voices</p>
-    </div>
-
-    <div class="model-item">
-      <strong>Response Timing</strong>
-      <p>Analyzes response latency patterns</p>
-    </div>
-
-    <div class="model-item">
-      <strong>Topic Coherence</strong>
-      <p>Measures how well conversation stays on topic</p>
-    </div>
-
-    <div class="model-item">
-      <strong>Relevance</strong>
-      <p>Scores relevance of discussion to main topic</p>
-    </div>
-
-    <div class="model-item">
-      <strong>Prompt Injection</strong>
-      <p>Identifies attempts at prompt injection attacks</p>
-    </div>
-
-    <div class="model-item">
-      <strong>Sexual Content</strong>
-      <p>Identifies sexual content or innuendo</p>
-    </div>
-
-    <div class="model-item">
-      <strong>Social Pressure</strong>
-      <p>Detects social pressure tactics and manipulation attempts</p>
-    </div>
-
-    <div class="model-item">
-      <strong>Sexual Harassment</strong>
-      <p>Identifies sexual harassment and inappropriate advances</p>
-    </div>
-
-    <div class="model-item">
-      <strong>Bullying</strong>
-      <p>Detects bullying behaviors and intimidation tactics</p>
-    </div>
-
-    <div class="model-item">
-      <strong>Hatespeech</strong>
-      <p>Identifies hate speech and extremist language</p>
-    </div>
-
-    <div class="model-item">
-      <strong>Violent Content</strong>
-      <p>Detects threats and discussions of violence</p>
-    </div>
-
-    <div class="model-item">
-      <strong>Radicalization</strong>
-      <p>Identifies radicalization attempts and extremist recruitment</p>
-    </div>
-
-    <div class="model-item">
-      <strong>Child Safety</strong>
-      <p>Detects content harmful to children or grooming attempts</p>
-    </div>
-
-    <div class="model-item">
-      <strong>Next Steps Agreement</strong>
-      <p>Identifies agreements on next actions or follow-ups</p>
-    </div>
-
-    <div class="model-item">
-      <strong>Bypassing Protocol</strong>
-      <p>Detects attempts to circumvent established procedures</p>
-    </div>
-
-    <div class="model-item">
-      <strong>Vishing/Phishing</strong>
-      <p>Identifies voice phishing and social engineering attempts</p>
-    </div>
-
-    <div class="model-item">
-      <strong>Scripted Scenario</strong>
-      <p>Detects pre-scripted or rehearsed conversations</p>
-    </div>
-
-    <div class="model-item">
-      <strong>Audio Assault</strong>
-      <p>Identifies harmful audio patterns or sonic attacks</p>
-    </div>
-  </div>
+  {% include "components/models.html" %}
   <div class="summary-container">
     <div class="ids__space S"></div>
-    <h3>Speech Attributes</h3>
-    <table class="summary-table">
+    <h2>Speech Summary</h2>
+    <p>
+      Customer disputed a missing delivery and requested a refund. Support
+      specialist initially refused but eventually processed both refund and
+      credit after confirming a delivery error.
+    </p>
+    <table class="summary-table speech-summary">
       <thead>
         <tr>
           <th class="speaker-name-column">Speakers</th>
+          <th class="speaker-language-column">Language</th>
           <th class="speaker-info-column">Speaking time</th>
-          <th class="behaviours-column">Detected behaviours, confidence</th>
+          <th class="perceived-gender-column">Perceived gender</th>
+          <th class="perceived-age-column">Perceived age</th>
+          <th class="synthetic-human-column">Synthetic/human</th>
+          <th class="average-latency-column">Average latency</th>
+          <th class="avg-speed-column">Avg. speed</th>
         </tr>
       </thead>
       <tbody>
@@ -219,6 +107,43 @@ block content %}
               data-speaker-index="1"
               data-language="English, American accent"></div>
           </td>
+        </tr>
+
+        <tr>
+          <td class="speaker-name-column">Support specialist</td>
+          <td class="speaker-info-column">
+            <div class="speaker-fingerprint-wrapper">
+              <div class="speaker-fingerprint" data-speaker-index="2"></div>
+              <div class="speaker-time-info">
+                <div class="speaker-time-percent">41%</div>
+              </div>
+            </div>
+            <div
+              class="fingerprint-emotion-caption"
+              data-speaker-index="2"
+              data-language="English, Eastern European accent"></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p></p>
+    <h2>Behaviors</h2>
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th class="behaviour-name-column">Name</th>
+          <th class="behaviour-desc-column">Description</th>
+          <th class="behaviour-category-column">Category</th>
+          <th class="behaviour-confidence-column">Confidence</th>
+          <th class="behaviour-models-column">Models</th>
+          <th class="behaviour-clips-column">Clips</th>
+          <th class="behaviour-spider-column">Spider</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="speaker-name-column">Customer</td>
+
           <td class="behaviours-column">
             <p>
               <a href="#" class="detected-behaviour"
@@ -239,18 +164,7 @@ block content %}
 
         <tr>
           <td class="speaker-name-column">Support specialist</td>
-          <td class="speaker-info-column">
-            <div class="speaker-fingerprint-wrapper">
-              <div class="speaker-fingerprint" data-speaker-index="2"></div>
-              <div class="speaker-time-info">
-                <div class="speaker-time-percent">41%</div>
-              </div>
-            </div>
-            <div
-              class="fingerprint-emotion-caption"
-              data-speaker-index="2"
-              data-language="English, Eastern European accent"></div>
-          </td>
+
           <td class="behaviours-column">
             <p>
               <a href="#" class="detected-behaviour"
@@ -263,17 +177,49 @@ block content %}
         </tr>
       </tbody>
     </table>
-    <p>
-      Perceived gender male / female, perceived age, syntetic/human, average
-      latency, avg. speed
-    </p>
-    <h3>Behaviors</h3>
-    <div class="behavior">
-      name desc category (buba/kiki) confedence [models] [clips] spider
-    </div>
-    <div class="ids__space XL"></div>
-    <div class="ids__space XL"></div>
-    <h3>Emotions</h3>
+    <h2>Emotions</h2>
+    <table class="summary-table emotions-summary">
+      <thead>
+        <tr>
+          <th class="speaker-name-column">Speakers</th>
+          <th class="speaker-emotions-graph-column">Emotions graph</th>
+          <th class="speaker-emotions-list-column">Emotions list</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="speaker-name-column">Customer</td>
+          <td class="speaker-info-column">
+            <div class="speaker-fingerprint-wrapper">
+              <div class="speaker-fingerprint" data-speaker-index="1"></div>
+              <div class="speaker-time-info">
+                <div class="speaker-time-percent">59%</div>
+              </div>
+            </div>
+            <div
+              class="fingerprint-emotion-caption"
+              data-speaker-index="1"
+              data-language="English, American accent"></div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="speaker-name-column">Support specialist</td>
+          <td class="speaker-info-column">
+            <div class="speaker-fingerprint-wrapper">
+              <div class="speaker-fingerprint" data-speaker-index="2"></div>
+              <div class="speaker-time-info">
+                <div class="speaker-time-percent">41%</div>
+              </div>
+            </div>
+            <div
+              class="fingerprint-emotion-caption"
+              data-speaker-index="2"
+              data-language="English, Eastern European accent"></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
     <div class="ids__space XL"></div>
     <div class="ids__space XL"></div>
