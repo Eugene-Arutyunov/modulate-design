@@ -132,3 +132,19 @@ a.detected-behaviour {
     top: 0.05em;
   }
 }
+
+.models-container {
+  font-size: 0.6em;
+  display: flex;
+  flex-wrap: wrap;
+  --gap: 0.4em;
+  gap: var(--gap);
+  --columns: 6;
+
+  & .model-item {
+    width: calc((100% - var(--gap) * (var(--columns) - 1)) / var(--columns));
+    border: 1px solid rgba(var(--ids__text-RGB), 0.1);
+    border-radius: 0.2em;
+    padding: 0.5em;
+  }
+}

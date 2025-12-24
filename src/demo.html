@@ -8,6 +8,23 @@ block content %}
 
     <a href="#contact" class="nav-link ids__rounded"> Contact us </a>
   </div> -->
+  <div class="ids__space M"></div>
+  <h1>Audio analysis report</h1>
+  <!-- <p>
+    ELM (Ensemble Listening Model) is a new architecture for voice intelligence
+    that combines multiple specialized models to analyze different aspects of
+    voice interactions. <a href="https://modulate.ai">Learn more</a>
+  </p>
+
+  <div class="ids__space S"></div>
+  <h2>Conversation: Dispute over missing delivery and refund</h2> -->
+
+  <p>
+    <strong>Dispute over missing delivery and refund.</strong>
+    Customer disputed a missing delivery and requested a refund. Support
+    specialist initially refused but eventually processed both refund and credit
+    after confirming a delivery error.
+  </p>
   <div class="media-container sticky">
     <div class="media-space"></div>
     <div
@@ -72,15 +89,113 @@ block content %}
       </div>
     </div>
   </div>
-  <div class="summary-container">
-    <h1>Dispute over missing delivery and refund</h1>
-    <div class="share-container"></div>
-    <p>
-      Customer disputed a missing delivery and requested a refund. Support
-      specialist initially refused but eventually processed both refund and
-      credit after confirming a delivery error.
-    </p>
+  <div class="ids__space S"></div>
+  <div class="models-container">
+    <div class="model-item">
+      <strong>Transcription</strong>
+    </div>
 
+    <div class="model-item">
+      <strong>Emotions</strong>
+    </div>
+    <div class="model-item">
+      <strong>Interruption</strong>
+      <p>Identifies when speakers interrupt each other</p>
+    </div>
+
+    <div class="model-item">
+      <strong>Synthetic Voice</strong>
+      <p>Identifies artificially generated or synthetic voices</p>
+    </div>
+
+    <div class="model-item">
+      <strong>Response Timing</strong>
+      <p>Analyzes response latency patterns</p>
+    </div>
+
+    <div class="model-item">
+      <strong>Topic Coherence</strong>
+      <p>Measures how well conversation stays on topic</p>
+    </div>
+
+    <div class="model-item">
+      <strong>Relevance</strong>
+      <p>Scores relevance of discussion to main topic</p>
+    </div>
+
+    <div class="model-item">
+      <strong>Prompt Injection</strong>
+      <p>Identifies attempts at prompt injection attacks</p>
+    </div>
+
+    <div class="model-item">
+      <strong>Sexual Content</strong>
+      <p>Identifies sexual content or innuendo</p>
+    </div>
+
+    <div class="model-item">
+      <strong>Social Pressure</strong>
+      <p>Detects social pressure tactics and manipulation attempts</p>
+    </div>
+
+    <div class="model-item">
+      <strong>Sexual Harassment</strong>
+      <p>Identifies sexual harassment and inappropriate advances</p>
+    </div>
+
+    <div class="model-item">
+      <strong>Bullying</strong>
+      <p>Detects bullying behaviors and intimidation tactics</p>
+    </div>
+
+    <div class="model-item">
+      <strong>Hatespeech</strong>
+      <p>Identifies hate speech and extremist language</p>
+    </div>
+
+    <div class="model-item">
+      <strong>Violent Content</strong>
+      <p>Detects threats and discussions of violence</p>
+    </div>
+
+    <div class="model-item">
+      <strong>Radicalization</strong>
+      <p>Identifies radicalization attempts and extremist recruitment</p>
+    </div>
+
+    <div class="model-item">
+      <strong>Child Safety</strong>
+      <p>Detects content harmful to children or grooming attempts</p>
+    </div>
+
+    <div class="model-item">
+      <strong>Next Steps Agreement</strong>
+      <p>Identifies agreements on next actions or follow-ups</p>
+    </div>
+
+    <div class="model-item">
+      <strong>Bypassing Protocol</strong>
+      <p>Detects attempts to circumvent established procedures</p>
+    </div>
+
+    <div class="model-item">
+      <strong>Vishing/Phishing</strong>
+      <p>Identifies voice phishing and social engineering attempts</p>
+    </div>
+
+    <div class="model-item">
+      <strong>Scripted Scenario</strong>
+      <p>Detects pre-scripted or rehearsed conversations</p>
+    </div>
+
+    <div class="model-item">
+      <strong>Audio Assault</strong>
+      <p>Identifies harmful audio patterns or sonic attacks</p>
+    </div>
+  </div>
+  <div class="summary-container">
+    <div class="ids__space S"></div>
+    <h3>Speech Attributes</h3>
     <table class="summary-table">
       <thead>
         <tr>
@@ -147,11 +262,24 @@ block content %}
         </tr>
       </tbody>
     </table>
+    <p>
+      Perceived gender male / female, perceived age, syntetic/human, average
+      latency, avg. speed
+    </p>
+    <h3>Behaviors</h3>
+    <div class="behavior">
+      name desc category (buba/kiki) confedence [models] [clips] spider
+    </div>
+    <div class="ids__space XL"></div>
+    <div class="ids__space XL"></div>
+    <h3>Emotions</h3>
+    <div class="ids__space XL"></div>
+    <div class="ids__space XL"></div>
   </div>
-  <div class="transcript-container">
+  <!-- <div class="transcript-container">
     {% include "transcript-clips.html" %}
     <div class="ids__space M"></div>
-  </div>
+  </div> -->
   <div class="next-clip-wrapper">
     <div class="next-clip-container dark-mode">
       <div class="clip-link previous-clip-link">
