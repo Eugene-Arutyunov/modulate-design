@@ -11,7 +11,7 @@ block content %}
       data-audio-src="/assets/fdf1fec4-59d6-4518-8721-4199fa646afc.mp3"
       data-speaker-count="2">
       <div class="player-visualization" data-total-duration="">
-        {% include "transcript-clips.html" %}
+        {% include "components/transcript-clips.html" %}
       </div>
       <div class="speaker-labels">
         <div class="speaker-label" data-speaker-index="1">
@@ -146,7 +146,7 @@ block content %}
     </table>
   </div>
   <div class="transcript-container">
-    {% include "transcript-clips.html" %}
+    {% include "components/transcript-clips.html" %}
     <div class="ids__space XL"></div>
   </div>
   <div class="next-clip-wrapper">
@@ -169,19 +169,19 @@ block content %}
         class="share-button ids__rounded"
         type="button"
         aria-label="Share your conversation fingerprint experience">
-        {% include "share-icon.html" %}
+        {% include "assets/share-icon.html" %}
         <span class="share-text">Share!</span>
       </button>
-      {% include "share-popover.html" %}
+      {% include "components/share-popover.html" %}
     </div>
   </div>
   <div class="ids__space XL"></div>
   <div class="ids__space XL"></div>
-  {% include "upload-area.html" %}
+  {% include "components/upload-area.html" %}
 
   <div class="demo-recordings-section">
     <p>Check out other pre-loaded demo recordings</p>
-    {% include "demo-recordings-table.html" %}
+    {% include "components/demo-recordings-table.html" %}
   </div>
   <div class="ids__space XL"></div>
 

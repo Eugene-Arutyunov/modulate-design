@@ -10,12 +10,12 @@ block content %}
   <p class="loud intro">
     Experience the world’s first Ensemble Language Model (ELM) through an
     interactive demo that visualizes the signals inside human speech — {%
-    include "emotion-icon.html" %} emotions and {% include
-    "behaviour-icon-kiki.html" %} behaviors, such as fraud risk, intent,
+    include "assets/emotion-icon.html" %} emotions and {% include
+    "assets/behaviour-icon-kiki.html" %} behaviors, such as fraud risk, intent,
     authenticity, and more.
   </p>
   <div class="ids__text-width">
-    {% include "fingerprint-visualization.html" %}
+    {% include "components/fingerprint-visualization.html" %}
     <div class="ids__space M"></div>
 
     <p>
@@ -34,7 +34,7 @@ block content %}
   </div>
 
   <div class="demo-recordings-section">
-    {% include "demo-recordings-table.html" %}
+    {% include "components/demo-recordings-table.html" %}
     <a href="/upload" class="upload-link">Upload your audio</a>
   </div>
   <div class="ids__space L"></div>
@@ -63,7 +63,7 @@ block content %}
     </p>
   </div>
   <div class="ids__space L"></div>
-  {% include "cta.html" %}
+  {% include "components/cta.html" %}
 </div>
 
 {% endblock %}

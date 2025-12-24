@@ -37,13 +37,13 @@ block content %}
           class="share-button ids__rounded"
           type="button"
           aria-label="Share">
-          {% include "share-icon.html" %}
+          {% include "assets/share-icon.html" %}
           <span class="share-text">Share</span>
         </button>
-        {% include "share-popover.html" %}
+        {% include "components/share-popover.html" %}
       </div>
       <div class="player-visualization" data-total-duration="">
-        {% include "transcript-clips.html" %}
+        {% include "components/transcript-clips.html" %}
       </div>
       <div class="speaker-labels">
         <div class="speaker-label" data-speaker-index="1">
@@ -222,13 +222,14 @@ block content %}
           <td class="behaviours-column">
             <p>
               <a href="#" class="detected-behaviour"
-                >{% include "behaviour-icon-kiki.html" %} Sense of Urgency</a
+                >{% include "assets/behaviour-icon-kiki.html" %} Sense of
+                Urgency</a
               >
               <span class="caption">88%</span>
             </p>
             <p>
               <a href="#" class="detected-behaviour"
-                >{% include "behaviour-icon-kiki.html" %} Return Fraud
+                >{% include "assets/behaviour-icon-kiki.html" %} Return Fraud
                 Attempt</a
               >
               <span class="caption">86%</span>
@@ -253,8 +254,8 @@ block content %}
           <td class="behaviours-column">
             <p>
               <a href="#" class="detected-behaviour"
-                >{% include "behaviour-icon-kiki.html" %} Common GenAI Failure
-                Patterns</a
+                >{% include "assets/behaviour-icon-kiki.html" %} Common GenAI
+                Failure Patterns</a
               >
               <span class="caption">80%</span>
             </p>
@@ -273,13 +274,14 @@ block content %}
     <div class="ids__space XL"></div>
     <div class="ids__space XL"></div>
     <h3>Emotions</h3>
+
     <div class="ids__space XL"></div>
     <div class="ids__space XL"></div>
   </div>
-  <!-- <div class="transcript-container">
-    {% include "transcript-clips.html" %}
+  <div class="transcript-container">
+    {% include "components/transcript-clips.html" %}
     <div class="ids__space M"></div>
-  </div> -->
+  </div>
   <div class="next-clip-wrapper">
     <div class="next-clip-container dark-mode">
       <div class="clip-link previous-clip-link">
@@ -298,20 +300,20 @@ block content %}
         class="share-button ids__rounded"
         type="button"
         aria-label="Share your conversation fingerprint experience">
-        {% include "share-icon.html" %}
+        {% include "assets/share-icon.html" %}
         <span class="share-text">Share this conversation</span>
       </button>
-      {% include "share-popover.html" %}
+      {% include "components/share-popover.html" %}
     </div>
   </div>
 
   <div class="ids__space XL"></div>
   <h2>Give it a try</h2>
-  {% include "upload-area.html" %}
+  {% include "components/upload-area.html" %}
   <div class="ids__space L"></div>
   <h2>Preloaded demo recordings</h2>
   <div class="demo-recordings-section">
-    {% include "demo-recordings-table.html" %}
+    {% include "components/demo-recordings-table.html" %}
   </div>
   <div class="ids__space XL"></div>
 
@@ -324,7 +326,7 @@ block content %}
   </div>
   <div class="ids__space XS"></div>
 
-  {% include "cta.html" %}
+  {% include "components/cta.html" %}
   <div class="ids__space XL"></div>
 </div>
 
