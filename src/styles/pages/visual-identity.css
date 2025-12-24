@@ -132,3 +132,36 @@
     border-radius: 0.4em;
   }
 }
+
+/* Emotion colors showcase */
+.emotion-colors-showcase {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.2em;
+  margin-bottom: 2em;
+}
+
+.emotion-group {
+  background-color: rgba(var(--ids__bg-surface-RGB), 1);
+  padding: 0.8em 2em 2em 1em;
+  &.emotion-group-header {
+    margin-bottom: 0.6em;
+
+    & h3 {
+      margin: 0;
+      font-weight: 500;
+      color: rgba(var(--ids__text-RGB), 0.7);
+    }
+  }
+
+  & .emotion-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.1em;
+
+    & .emotion-color-sample {
+      padding: 0.3em 0.6em;
+      color: white;
+    }
+  }
+}

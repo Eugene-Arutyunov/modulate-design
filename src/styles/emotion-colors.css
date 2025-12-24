@@ -1,0 +1,52 @@
+:root {
+  /* Emotion group colors - base values */
+  --emotion-attack-rejection-group-RGB: 255, 53, 84;
+  --emotion-threat-uncertainty-group-RGB: 180, 100, 200;
+  --emotion-excited-engaged-group-RGB: 255, 120, 80;
+  --emotion-low-energy-negative-group-RGB: 0, 120, 200;
+  --emotion-calm-grounded-group-RGB: 110, 140, 190;
+  --emotion-neutral-group-RGB: 90, 90, 110;
+
+  /* Individual emotion variables - map to group variables */
+  /* attack / rejection */
+  --emotion-angry-RGB: var(--emotion-attack-rejection-group-RGB);
+  --emotion-contemptuous-RGB: var(--emotion-attack-rejection-group-RGB);
+  --emotion-disgusted-RGB: var(--emotion-attack-rejection-group-RGB);
+
+  /* threat / uncertainty */
+  --emotion-afraid-RGB: var(--emotion-threat-uncertainty-group-RGB);
+  --emotion-anxious-RGB: var(--emotion-threat-uncertainty-group-RGB);
+  --emotion-stressed-RGB: var(--emotion-threat-uncertainty-group-RGB);
+  --emotion-surprised-RGB: var(--emotion-threat-uncertainty-group-RGB);
+  --emotion-ashamed-RGB: var(--emotion-threat-uncertainty-group-RGB);
+  --emotion-frustrated-RGB: var(--emotion-threat-uncertainty-group-RGB);
+  --emotion-fear-RGB: var(--emotion-threat-uncertainty-group-RGB);
+
+  /* excited / engaged */
+  --emotion-affectionate-RGB: var(--emotion-excited-engaged-group-RGB);
+  --emotion-amused-RGB: var(--emotion-excited-engaged-group-RGB);
+  --emotion-excited-RGB: var(--emotion-excited-engaged-group-RGB);
+  --emotion-happy-RGB: var(--emotion-excited-engaged-group-RGB);
+  --emotion-hopeful-RGB: var(--emotion-excited-engaged-group-RGB);
+  --emotion-proud-RGB: var(--emotion-excited-engaged-group-RGB);
+  --emotion-relieved-RGB: var(--emotion-excited-engaged-group-RGB);
+  --emotion-curious-RGB: var(--emotion-excited-engaged-group-RGB);
+
+  /* low energy, negative */
+  --emotion-disappointed-RGB: var(--emotion-low-energy-negative-group-RGB);
+  --emotion-bored-RGB: var(--emotion-low-energy-negative-group-RGB);
+  --emotion-tired-RGB: var(--emotion-low-energy-negative-group-RGB);
+  --emotion-concerned-RGB: var(--emotion-low-energy-negative-group-RGB);
+  --emotion-confused-RGB: var(--emotion-low-energy-negative-group-RGB);
+  --emotion-sad-RGB: var(--emotion-low-energy-negative-group-RGB);
+
+  /* calm / grounded */
+  --emotion-calm-RGB: var(--emotion-calm-grounded-group-RGB);
+  --emotion-confident-RGB: var(--emotion-calm-grounded-group-RGB);
+  --emotion-interested-RGB: var(--emotion-calm-grounded-group-RGB);
+
+  /* no strong signal */
+  --emotion-neutral-RGB: var(--emotion-neutral-group-RGB);
+  --emotion-unknown-RGB: var(--emotion-neutral-group-RGB);
+}
+
