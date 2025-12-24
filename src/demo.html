@@ -88,7 +88,7 @@ block content %}
           <th class="speaker-time-column">Speaking time</th>
           <th class="perceived-gender-column">Perceived gender</th>
           <th class="perceived-age-column">Perceived age</th>
-          <th class="synthetic-human-column">Source</th>
+          <th class="synthetic-human-column">Origin</th>
           <th class="average-latency-column">Average latency</th>
           <th class="avg-speed-column">Avg. speed</th>
         </tr>
@@ -97,7 +97,10 @@ block content %}
         <tr>
           <td class="speaker-name-column">Customer</td>
           <td class="speaker-language-column">English, American accent</td>
-          <td class="speaker-time-column">59%</td>
+          <td class="speaker-time-column">
+            59%
+            <div class="speaker-time-bar" style="width: 100%"></div>
+          </td>
           <td>Male</td>
           <td>34</td>
           <td>Human</td>
@@ -110,7 +113,10 @@ block content %}
           <td class="speaker-language-column">
             English, Eastern European accent
           </td>
-          <td class="speaker-time-column">41%</td>
+          <td class="speaker-time-column">
+            41%
+            <div class="speaker-time-bar" style="width: 69.5%"></div>
+          </td>
           <td>Male</td>
           <td>41</td>
           <td>Synthetic</td>
@@ -125,65 +131,152 @@ block content %}
       <thead>
         <tr>
           <th class="speaker-name-column">Speaker</th>
-          <th class="behaviour-name-column">Behavior</th>
-          <th class="behaviour-desc-column">Description</th>
+          <th class="behaviour-column">Behavior</th>
           <th class="behaviour-confidence-column">Confidence</th>
-          <th class="behaviour-category-column">Category</th>
-          <th class="behaviour-models-column">Models</th>
           <th class="behaviour-clips-column">Clips</th>
+          <th class="behaviour-models-column">Models involved</th>
           <th class="behaviour-spider-column">Spider</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td class="speaker-name-column" rowspan="2">Customer</td>
+          <td class="speaker-name-column" rowspan="4">Customer</td>
 
-          <td class="behaviour-name-column">
-            <a href="#" class="detected-behaviour"
-              >{% include "assets/behaviour-icon-kiki.html" %} Sense of
-              Urgency</a
-            >
-          </td>
-          <td class="behaviour-desc-column"></td>
-          <td class="behaviour-confidence-column">88%</td>
-          <td class="behaviour-category-column"></td>
-          <td class="behaviour-models-column"></td>
-          <td class="behaviour-clips-column"></td>
-          <td class="behaviour-spider-column"></td>
-        </tr>
-        <tr>
-          <td class="behaviour-name-column">
+          <td class="behaviour-column">
             <a href="#" class="detected-behaviour"
               >{% include "assets/behaviour-icon-kiki.html" %} Return Fraud
               Attempt</a
             >
+            <p>Customer attempting fraudulent product return</p>
           </td>
-          <td class="behaviour-desc-column">
-            Customer attempting fraudulent product return
+          <td class="behaviour-confidence-column">89%</td>
+          <td class="behaviour-clips-column">
+            <div class="clip-text-sample">I can see it in the email!</div>
+            <div class="clip-text-sample">
+              Stop stalling and just give me the damn refund, I don't even want
+              the item now from you.
+            </div>
+            <div class="clip-text-sample">No, I don't have another house!</div>
           </td>
-          <td class="behaviour-confidence-column">86%</td>
-          <td class="behaviour-category-column"></td>
-          <td class="behaviour-models-column"></td>
-          <td class="behaviour-clips-column"></td>
+          <td class="behaviour-models-column">
+            Scripted Scenario, Bypassing Protocol
+          </td>
           <td class="behaviour-spider-column"></td>
         </tr>
-
         <tr>
-          <td class="speaker-name-column">Support specialist</td>
-
-          <td class="behaviour-name-column">
+          <td class="behaviour-column">
             <a href="#" class="detected-behaviour"
-              >{% include "assets/behaviour-icon-kiki.html" %} Synthetic
-              responses</a
+              >{% include "assets/behaviour-icon-kiki.html" %} Social
+              Engineering</a
             >
+            <p>
+              Attempts to manipulate, coerce, pressure, or otherwise force an
+              agent or support staff to do something against their interest.
+            </p>
           </td>
-          <td class="behaviour-desc-column">
-            Speaker appears to be an AI or automated system
+          <td class="behaviour-confidence-column">91%</td>
+          <td class="behaviour-clips-column">
+            <div class="clip-text-sample">Why not?</div>
+            <div class="clip-text-sample">
+              My order is missing, it's your job to make sure I get it.
+            </div>
+            <div class="clip-text-sample">
+              Alright, well listen, Robert, this package has been delayed again,
+              already, and it's very important to my business and health.
+            </div>
+            <div class="clip-text-sample">
+              I'm not getting off till I see the money in that account.
+            </div>
           </td>
-          <td class="behaviour-confidence-column">80%</td>
-          <td class="behaviour-category-column"></td>
+          <td class="behaviour-models-column">
+            Social Pressure and Manipulation
+          </td>
+          <td class="behaviour-spider-column"></td>
+        </tr>
+        <tr>
+          <td class="behaviour-column">
+            <a href="#" class="detected-behaviour"
+              >{% include "assets/behaviour-icon-buba.html" %} Active
+              Listening</a
+            >
+            <p>Demonstrating engaged attention and understanding</p>
+          </td>
+          <td class="behaviour-confidence-column">82%</td>
+          <td class="behaviour-clips-column">
+            <div class="clip-text-sample">
+              My order is missing, it's your job to make sure I get it.
+            </div>
+            <div class="clip-text-sample">
+              Alright, well listen, Robert, this package has been delayed again,
+              already, and it's very important to my business and health.
+            </div>
+          </td>
           <td class="behaviour-models-column"></td>
-          <td class="behaviour-clips-column"></td>
+          <td class="behaviour-spider-column"></td>
+        </tr>
+        <tr>
+          <td class="behaviour-column">
+            <a href="#" class="detected-behaviour"
+              >{% include "assets/behaviour-icon-buba.html" %} Respectful
+              Interaction</a
+            >
+            <p>Maintaining professional courtesy and respect</p>
+          </td>
+          <td class="behaviour-confidence-column">75%</td>
+          <td class="behaviour-clips-column">
+            <div class="clip-text-sample">
+              Alright, well listen, Robert, this package has been delayed again,
+              already, and it's very important to my business and health.
+            </div>
+          </td>
+          <td class="behaviour-models-column">
+            Response Timing Analysis, Interruption, Speech Pattern Analyzer
+          </td>
+          <td class="behaviour-spider-column"></td>
+        </tr>
+        <tr>
+          <td class="speaker-name-column" rowspan="2">Support specialist</td>
+
+          <td class="behaviour-column">
+            <a href="#" class="detected-behaviour"
+              >{% include "assets/behaviour-icon-kiki.html" %} Missed Question
+              or Vague Answer</a
+            >
+            <p>Representative or Agent fails to address prospect's question</p>
+          </td>
+          <td class="behaviour-confidence-column">85%</td>
+          <td class="behaviour-clips-column">
+            <div class="clip-text-sample">
+              I can't answer that, sir, I'm sorry.
+            </div>
+            <div class="clip-text-sample">
+              I'm sorry, sir, it's against our policy to give away personal
+              information over the phone.
+            </div>
+            <div class="clip-text-sample">
+              I'm sorry, sir, but it's against our policy to deliver personal
+              information over the phone.
+            </div>
+          </td>
+          <td class="behaviour-models-column">Speech Pattern Analyzer</td>
+          <td class="behaviour-spider-column"></td>
+        </tr>
+        <tr>
+          <td class="behaviour-column">
+            <a href="#" class="detected-behaviour"
+              >{% include "assets/behaviour-icon-buba.html" %} Empathetic
+              Responding</a
+            >
+            <p>Showing understanding and concern for others' perspectives</p>
+          </td>
+          <td class="behaviour-confidence-column">78%</td>
+          <td class="behaviour-clips-column">
+            <div class="clip-text-sample">
+              I'm sorry, sir, it's against our policy to give away personal
+              information over the phone.
+            </div>
+          </td>
+          <td class="behaviour-models-column"></td>
           <td class="behaviour-spider-column"></td>
         </tr>
       </tbody>
@@ -223,11 +316,9 @@ block content %}
         </tr>
       </tbody>
     </table>
-
-    <div class="ids__space XL"></div>
-    <div class="ids__space XL"></div>
   </div>
   <div class="transcript-container">
+    <h2>Transcript</h2>
     {% include "components/transcript-clips.html" %}
     <div class="ids__space M"></div>
   </div>
