@@ -47,7 +47,7 @@
       & .behaviour-clips-column {
         display: none;
       }
-      & .behaviour-spider-column {
+      & td.behaviour-spider-column {
         width: 10em;
         padding: 0 2em 1em 0;
 
