@@ -17,51 +17,25 @@
       }
     }
 
-    & tr {
-      & td {
+    & td:not(.behaviour-name-column) {
+      font-size: 0.8em;
+    }
+
+    & .speaker-name-column {
+      width: 10em;
+    }
+
+    &.speech-summary {
+    }
+
+    &.behaviours-summary {
+      & .behaviour-name-column {
+        width: 12em;
         padding-bottom: 0.5em;
-        padding-right: 0.3em;
-        vertical-align: top;
       }
     }
 
-    & p {
-      margin-bottom: 0.2em;
-    }
-  }
-
-  &.speech-summary {
-    & .speaker-name-column {
-      /* width: 28%; */
-    }
-
-    & .speaker-info-column {
-      /* width: 33%; */
-    }
-
-    & .behaviours-column {
-      /* width: 39%; */
-      /* padding-right: 0; */
-    }
-  }
-
-  &.behaviours-summary {
-    & .behaviour-name-column {
-      /* width: 28%; */
-    }
-
-    & .behaviour-desc-column {
-      /* width: 33%; */
-    }
-  }
-
-  &.emotions-summary {
-    & .speaker-fingerprint-wrapper {
-      width: 100%;
-    }
-
-    & .speaker-fingerprint {
-      width: 100%;
+    &.emotions-summary {
     }
   }
 

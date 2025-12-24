@@ -78,16 +78,17 @@ block content %}
       Customer disputed a missing delivery and requested a refund. Support
       specialist initially refused but eventually processed both refund and
       credit after confirming a delivery error.
+      <a class="more-details-link" href="#">Transcript →</a>
     </p>
     <table class="summary-table speech-summary">
       <thead>
         <tr>
-          <th class="speaker-name-column">Speakers</th>
+          <th class="speaker-name-column">Speaker</th>
           <th class="speaker-language-column">Language</th>
-          <th class="speaker-info-column">Speaking time</th>
+          <th class="speaker-time-column">Speaking time</th>
           <th class="perceived-gender-column">Perceived gender</th>
           <th class="perceived-age-column">Perceived age</th>
-          <th class="synthetic-human-column">Synthetic/human</th>
+          <th class="synthetic-human-column">Source</th>
           <th class="average-latency-column">Average latency</th>
           <th class="avg-speed-column">Avg. speed</th>
         </tr>
@@ -96,11 +97,12 @@ block content %}
         <tr>
           <td class="speaker-name-column">Customer</td>
           <td class="speaker-language-column">English, American accent</td>
-          <td class="speaker-info-column">
-            <div class="speaker-time-info">
-              <div class="speaker-time-percent">59%</div>
-            </div>
-          </td>
+          <td class="speaker-time-column">59%</td>
+          <td>Male</td>
+          <td>34</td>
+          <td>Human</td>
+          <td>?</td>
+          <td>?</td>
         </tr>
 
         <tr>
@@ -108,23 +110,25 @@ block content %}
           <td class="speaker-language-column">
             English, Eastern European accent
           </td>
-          <td class="speaker-info-column">
-            <div class="speaker-time-info">
-              <div class="speaker-time-percent">41%</div>
-            </div>
-          </td>
+          <td class="speaker-time-column">41%</td>
+          <td>Male</td>
+          <td>41</td>
+          <td>Synthetic</td>
+          <td>?</td>
+          <td>?</td>
         </tr>
       </tbody>
     </table>
     <p></p>
     <h2>Behaviors</h2>
-    <table class="summary-table">
+    <table class="summary-table behaviours-summary">
       <thead>
         <tr>
-          <th class="behaviour-name-column">Name</th>
+          <th class="speaker-name-column">Speaker</th>
+          <th class="behaviour-name-column">Behavior</th>
           <th class="behaviour-desc-column">Description</th>
-          <th class="behaviour-category-column">Category</th>
           <th class="behaviour-confidence-column">Confidence</th>
+          <th class="behaviour-category-column">Category</th>
           <th class="behaviour-models-column">Models</th>
           <th class="behaviour-clips-column">Clips</th>
           <th class="behaviour-spider-column">Spider</th>
@@ -132,38 +136,55 @@ block content %}
       </thead>
       <tbody>
         <tr>
-          <td class="speaker-name-column">Customer</td>
+          <td class="speaker-name-column" rowspan="2">Customer</td>
 
-          <td class="behaviours-column">
-            <p>
-              <a href="#" class="detected-behaviour"
-                >{% include "assets/behaviour-icon-kiki.html" %} Sense of
-                Urgency</a
-              >
-              <span class="caption">88%</span>
-            </p>
-            <p>
-              <a href="#" class="detected-behaviour"
-                >{% include "assets/behaviour-icon-kiki.html" %} Return Fraud
-                Attempt</a
-              >
-              <span class="caption">86%</span>
-            </p>
+          <td class="behaviour-name-column">
+            <a href="#" class="detected-behaviour"
+              >{% include "assets/behaviour-icon-kiki.html" %} Sense of
+              Urgency</a
+            >
           </td>
+          <td class="behaviour-desc-column"></td>
+          <td class="behaviour-confidence-column">88%</td>
+          <td class="behaviour-category-column"></td>
+          <td class="behaviour-models-column"></td>
+          <td class="behaviour-clips-column"></td>
+          <td class="behaviour-spider-column"></td>
+        </tr>
+        <tr>
+          <td class="behaviour-name-column">
+            <a href="#" class="detected-behaviour"
+              >{% include "assets/behaviour-icon-kiki.html" %} Return Fraud
+              Attempt</a
+            >
+          </td>
+          <td class="behaviour-desc-column">
+            Customer attempting fraudulent product return
+          </td>
+          <td class="behaviour-confidence-column">86%</td>
+          <td class="behaviour-category-column"></td>
+          <td class="behaviour-models-column"></td>
+          <td class="behaviour-clips-column"></td>
+          <td class="behaviour-spider-column"></td>
         </tr>
 
         <tr>
           <td class="speaker-name-column">Support specialist</td>
 
-          <td class="behaviours-column">
-            <p>
-              <a href="#" class="detected-behaviour"
-                >{% include "assets/behaviour-icon-kiki.html" %} Common GenAI
-                Failure Patterns</a
-              >
-              <span class="caption">80%</span>
-            </p>
+          <td class="behaviour-name-column">
+            <a href="#" class="detected-behaviour"
+              >{% include "assets/behaviour-icon-kiki.html" %} Synthetic
+              responses</a
+            >
           </td>
+          <td class="behaviour-desc-column">
+            Speaker appears to be an AI or automated system
+          </td>
+          <td class="behaviour-confidence-column">80%</td>
+          <td class="behaviour-category-column"></td>
+          <td class="behaviour-models-column"></td>
+          <td class="behaviour-clips-column"></td>
+          <td class="behaviour-spider-column"></td>
         </tr>
       </tbody>
     </table>
@@ -171,9 +192,9 @@ block content %}
     <table class="summary-table emotions-summary">
       <thead>
         <tr>
-          <th class="speaker-name-column">Speakers</th>
-          <th class="speaker-emotions-graph-column">Emotions graph</th>
-          <th class="speaker-emotions-list-column">Emotions list</th>
+          <th class="speaker-name-column">Speaker</th>
+          <th class="speaker-emotions-graph-column">Emotion pattern</th>
+          <th class="speaker-emotions-list-column">Detected emotions</th>
         </tr>
       </thead>
       <tbody>
