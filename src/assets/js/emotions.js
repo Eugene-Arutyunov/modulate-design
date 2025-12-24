@@ -65,7 +65,9 @@ export function updateEmotionCaption(clip, captionSelector = '.emotion-caption')
 
 // Update fingerprint emotion caption on hover
 export function updateFingerprintEmotionCaption(clip, speakerIndex) {
-  const emotionCaption = document.querySelector(`.fingerprint-emotion-caption[data-speaker-index="${speakerIndex}"]`);
+  const emotionsTable = document.querySelector('.emotions-summary');
+  if (!emotionsTable) return;
+  const emotionCaption = emotionsTable.querySelector(`.fingerprint-emotion-caption[data-speaker-index="${speakerIndex}"]`);
   if (!emotionCaption) return;
   
   // Extract emotion name from class (e.g., "emotion-angry" -> "angry")
@@ -85,21 +87,20 @@ export function updateFingerprintEmotionCaption(clip, speakerIndex) {
   if (colorValue) {
     emotionCaption.style.color = `rgba(${colorValue}, 1)`;
   }
+  
+  // Show instantly (no transition)
+  emotionCaption.classList.add('visible');
 }
 
-// Fade out fingerprint emotion caption when leaving fingerprint area
+// Fade out fingerprint emotion caption when leaving fingerprint area (with transition)
 export function fadeOutFingerprintEmotionCaption(speakerIndex) {
-  const emotionCaption = document.querySelector(`.fingerprint-emotion-caption[data-speaker-index="${speakerIndex}"]`);
+  const emotionsTable = document.querySelector('.emotions-summary');
+  if (!emotionsTable) return;
+  const emotionCaption = emotionsTable.querySelector(`.fingerprint-emotion-caption[data-speaker-index="${speakerIndex}"]`);
   if (!emotionCaption) return;
   
-  // Restore language/accent text from data attribute
-  const language = emotionCaption.getAttribute('data-language');
-  if (language) {
-    emotionCaption.textContent = language;
-  }
-  
-  // Reset color to default text color
-  emotionCaption.style.color = '';
+  // Remove visible class to trigger fade out transition
+  emotionCaption.classList.remove('visible');
 }
 
 // Fade out emotion caption when leaving visualization area (with transition)

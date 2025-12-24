@@ -2,7 +2,7 @@ import { getClipStartTime, parseClipDuration } from './utils.js';
 import { getCurrentClipIndex } from './clip-metadata.js';
 import { updatePlayingClip } from './clip-metadata.js';
 import { scrollToClipCenter } from './utils.js';
-import { getEmotionGroupPriority, updateFingerprintEmotionCaption, fadeOutFingerprintEmotionCaption } from './emotions.js';
+import { updateFingerprintEmotionCaption, fadeOutFingerprintEmotionCaption } from './emotions.js';
 
 // Sync hover for speaker-fingerprint clips with all other visualizations
 function syncFingerprintHover(fingerprintClip, isHovering, clipMap) {
@@ -98,16 +98,16 @@ export function initSpeakerFingerprints(sound, clipMap, clipMetadata, updatePlay
     speakerTotalDurations.set(speakerIndex, totalDuration);
   });
   
-  // Find maximum total duration for scaling
-  const maxTotalDuration = Math.max(...Array.from(speakerTotalDurations.values()));
-  if (maxTotalDuration === 0) return;
+  // Find emotions summary table
+  const emotionsTable = document.querySelector('.emotions-summary');
+  if (!emotionsTable) return;
   
-  // Create fingerprint visualizations for each speaker
+  // Create fingerprint visualizations for each speaker (only in emotions table)
   clipsBySpeaker.forEach((clips, speakerIndex) => {
-    const fingerprintContainer = document.querySelector(`.speaker-fingerprint[data-speaker-index="${speakerIndex}"]`);
+    const fingerprintContainer = emotionsTable.querySelector(`.speaker-fingerprint[data-speaker-index="${speakerIndex}"]`);
     if (!fingerprintContainer) return;
     
-    // Get wrapper and parent td to calculate base width
+    // Get wrapper and parent td
     const wrapper = fingerprintContainer.closest('.speaker-fingerprint-wrapper');
     if (!wrapper) return;
     const parentTd = wrapper.closest('td');
@@ -116,27 +116,15 @@ export function initSpeakerFingerprints(sound, clipMap, clipMetadata, updatePlay
     // Calculate speaker's total duration
     const speakerTotalDuration = clips.reduce((sum, clip) => sum + clip.duration, 0);
     
-    // Calculate actual width based on speaker's percentage of max duration
-    // Base width is 70% of parent td, scale it by speaker's percentage
-    const parentTdWidth = parentTd.getBoundingClientRect().width;
-    const baseWidthPercent = 70; // Base width percentage
-    const baseWidth = (parentTdWidth / 100) * baseWidthPercent;
-    const actualWidth = baseWidth * (speakerTotalDuration / maxTotalDuration);
-    fingerprintContainer.style.width = `${actualWidth}px`;
+    // Set width to 100% of parent td
+    fingerprintContainer.style.width = '100%';
     
     // Clear existing content
     fingerprintContainer.innerHTML = '';
     
-    // Sort clips first by emotion group, then by their original order (clipIndex)
+    // Sort clips only by their original order (clipIndex) - transcript order
     clips.sort((a, b) => {
-      const groupA = getEmotionGroupPriority(a.emotionClass);
-      const groupB = getEmotionGroupPriority(b.emotionClass);
-      
-      if (groupA !== groupB) {
-        return groupA - groupB; // Sort by group first
-      }
-      
-      return parseInt(a.clipIndex) - parseInt(b.clipIndex); // Then by clipIndex
+      return parseInt(a.clipIndex) - parseInt(b.clipIndex);
     });
     
     // Create clip rectangles
@@ -195,16 +183,7 @@ export function initSpeakerFingerprints(sound, clipMap, clipMetadata, updatePlay
       fingerprintContainer.appendChild(clipRect);
     });
     
-    // Initialize fingerprint emotion caption with language/accent text
-    const emotionCaption = document.querySelector(`.fingerprint-emotion-caption[data-speaker-index="${speakerIndex}"]`);
-    if (emotionCaption) {
-      const language = emotionCaption.getAttribute('data-language');
-      if (language) {
-        emotionCaption.textContent = language;
-      }
-    }
-    
-    // Add mouseleave handler to fingerprint wrapper to hide caption when leaving fingerprint area
+    // Add mouseleave handler to fingerprint wrapper to fade out caption when leaving fingerprint area
     const fingerprintWrapper = fingerprintContainer.closest('.speaker-fingerprint-wrapper');
     if (fingerprintWrapper) {
       fingerprintWrapper.addEventListener('mouseleave', function() {
