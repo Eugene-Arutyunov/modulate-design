@@ -12,7 +12,6 @@ import { scrollToClipCenter } from './utils.js';
 import { initClickableTableRows, initTableFingerprints } from './demo-recordings-table.js';
 import { initFingerprintVisualization } from './fingerprint-visualization.js';
 import { initUploadForm, initUploadAreaStateSwitcher } from './upload-form.js';
-import { initModelItemsHover } from './models.js';
 import { initEmotionsList } from './emotions-list.js';
 
 // Initialize when DOM is ready
@@ -24,7 +23,6 @@ function init() {
   initTableFingerprints();
   initUploadForm();
   initUploadAreaStateSwitcher();
-  initModelItemsHover();
   initEmotionsList();
   const audioPlayerResult = initAudioPlayer();
   

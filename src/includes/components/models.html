@@ -1,178 +1,140 @@
-<div class="models-area ids__rounded">
-  <h2>Ensemble Listening Models</h2>
-
-  <div class="orchestration-layer">
-    <div class="orchestration-layer-caption">Orchestration layer</div>
-    <div class="orchestration-router"></div>
-  </div>
-
-  <div class="models-container">
-    <div class="model-item">
-      <p>Interruption</p>
-      <div class="model-caption">Analyzing</div>
-      <p class="model-description">
-        Identifies when speakers interrupt each other
-      </p>
-    </div>
-
-    <div class="model-item">
-      <p>Synthetic Voice</p>
-      <div class="model-caption">-</div>
-      <p class="model-description">
-        Identifies artificially generated or synthetic voices
-      </p>
-    </div>
-
-    <div class="model-item">
-      <p>Response Timing</p>
-      <div class="model-caption">-</div>
-      <p class="model-description">Analyzes response latency patterns</p>
-    </div>
-
-    <div class="model-item">
-      <p>Topic Coherence</p>
-      <div class="model-caption">-</div>
-      <p class="model-description">
-        Measures how well conversation stays on topic
-      </p>
-    </div>
-
-    <div class="model-item">
-      <p>Relevance</p>
-      <div class="model-caption">-</div>
-      <p class="model-description">
-        Scores relevance of discussion to main topic
-      </p>
-    </div>
-
-    <div class="model-item">
-      <p>Prompt Injection</p>
-      <div class="model-caption">-</div>
-      <p class="model-description">
-        Identifies attempts at prompt injection attacks
-      </p>
-    </div>
-
-    <div class="model-item">
-      <p>Sexual Content</p>
-      <div class="model-caption">-</div>
-      <p class="model-description">Identifies sexual content or innuendo</p>
-    </div>
-
-    <div class="model-item">
-      <p>Social Pressure</p>
-      <div class="model-caption">-</div>
-      <p class="model-description">
-        Detects social pressure tactics and manipulation attempts
-      </p>
-    </div>
-
-    <div class="model-item">
-      <p>Sexual Harassment</p>
-      <div class="model-caption">-</div>
-      <p class="model-description">
-        Identifies sexual harassment and inappropriate advances
-      </p>
-    </div>
-
-    <div class="model-item">
-      <p>Bullying</p>
-      <div class="model-caption">-</div>
-      <p class="model-description">
-        Detects bullying behaviors and intimidation tactics
-      </p>
-    </div>
-
-    <div class="model-item">
-      <p>Hatespeech</p>
-      <div class="model-caption">-</div>
-      <p class="model-description">
-        Identifies hate speech and extremist language
-      </p>
-    </div>
-
-    <div class="model-item">
-      <p>Violent Content</p>
-      <div class="model-caption">-</div>
-      <p class="model-description">
-        Detects threats and discussions of violence
-      </p>
-    </div>
-
-    <div class="model-item">
-      <p>Radicalization</p>
-      <div class="model-caption">-</div>
-      <p class="model-description">
-        Identifies radicalization attempts and extremist recruitment
-      </p>
-    </div>
-
-    <div class="model-item">
-      <p>Child Safety</p>
-      <div class="model-caption">-</div>
-      <p class="model-description">
-        Detects content harmful to children or grooming attempts
-      </p>
-    </div>
-
-    <div class="model-item">
-      <p>Next Steps Agreement</p>
-      <div class="model-caption">-</div>
-      <p class="model-description">
-        Identifies agreements on next actions or follow-ups
-      </p>
-    </div>
-
-    <div class="model-item">
-      <p>Bypassing Protocol</p>
-      <div class="model-caption">-</div>
-      <p class="model-description">
-        Detects attempts to circumvent established procedures
-      </p>
-    </div>
-
-    <div class="model-item">
-      <p>Vishing/Phishing</p>
-      <div class="model-caption">-</div>
-      <p class="model-description">
-        Identifies voice phishing and social engineering attempts
-      </p>
-    </div>
-
-    <div class="model-item">
-      <p>Scripted Scenario</p>
-      <div class="model-caption">-</div>
-      <p class="model-description">
-        Detects pre-scripted or rehearsed conversations
-      </p>
-    </div>
-
-    <div class="model-item">
-      <p>Audio Assault</p>
-      <div class="model-caption">-</div>
-      <p class="model-description">
-        Identifies harmful audio patterns or sonic attacks
-      </p>
-    </div>
-    <div class="model-item">
-      <p>Emotions</p>
-      <div class="model-caption">-</div>
-      <p class="model-description">
-        Detects emotional states and sentiment in speech patterns
-      </p>
-    </div>
-    <div class="model-item">
-      <p>Transcription</p>
-      <div class="model-caption">-</div>
-      <p class="model-description">
-        Converts audio speech into accurate text transcripts
-      </p>
-    </div>
-  </div>
-  <div class="status-bar">
-    <p class="status-bar-caption">
-      <strong></strong>
-      <span></span>
+<div class="models-container">
+  <div class="model-item triggered">
+    <h4>Interruption</h4>
+    <p class="model-description">
+      Identifies when speakers interrupt each other
     </p>
   </div>
+
+  <div class="model-item triggered">
+    <h4>Response Timing</h4>
+    <p class="model-description">Analyzes response latency patterns</p>
+  </div>
+
+  <div class="model-item triggered">
+    <h4>Social Pressure</h4>
+    <p class="model-description">
+      Detects social pressure tactics and manipulation attempts
+    </p>
+  </div>
+
+  <div class="model-item triggered">
+    <h4>Bypassing Protocol</h4>
+    <p class="model-description">
+      Detects attempts to circumvent established procedures
+    </p>
+  </div>
+
+  <div class="model-item triggered">
+    <h4>Scripted Scenario</h4>
+    <p class="model-description">
+      Detects pre-scripted or rehearsed conversations
+    </p>
+  </div>
+
+  <div class="model-item">
+    <h4>Synthetic Voice</h4>
+    <p class="model-description">
+      Identifies artificially generated or synthetic voices
+    </p>
+  </div>
+
+  <div class="model-item">
+    <h4>Topic Coherence</h4>
+    <p class="model-description">
+      Measures how well conversation stays on topic
+    </p>
+  </div>
+
+  <div class="model-item">
+    <h4>Relevance</h4>
+    <p class="model-description">
+      Scores relevance of discussion to main topic
+    </p>
+  </div>
+
+  <div class="model-item">
+    <h4>Prompt Injection</h4>
+    <p class="model-description">
+      Identifies attempts at prompt injection attacks
+    </p>
+  </div>
+
+  <div class="model-item">
+    <h4>Sexual Content</h4>
+    <p class="model-description">Identifies sexual content or innuendo</p>
+  </div>
+
+  <div class="model-item">
+    <h4>Sexual Harassment</h4>
+    <p class="model-description">
+      Identifies sexual harassment and inappropriate advances
+    </p>
+  </div>
+
+  <div class="model-item">
+    <h4>Bullying</h4>
+    <p class="model-description">
+      Detects bullying behaviors and intimidation tactics
+    </p>
+  </div>
+
+  <div class="model-item">
+    <h4>Hatespeech</h4>
+    <p class="model-description">
+      Identifies hate speech and extremist language
+    </p>
+  </div>
+
+  <div class="model-item">
+    <h4>Violent Content</h4>
+    <p class="model-description">Detects threats and discussions of violence</p>
+  </div>
+
+  <div class="model-item">
+    <h4>Radicalization</h4>
+    <p class="model-description">
+      Identifies radicalization attempts and extremist recruitment
+    </p>
+  </div>
+
+  <div class="model-item">
+    <h4>Child Safety</h4>
+    <p class="model-description">
+      Detects content harmful to children or grooming attempts
+    </p>
+  </div>
+
+  <div class="model-item">
+    <h4>Next Steps Agreement</h4>
+    <p class="model-description">
+      Identifies agreements on next actions or follow-ups
+    </p>
+  </div>
+
+  <div class="model-item">
+    <h4>Vishing/Phishing</h4>
+    <p class="model-description">
+      Identifies voice phishing and social engineering attempts
+    </p>
+  </div>
+
+  <div class="model-item">
+    <h4>Audio Assault</h4>
+    <p class="model-description">
+      Identifies harmful audio patterns or sonic attacks
+    </p>
+  </div>
+  <!-- <div class="model-item">
+    <h4>Emotions</h4>
+    <p class="model-description">
+      Detects emotional states and sentiment in speech patterns
+    </p>
+  </div>
+  <div class="model-item">
+    <h4>Transcription</h4>
+    <p class="model-description">
+      Converts audio speech into accurate text transcripts
+    </p>
+  </div> -->
 </div>
