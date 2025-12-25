@@ -77,7 +77,6 @@ block content %}
       Customer disputed a missing delivery and requested a refund. Support
       specialist initially refused but eventually processed both refund and
       credit after confirming a delivery error.
-      <a class="more-details-link" href="#">Transcript →</a>
     </p>
     <table class="summary-table speech-summary">
       <thead>
@@ -88,8 +87,6 @@ block content %}
           <th class="perceived-gender-column">Perceived gender</th>
           <th class="perceived-age-column">Perceived age</th>
           <th class="synthetic-human-column">Origin</th>
-          <th class="average-latency-column">Average latency</th>
-          <th class="avg-speed-column">Average speed</th>
         </tr>
       </thead>
       <tbody>
@@ -100,8 +97,6 @@ block content %}
           <td>Male</td>
           <td>Adult</td>
           <td>Human</td>
-          <td>?</td>
-          <td>?</td>
         </tr>
 
         <tr>
@@ -113,12 +108,48 @@ block content %}
           <td>Male</td>
           <td>Adult</td>
           <td>Synthetic</td>
-          <td>?</td>
-          <td>?</td>
         </tr>
       </tbody>
     </table>
-    <p></p>
+
+    <h2>Emotions</h2>
+    <table class="summary-table emotions-summary">
+      <thead>
+        <tr>
+          <th class="speaker-name-column">Speaker</th>
+          <th class="speaker-emotions-graph-column">Emotion pattern</th>
+          <th class="speaker-emotions-list-column">Detected emotions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="speaker-name-column">Customer</td>
+          <td class="speaker-emotions-graph-column">
+            <div class="speaker-fingerprint-wrapper">
+              <div class="speaker-fingerprint" data-speaker-index="1"></div>
+            </div>
+            <div
+              class="fingerprint-emotion-caption"
+              data-speaker-index="1"></div>
+          </td>
+          <td class="speaker-emotions-list-column"></td>
+        </tr>
+
+        <tr>
+          <td class="speaker-name-column">Support specialist</td>
+          <td class="speaker-emotions-graph-column">
+            <div class="speaker-fingerprint-wrapper">
+              <div class="speaker-fingerprint" data-speaker-index="2"></div>
+            </div>
+            <div
+              class="fingerprint-emotion-caption"
+              data-speaker-index="2"></div>
+          </td>
+          <td class="speaker-emotions-list-column"></td>
+        </tr>
+      </tbody>
+    </table>
+
     <h2>Behaviors</h2>
     <table class="summary-table behaviours-summary">
       <thead>
@@ -286,47 +317,10 @@ block content %}
         </tr>
       </tbody>
     </table>
-    <h2>Emotions</h2>
-    <table class="summary-table emotions-summary">
-      <thead>
-        <tr>
-          <th class="speaker-name-column">Speaker</th>
-          <th class="speaker-emotions-graph-column">Emotion pattern</th>
-          <th class="speaker-emotions-list-column">Detected emotions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="speaker-name-column">Customer</td>
-          <td class="speaker-emotions-graph-column">
-            <div class="speaker-fingerprint-wrapper">
-              <div class="speaker-fingerprint" data-speaker-index="1"></div>
-            </div>
-            <div
-              class="fingerprint-emotion-caption"
-              data-speaker-index="1"></div>
-          </td>
-          <td class="speaker-emotions-list-column"></td>
-        </tr>
-
-        <tr>
-          <td class="speaker-name-column">Support specialist</td>
-          <td class="speaker-emotions-graph-column">
-            <div class="speaker-fingerprint-wrapper">
-              <div class="speaker-fingerprint" data-speaker-index="2"></div>
-            </div>
-            <div
-              class="fingerprint-emotion-caption"
-              data-speaker-index="2"></div>
-          </td>
-          <td class="speaker-emotions-list-column"></td>
-        </tr>
-      </tbody>
-    </table>
   </div>
-  <h2>Triggered Models</h2>
-  {% include "components/models.html" %}
-  <div class="ids__space XL"></div>
+  <!-- <h2>Triggered Models</h2>
+  {% include "components/models.html" %} -->
+
   <div class="transcript-container">
     <h2>Transcript</h2>
     {% include "components/transcript-clips.html" %}

@@ -30,9 +30,6 @@
       position: relative;
     }
 
-    &.speech-summary {
-    }
-
     &.behaviours-summary {
       & .behaviour-column {
         width: 16em;
@@ -44,7 +41,8 @@
         }
       }
 
-      & .behaviour-clips-column {
+      & .behaviour-clips-column,
+      & .behaviour-models-column {
         display: none;
       }
       & td.behaviour-spider-column {
