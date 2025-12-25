@@ -15,7 +15,75 @@ Each transcript clip can contain one or more behaviours.
 - `.behaviour` — element containing the detected behaviour name
 - `.evidence` class on a clip indicates it contains detected behaviours
 - `data-seek-time` — clip start time for navigation and playback
-- `data-behaviour-type` — type of behaviour (`kiki` or `buba`)
+- `data-behaviour-type` — type of behaviour (currently `kiki` is used for all behaviours; see "Icon System" section below)
+
+## Icon System
+
+The system uses visual icons to represent different behaviour types. Each behaviour type has a corresponding icon that appears in transcript clips, summary tables, and visualizations.
+
+### Current Status
+
+**Temporary:** Currently, all behaviours use the `kiki` icon. The icon system infrastructure remains in place to support multiple icon types in the future.
+
+### Icon Types
+
+The system supports multiple icon types:
+
+- **`kiki`** — Currently used for all behaviours
+- **`buba`** — Available but not currently in use
+
+### Icon Files
+
+Icons are stored as SVG includes in `src/includes/assets/`:
+
+- `behaviour-icon-kiki.html` — Kiki icon SVG
+- `behaviour-icon-buba.html` — Buba icon SVG
+
+Each icon file contains:
+
+- SVG element with classes `behaviour-icon` and `behaviour-icon--{type}`
+- Outline path with class `behaviour-icon__outline` and id `{type}-outline-form` (or `{type}-outline`)
+- Shape element (polygon, ellipse, etc.) with class `behaviour-icon__shape` and id `{type}-shape`
+
+### Adding a New Icon Type
+
+To add a new icon type in the future:
+
+1. **Create the icon file:**
+
+   - Create `src/includes/assets/behaviour-icon-{name}.html`
+   - Follow the structure of existing icons:
+     - SVG with `viewBox="0 0 241.8 241.8"`
+     - Classes: `behaviour-icon behaviour-icon--{name}`
+     - Outline path with id `{name}-outline-form` (or `{name}-outline`)
+     - Shape element with id `{name}-shape`
+
+2. **Update JavaScript fallback:**
+
+   - In `src/assets/js/transcript-visualization-core.js`, add a new `else if` branch in the icon creation fallback (around line 132)
+   - Copy the structure from existing icon types (kiki/buba)
+
+3. **Update CSS (if needed):**
+
+   - Add styles for `.behaviour-icon--{name}` in relevant CSS files if the new icon needs special styling
+   - Check `src/styles/components/transcript.css` and `src/styles/summary.css` for icon-specific styles
+
+4. **Use in HTML:**
+
+   - In `demo.html` and `transcript-clips.html`, use `{% include "assets/behaviour-icon-{name}.html" %}`
+   - Set `data-behaviour-type="{name}"` on `.behaviour` elements
+
+5. **Update documentation:**
+   - Add the new icon type to this section
+   - Update any references to icon types in the documentation
+
+### Icon Usage Locations
+
+Icons appear in three main locations:
+
+1. **Summary Table** (`demo.html`): Inside `.detected-behaviour` links
+2. **Transcript Clips** (`transcript-clips.html`): Inside `.behaviour` elements within `.clip-caption`
+3. **Player Visualization**: Dynamically created indicators in `.behaviour-indicators` layer
 
 ## Display
 
@@ -47,7 +115,7 @@ Behaviours are displayed as icon indicators in a separate layer (`.behaviour-ind
 - `data-clip-width` — clip width percentage
 - `data-clip-index` — clip index for hover synchronization
 - `data-behaviour-index` — index within clip (1, 2, 3) for vertical stacking
-- `data-behaviour-type` — behaviour type (`kiki` or `buba`)
+- `data-behaviour-type` — behaviour type (currently `kiki` is used for all behaviours; see "Icon System" section below)
 - `data-emotion` — clip emotion for potential future use
 - `data-speaker-index` — speaker index for vertical positioning
 
