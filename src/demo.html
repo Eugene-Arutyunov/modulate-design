@@ -156,8 +156,8 @@ block content %}
         <tr>
           <th class="speaker-name-column">Speaker</th>
           <th class="behaviour-column">Behavior</th>
-          <th class="behaviour-spider-column">Parameters</th>
           <th class="behaviour-confidence-column">Confidence</th>
+          <th class="behaviour-spider-column">How we detect</th>
           <th class="behaviour-clips-column">Clips</th>
           <th class="behaviour-models-column">Models used</th>
         </tr>
@@ -172,11 +172,33 @@ block content %}
               Attempt</a
             >
             <p>Customer attempting fraudulent product return</p>
-          </td>
-          <td class="behaviour-spider-column">
-            {% include "assets/spider-1.html" %}
+            <p>Confidence: 89%</p>
           </td>
           <td class="behaviour-confidence-column">89%</td>
+          <td class="behaviour-spider-column">
+            <div class="spider-graph-wrapper">
+              <div class="spider-graph emotion timing volume">
+                <div class="spider-graph-captions">
+                  <div class="spider-graph-caption acoustic">Acoustic</div>
+                  <div class="spider-graph-caption emotion">Emotion</div>
+                  <div class="spider-graph-caption timing">Timing</div>
+                </div>
+                {% include "assets/spider.html" %}
+                <div class="spider-graph-captions">
+                  <div class="spider-graph-caption volume">Volume</div>
+                  <div class="spider-graph-caption timbre">Timbre</div>
+                  <div class="spider-graph-caption text">Text</div>
+                </div>
+              </div>
+              <div class="spider-text">
+                <p>
+                  To detect return fraud attempts, we mostly rely on emotion
+                  group, timing and volume is also essential.
+                </p>
+              </div>
+            </div>
+          </td>
+
           <td class="behaviour-clips-column">
             <div class="clip-text-sample">I can see it in the email!</div>
             <div class="clip-text-sample">
@@ -199,11 +221,10 @@ block content %}
               Attempts to manipulate, coerce, pressure, or otherwise force an
               agent or support staff to do something against their interest.
             </p>
-          </td>
-          <td class="behaviour-spider-column">
-            {% include "assets/spider-2.html" %}
+            <p>Confidence: 91%</p>
           </td>
           <td class="behaviour-confidence-column">91%</td>
+          <td class="behaviour-spider-column"></td>
           <td class="behaviour-clips-column">
             <div class="clip-text-sample">Why not?</div>
             <div class="clip-text-sample">
@@ -228,11 +249,10 @@ block content %}
               Listening</a
             >
             <p>Demonstrating engaged attention and understanding</p>
-          </td>
-          <td class="behaviour-spider-column">
-            {% include "assets/spider-3.html" %}
+            <p>Confidence: 82%</p>
           </td>
           <td class="behaviour-confidence-column">82%</td>
+          <td class="behaviour-spider-column"></td>
           <td class="behaviour-clips-column">
             <div class="clip-text-sample">
               My order is missing, it's your job to make sure I get it.
@@ -251,11 +271,10 @@ block content %}
               Interaction</a
             >
             <p>Maintaining professional courtesy and respect</p>
-          </td>
-          <td class="behaviour-spider-column">
-            {% include "assets/spider-4.html" %}
+            <p>Confidence: 75%</p>
           </td>
           <td class="behaviour-confidence-column">75%</td>
+          <td class="behaviour-spider-column"></td>
           <td class="behaviour-clips-column">
             <div class="clip-text-sample">
               Alright, well listen, Robert, this package has been delayed again,
@@ -275,11 +294,10 @@ block content %}
               or Vague Answer</a
             >
             <p>Representative or Agent fails to address prospect's question</p>
-          </td>
-          <td class="behaviour-spider-column">
-            {% include "assets/spider-1.html" %}
+            <p>Confidence: 85%</p>
           </td>
           <td class="behaviour-confidence-column">85%</td>
+          <td class="behaviour-spider-column"></td>
           <td class="behaviour-clips-column">
             <div class="clip-text-sample">
               I can't answer that, sir, I'm sorry.
@@ -302,11 +320,10 @@ block content %}
               Responding</a
             >
             <p>Showing understanding and concern for others' perspectives</p>
-          </td>
-          <td class="behaviour-spider-column">
-            {% include "assets/spider-3.html" %}
+            <p>Confidence: 78%</p>
           </td>
           <td class="behaviour-confidence-column">78%</td>
+          <td class="behaviour-spider-column"></td>
           <td class="behaviour-clips-column">
             <div class="clip-text-sample">
               I'm sorry, sir, it's against our policy to give away personal

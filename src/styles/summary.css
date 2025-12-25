@@ -41,57 +41,15 @@
         }
       }
 
+      & .behaviour-confidence-column {
+        display: none;
+      }
+
       & .behaviour-clips-column,
       & .behaviour-models-column {
         display: none;
       }
       & td.behaviour-spider-column {
-        width: 10em;
-        padding: 0 2em 1em 0;
-
-        & svg {
-          width: 100%;
-          height: auto;
-
-          & .spider-labels {
-            opacity: 0;
-            transition: opacity 0.2s ease;
-          }
-
-          &:hover .spider-labels {
-            opacity: 1;
-            transition: opacity 0s ease;
-          }
-        }
-
-        & text,
-        & tspan {
-          fill: rgba(var(--ids__text-RGB), 1);
-          stroke: none;
-        }
-
-        & .cls-3 {
-          font-size: 30px;
-        }
-
-        & .cls-7 {
-          fill: none;
-          stroke: rgba(var(--ids__text-RGB), 1);
-          stroke-width: 2px;
-          stroke-miterlimit: 10;
-        }
-
-        & .cls-8 {
-          fill: rgba(var(--ids__background-RGB), 1);
-          stroke: rgba(var(--ids__text-RGB), 1);
-          stroke-miterlimit: 10;
-        }
-
-        & .cls-9 {
-          fill: rgba(var(--ids__text-hover-RGB), 1);
-          fill-rule: evenodd;
-          stroke-width: 0px;
-        }
       }
     }
 
@@ -303,5 +261,76 @@ a.detected-behaviour {
   & .behaviour-icon--buba {
     position: relative;
     top: 0.05em;
+  }
+}
+
+.spider-graph-wrapper {
+  display: flex;
+  gap: 0.5em;
+
+  & .spider-graph {
+    width: 10em;
+    /* border: 1px solid rgba(var(--ids__text-RGB), 0.4); */
+    background-color: rgba(var(--ids__bg-surface-RGB), 1);
+    border-radius: 0.5em;
+    padding: 0.2em 0.4em;
+    margin-bottom: 1em;
+
+    & .spider-graph-captions {
+      font-size: 0.7em;
+      display: flex;
+      justify-content: space-between;
+      color: rgba(var(--ids__text-RGB), 1);
+
+      & .spider-graph-caption {
+        color: rgba(var(--ids__text-RGB), 0.4);
+      }
+    }
+
+    &.acoustic {
+      & .spider-graph-caption.acoustic {
+        color: rgba(var(--ids__text-RGB), 1);
+        font-weight: 500;
+      }
+    }
+
+    &.emotion {
+      & .spider-graph-caption.emotion {
+        color: rgba(var(--ids__text-RGB), 1);
+        font-weight: 500;
+      }
+    }
+
+    &.timing {
+      & .spider-graph-caption.timing {
+        color: rgba(var(--ids__text-RGB), 1);
+        font-weight: 500;
+      }
+    }
+
+    &.volume {
+      & .spider-graph-caption.volume {
+        color: rgba(var(--ids__text-RGB), 1);
+        font-weight: 500;
+      }
+    }
+
+    &.timbre {
+      & .spider-graph-caption.timbre {
+        color: rgba(var(--ids__text-RGB), 1);
+        font-weight: 500;
+      }
+    }
+
+    &.text {
+      & .spider-graph-caption.text {
+        color: rgba(var(--ids__text-RGB), 1);
+        font-weight: 500;
+      }
+    }
+  }
+
+  & .spider-text {
+    width: 15em;
   }
 }
