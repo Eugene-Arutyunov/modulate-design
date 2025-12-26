@@ -4,6 +4,12 @@
   --player-visualization-height: 75%;
   --player-visualization-mobile-height: 65%;
 
+  /* Captions top position - common for all time/emotion captions */
+  --player-captions-top: calc(var(--player-visualization-height) + 1.4em);
+  --player-captions-top-mobile: calc(
+    var(--player-visualization-mobile-height) + 1.3em
+  );
+
   /* Emotion color animation timing */
   --emotion-color-delay: 0s;
   --emotion-color-duration: 0.2s;
@@ -39,7 +45,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    --padding: 0.5em;
+    --padding: 0.2em;
     --speaker-count: 2;
 
     height: var(--initial-height);
@@ -122,16 +128,20 @@
       top: var(--player-visualization-mobile-height);
       transition: top 0.5s ease;
     }
+    & .player-total-time {
+      top: var(--player-captions-top-mobile);
+      transition: top 0.5s ease;
+    }
     & .player-position-indicator {
       & .player-position-caption {
-        top: var(--player-visualization-mobile-height);
+        top: var(--player-captions-top-mobile);
         transition: top 0.5s ease;
       }
     }
 
     & .player-hover-position-indicator {
       & .player-hover-position-caption {
-        top: var(--player-visualization-mobile-height);
+        top: var(--player-captions-top-mobile);
         transition: top 0.5s ease;
       }
     }
@@ -1041,13 +1051,16 @@
     bottom: var(--padding);
     left: 0.2em;
     width: 80%;
-    font-size: 0.8em;
     color: rgba(var(--ids__text-caption-RGB), 1);
     opacity: 0;
     transition: opacity 0.5s ease;
     overflow: hidden;
     white-space: nowrap;
     pointer-events: none;
+
+    & span {
+      font-size: 0.8em;
+    }
 
     &.visible {
       opacity: 1;
@@ -1071,8 +1084,6 @@
   }
 
   & .player-status-caption {
-    display: flex;
-    gap: 0.5em;
     position: absolute;
     top: var(--player-visualization-height);
     transition: top 0.2s ease;
@@ -1090,6 +1101,15 @@
         transition: opacity 0s ease;
       }
     }
+  }
+
+  & .player-total-time {
+    position: absolute;
+    top: var(--player-captions-top);
+    transition: top 0.2s ease;
+    right: var(--padding);
+    pointer-events: none;
+
     & .total-time {
       opacity: 0.5;
       font-size: 0.8em;
@@ -1104,25 +1124,33 @@
     z-index: 2;
     pointer-events: none;
 
+    /* Default state: before playback started - line hidden */
     & .player-position-line {
       position: absolute;
       top: 0;
       left: 0;
       bottom: 0;
       border-left: 1px solid rgba(255, 255, 255, 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
     }
 
     & .player-position-caption {
       position: absolute;
-      left: 0.1em;
-      top: var(--player-visualization-height);
+      left: var(--padding);
+      top: var(--player-captions-top);
       transition: top 0.2s ease;
-      font-size: 0.8em;
-      background-color: rgba(var(--ids__bg-accent-RGB), 1);
+
+      & span {
+        font-size: 0.8em;
+        opacity: 0.5;
+        transition: opacity 0.2s ease;
+      }
     }
   }
 
-  /* Hide caption when hover indicator is active */
+  /* Hide caption when hover indicator is active (but keep line visible) */
   &
     .media-box:has(.player-hover-position-indicator.active)
     .player-position-indicator
@@ -1132,6 +1160,34 @@
     .player-position-caption {
     opacity: 0;
     visibility: hidden;
+  }
+
+  /* After playback started: line visible, caption white */
+  /* This rule comes after hover hide rule to ensure proper specificity */
+  & .media-box[data-playback-started="true"] .player-position-indicator {
+    & .player-position-line {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    & .player-position-caption span {
+      opacity: 1;
+    }
+  }
+
+  /* Ensure line stays visible even when hover indicator is active */
+  &
+    .media-box[data-playback-started="true"]:has(
+      .player-hover-position-indicator.active
+    )
+    .player-position-indicator
+    .player-position-line,
+  &
+    .media-box[data-playback-started="true"].has-hover-indicator
+    .player-position-indicator
+    .player-position-line {
+    opacity: 1;
+    visibility: visible;
   }
 
   & .player-hover-position-indicator {
@@ -1149,6 +1205,7 @@
       visibility: visible;
     }
 
+    /* Default state: before playback started - caption color same as player-position-caption */
     & .player-hover-position-line {
       position: absolute;
       top: 0;
@@ -1159,11 +1216,22 @@
 
     & .player-hover-position-caption {
       position: absolute;
-      left: 0.1em;
-      top: var(--player-visualization-height);
+      left: var(--padding);
+      top: var(--player-captions-top);
       transition: top 0.2s ease;
-      font-size: 0.8em;
-      background-color: rgba(var(--ids__bg-accent-RGB), 1);
+
+      & span {
+        font-size: 0.8em;
+        color: rgba(var(--ids__text-RGB), 1);
+        transition: color 0.2s ease;
+      }
+    }
+  }
+
+  /* After playback started: caption white */
+  & .media-box[data-playback-started="true"] .player-hover-position-indicator {
+    & .player-hover-position-caption span {
+      color: rgba(255, 255, 255, 1);
     }
   }
 

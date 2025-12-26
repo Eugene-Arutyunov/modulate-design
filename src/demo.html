@@ -41,9 +41,11 @@ block content %}
         </div>
       </div>
 
-      <div class="clip-text-caption"></div>
+      <div class="clip-text-caption"><span></span></div>
       <div class="player-status-caption">
         <span class="emotion-caption"></span>
+      </div>
+      <div class="player-total-time">
         <span class="total-time" data-total-time>4:40</span>
       </div>
       <div class="player-position-indicator">
@@ -178,7 +180,7 @@ block content %}
           <td class="behaviour-confidence-column">89%</td>
           <td class="behaviour-spider-column">
             <div class="spider-graph-wrapper">
-              <div class="spider-graph emotion timing volume">
+              <div class="spider-graph text acoustic volume">
                 {% include "components/spider-graph-captions.html" %}
               </div>
               <div class="spider-text">
@@ -218,12 +220,12 @@ block content %}
           <td class="behaviour-confidence-column">91%</td>
           <td class="behaviour-spider-column">
             <div class="spider-graph-wrapper">
-              <div class="spider-graph emotion timing volume">
+              <div class="spider-graph text emotion volume">
                 {% include "components/spider-graph-captions.html" %}
               </div>
               <div class="spider-text">
                 <p>
-                  We detect social engineering primarily from what’s being asked
+                  We detect social engineering primarily from what's being asked
                   or asserted (text), with pressure/urgency in emotion and
                   delivery as supporting signals.
                 </p>
@@ -259,7 +261,7 @@ block content %}
           <td class="behaviour-confidence-column">82%</td>
           <td class="behaviour-spider-column">
             <div class="spider-graph-wrapper">
-              <div class="spider-graph emotion timing volume">
+              <div class="spider-graph timing text acoustic emotion">
                 {% include "components/spider-graph-captions.html" %}
               </div>
               <div class="spider-text">
@@ -294,7 +296,7 @@ block content %}
           <td class="behaviour-confidence-column">75%</td>
           <td class="behaviour-spider-column">
             <div class="spider-graph-wrapper">
-              <div class="spider-graph emotion timing volume">
+              <div class="spider-graph text timing emotion timbre">
                 {% include "components/spider-graph-captions.html" %}
               </div>
               <div class="spider-text">
@@ -330,7 +332,7 @@ block content %}
           <td class="behaviour-confidence-column">85%</td>
           <td class="behaviour-spider-column">
             <div class="spider-graph-wrapper">
-              <div class="spider-graph emotion timing volume">
+              <div class="spider-graph text timing">
                 {% include "components/spider-graph-captions.html" %}
               </div>
               <div class="spider-text">
@@ -370,15 +372,14 @@ block content %}
           <td class="behaviour-confidence-column">78%</td>
           <td class="behaviour-spider-column">
             <div class="spider-graph-wrapper">
-              <div class="spider-graph emotion timing volume">
+              <div class="spider-graph emotion text timbre volume">
                 {% include "components/spider-graph-captions.html" %}
               </div>
               <div class="spider-text">
                 <p>
-                  We detect missed questions or vague answers by linking
-                  responses to prior questions and flagging vagueness or
-                  non-answers in the text, with hesitation timing as a light
-                  cue.
+                  We detect empathy through emotional alignment and explicit
+                  acknowledgement (emotion + text), backed by warm tone and
+                  steady delivery (timbre/volume).
                 </p>
               </div>
             </div>

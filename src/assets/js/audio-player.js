@@ -49,6 +49,11 @@ export function initAudioPlayer() {
       console.error('Error loading audio:', error);
     },
     onplay: function() {
+      // Mark that playback has started (one-way flag)
+      if (!audioPlayer.hasAttribute('data-playback-started')) {
+        audioPlayer.setAttribute('data-playback-started', 'true');
+      }
+      
       autoScrollEnabled = true;
       startPositionUpdate();
       updatePlayPauseIcon();

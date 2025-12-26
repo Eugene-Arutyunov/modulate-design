@@ -117,6 +117,10 @@ export function updateClipTextCaption(clip, captionSelector = '.clip-text-captio
   const clipTextCaption = document.querySelector(captionSelector);
   if (!clipTextCaption) return;
   
+  // Find span element inside caption
+  const captionSpan = clipTextCaption.querySelector('span');
+  if (!captionSpan) return;
+  
   // Extract text from .clip-text p element
   const clipTextElement = clip.querySelector('.clip-text p');
   if (!clipTextElement) {
@@ -127,8 +131,8 @@ export function updateClipTextCaption(clip, captionSelector = '.clip-text-captio
   
   const clipText = clipTextElement.textContent.trim();
   
-  // Update text content
-  clipTextCaption.textContent = clipText;
+  // Update text content in span
+  captionSpan.textContent = clipText;
   
   // Show instantly (no transition)
   clipTextCaption.classList.add('visible');
