@@ -179,7 +179,7 @@
   text-align: center;
   padding: 2em 2em 3em 2em;
 
-  & .upload-button {
+  & .link-button {
     display: inline-block;
     text-decoration: none;
     color: rgba(var(--ids__text-link-RGB), 1);

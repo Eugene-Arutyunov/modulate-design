@@ -12,16 +12,6 @@ block content %}
       id="audio-player"
       data-audio-src="/assets/fdf1fec4-59d6-4518-8721-4199fa646afc.mp3"
       data-speaker-count="2">
-      <div class="share-button-wrapper player-share-button">
-        <button
-          class="share-button ids__rounded"
-          type="button"
-          aria-label="Share">
-          {% include "assets/share-icon.html" %}
-          <span class="share-text">Share</span>
-        </button>
-        {% include "components/share-popover.html" %}
-      </div>
       <div class="player-visualization" data-total-duration="">
         {% include "components/transcript-clips.html" %}
       </div>
@@ -51,6 +41,7 @@ block content %}
         </div>
       </div>
 
+      <div class="clip-text-caption"></div>
       <div class="player-status-caption">
         <span class="emotion-caption"></span>
         <span class="total-time" data-total-time>4:40</span>
@@ -70,7 +61,10 @@ block content %}
     </div>
   </div>
   <div class="ids__space S"></div>
-
+  <a href="/upload" class="link-button"
+    ><strong>Share this conversation analysis ↗</strong></a
+  >
+  <div class="ids__space S"></div>
   <div class="summary-container">
     <h2>Speech Summary</h2>
     <p>
@@ -112,7 +106,9 @@ block content %}
       </tbody>
     </table>
 
+    <div class="ids__space M"></div>
     <h2>Emotions</h2>
+
     <table class="summary-table emotions-summary">
       <thead>
         <tr>
@@ -150,6 +146,11 @@ block content %}
       </tbody>
     </table>
 
+    <a href="/upload" class="link-button"
+      >Learn more: <strong>How we detect emotions ↗</strong></a
+    >
+
+    <div class="ids__space L"></div>
     <h2>Behaviors</h2>
     <table class="summary-table behaviours-summary">
       <thead>
@@ -178,22 +179,13 @@ block content %}
           <td class="behaviour-spider-column">
             <div class="spider-graph-wrapper">
               <div class="spider-graph emotion timing volume">
-                <div class="spider-graph-captions">
-                  <div class="spider-graph-caption acoustic">Acoustic</div>
-                  <div class="spider-graph-caption emotion">Emotion</div>
-                  <div class="spider-graph-caption timing">Timing</div>
-                </div>
-                {% include "assets/spider.html" %}
-                <div class="spider-graph-captions">
-                  <div class="spider-graph-caption volume">Volume</div>
-                  <div class="spider-graph-caption timbre">Timbre</div>
-                  <div class="spider-graph-caption text">Text</div>
-                </div>
+                {% include "components/spider-graph-captions.html" %}
               </div>
               <div class="spider-text">
                 <p>
-                  To detect return fraud attempts, we mostly rely on emotion
-                  group, timing and volume is also essential.
+                  We detect return-fraud attempts mainly from language patterns
+                  and stated intent (text), reinforced by delivery cues in audio
+                  (acoustic/volume) as secondary signals.
                 </p>
               </div>
             </div>
@@ -224,7 +216,20 @@ block content %}
             <p>Confidence: 91%</p>
           </td>
           <td class="behaviour-confidence-column">91%</td>
-          <td class="behaviour-spider-column"></td>
+          <td class="behaviour-spider-column">
+            <div class="spider-graph-wrapper">
+              <div class="spider-graph emotion timing volume">
+                {% include "components/spider-graph-captions.html" %}
+              </div>
+              <div class="spider-text">
+                <p>
+                  We detect social engineering primarily from what’s being asked
+                  or asserted (text), with pressure/urgency in emotion and
+                  delivery as supporting signals.
+                </p>
+              </div>
+            </div>
+          </td>
           <td class="behaviour-clips-column">
             <div class="clip-text-sample">Why not?</div>
             <div class="clip-text-sample">
@@ -252,7 +257,20 @@ block content %}
             <p>Confidence: 82%</p>
           </td>
           <td class="behaviour-confidence-column">82%</td>
-          <td class="behaviour-spider-column"></td>
+          <td class="behaviour-spider-column">
+            <div class="spider-graph-wrapper">
+              <div class="spider-graph emotion timing volume">
+                {% include "components/spider-graph-captions.html" %}
+              </div>
+              <div class="spider-text">
+                <p>
+                  We detect active listening through turn-taking and
+                  acknowledgements (timing + text), supported by engaged
+                  backchannel audio cues and attentive tone.
+                </p>
+              </div>
+            </div>
+          </td>
           <td class="behaviour-clips-column">
             <div class="clip-text-sample">
               My order is missing, it's your job to make sure I get it.
@@ -274,7 +292,20 @@ block content %}
             <p>Confidence: 75%</p>
           </td>
           <td class="behaviour-confidence-column">75%</td>
-          <td class="behaviour-spider-column"></td>
+          <td class="behaviour-spider-column">
+            <div class="spider-graph-wrapper">
+              <div class="spider-graph emotion timing volume">
+                {% include "components/spider-graph-captions.html" %}
+              </div>
+              <div class="spider-text">
+                <p>
+                  We detect respectful interaction mostly via courteous language
+                  (text) plus interruption/turn-taking patterns and calm,
+                  respectful tone (timing/emotion/timbre).
+                </p>
+              </div>
+            </div>
+          </td>
           <td class="behaviour-clips-column">
             <div class="clip-text-sample">
               Alright, well listen, Robert, this package has been delayed again,
@@ -297,7 +328,21 @@ block content %}
             <p>Confidence: 85%</p>
           </td>
           <td class="behaviour-confidence-column">85%</td>
-          <td class="behaviour-spider-column"></td>
+          <td class="behaviour-spider-column">
+            <div class="spider-graph-wrapper">
+              <div class="spider-graph emotion timing volume">
+                {% include "components/spider-graph-captions.html" %}
+              </div>
+              <div class="spider-text">
+                <p>
+                  We detect missed questions or vague answers by linking
+                  responses to prior questions and flagging vagueness or
+                  non-answers in the text, with hesitation timing as a light
+                  cue.
+                </p>
+              </div>
+            </div>
+          </td>
           <td class="behaviour-clips-column">
             <div class="clip-text-sample">
               I can't answer that, sir, I'm sorry.
@@ -323,7 +368,21 @@ block content %}
             <p>Confidence: 78%</p>
           </td>
           <td class="behaviour-confidence-column">78%</td>
-          <td class="behaviour-spider-column"></td>
+          <td class="behaviour-spider-column">
+            <div class="spider-graph-wrapper">
+              <div class="spider-graph emotion timing volume">
+                {% include "components/spider-graph-captions.html" %}
+              </div>
+              <div class="spider-text">
+                <p>
+                  We detect missed questions or vague answers by linking
+                  responses to prior questions and flagging vagueness or
+                  non-answers in the text, with hesitation timing as a light
+                  cue.
+                </p>
+              </div>
+            </div>
+          </td>
           <td class="behaviour-clips-column">
             <div class="clip-text-sample">
               I'm sorry, sir, it's against our policy to give away personal
@@ -334,10 +393,16 @@ block content %}
         </tr>
       </tbody>
     </table>
-  </div>
-  <!-- <h2>Triggered Models</h2>
-  {% include "components/models.html" %} -->
 
+    <a href="/upload" class="link-button"
+      >Learn more: <strong>How we detect behaviors ↗</strong></a
+    >
+  </div>
+  <div>
+    <!-- <h2>Triggered Models</h2>
+    include "components/models.html"-->
+  </div>
+  <div class="ids__space L"></div>
   <div class="transcript-container">
     <h2>Transcript</h2>
     {% include "components/transcript-clips.html" %}

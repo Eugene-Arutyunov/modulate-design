@@ -112,6 +112,37 @@ export function fadeOutEmotionCaption() {
   emotionCaption.classList.remove('visible');
 }
 
+// Update clip text caption on hover (instant, no transition)
+export function updateClipTextCaption(clip, captionSelector = '.clip-text-caption') {
+  const clipTextCaption = document.querySelector(captionSelector);
+  if (!clipTextCaption) return;
+  
+  // Extract text from .clip-text p element
+  const clipTextElement = clip.querySelector('.clip-text p');
+  if (!clipTextElement) {
+    // If no text found, hide the caption
+    clipTextCaption.classList.remove('visible');
+    return;
+  }
+  
+  const clipText = clipTextElement.textContent.trim();
+  
+  // Update text content
+  clipTextCaption.textContent = clipText;
+  
+  // Show instantly (no transition)
+  clipTextCaption.classList.add('visible');
+}
+
+// Fade out clip text caption when leaving visualization area (with transition)
+export function fadeOutClipTextCaption(captionSelector = '.clip-text-caption') {
+  const clipTextCaption = document.querySelector(captionSelector);
+  if (!clipTextCaption) return;
+  
+  // Remove visible class to trigger fade out transition
+  clipTextCaption.classList.remove('visible');
+}
+
 // Function to determine emotion group priority for sorting
 export function getEmotionGroupPriority(emotionClass) {
   const emotionName = emotionClass.replace('emotion-', '');

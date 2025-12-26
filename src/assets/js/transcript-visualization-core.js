@@ -1,4 +1,4 @@
-import { updateEmotionCaption } from './emotions.js';
+import { updateEmotionCaption, updateClipTextCaption, fadeOutClipTextCaption } from './emotions.js';
 
 /**
  * Initialize transcript visualization with behaviour indicators and emotion handling
@@ -7,6 +7,7 @@ import { updateEmotionCaption } from './emotions.js';
  * @param {string} options.parentSelector - Selector for parent container (e.g., '.media-box' or '.fingerprint-visualization-box')
  * @param {string} options.indicatorsContainerClass - Class name for behaviour indicators container (default: 'behaviour-indicators')
  * @param {string} options.emotionCaptionSelector - Selector for emotion caption element (e.g., '.emotion-caption' or '.fingerprint-status-caption .emotion-caption')
+ * @param {string} options.clipTextCaptionSelector - Selector for clip text caption element (e.g., '.clip-text-caption')
  * @param {boolean} options.trackVisualizationArea - Whether to track visualization area for emotion caption (default: false)
  */
 export function initTranscriptVisualization(options) {
@@ -15,6 +16,7 @@ export function initTranscriptVisualization(options) {
     parentSelector,
     indicatorsContainerClass = 'behaviour-indicators',
     emotionCaptionSelector,
+    clipTextCaptionSelector,
     trackVisualizationArea = false
   } = options;
 
@@ -263,6 +265,43 @@ export function initTranscriptVisualization(options) {
           if (!trackVisualizationArea || !isOverVisualization) {
             // Fade out using the provided selector
             emotionCaption.classList.remove('visible');
+          }
+        });
+      });
+    }
+  }
+
+  // Handle clip text caption if selector is provided
+  if (clipTextCaptionSelector) {
+    const clipTextCaption = document.querySelector(clipTextCaptionSelector);
+    if (clipTextCaption) {
+      let isOverVisualization = false;
+
+      // Track visualization area if needed (for static version)
+      if (trackVisualizationArea) {
+        visualization.addEventListener('mouseenter', () => {
+          isOverVisualization = true;
+        });
+
+        visualization.addEventListener('mouseleave', () => {
+          isOverVisualization = false;
+          // Fade out clip text caption
+          fadeOutClipTextCaption(clipTextCaptionSelector);
+        });
+      }
+
+      // Add hover handlers to clips for clip text caption
+      clips.forEach((clip) => {
+        clip.addEventListener('mouseenter', () => {
+          updateClipTextCaption(clip, clipTextCaptionSelector);
+        });
+
+        clip.addEventListener('mouseleave', () => {
+          // For static version: only fade out when leaving entire visualization
+          // For player version: fade out immediately
+          if (!trackVisualizationArea || !isOverVisualization) {
+            // Fade out clip text caption
+            fadeOutClipTextCaption(clipTextCaptionSelector);
           }
         });
       });

@@ -61,14 +61,15 @@
       }
     }
   }
-
-  & .upload-link {
+}
+.ids {
+  & .link-button {
     display: block;
     text-align: center;
     border: 1px solid rgba(var(--ids__text-link-RGB), 0.5);
     padding: 0.3em 0.7em;
     border-radius: 0.3em;
-    font-weight: 600;
+
     text-decoration: none;
     color: rgba(var(--ids__text-link-RGB), 1);
     transition: color 0.5s ease, border-color 0.5s ease;

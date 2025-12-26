@@ -6,6 +6,7 @@ export function initPlayerVisualization() {
     parentSelector: '.media-box, #audio-player',
     indicatorsContainerClass: 'behaviour-indicators',
     emotionCaptionSelector: '.emotion-caption',
+    clipTextCaptionSelector: '.clip-text-caption',
     trackVisualizationArea: false
   });
 }
