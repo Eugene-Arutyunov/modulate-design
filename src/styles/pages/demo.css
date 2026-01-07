@@ -1,8 +1,16 @@
 .demo-wrapper {
   display: flex;
+  height: 100vh;
+  overflow: hidden;
 
   & .main-content {
     flex: 1;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-gutter: stable;
 
     & .ids__wrapper {
       width: 45.815em;
@@ -14,7 +22,12 @@
     border-left: 1px solid rgba(var(--ids__UI-border-RGB), 1);
     transition: width 0.3s ease, opacity 0.3s ease;
     opacity: 1;
-    overflow: hidden;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-gutter: stable;
     min-width: 0;
 
     &.sidebar-closed {
@@ -22,6 +35,7 @@
       opacity: 0;
       padding: 0;
       border-left: none;
+      overflow: hidden;
     }
 
     @media (width < 768px) {
@@ -73,6 +87,11 @@
       }
     }
   }
+}
+
+body:has(.demo-wrapper) {
+  overflow: hidden;
+  height: 100vh;
 }
 
 .mobile-only {
