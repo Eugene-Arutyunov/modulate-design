@@ -476,17 +476,22 @@ block bodyWrapper %}
     </div>
     {% endblock %} {% include 'footer.html' %}
   </div>
-  <div class="sidebar">
-    <div class="sidebar-header">
-      <div class="sidebar-header-wrapper">
-        <h2>Transcript</h2>
-        <button class="sidebar-close" type="button" aria-label="Close sidebar">
-          {% include "assets/close-icon.html" %}
-        </button>
+  <div class="sidebar sidebar-closed">
+    <div class="sidebar-content">
+      <div class="sidebar-header">
+        <div class="sidebar-header-wrapper">
+          <h2>Transcript</h2>
+          <button
+            class="sidebar-close"
+            type="button"
+            aria-label="Close sidebar">
+            {% include "assets/close-icon.html" %}
+          </button>
+        </div>
       </div>
-    </div>
-    <div class="transcript-container">
-      {% include "components/transcript-clips.html" %}
+      <div class="transcript-container">
+        {% include "components/transcript-clips.html" %}
+      </div>
     </div>
   </div>
 </div>

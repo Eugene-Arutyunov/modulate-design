@@ -13,6 +13,7 @@ import { initClickableTableRows, initTableFingerprints } from './demo-recordings
 import { initFingerprintVisualization } from './fingerprint-visualization.js';
 import { initUploadForm, initUploadAreaStateSwitcher } from './upload-form.js';
 import { initEmotionsList } from './emotions-list.js';
+import { initSidebar } from './sidebar.js';
 
 // Initialize when DOM is ready
 function init() {
@@ -24,6 +25,7 @@ function init() {
   initUploadForm();
   initUploadAreaStateSwitcher();
   initEmotionsList();
+  initSidebar();
   const audioPlayerResult = initAudioPlayer();
   
   if (!audioPlayerResult) {
