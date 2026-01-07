@@ -1255,7 +1255,7 @@
     flex-direction: column;
     --padding: 0.5em;
     --speaker-count: 2;
-    height: 7em;
+    height: 13em;
     background-color: rgba(var(--ids__bg-accent-RGB), 1);
     overflow: hidden;
 

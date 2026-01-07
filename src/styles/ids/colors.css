@@ -3,7 +3,7 @@
   /* TEXT */
   --ids__text-RGB: 30, 30, 35;
   --ids__text-link-RGB: 50, 50, 70;
-  --ids__text-hover-RGB: 110, 140, 190;
+  --ids__text-hover-RGB: 40, 100, 230;
   --ids__text-caption-RGB: 150, 150, 170;
   --ids__text-inverted-RGB: 242, 242, 246;
   --ids__text-accent-RGB: 20, 20, 50;
@@ -12,7 +12,7 @@
   --ids__background-RGB: 255, 255, 255;
   --ids__bg-surface-RGB: 242, 242, 246;
   --ids__bg-accent-RGB: 20, 20, 50;
-  --ids__bg-hover-RGB: 90, 120, 180;
+  --ids__bg-hover-RGB: 90, 110, 220;
   --ids__bg-mark-RGB: 255, 200, 29;
 
   /* UI */

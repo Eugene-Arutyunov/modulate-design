@@ -1,13 +1,14 @@
 .demo-wrapper {
   display: flex;
-  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
 
   & .main-content {
     flex: 1;
-    height: 100vh;
-    overflow-y: auto;
-    overflow-x: hidden;
+
+    overflow: auto;
+    min-height: 0;
+
     overscroll-behavior-y: contain;
     -webkit-overflow-scrolling: touch;
     scrollbar-gutter: stable;
@@ -22,9 +23,9 @@
     border-left: 1px solid rgba(var(--ids__UI-border-RGB), 1);
     transition: width 0.3s ease, opacity 0.3s ease;
     opacity: 1;
-    height: 100vh;
-    overflow-y: auto;
-    overflow-x: hidden;
+    min-height: 0;
+    overflow: auto;
+
     overscroll-behavior-y: contain;
     -webkit-overflow-scrolling: touch;
     scrollbar-gutter: stable;
@@ -90,8 +91,8 @@
 }
 
 body:has(.demo-wrapper) {
-  overflow: hidden;
-  height: 100vh;
+  /* overflow: hidden; */
+  /* height: 100vh; */
 }
 
 .mobile-only {

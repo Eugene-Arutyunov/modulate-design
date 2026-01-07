@@ -1,0 +1,23 @@
+.narrative-typography {
+  color: rgba(var(--ids__text-accent-RGB), 1);
+  & p {
+    line-height: 1.4;
+  }
+
+  & h1 {
+    &.L {
+      font-family: var(--gothic);
+      font-size: 5em;
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      font-weight: 600;
+
+      margin-bottom: 0em;
+    }
+  }
+
+  & h2 {
+    font-size: 2em;
+    font-family: var(--gothic);
+  }
+}

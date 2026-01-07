@@ -1,0 +1,46 @@
+.comparison-illustration {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+
+  & .bar {
+    position: relative;
+    padding: 0.1em 0 1.5em 0;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+    }
+
+    &.modulate-bar {
+      &::before {
+        width: 100%;
+        background-color: rgba(var(--ids__text-accent-RGB), 0.2);
+      }
+    }
+
+    &.openai-bar {
+      &::before {
+        width: 70%;
+        background-color: rgba(var(--ids__bg-accent-RGB), 0.1);
+      }
+    }
+
+    &.google-bar {
+      &::before {
+        width: 30%;
+        background-color: rgba(var(--ids__bg-accent-RGB), 0.1);
+      }
+    }
+
+    &.deepseek-bar {
+      &::before {
+        width: 50%;
+        background-color: rgba(var(--ids__bg-accent-RGB), 0.1);
+      }
+    }
+  }
+}
