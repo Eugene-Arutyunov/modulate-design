@@ -141,7 +141,6 @@
 
     & .clip-text {
       transition: color 0.5s ease;
-      font-size: 1.3em;
     }
   }
 }

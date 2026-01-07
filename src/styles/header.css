@@ -19,6 +19,7 @@
         color: rgba(var(--ids__text-inverted-RGB), 1);
         background-color: rgba(var(--ids__bg-accent-RGB), 1);
         padding: 0.5em 1.3em;
+        height: 2.3em;
         transition: background-color 0.5s ease;
       }
 

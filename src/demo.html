@@ -1,460 +1,493 @@
 {% extends 'layout.html' %} {% set pageTitle = 'Modulate Platform Demo' %} {%
-block content %}
+block bodyWrapper %}
+<div class="demo-wrapper">
+  <div class="main-content">
+    {% include 'header.html' %} {% block content %}
 
-<div class="ids__wrapper">
-  <div class="ids__space M"></div>
-  <h1>Audio analysis <span>Dispute over missing delivery and refund</span></h1>
+    <div class="ids__wrapper">
+      <div class="ids__space M"></div>
+      <h1>
+        Audio analysis <span>Dispute over missing delivery and refund</span>
+      </h1>
 
-  <div class="media-container sticky">
-    <div class="media-space"></div>
-    <div
-      class="media-box ids__rounded dark-mode"
-      id="audio-player"
-      data-audio-src="/assets/fdf1fec4-59d6-4518-8721-4199fa646afc.mp3"
-      data-speaker-count="2">
-      <div class="player-visualization" data-total-duration="">
-        {% include "components/transcript-clips.html" %}
-      </div>
-      <div class="speaker-labels">
-        <div class="speaker-label" data-speaker-index="1">
-          <span>Customer</span>
-        </div>
-        <div class="speaker-label" data-speaker-index="2">
-          <span>Support specialist</span>
-        </div>
-      </div>
-      <div class="behaviour-indicators"></div>
-      <!-- Old behaviour-labels hidden, will be populated by JavaScript -->
-      <div class="behaviour-labels" style="display: none"></div>
-      <div class="player-controls">
-        <div class="player-control-spacer"></div>
+      <div class="media-container sticky">
+        <div class="media-space"></div>
         <div
-          class="player-control player-control-center"
-          data-action="play-pause">
-          <a
-            href="#"
-            class="player-icon"
-            data-playing="false"
-            data-icon-id="icon-play">
-            <!-- SVG will be loaded here by JavaScript -->
-          </a>
-        </div>
-      </div>
-
-      <div class="clip-text-caption"><span></span></div>
-      <div class="player-status-caption">
-        <span class="emotion-caption"></span>
-      </div>
-      <div class="player-total-time">
-        <span class="total-time" data-total-time>4:40</span>
-      </div>
-      <div class="player-position-indicator">
-        <div class="player-position-line"></div>
-        <div class="player-position-caption">
-          <span data-current-time>0:00</span>
-        </div>
-      </div>
-      <div class="player-hover-position-indicator">
-        <div class="player-hover-position-line"></div>
-        <div class="player-hover-position-caption">
-          <span data-hover-time>0:00</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="ids__space S"></div>
-  <a href="/upload" class="link-button"
-    ><strong>Share this conversation analysis ↗</strong></a
-  >
-  <div class="ids__space S"></div>
-  <div class="summary-container">
-    <h2>Speech Summary</h2>
-    <p>
-      Customer disputed a missing delivery and requested a refund. Support
-      specialist initially refused but eventually processed both refund and
-      credit after confirming a delivery error.
-    </p>
-    <table class="summary-table speech-summary">
-      <thead>
-        <tr>
-          <th class="speaker-name-column">Speaker</th>
-          <th class="speaker-language-column">Language</th>
-          <th class="speaker-time-column">Speaking time</th>
-          <th class="perceived-gender-column">Perceived gender</th>
-          <th class="perceived-age-column">Perceived age</th>
-          <th class="synthetic-human-column">Origin</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="speaker-name-column">Customer</td>
-          <td class="speaker-language-column">English, American accent</td>
-          <td class="speaker-time-column">59%</td>
-          <td>Male</td>
-          <td>Adult</td>
-          <td>Human</td>
-        </tr>
-
-        <tr>
-          <td class="speaker-name-column">Support specialist</td>
-          <td class="speaker-language-column">
-            English, Eastern European accent
-          </td>
-          <td class="speaker-time-column">41%</td>
-          <td>Male</td>
-          <td>Adult</td>
-          <td>Synthetic</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="ids__space M"></div>
-    <h2>Emotions</h2>
-
-    <table class="summary-table emotions-summary">
-      <thead>
-        <tr>
-          <th class="speaker-name-column">Speaker</th>
-          <th class="speaker-emotions-graph-column">Emotion pattern</th>
-          <th class="speaker-emotions-list-column">Detected emotions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="speaker-name-column">Customer</td>
-          <td class="speaker-emotions-graph-column">
-            <div class="speaker-fingerprint-wrapper">
-              <div class="speaker-fingerprint" data-speaker-index="1"></div>
+          class="media-box ids__rounded dark-mode"
+          id="audio-player"
+          data-audio-src="/assets/fdf1fec4-59d6-4518-8721-4199fa646afc.mp3"
+          data-speaker-count="2">
+          <div class="player-visualization" data-total-duration="">
+            {% include "components/transcript-clips.html" %}
+          </div>
+          <div class="speaker-labels">
+            <div class="speaker-label" data-speaker-index="1">
+              <span>Customer</span>
             </div>
+            <div class="speaker-label" data-speaker-index="2">
+              <span>Support specialist</span>
+            </div>
+          </div>
+          <div class="behaviour-indicators"></div>
+          <!-- Old behaviour-labels hidden, will be populated by JavaScript -->
+          <div class="behaviour-labels" style="display: none"></div>
+          <div class="player-controls">
+            <div class="player-control-spacer"></div>
             <div
-              class="fingerprint-emotion-caption"
-              data-speaker-index="1"></div>
-          </td>
-          <td class="speaker-emotions-list-column"></td>
-        </tr>
-
-        <tr>
-          <td class="speaker-name-column">Support specialist</td>
-          <td class="speaker-emotions-graph-column">
-            <div class="speaker-fingerprint-wrapper">
-              <div class="speaker-fingerprint" data-speaker-index="2"></div>
+              class="player-control player-control-center"
+              data-action="play-pause">
+              <a
+                href="#"
+                class="player-icon"
+                data-playing="false"
+                data-icon-id="icon-play">
+                <!-- SVG will be loaded here by JavaScript -->
+              </a>
             </div>
-            <div
-              class="fingerprint-emotion-caption"
-              data-speaker-index="2"></div>
-          </td>
-          <td class="speaker-emotions-list-column"></td>
-        </tr>
-      </tbody>
-    </table>
+          </div>
 
-    <a href="/upload" class="link-button"
-      >Learn more: <strong>How we detect emotions ↗</strong></a
-    >
+          <div class="clip-text-caption"><span></span></div>
+          <div class="player-status-caption">
+            <span class="emotion-caption"></span>
+          </div>
+          <div class="player-total-time">
+            <span class="total-time" data-total-time>4:40</span>
+          </div>
+          <div class="player-position-indicator">
+            <div class="player-position-line"></div>
+            <div class="player-position-caption">
+              <span data-current-time>0:00</span>
+            </div>
+          </div>
+          <div class="player-hover-position-indicator">
+            <div class="player-hover-position-line"></div>
+            <div class="player-hover-position-caption">
+              <span data-hover-time>0:00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ids__space S"></div>
+      <a href="/upload" class="link-button"
+        ><strong>Share this conversation analysis ↗</strong></a
+      >
+      <div class="ids__space S"></div>
+      <div class="summary-container">
+        <h2>Speech Summary</h2>
+        <p>
+          Customer disputed a missing delivery and requested a refund. Support
+          specialist initially refused but eventually processed both refund and
+          credit after confirming a delivery error.
+          <a href="#" class="tmp-transcript-link">Transcript</a>
+        </p>
+        <table class="summary-table speech-summary">
+          <thead>
+            <tr>
+              <th class="speaker-name-column">Speaker</th>
+              <th class="speaker-language-column">Language</th>
+              <th class="speaker-time-column">Speaking time</th>
+              <th class="perceived-gender-column">Perceived gender</th>
+              <th class="perceived-age-column">Perceived age</th>
+              <th class="synthetic-human-column">Origin</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="speaker-name-column">Customer</td>
+              <td class="speaker-language-column">English, American accent</td>
+              <td class="speaker-time-column">59%</td>
+              <td>Male</td>
+              <td>Adult</td>
+              <td>Human</td>
+            </tr>
 
-    <div class="ids__space L"></div>
-    <h2>Behaviors</h2>
-    <table class="summary-table behaviours-summary">
-      <thead>
-        <tr>
-          <th class="speaker-name-column">Speaker</th>
-          <th class="behaviour-column">Behavior</th>
-          <th class="behaviour-confidence-column">Confidence</th>
-          <th class="behaviour-spider-column">How we detect</th>
-          <th class="behaviour-clips-column">Clips</th>
-          <th class="behaviour-models-column">Models used</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="speaker-name-column" rowspan="4">Customer</td>
+            <tr>
+              <td class="speaker-name-column">Support specialist</td>
+              <td class="speaker-language-column">
+                English, Eastern European accent
+              </td>
+              <td class="speaker-time-column">41%</td>
+              <td>Male</td>
+              <td>Adult</td>
+              <td>Synthetic</td>
+            </tr>
+          </tbody>
+        </table>
 
-          <td class="behaviour-column">
-            <a href="#" class="detected-behaviour"
-              >{% include "assets/behaviour-icon-kiki.html" %} Return Fraud
-              Attempt</a
-            >
-            <p>Customer attempting fraudulent product return</p>
-            <p>Confidence: 89%</p>
-          </td>
-          <td class="behaviour-confidence-column">89%</td>
-          <td class="behaviour-spider-column">
-            <div class="spider-graph-wrapper">
-              <div class="spider-graph text acoustic volume">
-                {% include "components/spider-graph-captions.html" %}
-              </div>
-              <div class="spider-text">
+        <div class="ids__space M"></div>
+        <h2>Emotions</h2>
+
+        <table class="summary-table emotions-summary">
+          <thead>
+            <tr>
+              <th class="speaker-name-column">Speaker</th>
+              <th class="speaker-emotions-graph-column">Emotion pattern</th>
+              <th class="speaker-emotions-list-column">Detected emotions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="speaker-name-column">Customer</td>
+              <td class="speaker-emotions-graph-column">
+                <div class="speaker-fingerprint-wrapper">
+                  <div class="speaker-fingerprint" data-speaker-index="1"></div>
+                </div>
+                <div
+                  class="fingerprint-emotion-caption"
+                  data-speaker-index="1"></div>
+              </td>
+              <td class="speaker-emotions-list-column"></td>
+            </tr>
+
+            <tr>
+              <td class="speaker-name-column">Support specialist</td>
+              <td class="speaker-emotions-graph-column">
+                <div class="speaker-fingerprint-wrapper">
+                  <div class="speaker-fingerprint" data-speaker-index="2"></div>
+                </div>
+                <div
+                  class="fingerprint-emotion-caption"
+                  data-speaker-index="2"></div>
+              </td>
+              <td class="speaker-emotions-list-column"></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <a href="/upload" class="link-button"
+          >Learn more: <strong>How we detect emotions ↗</strong></a
+        >
+
+        <div class="ids__space L"></div>
+        <h2>Behaviors</h2>
+        <table class="summary-table behaviours-summary">
+          <thead>
+            <tr>
+              <th class="speaker-name-column">Speaker</th>
+              <th class="behaviour-column">Behavior</th>
+              <th class="behaviour-confidence-column">Confidence</th>
+              <th class="behaviour-spider-column">How we detect</th>
+              <th class="behaviour-clips-column">Clips</th>
+              <th class="behaviour-models-column">Models used</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="speaker-name-column" rowspan="4">Customer</td>
+
+              <td class="behaviour-column">
+                <a href="#" class="detected-behaviour"
+                  >{% include "assets/behaviour-icon-kiki.html" %} Return Fraud
+                  Attempt</a
+                >
+                <p>Customer attempting fraudulent product return</p>
+                <p>Confidence: 89%</p>
+              </td>
+              <td class="behaviour-confidence-column">89%</td>
+              <td class="behaviour-spider-column">
+                <div class="spider-graph-wrapper">
+                  <div class="spider-graph text acoustic volume">
+                    {% include "components/spider-graph-captions.html" %}
+                  </div>
+                  <div class="spider-text">
+                    <p>
+                      We detect return-fraud attempts mainly from language
+                      patterns and stated intent (text), reinforced by delivery
+                      cues in audio (acoustic/volume) as secondary signals.
+                    </p>
+                  </div>
+                </div>
+              </td>
+
+              <td class="behaviour-clips-column">
+                <div class="clip-text-sample">I can see it in the email!</div>
+                <div class="clip-text-sample">
+                  Stop stalling and just give me the damn refund, I don't even
+                  want the item now from you.
+                </div>
+                <div class="clip-text-sample">
+                  No, I don't have another house!
+                </div>
+              </td>
+              <td class="behaviour-models-column">
+                Scripted Scenario, Bypassing Protocol
+              </td>
+            </tr>
+            <tr>
+              <td class="behaviour-column">
+                <a href="#" class="detected-behaviour"
+                  >{% include "assets/behaviour-icon-kiki.html" %} Social
+                  Engineering</a
+                >
                 <p>
-                  We detect return-fraud attempts mainly from language patterns
-                  and stated intent (text), reinforced by delivery cues in audio
-                  (acoustic/volume) as secondary signals.
+                  Attempts to manipulate, coerce, pressure, or otherwise force
+                  an agent or support staff to do something against their
+                  interest.
                 </p>
-              </div>
-            </div>
-          </td>
+                <p>Confidence: 91%</p>
+              </td>
+              <td class="behaviour-confidence-column">91%</td>
+              <td class="behaviour-spider-column">
+                <div class="spider-graph-wrapper">
+                  <div class="spider-graph text emotion volume">
+                    {% include "components/spider-graph-captions.html" %}
+                  </div>
+                  <div class="spider-text">
+                    <p>
+                      We detect social engineering primarily from what's being
+                      asked or asserted (text), with pressure/urgency in emotion
+                      and delivery as supporting signals.
+                    </p>
+                  </div>
+                </div>
+              </td>
+              <td class="behaviour-clips-column">
+                <div class="clip-text-sample">Why not?</div>
+                <div class="clip-text-sample">
+                  My order is missing, it's your job to make sure I get it.
+                </div>
+                <div class="clip-text-sample">
+                  Alright, well listen, Robert, this package has been delayed
+                  again, already, and it's very important to my business and
+                  health.
+                </div>
+                <div class="clip-text-sample">
+                  I'm not getting off till I see the money in that account.
+                </div>
+              </td>
+              <td class="behaviour-models-column">
+                Social Pressure and Manipulation
+              </td>
+            </tr>
+            <tr>
+              <td class="behaviour-column">
+                <a href="#" class="detected-behaviour"
+                  >{% include "assets/behaviour-icon-kiki.html" %} Active
+                  Listening</a
+                >
+                <p>Demonstrating engaged attention and understanding</p>
+                <p>Confidence: 82%</p>
+              </td>
+              <td class="behaviour-confidence-column">82%</td>
+              <td class="behaviour-spider-column">
+                <div class="spider-graph-wrapper">
+                  <div class="spider-graph timing text acoustic emotion">
+                    {% include "components/spider-graph-captions.html" %}
+                  </div>
+                  <div class="spider-text">
+                    <p>
+                      We detect active listening through turn-taking and
+                      acknowledgements (timing + text), supported by engaged
+                      backchannel audio cues and attentive tone.
+                    </p>
+                  </div>
+                </div>
+              </td>
+              <td class="behaviour-clips-column">
+                <div class="clip-text-sample">
+                  My order is missing, it's your job to make sure I get it.
+                </div>
+                <div class="clip-text-sample">
+                  Alright, well listen, Robert, this package has been delayed
+                  again, already, and it's very important to my business and
+                  health.
+                </div>
+              </td>
+              <td class="behaviour-models-column"></td>
+            </tr>
+            <tr>
+              <td class="behaviour-column">
+                <a href="#" class="detected-behaviour"
+                  >{% include "assets/behaviour-icon-kiki.html" %} Respectful
+                  Interaction</a
+                >
+                <p>Maintaining professional courtesy and respect</p>
+                <p>Confidence: 75%</p>
+              </td>
+              <td class="behaviour-confidence-column">75%</td>
+              <td class="behaviour-spider-column">
+                <div class="spider-graph-wrapper">
+                  <div class="spider-graph text timing emotion timbre">
+                    {% include "components/spider-graph-captions.html" %}
+                  </div>
+                  <div class="spider-text">
+                    <p>
+                      We detect respectful interaction mostly via courteous
+                      language (text) plus interruption/turn-taking patterns and
+                      calm, respectful tone (timing/emotion/timbre).
+                    </p>
+                  </div>
+                </div>
+              </td>
+              <td class="behaviour-clips-column">
+                <div class="clip-text-sample">
+                  Alright, well listen, Robert, this package has been delayed
+                  again, already, and it's very important to my business and
+                  health.
+                </div>
+              </td>
+              <td class="behaviour-models-column">
+                Response Timing Analysis, Interruption, Speech Pattern Analyzer
+              </td>
+            </tr>
+            <tr>
+              <td class="speaker-name-column" rowspan="2">
+                Support specialist
+              </td>
 
-          <td class="behaviour-clips-column">
-            <div class="clip-text-sample">I can see it in the email!</div>
-            <div class="clip-text-sample">
-              Stop stalling and just give me the damn refund, I don't even want
-              the item now from you.
-            </div>
-            <div class="clip-text-sample">No, I don't have another house!</div>
-          </td>
-          <td class="behaviour-models-column">
-            Scripted Scenario, Bypassing Protocol
-          </td>
-        </tr>
-        <tr>
-          <td class="behaviour-column">
-            <a href="#" class="detected-behaviour"
-              >{% include "assets/behaviour-icon-kiki.html" %} Social
-              Engineering</a
-            >
-            <p>
-              Attempts to manipulate, coerce, pressure, or otherwise force an
-              agent or support staff to do something against their interest.
-            </p>
-            <p>Confidence: 91%</p>
-          </td>
-          <td class="behaviour-confidence-column">91%</td>
-          <td class="behaviour-spider-column">
-            <div class="spider-graph-wrapper">
-              <div class="spider-graph text emotion volume">
-                {% include "components/spider-graph-captions.html" %}
-              </div>
-              <div class="spider-text">
+              <td class="behaviour-column">
+                <a href="#" class="detected-behaviour"
+                  >{% include "assets/behaviour-icon-kiki.html" %} Missed
+                  Question or Vague Answer</a
+                >
                 <p>
-                  We detect social engineering primarily from what's being asked
-                  or asserted (text), with pressure/urgency in emotion and
-                  delivery as supporting signals.
+                  Representative or Agent fails to address prospect's question
                 </p>
-              </div>
-            </div>
-          </td>
-          <td class="behaviour-clips-column">
-            <div class="clip-text-sample">Why not?</div>
-            <div class="clip-text-sample">
-              My order is missing, it's your job to make sure I get it.
-            </div>
-            <div class="clip-text-sample">
-              Alright, well listen, Robert, this package has been delayed again,
-              already, and it's very important to my business and health.
-            </div>
-            <div class="clip-text-sample">
-              I'm not getting off till I see the money in that account.
-            </div>
-          </td>
-          <td class="behaviour-models-column">
-            Social Pressure and Manipulation
-          </td>
-        </tr>
-        <tr>
-          <td class="behaviour-column">
-            <a href="#" class="detected-behaviour"
-              >{% include "assets/behaviour-icon-kiki.html" %} Active
-              Listening</a
-            >
-            <p>Demonstrating engaged attention and understanding</p>
-            <p>Confidence: 82%</p>
-          </td>
-          <td class="behaviour-confidence-column">82%</td>
-          <td class="behaviour-spider-column">
-            <div class="spider-graph-wrapper">
-              <div class="spider-graph timing text acoustic emotion">
-                {% include "components/spider-graph-captions.html" %}
-              </div>
-              <div class="spider-text">
+                <p>Confidence: 85%</p>
+              </td>
+              <td class="behaviour-confidence-column">85%</td>
+              <td class="behaviour-spider-column">
+                <div class="spider-graph-wrapper">
+                  <div class="spider-graph text timing">
+                    {% include "components/spider-graph-captions.html" %}
+                  </div>
+                  <div class="spider-text">
+                    <p>
+                      We detect missed questions or vague answers by linking
+                      responses to prior questions and flagging vagueness or
+                      non-answers in the text, with hesitation timing as a light
+                      cue.
+                    </p>
+                  </div>
+                </div>
+              </td>
+              <td class="behaviour-clips-column">
+                <div class="clip-text-sample">
+                  I can't answer that, sir, I'm sorry.
+                </div>
+                <div class="clip-text-sample">
+                  I'm sorry, sir, it's against our policy to give away personal
+                  information over the phone.
+                </div>
+                <div class="clip-text-sample">
+                  I'm sorry, sir, but it's against our policy to deliver
+                  personal information over the phone.
+                </div>
+              </td>
+              <td class="behaviour-models-column">Speech Pattern Analyzer</td>
+            </tr>
+            <tr>
+              <td class="behaviour-column">
+                <a href="#" class="detected-behaviour"
+                  >{% include "assets/behaviour-icon-kiki.html" %} Empathetic
+                  Responding</a
+                >
                 <p>
-                  We detect active listening through turn-taking and
-                  acknowledgements (timing + text), supported by engaged
-                  backchannel audio cues and attentive tone.
+                  Showing understanding and concern for others' perspectives
                 </p>
-              </div>
-            </div>
-          </td>
-          <td class="behaviour-clips-column">
-            <div class="clip-text-sample">
-              My order is missing, it's your job to make sure I get it.
-            </div>
-            <div class="clip-text-sample">
-              Alright, well listen, Robert, this package has been delayed again,
-              already, and it's very important to my business and health.
-            </div>
-          </td>
-          <td class="behaviour-models-column"></td>
-        </tr>
-        <tr>
-          <td class="behaviour-column">
-            <a href="#" class="detected-behaviour"
-              >{% include "assets/behaviour-icon-kiki.html" %} Respectful
-              Interaction</a
-            >
-            <p>Maintaining professional courtesy and respect</p>
-            <p>Confidence: 75%</p>
-          </td>
-          <td class="behaviour-confidence-column">75%</td>
-          <td class="behaviour-spider-column">
-            <div class="spider-graph-wrapper">
-              <div class="spider-graph text timing emotion timbre">
-                {% include "components/spider-graph-captions.html" %}
-              </div>
-              <div class="spider-text">
-                <p>
-                  We detect respectful interaction mostly via courteous language
-                  (text) plus interruption/turn-taking patterns and calm,
-                  respectful tone (timing/emotion/timbre).
-                </p>
-              </div>
-            </div>
-          </td>
-          <td class="behaviour-clips-column">
-            <div class="clip-text-sample">
-              Alright, well listen, Robert, this package has been delayed again,
-              already, and it's very important to my business and health.
-            </div>
-          </td>
-          <td class="behaviour-models-column">
-            Response Timing Analysis, Interruption, Speech Pattern Analyzer
-          </td>
-        </tr>
-        <tr>
-          <td class="speaker-name-column" rowspan="2">Support specialist</td>
+                <p>Confidence: 78%</p>
+              </td>
+              <td class="behaviour-confidence-column">78%</td>
+              <td class="behaviour-spider-column">
+                <div class="spider-graph-wrapper">
+                  <div class="spider-graph emotion text timbre volume">
+                    {% include "components/spider-graph-captions.html" %}
+                  </div>
+                  <div class="spider-text">
+                    <p>
+                      We detect empathy through emotional alignment and explicit
+                      acknowledgement (emotion + text), backed by warm tone and
+                      steady delivery (timbre/volume).
+                    </p>
+                  </div>
+                </div>
+              </td>
+              <td class="behaviour-clips-column">
+                <div class="clip-text-sample">
+                  I'm sorry, sir, it's against our policy to give away personal
+                  information over the phone.
+                </div>
+              </td>
+              <td class="behaviour-models-column"></td>
+            </tr>
+          </tbody>
+        </table>
 
-          <td class="behaviour-column">
-            <a href="#" class="detected-behaviour"
-              >{% include "assets/behaviour-icon-kiki.html" %} Missed Question
-              or Vague Answer</a
-            >
-            <p>Representative or Agent fails to address prospect's question</p>
-            <p>Confidence: 85%</p>
-          </td>
-          <td class="behaviour-confidence-column">85%</td>
-          <td class="behaviour-spider-column">
-            <div class="spider-graph-wrapper">
-              <div class="spider-graph text timing">
-                {% include "components/spider-graph-captions.html" %}
-              </div>
-              <div class="spider-text">
-                <p>
-                  We detect missed questions or vague answers by linking
-                  responses to prior questions and flagging vagueness or
-                  non-answers in the text, with hesitation timing as a light
-                  cue.
-                </p>
-              </div>
-            </div>
-          </td>
-          <td class="behaviour-clips-column">
-            <div class="clip-text-sample">
-              I can't answer that, sir, I'm sorry.
-            </div>
-            <div class="clip-text-sample">
-              I'm sorry, sir, it's against our policy to give away personal
-              information over the phone.
-            </div>
-            <div class="clip-text-sample">
-              I'm sorry, sir, but it's against our policy to deliver personal
-              information over the phone.
-            </div>
-          </td>
-          <td class="behaviour-models-column">Speech Pattern Analyzer</td>
-        </tr>
-        <tr>
-          <td class="behaviour-column">
-            <a href="#" class="detected-behaviour"
-              >{% include "assets/behaviour-icon-kiki.html" %} Empathetic
-              Responding</a
-            >
-            <p>Showing understanding and concern for others' perspectives</p>
-            <p>Confidence: 78%</p>
-          </td>
-          <td class="behaviour-confidence-column">78%</td>
-          <td class="behaviour-spider-column">
-            <div class="spider-graph-wrapper">
-              <div class="spider-graph emotion text timbre volume">
-                {% include "components/spider-graph-captions.html" %}
-              </div>
-              <div class="spider-text">
-                <p>
-                  We detect empathy through emotional alignment and explicit
-                  acknowledgement (emotion + text), backed by warm tone and
-                  steady delivery (timbre/volume).
-                </p>
-              </div>
-            </div>
-          </td>
-          <td class="behaviour-clips-column">
-            <div class="clip-text-sample">
-              I'm sorry, sir, it's against our policy to give away personal
-              information over the phone.
-            </div>
-          </td>
-          <td class="behaviour-models-column"></td>
-        </tr>
-      </tbody>
-    </table>
-
-    <a href="/upload" class="link-button"
-      >Learn more: <strong>How we detect behaviors ↗</strong></a
-    >
-  </div>
-  <div>
-    <!-- <h2>Triggered Models</h2>
+        <a href="/upload" class="link-button"
+          >Learn more: <strong>How we detect behaviors ↗</strong></a
+        >
+      </div>
+      <div>
+        <!-- <h2>Triggered Models</h2>
     include "components/models.html"-->
-  </div>
-  <div class="ids__space L"></div>
-  <div class="transcript-container">
-    <h2>Transcript</h2>
-    {% include "components/transcript-clips.html" %}
-    <div class="ids__space M"></div>
-  </div>
-  <div class="next-clip-wrapper">
-    <div class="next-clip-container dark-mode">
-      <div class="clip-link previous-clip-link">
-        <a href="#" class="previous-clip-link">↖</a>
       </div>
-      <div class="clip-link next-clip-link">
-        <a href="#" class="next-clip-link">Next detected behaviour ↘</a>
+      <div class="ids__space L"></div>
+      <div class="transcript-container mobile-only">
+        <h2>Transcript</h2>
+        {% include "components/transcript-clips.html" %}
+        <div class="ids__space M"></div>
       </div>
+      <div class="next-clip-wrapper">
+        <div class="next-clip-container dark-mode">
+          <div class="clip-link previous-clip-link">
+            <a href="#" class="previous-clip-link">↖</a>
+          </div>
+          <div class="clip-link next-clip-link">
+            <a href="#" class="next-clip-link">Next detected behaviour ↘</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ids__wrapper">
+      <div class="share-container">
+        <div class="share-button-wrapper">
+          <button
+            class="share-button ids__rounded"
+            type="button"
+            aria-label="Share your conversation fingerprint experience">
+            {% include "assets/share-icon.html" %}
+            <span class="share-text">Share this conversation</span>
+          </button>
+          {% include "components/share-popover.html" %}
+        </div>
+      </div>
+
+      <div class="ids__space XL"></div>
+      <h2>Give it a try</h2>
+      {% include "components/upload-area.html" %}
+      <div class="ids__space L"></div>
+      <h2>Preloaded demo recordings</h2>
+      <div class="demo-recordings-section">
+        {% include "components/demo-recordings-table.html" %}
+      </div>
+      <div class="ids__space XL"></div>
+
+      <div class="ids__space" style="height: 0.5em"></div>
+      <div class="ids__text-width">
+        <p>
+          Modulate proactively detects key behaviors to help customers manage
+          risk and improve experiences for their employees and users alike.
+        </p>
+      </div>
+      <div class="ids__space XS"></div>
+
+      {% include "components/cta.html" %}
+      <div class="ids__space XL"></div>
+    </div>
+    {% endblock %} {% include 'footer.html' %}
+  </div>
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-header-wrapper">
+        <h2>Transcript</h2>
+        <button class="sidebar-close" type="button" aria-label="Close sidebar">
+          {% include "assets/close-icon.html" %}
+        </button>
+      </div>
+    </div>
+    <div class="transcript-container">
+      {% include "components/transcript-clips.html" %}
     </div>
   </div>
 </div>
-<div class="ids__wrapper">
-  <div class="share-container">
-    <div class="share-button-wrapper">
-      <button
-        class="share-button ids__rounded"
-        type="button"
-        aria-label="Share your conversation fingerprint experience">
-        {% include "assets/share-icon.html" %}
-        <span class="share-text">Share this conversation</span>
-      </button>
-      {% include "components/share-popover.html" %}
-    </div>
-  </div>
-
-  <div class="ids__space XL"></div>
-  <h2>Give it a try</h2>
-  {% include "components/upload-area.html" %}
-  <div class="ids__space L"></div>
-  <h2>Preloaded demo recordings</h2>
-  <div class="demo-recordings-section">
-    {% include "components/demo-recordings-table.html" %}
-  </div>
-  <div class="ids__space XL"></div>
-
-  <div class="ids__space" style="height: 0.5em"></div>
-  <div class="ids__text-width">
-    <p>
-      Modulate proactively detects key behaviors to help customers manage risk
-      and improve experiences for their employees and users alike.
-    </p>
-  </div>
-  <div class="ids__space XS"></div>
-
-  {% include "components/cta.html" %}
-  <div class="ids__space XL"></div>
-</div>
-
 {% endblock %}

@@ -15,6 +15,10 @@ When generating commit messages, follow these rules:
 - "Refactor transcript clip component"
 - "Fix responsive layout for mobile"
 
+# Transitions on hover
+
+On hover, animation should always be instant; only when hover is lost should there be a transition of 0.5s
+
 # Plan Guidelines
 
 When creating plans, always write them in Russian language.
