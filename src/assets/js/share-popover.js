@@ -1,79 +1,95 @@
 export function initSharePopover() {
-  const shareButtons = document.querySelectorAll('.share-button');
-  
-  if (shareButtons.length === 0) return;
-  
-  let currentPopover = null;
-  
-  // Function to get popover for a button
-  function getPopoverForButton(button) {
-    const container = button.closest('.nav-container') || 
-                      button.closest('.share-container') || 
-                      button.closest('.share-button-wrapper');
-    if (!container) return null;
-    return container.querySelector('.share-popover');
-  }
-  
-  // Function to show popover
-  function showPopover(button) {
-    const popover = getPopoverForButton(button);
-    if (!popover) return;
-    
-    // If clicking the same button, toggle off
-    if (currentPopover === popover && popover.classList.contains('visible')) {
-      hidePopover();
-      return;
-    }
-    
-    // Hide current popover if different
-    if (currentPopover && currentPopover !== popover) {
-      hidePopover();
-    }
-    
-    currentPopover = popover;
-    popover.classList.add('visible');
+  const triggerButton = document.querySelector('.share-trigger-button');
+  const backdrop = document.querySelector('.share-popover-backdrop');
+  const popover = document.querySelector('.share-popover');
+  const closeButton = document.querySelector('.share-popover-close');
+  const copyLinkButton = document.querySelector('[data-share-action="copy-link"]');
+
+  if (!triggerButton || !backdrop || !popover) return;
+
+  // Function to open popover
+  function openPopover() {
+    backdrop.setAttribute('aria-hidden', 'false');
     popover.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
   }
-  
-  // Function to hide popover
-  function hidePopover() {
-    if (currentPopover) {
-      currentPopover.classList.remove('visible');
-      currentPopover.setAttribute('aria-hidden', 'true');
-      currentPopover = null;
-    }
+
+  // Function to close popover
+  function closePopover() {
+    backdrop.setAttribute('aria-hidden', 'true');
+    popover.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
   }
-  
-  // Close popover when clicking outside
-  document.addEventListener('click', function(e) {
-    // Check if click is on a button (including child elements)
-    const clickedButton = e.target.closest('.share-button');
-    const clickedPopover = e.target.closest('.share-popover');
-    
-    // If click is on button or popover, don't close
-    if (clickedButton || clickedPopover) {
-      return;
-    }
-    
-    // If click is outside, close popover
-    if (currentPopover && currentPopover.classList.contains('visible')) {
-      hidePopover();
-    }
-  }, true); // Use capture phase
-  
-  // Add click handlers to share buttons
-  shareButtons.forEach((button) => {
-    button.addEventListener('click', function(e) {
-      // Prevent event from bubbling to document handler
-      e.stopPropagation();
-      showPopover(button);
-    });
+
+  // Open popover on trigger button click
+  triggerButton.addEventListener('click', function(e) {
+    e.preventDefault();
+    openPopover();
   });
-  
+
+  // Close popover on close button click
+  if (closeButton) {
+    closeButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      closePopover();
+    });
+  }
+
+  // Close popover on backdrop click
+  backdrop.addEventListener('click', function(e) {
+    if (e.target === backdrop) {
+      closePopover();
+    }
+  });
+
   // Close popover on Escape key
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && currentPopover && currentPopover.classList.contains('visible')) {
-      hidePopover();
+    if (e.key === 'Escape' && backdrop.getAttribute('aria-hidden') === 'false') {
+      closePopover();
     }
   });
+
+  // Handle copy link action
+  if (copyLinkButton) {
+    copyLinkButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      const url = window.location.href;
+      
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(function() {
+          // Visual feedback could be added here
+          console.log('Link copied to clipboard');
+        }).catch(function(err) {
+          console.error('Failed to copy link:', err);
+          // Fallback: select text
+          fallbackCopyTextToClipboard(url);
+        });
+      } else {
+        // Fallback for older browsers
+        fallbackCopyTextToClipboard(url);
+      }
+    });
+  }
+
+  // Fallback copy function
+  function fallbackCopyTextToClipboard(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+      const successful = document.execCommand('copy');
+      if (successful) {
+        console.log('Link copied to clipboard (fallback)');
+      }
+    } catch (err) {
+      console.error('Fallback copy failed:', err);
+    }
+    
+    document.body.removeChild(textArea);
+  }
 }

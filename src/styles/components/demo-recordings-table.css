@@ -88,7 +88,7 @@
   }
 }
 .ids {
-  & .link-button {
+  & .full-width-button {
     display: block;
     text-align: center;
     border: 1px solid rgba(var(--ids__text-link-RGB), 0.5);

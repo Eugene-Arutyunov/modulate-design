@@ -1233,14 +1233,6 @@
       color: rgba(255, 255, 255, 1);
     }
   }
-
-  & .player-share-button {
-    position: absolute;
-    bottom: var(--padding);
-    right: var(--padding);
-    z-index: 10;
-    pointer-events: auto;
-  }
 }
 
 /* Static fingerprint visualization styles */

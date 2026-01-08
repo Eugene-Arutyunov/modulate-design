@@ -1,7 +1,78 @@
-<div class="share-popover ids__rounded dark-mode" role="dialog" aria-hidden="true">
-  <p>This demo doesn't collect or store any information, so we can't share your conversation fingerprint via link. But you can download:</p>
-  <div class="share-download-links">
-    <a href="#" class="share-download-link" data-action="screenshot"><strong>↓ Summary</strong>, PNG</a>
-    <a href="#" class="share-download-link" data-action="pdf"><strong>↓ Full transcript</strong>, PDF</a>
+<div class="share-popover-backdrop" aria-hidden="true">
+  <div class="share-popover ids__rounded" role="dialog" aria-hidden="true">
+    <div class="share-popover-header">
+      <h2 class="share-popover-title">Share</h2>
+      <button
+        class="share-popover-close"
+        type="button"
+        aria-label="Close share dialog">
+        {% include "assets/close-icon.html" %}
+      </button>
+    </div>
+    <div class="share-popover-content">
+      <div class="share-icons-group">
+        <a href="#" class="share-icon-button" data-share-action="copy-link" aria-label="Copy link">
+          <div class="share-icon-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path
+                d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <span class="share-icon-label">Copy link</span>
+        </a>
+        <a href="#" class="share-icon-button" data-share-action="facebook" aria-label="Share on Facebook">
+          <div class="share-icon-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" fill="none">
+              <path
+                d="M28.4863253 59.9692983c-6.6364044-.569063-11.5630204-2.3269561-16.3219736-5.8239327C4.44376366 48.4721168 3e-7 39.6467924 3e-7 29.9869344c0-14.8753747 10.506778-27.18854591 25.2744118-29.61975392 6.0281072-.9924119 12.7038532.04926445 18.2879399 2.85362966C57.1386273 10.0389054 63.3436516 25.7618627 58.2050229 40.3239688 54.677067 50.3216743 45.4153135 57.9417536 34.81395 59.5689067c-2.0856252.3201125-5.0651487.5086456-6.3276247.4003916z"
+                fill="#3B5998"
+                fill-rule="nonzero" />
+              <path
+                d="M25.7305108 45h5.4583577V30.0073333h4.0947673l.8098295-4.6846666h-4.9045968V21.928c0-1.0943333.7076019-2.2433333 1.7188899-2.2433333h2.7874519V15h-3.4161354v.021c-5.3451414.194-6.4433395 3.2896667-6.5385744 6.5413333h-.0099897v3.7603334H23v4.6846666h2.7305108V45z"
+                fill="#FFF" />
+            </svg>
+          </div>
+          <span class="share-icon-label">Facebook</span>
+        </a>
+        <a href="#" class="share-icon-button" data-share-action="x" aria-label="Share on X">
+          <div class="share-icon-circle">
+            <svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="192" height="192" rx="96" fill="black" />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M42 47H76L100 78.5L127 47H144L107.5 88.5L150 145H117L91 111L61 145H44L83 100.5L42 47ZM62 57H71.5L130.5 135H121.5L62 57Z"
+                fill="white" />
+            </svg>
+          </div>
+          <span class="share-icon-label">X</span>
+        </a>
+        <a href="#" class="share-icon-button" data-share-action="linkedin" aria-label="Share on LinkedIn">
+          <div class="share-icon-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" fill="none">
+              <path
+                d="M28.4863253 59.9692983c-6.6364044-.569063-11.5630204-2.3269561-16.3219736-5.8239327C4.44376366 48.4721168 3e-7 39.6467924 3e-7 29.9869344c0-14.8753747 10.506778-27.18854591 25.2744118-29.61975392 6.0281072-.9924119 12.7038532.04926445 18.2879399 2.85362966C57.1386273 10.0389054 63.3436516 25.7618627 58.2050229 40.3239688 54.677067 50.3216743 45.4153135 57.9417536 34.81395 59.5689067c-2.0856252.3201125-5.0651487.5086456-6.3276247.4003916z"
+                fill="#0077B5"
+                fill-rule="nonzero" />
+              <g fill="#FFF">
+                <path
+                  d="M17.88024691 22.0816337c2.14182716 0 3.87817284-1.58346229 3.87817284-3.53891365C21.75841975 16.58553851 20.02207407 15 17.88024691 15 15.73634568 15 14 16.58553851 14 18.54272005c0 1.95545136 1.73634568 3.53891365 3.88024691 3.53891365M14.88888889 44.8468474h6.95851852V24.77777778h-6.95851852zM31.6137778 33.6848316c0-2.3014877 1.0888889-4.552108 3.6925432-4.552108 2.6036543 0 3.2438518 2.2506203 3.2438518 4.4970883v10.960701h6.9274074V33.1816948c0-7.9263084-4.6853333-9.29280591-7.5676049-9.29280591-2.8798518 0-4.4682469.9740923-6.2961975 3.33440621v-2.70185178h-6.9471111V44.5905129h6.9471111V33.6848316z" />
+              </g>
+            </svg>
+          </div>
+          <span class="share-icon-label">LinkedIn</span>
+        </a>
+      </div>
+    </div>
   </div>
 </div>

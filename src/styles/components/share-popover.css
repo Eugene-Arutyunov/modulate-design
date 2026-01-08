@@ -1,0 +1,178 @@
+/* Share trigger button styles */
+button.share-trigger-button.full-width-button {
+  background-color: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  width: 100%;
+  text-align: center;
+  border: 1px solid rgba(var(--ids__text-link-RGB), 0.5);
+  padding: 0.3em 0.7em;
+  border-radius: 0.3em;
+  color: rgba(var(--ids__text-link-RGB), 1);
+  transition: color 0.5s ease, border-color 0.5s ease;
+
+  &:hover {
+    color: rgba(var(--ids__text-hover-RGB), 1);
+    border-color: rgba(var(--ids__text-hover-RGB), 0.5);
+    transition: color 0s ease, border-color 0s ease;
+  }
+}
+
+/* Share popover backdrop */
+.share-popover-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+
+  &[aria-hidden="false"] {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* Share popover container */
+.share-popover {
+  background-color: rgba(var(--ids__bg-surface-RGB), 1);
+  padding: 1.5em;
+  min-width: 20em;
+  max-width: 90vw;
+  position: relative;
+  box-shadow: 0 0 2em rgba(0, 0, 0, 0.3);
+
+  &[aria-hidden="true"] {
+    display: none;
+  }
+
+  &[aria-hidden="false"] {
+    display: block;
+  }
+}
+
+/* Share popover header */
+.share-popover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5em;
+  padding-bottom: 0;
+  padding-right: 2em;
+
+  & .share-popover-title {
+    margin: 0;
+    font-size: 1em;
+    font-weight: normal;
+    color: rgb(var(--ids__text-RGB));
+  }
+}
+
+.share-popover-close {
+  border: none;
+  padding: 0.5em;
+  cursor: pointer;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  transition: color 0.5s ease;
+
+  & svg {
+    width: 1em;
+    height: 1em;
+    color: rgb(var(--ids__text-RGB));
+  }
+
+  &:hover {
+    color: rgb(var(--ids__text-hover-RGB));
+    transition: color 0s ease;
+
+    & svg {
+      color: rgb(var(--ids__text-hover-RGB));
+    }
+  }
+}
+
+/* Share popover content */
+.share-popover-content {
+  & .share-icons-group {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* Share icon button */
+.share-icon-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  color: rgb(var(--ids__text-RGB));
+  transition: color 0.5s ease;
+
+  &:hover {
+    color: rgb(var(--ids__text-hover-RGB));
+    transition: color 0s ease;
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+  }
+
+  & .share-icon-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(var(--ids__bg-surface-RGB), 1);
+    transition: border-color 0.5s ease, transform 0.5s ease;
+    overflow: hidden;
+
+    & svg {
+      width: 60px;
+      height: 60px;
+    }
+  }
+
+  /* Copy link icon - smaller with border */
+  &[data-share-action="copy-link"] .share-icon-circle {
+    border: 1px solid rgba(var(--ids__text-RGB), 0.1);
+
+    & svg {
+      width: 30px;
+      height: 30px;
+    }
+
+    &:hover {
+      border-color: rgba(var(--ids__text-hover-RGB), 0.3);
+    }
+  }
+
+  /* Other icons - no border */
+  &:not([data-share-action="copy-link"]) .share-icon-circle {
+    border: none;
+  }
+
+  &:hover .share-icon-circle {
+    transform: scale(1.05);
+    transition: transform 0s ease;
+  }
+
+  & .share-icon-label {
+    font-size: 0.9em;
+    text-align: center;
+  }
+}
