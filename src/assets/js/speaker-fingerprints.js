@@ -98,13 +98,37 @@ export function initSpeakerFingerprints(sound, clipMap, clipMetadata, updatePlay
     speakerTotalDurations.set(speakerIndex, totalDuration);
   });
   
-  // Find emotions summary table
-  const emotionsTable = document.querySelector('.emotions-summary');
-  if (!emotionsTable) return;
+  // Find speech summary table (emotions are now in speech-summary table)
+  const speechTable = document.querySelector('.speech-summary');
+  if (!speechTable) return;
   
-  // Create fingerprint visualizations for each speaker (only in emotions table)
+  // Collect all speaking times and find maximum
+  const speakingTimes = new Map();
+  const rows = speechTable.querySelectorAll('tbody tr');
+  let maxSpeakingTime = 0;
+  
+  rows.forEach((row) => {
+    const fingerprint = row.querySelector('.speaker-fingerprint');
+    const timeCell = row.querySelector('.speaker-time-column');
+    
+    if (fingerprint && timeCell) {
+      const speakerIndex = fingerprint.getAttribute('data-speaker-index');
+      const timeText = timeCell.textContent.trim();
+      // Extract percentage number (e.g., "59%" -> 59)
+      const timePercent = parseFloat(timeText.replace('%', ''));
+      
+      if (!isNaN(timePercent)) {
+        speakingTimes.set(speakerIndex, timePercent);
+        if (timePercent > maxSpeakingTime) {
+          maxSpeakingTime = timePercent;
+        }
+      }
+    }
+  });
+  
+  // Create fingerprint visualizations for each speaker (in speech-summary table)
   clipsBySpeaker.forEach((clips, speakerIndex) => {
-    const fingerprintContainer = emotionsTable.querySelector(`.speaker-fingerprint[data-speaker-index="${speakerIndex}"]`);
+    const fingerprintContainer = speechTable.querySelector(`.speaker-fingerprint[data-speaker-index="${speakerIndex}"]`);
     if (!fingerprintContainer) return;
     
     // Get wrapper and parent td
@@ -116,8 +140,10 @@ export function initSpeakerFingerprints(sound, clipMap, clipMetadata, updatePlay
     // Calculate speaker's total duration
     const speakerTotalDuration = clips.reduce((sum, clip) => sum + clip.duration, 0);
     
-    // Set width to 100% of parent td
-    fingerprintContainer.style.width = '100%';
+    // Set width proportionally to speaking time
+    const speakerTime = speakingTimes.get(speakerIndex) || 0;
+    const widthPercent = maxSpeakingTime > 0 ? (speakerTime / maxSpeakingTime) * 100 : 100;
+    fingerprintContainer.style.width = `${widthPercent}%`;
     
     // Clear existing content
     fingerprintContainer.innerHTML = '';
@@ -160,6 +186,26 @@ export function initSpeakerFingerprints(sound, clipMap, clipMetadata, updatePlay
       clipRect.addEventListener('click', function() {
         const seekTime = clipData.seekTime;
         if (seekTime !== null && seekTime >= 0 && sound) {
+          // Check if this clip is currently playing by finding corresponding clip in container
+          const clipIndex = clipData.clipIndex;
+          let isPlaying = false;
+          if (clipIndex !== null && clipMap) {
+            const pair = clipMap.get(clipIndex.toString());
+            if (pair && (pair.visualization?.classList.contains('playing') || pair.container?.classList.contains('playing'))) {
+              isPlaying = true;
+            }
+          }
+          
+          if (isPlaying) {
+            // Stop playback and remove playing indicator
+            sound.pause();
+            if (updatePlayingClipFn && clipMap) {
+              const setProgrammaticScrollCallback = getSetProgrammaticScrollCallbackFn ? getSetProgrammaticScrollCallbackFn() : null;
+              updatePlayingClipFn(null, clipMap, false, setProgrammaticScrollCallback, scrollToClipCenter);
+            }
+            return;
+          }
+          
           // Enable auto-scroll when clicking on clip
           if (setAutoScrollEnabledFn) {
             setAutoScrollEnabledFn(true);

@@ -84,8 +84,9 @@ block bodyWrapper %}
           <thead>
             <tr>
               <th class="speaker-name-column">Speaker</th>
-              <th class="speaker-language-column">Language</th>
+              <th class="speaker-emotions-column">Emotion pattern</th>
               <th class="speaker-time-column">Speaking time</th>
+              <th class="speaker-language-column">Language</th>
               <th class="perceived-gender-column">Perceived gender</th>
               <th class="perceived-age-column">Perceived age</th>
               <th class="synthetic-human-column">Origin</th>
@@ -94,69 +95,37 @@ block bodyWrapper %}
           <tbody>
             <tr>
               <td class="speaker-name-column">Customer</td>
-              <td class="speaker-language-column">English, American accent</td>
-              <td class="speaker-time-column">59%</td>
-              <td>Male</td>
-              <td>Adult</td>
-              <td>Human</td>
-            </tr>
-
-            <tr>
-              <td class="speaker-name-column">Support specialist</td>
-              <td class="speaker-language-column">
-                English, Eastern European accent
-              </td>
-              <td class="speaker-time-column">41%</td>
-              <td>Male</td>
-              <td>Adult</td>
-              <td>Synthetic</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="ids__space M"></div>
-        <h2>Emotions</h2>
-
-        <table class="summary-table emotions-summary">
-          <thead>
-            <tr>
-              <th class="speaker-name-column">Speaker</th>
-              <th class="speaker-emotions-graph-column">Emotion pattern</th>
-              <th class="speaker-emotions-list-column">Detected emotions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="speaker-name-column">Customer</td>
-              <td class="speaker-emotions-graph-column">
+              <td class="speaker-emotions-column">
                 <div class="speaker-fingerprint-wrapper">
                   <div class="speaker-fingerprint" data-speaker-index="1"></div>
                 </div>
-                <div
-                  class="fingerprint-emotion-caption"
-                  data-speaker-index="1"></div>
+                <span class="speaker-emotions-list-column"></span>
               </td>
-              <td class="speaker-emotions-list-column"></td>
+              <td class="speaker-time-column">59%</td>
+              <td class="speaker-language-column">English, American accent</td>
+              <td class="perceived-gender-column">Male</td>
+              <td class="perceived-age-column">Adult</td>
+              <td class="synthetic-human-column">Human</td>
             </tr>
 
             <tr>
               <td class="speaker-name-column">Support specialist</td>
-              <td class="speaker-emotions-graph-column">
+              <td class="speaker-emotions-column">
                 <div class="speaker-fingerprint-wrapper">
                   <div class="speaker-fingerprint" data-speaker-index="2"></div>
                 </div>
-                <div
-                  class="fingerprint-emotion-caption"
-                  data-speaker-index="2"></div>
+                <span class="speaker-emotions-list-column"></span>
               </td>
-              <td class="speaker-emotions-list-column"></td>
+              <td class="speaker-time-column">41%</td>
+              <td class="speaker-language-column">
+                English, Eastern European accent
+              </td>
+              <td class="perceived-gender-column">Male</td>
+              <td class="perceived-age-column">Adult</td>
+              <td class="synthetic-human-column">Synthetic</td>
             </tr>
           </tbody>
         </table>
-
-        <a href="/upload" class="link-button"
-          >Learn more: <strong>How we detect emotions ↗</strong></a
-        >
 
         <div class="ids__space L"></div>
         <h2>Behaviors</h2>
@@ -422,7 +391,7 @@ block bodyWrapper %}
     include "components/models.html"-->
       </div>
       <div class="ids__space L"></div>
-      <div class="transcript-container mobile-only">
+      <div class="transcript-container">
         <h2>Transcript</h2>
         {% include "components/transcript-clips.html" %}
         <div class="ids__space M"></div>
@@ -451,6 +420,9 @@ block bodyWrapper %}
           {% include "components/share-popover.html" %}
         </div>
       </div>
+      <a href="/upload" class="link-button"
+        ><strong>Share this conversation analysis ↗</strong></a
+      >
 
       <div class="ids__space XL"></div>
       <h2>Give it a try</h2>

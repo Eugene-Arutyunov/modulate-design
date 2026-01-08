@@ -83,7 +83,7 @@ export function initTranscriptVisualization(options) {
     const behaviours = clipCaption.querySelectorAll('.behaviour');
     if (behaviours.length === 0) return; // Skip if no behaviours
 
-    const behavioursToShow = Array.from(behaviours).slice(0, 3); // Limit to 3
+    const behavioursToShow = Array.from(behaviours).slice(0, 1); // Limit to 1
 
     behavioursToShow.forEach((behaviour, behaviourIndex) => {
       const behaviourType = behaviour.getAttribute('data-behaviour-type');

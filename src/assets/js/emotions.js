@@ -63,12 +63,10 @@ export function updateEmotionCaption(clip, captionSelector = '.emotion-caption')
   emotionCaption.classList.add('visible');
 }
 
-// Update fingerprint emotion caption on hover
+// Highlight emotion in the list instead of showing caption
 export function updateFingerprintEmotionCaption(clip, speakerIndex) {
-  const emotionsTable = document.querySelector('.emotions-summary');
-  if (!emotionsTable) return;
-  const emotionCaption = emotionsTable.querySelector(`.fingerprint-emotion-caption[data-speaker-index="${speakerIndex}"]`);
-  if (!emotionCaption) return;
+  const speechTable = document.querySelector('.speech-summary');
+  if (!speechTable) return;
   
   // Extract emotion name from class (e.g., "emotion-angry" -> "angry")
   const emotionClasses = Array.from(clip.classList).filter(cls => cls.startsWith('emotion-'));
@@ -76,31 +74,57 @@ export function updateFingerprintEmotionCaption(clip, speakerIndex) {
   
   const emotionName = emotionClasses[0].replace('emotion-', '');
   
-  // Update text to show emotion
-  emotionCaption.textContent = emotionName;
+  // Find the fingerprint element and then its row
+  const fingerprint = speechTable.querySelector(`.speaker-fingerprint[data-speaker-index="${speakerIndex}"]`);
+  if (!fingerprint) return;
+  
+  const row = fingerprint.closest('tr');
+  if (!row) return;
+  
+  const emotionsListColumn = row.querySelector('.speaker-emotions-list-column');
+  if (!emotionsListColumn) return;
+  
+  // Remove highlight from all emotion items first
+  const allEmotionItems = emotionsListColumn.querySelectorAll('.emotion-list-item');
+  allEmotionItems.forEach(item => {
+    item.style.backgroundColor = '';
+  });
+  
+  // Find the emotion item in the list by data attribute
+  const emotionItem = emotionsListColumn.querySelector(`.emotion-list-item[data-emotion-name="${emotionName}"]`);
+  if (!emotionItem) return;
   
   // Get color directly from emotion CSS variable (each emotion has its own variable)
   const emotionColorVar = `--emotion-${emotionName}-RGB`;
   const computedStyle = getComputedStyle(document.documentElement);
   const colorValue = computedStyle.getPropertyValue(emotionColorVar).trim();
   
+  // Set background color with 0.2 opacity
   if (colorValue) {
-    emotionCaption.style.color = `rgba(${colorValue}, 1)`;
+    emotionItem.style.backgroundColor = `rgba(${colorValue}, 0.2)`;
   }
-  
-  // Show instantly (no transition)
-  emotionCaption.classList.add('visible');
 }
 
-// Fade out fingerprint emotion caption when leaving fingerprint area (with transition)
+// Remove highlight from emotion in the list when leaving fingerprint area
 export function fadeOutFingerprintEmotionCaption(speakerIndex) {
-  const emotionsTable = document.querySelector('.emotions-summary');
-  if (!emotionsTable) return;
-  const emotionCaption = emotionsTable.querySelector(`.fingerprint-emotion-caption[data-speaker-index="${speakerIndex}"]`);
-  if (!emotionCaption) return;
+  const speechTable = document.querySelector('.speech-summary');
+  if (!speechTable) return;
   
-  // Remove visible class to trigger fade out transition
-  emotionCaption.classList.remove('visible');
+  // Find the fingerprint element and then its row
+  const fingerprint = speechTable.querySelector(`.speaker-fingerprint[data-speaker-index="${speakerIndex}"]`);
+  if (!fingerprint) return;
+  
+  const row = fingerprint.closest('tr');
+  if (!row) return;
+  
+  const emotionsListColumn = row.querySelector('.speaker-emotions-list-column');
+  if (!emotionsListColumn) return;
+  
+  // Remove background from all emotion items
+  const emotionItems = emotionsListColumn.querySelectorAll('.emotion-list-item');
+  emotionItems.forEach(item => {
+    item.style.backgroundColor = '';
+  });
 }
 
 // Fade out emotion caption when leaving visualization area (with transition)

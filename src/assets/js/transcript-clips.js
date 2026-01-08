@@ -180,6 +180,17 @@ export function initTranscriptClipsInteraction(sound, clipMetadata, updatePlayin
       // Hide hover indicator when clicking on clip
       hideHoverPositionIndicator();
       
+      // Check if this clip is currently playing
+      if (clip.classList.contains('playing')) {
+        // Stop playback and remove playing indicator
+        sound.pause();
+        if (updatePlayingClipFn && clipMap) {
+          const setProgrammaticScrollCallback = getSetProgrammaticScrollCallbackFn ? getSetProgrammaticScrollCallbackFn() : null;
+          updatePlayingClipFn(null, clipMap, false, setProgrammaticScrollCallback, scrollToClipCenter);
+        }
+        return;
+      }
+      
       const seekTime = getClipStartTime(clip);
       if (seekTime !== null && seekTime >= 0) {
         // Enable auto-scroll when clicking on clip

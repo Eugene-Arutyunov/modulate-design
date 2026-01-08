@@ -2,6 +2,10 @@
   width: 98%;
   margin: 0.5em auto;
 
+  & .tmp-transcript-link {
+    display: none;
+  }
+
   & .summary-table {
     margin: 1.5em 0 0 0;
     width: 100%;
@@ -49,8 +53,6 @@
       & .behaviour-models-column {
         display: none;
       }
-      & td.behaviour-spider-column {
-      }
     }
 
     &.emotions-summary {
@@ -66,6 +68,27 @@
         }
       }
     }
+
+    &.speech-summary {
+      & .speaker-emotions-column {
+        width: 20em;
+
+        & .speaker-emotions-list-column {
+          display: block;
+          margin: 0.2em 0 0.5em 0;
+
+          & .emotion-list-item {
+            font-weight: inherit;
+          }
+        }
+      }
+
+      & .perceived-gender-column,
+      & .perceived-age-column,
+      & .synthetic-human-column {
+        display: none;
+      }
+    }
   }
 
   /* to sort among tables */
@@ -75,20 +98,6 @@
     align-items: center;
     gap: 0.3em;
     margin: 0;
-  }
-
-  & .fingerprint-emotion-caption {
-    /* font-size: 0.8em; */
-    color: rgba(var(--ids__text-caption-RGB), 1);
-    margin-top: 0.2em;
-    min-height: 1.2em;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-
-    &.visible {
-      opacity: 1;
-      transition: opacity 0s ease;
-    }
   }
 
   & .speaker-fingerprint {

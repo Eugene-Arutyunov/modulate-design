@@ -3,6 +3,8 @@ export function initStickyObserver() {
 
   if (!stickyElement) return;
 
+  const scrollContainer = document.querySelector('.main-content') || window;
+
   function checkSticky() {
     const rect = stickyElement.getBoundingClientRect();
     const stickyTop = parseInt(getComputedStyle(stickyElement).top) || 0;
@@ -15,7 +17,7 @@ export function initStickyObserver() {
   }
 
   // Check on scroll
-  window.addEventListener("scroll", checkSticky);
+  scrollContainer.addEventListener("scroll", checkSticky);
 
   // Check on window resize
   window.addEventListener("resize", checkSticky);

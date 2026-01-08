@@ -22,7 +22,9 @@ export function initAudioPlayer() {
   
   // Auto-scroll tracking
   let autoScrollEnabled = true;
-  let lastScrollPosition = window.pageYOffset;
+  const scrollContainer = document.querySelector('.main-content') || window;
+  const getScrollPosition = () => scrollContainer === window ? window.pageYOffset : scrollContainer.scrollTop;
+  let lastScrollPosition = getScrollPosition();
   let lastScrollTime = Date.now();
   let isProgrammaticScroll = false;
 
@@ -291,6 +293,15 @@ export function initAudioPlayer() {
     const clips = visualization.querySelectorAll('.transcript-clip');
     clips.forEach((clip) => {
       clip.addEventListener('click', function() {
+        // Check if this clip is currently playing
+        if (clip.classList.contains('playing')) {
+          // Stop playback and remove playing indicator
+          sound.pause();
+          currentClipIndex = null;
+          updatePlayingClip(null, clipMap, false, null, scrollToClipCenter);
+          return;
+        }
+        
         const seekTime = getClipStartTime(clip);
         if (seekTime !== null && seekTime >= 0) {
           // Enable auto-scroll when clicking on clip
@@ -313,19 +324,20 @@ export function initAudioPlayer() {
   }
 
   // Handle user scroll to detect when auto-scroll should be disabled
-  window.addEventListener('scroll', function() {
+  scrollContainer.addEventListener('scroll', function() {
     // Ignore programmatic scrolls
     if (isProgrammaticScroll) {
       return;
     }
     
-    const currentScrollPosition = window.pageYOffset;
+    const currentScrollPosition = getScrollPosition();
     const currentTime = Date.now();
     const scrollDistance = Math.abs(currentScrollPosition - lastScrollPosition);
     const timeDelta = currentTime - lastScrollTime;
     
     // Check if user scrolled more than half viewport height in less than 1 second
-    const halfViewportHeight = window.innerHeight / 2;
+    const containerHeight = scrollContainer === window ? window.innerHeight : scrollContainer.clientHeight;
+    const halfViewportHeight = containerHeight / 2;
     if (scrollDistance >= halfViewportHeight && timeDelta <= 1000) {
       autoScrollEnabled = false;
     }

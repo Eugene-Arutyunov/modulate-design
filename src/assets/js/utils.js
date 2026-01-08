@@ -74,6 +74,12 @@ export function parseClipDuration(clip) {
   return 0;
 }
 
+// Get the scrollable container (main-content or window fallback)
+function getScrollContainer() {
+  const mainContent = document.querySelector('.main-content');
+  return mainContent || window;
+}
+
 // Scroll to center a clip element in the viewport
 // Accepts optional callback to set programmatic scroll flag
 export function scrollToClipCenter(clipElement, setProgrammaticFlagCallback = null) {
@@ -84,14 +90,34 @@ export function scrollToClipCenter(clipElement, setProgrammaticFlagCallback = nu
     setProgrammaticFlagCallback(true);
   }
   
-  const elementRect = clipElement.getBoundingClientRect();
-  const absoluteElementTop = elementRect.top + window.pageYOffset;
-  const middle = absoluteElementTop - (window.innerHeight / 2) + (elementRect.height / 2);
+  const scrollContainer = getScrollContainer();
+  const isMainContent = scrollContainer !== window;
   
-  window.scrollTo({
-    top: middle,
-    behavior: 'smooth'
-  });
+  if (isMainContent) {
+    // Scroll within main-content container
+    const containerRect = scrollContainer.getBoundingClientRect();
+    const elementRect = clipElement.getBoundingClientRect();
+    
+    // Calculate relative position within container
+    const elementTopRelativeToContainer = elementRect.top - containerRect.top + scrollContainer.scrollTop;
+    const containerHeight = scrollContainer.clientHeight;
+    const middle = elementTopRelativeToContainer - (containerHeight / 2) + (elementRect.height / 2);
+    
+    scrollContainer.scrollTo({
+      top: middle,
+      behavior: 'smooth'
+    });
+  } else {
+    // Fallback to window scroll (for pages without main-content)
+    const elementRect = clipElement.getBoundingClientRect();
+    const absoluteElementTop = elementRect.top + window.pageYOffset;
+    const middle = absoluteElementTop - (window.innerHeight / 2) + (elementRect.height / 2);
+    
+    window.scrollTo({
+      top: middle,
+      behavior: 'smooth'
+    });
+  }
   
   // Reset flag after scroll completes (smooth scroll takes ~500ms)
   if (setProgrammaticFlagCallback) {

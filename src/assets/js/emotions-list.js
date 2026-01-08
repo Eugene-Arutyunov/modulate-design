@@ -109,6 +109,7 @@ function populateEmotionsList(speakerIndex, emotionsListCell) {
     // Only capitalize first word (first emotion in list)
     emotionSpan.textContent = index === 0 ? capitalize(emotion) : emotion;
     emotionSpan.className = 'emotion-list-item';
+    emotionSpan.setAttribute('data-emotion-name', emotion); // Add data attribute for easy lookup
     const color = getEmotionColor(emotion);
     if (color) {
       emotionSpan.style.color = color;
@@ -133,29 +134,30 @@ function populateEmotionsList(speakerIndex, emotionsListCell) {
 export function initEmotionsList() {
   // Wait a bit to ensure transcript clips are loaded
   setTimeout(() => {
-    const emotionsTable = document.querySelector('.emotions-summary');
-    if (!emotionsTable) {
-      console.warn('Emotions table not found');
+    const speechTable = document.querySelector('.speech-summary');
+    if (!speechTable) {
+      console.warn('Speech summary table not found');
       return;
     }
 
-    const rows = emotionsTable.querySelectorAll('tbody tr');
+    const rows = speechTable.querySelectorAll('tbody tr');
     if (rows.length === 0) {
-      console.warn('No rows found in emotions table');
+      console.warn('No rows found in speech summary table');
       return;
     }
 
     rows.forEach((row) => {
       const speakerNameCell = row.querySelector('.speaker-name-column');
-      const emotionsListCell = row.querySelector('.speaker-emotions-list-column');
+      const emotionsColumn = row.querySelector('.speaker-emotions-column');
+      const emotionsListCell = emotionsColumn?.querySelector('.speaker-emotions-list-column');
 
-      if (!speakerNameCell || !emotionsListCell) {
+      if (!speakerNameCell || !emotionsColumn || !emotionsListCell) {
         console.warn('Required cells not found in row');
         return;
       }
 
       // Get speaker index from fingerprint element
-      const fingerprint = row.querySelector('.speaker-fingerprint');
+      const fingerprint = emotionsColumn.querySelector('.speaker-fingerprint');
       if (!fingerprint) {
         console.warn('Fingerprint not found in row');
         return;

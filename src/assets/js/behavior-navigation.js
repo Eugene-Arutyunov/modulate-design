@@ -258,8 +258,9 @@ export function initBehaviorNavigation(sound, setAutoScrollEnabledFn, getSetProg
   }
   
   // Add scroll listener for visibility
+  const scrollContainer = document.querySelector('.main-content') || window;
   let scrollTimeout;
-  window.addEventListener('scroll', function() {
+  scrollContainer.addEventListener('scroll', function() {
     clearTimeout(scrollTimeout);
     scrollTimeout = setTimeout(updateVisibility, 10);
   });
