@@ -133,11 +133,18 @@ export function findFirstClipWithBehavior(behaviorName) {
   if (!transcriptContainer) return null;
   
   const clips = transcriptContainer.querySelectorAll('.transcript-clip.evidence');
+  const normalizedBehaviorName = behaviorName.trim().replace(/\s+/g, ' ');
   
   for (const clip of clips) {
     const behaviourElement = clip.querySelector('.behaviour');
-    if (behaviourElement && behaviourElement.textContent.trim() === behaviorName.trim()) {
-      return clip;
+    if (behaviourElement) {
+      // Clone element to avoid modifying original, remove SVG icons, then get text
+      const behaviourClone = behaviourElement.cloneNode(true);
+      behaviourClone.querySelectorAll('svg, .behaviour-icon').forEach(el => el.remove());
+      const normalizedClipBehaviorName = behaviourClone.textContent.trim().replace(/\s+/g, ' ');
+      if (normalizedClipBehaviorName === normalizedBehaviorName) {
+        return clip;
+      }
     }
   }
   

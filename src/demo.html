@@ -138,10 +138,11 @@ block bodyWrapper %}
             <tr>
               <th class="speaker-name-column">Speaker</th>
               <th class="behaviour-column">Behavior</th>
-              <th class="behaviour-confidence-column">Confidence</th>
+              <th class="behaviours-description">Behavior description</th>
               <th class="behaviour-spider-column">How we detect</th>
               <th class="behaviour-clips-column">Clips</th>
               <th class="behaviour-models-column">Models used</th>
+              <th class="behaviour-confidence-column">Confidence</th>
             </tr>
           </thead>
           <tbody>
@@ -153,10 +154,17 @@ block bodyWrapper %}
                   >{% include "assets/behaviour-icon-kiki.html" %} Return Fraud
                   Attempt</a
                 >
-                <p>Customer attempting fraudulent product return</p>
-                <p>Confidence: 89%</p>
               </td>
-              <td class="behaviour-confidence-column">89%</td>
+              <td class="behaviours-description">
+                <p>
+                  <strong
+                    >Customer attempting fraudulent product return.</strong
+                  >
+                  We detect return-fraud attempts mainly from language patterns
+                  and stated intent (text), reinforced by delivery cues in audio
+                  (acoustic/volume) as secondary signals.
+                </p>
+              </td>
               <td class="behaviour-spider-column">
                 <div class="spider-graph-wrapper">
                   <div class="spider-graph text acoustic volume">
@@ -185,6 +193,7 @@ block bodyWrapper %}
               <td class="behaviour-models-column">
                 Scripted Scenario, Bypassing Protocol
               </td>
+              <td class="behaviour-confidence-column">89%</td>
             </tr>
             <tr>
               <td class="behaviour-column">
@@ -192,14 +201,19 @@ block bodyWrapper %}
                   >{% include "assets/behaviour-icon-kiki.html" %} Social
                   Engineering</a
                 >
-                <p>
-                  Attempts to manipulate, coerce, pressure, or otherwise force
-                  an agent or support staff to do something against their
-                  interest.
-                </p>
-                <p>Confidence: 91%</p>
               </td>
-              <td class="behaviour-confidence-column">91%</td>
+              <td class="behaviours-description">
+                <p>
+                  <strong
+                    >Attempts to manipulate, coerce, pressure, or otherwise
+                    force an agent or support staff to do something against
+                    their interest.</strong
+                  >
+                  We detect social engineering primarily from what's being asked
+                  or asserted (text), with pressure/urgency in emotion and
+                  delivery as supporting signals.
+                </p>
+              </td>
               <td class="behaviour-spider-column">
                 <div class="spider-graph-wrapper">
                   <div class="spider-graph text emotion volume">
@@ -231,6 +245,7 @@ block bodyWrapper %}
               <td class="behaviour-models-column">
                 Social Pressure and Manipulation
               </td>
+              <td class="behaviour-confidence-column">91%</td>
             </tr>
             <tr>
               <td class="behaviour-column">
@@ -238,10 +253,17 @@ block bodyWrapper %}
                   >{% include "assets/behaviour-icon-kiki.html" %} Active
                   Listening</a
                 >
-                <p>Demonstrating engaged attention and understanding</p>
-                <p>Confidence: 82%</p>
               </td>
-              <td class="behaviour-confidence-column">82%</td>
+              <td class="behaviours-description">
+                <p>
+                  <strong
+                    >Demonstrating engaged attention and understanding.</strong
+                  >
+                  We detect active listening through turn-taking and
+                  acknowledgements (timing + text), supported by engaged
+                  backchannel audio cues and attentive tone.
+                </p>
+              </td>
               <td class="behaviour-spider-column">
                 <div class="spider-graph-wrapper">
                   <div class="spider-graph timing text acoustic emotion">
@@ -267,6 +289,7 @@ block bodyWrapper %}
                 </div>
               </td>
               <td class="behaviour-models-column"></td>
+              <td class="behaviour-confidence-column">82%</td>
             </tr>
             <tr>
               <td class="behaviour-column">
@@ -274,10 +297,17 @@ block bodyWrapper %}
                   >{% include "assets/behaviour-icon-kiki.html" %} Respectful
                   Interaction</a
                 >
-                <p>Maintaining professional courtesy and respect</p>
-                <p>Confidence: 75%</p>
               </td>
-              <td class="behaviour-confidence-column">75%</td>
+              <td class="behaviours-description">
+                <p>
+                  <strong
+                    >Maintaining professional courtesy and respect.</strong
+                  >
+                  We detect respectful interaction mostly via courteous language
+                  (text) plus interruption/turn-taking patterns and calm,
+                  respectful tone (timing/emotion/timbre).
+                </p>
+              </td>
               <td class="behaviour-spider-column">
                 <div class="spider-graph-wrapper">
                   <div class="spider-graph text timing emotion timbre">
@@ -302,6 +332,7 @@ block bodyWrapper %}
               <td class="behaviour-models-column">
                 Response Timing Analysis, Interruption, Speech Pattern Analyzer
               </td>
+              <td class="behaviour-confidence-column">75%</td>
             </tr>
             <tr>
               <td class="speaker-name-column" rowspan="2">
@@ -313,12 +344,19 @@ block bodyWrapper %}
                   >{% include "assets/behaviour-icon-kiki.html" %} Missed
                   Question or Vague Answer</a
                 >
-                <p>
-                  Representative or Agent fails to address prospect's question
-                </p>
-                <p>Confidence: 85%</p>
               </td>
-              <td class="behaviour-confidence-column">85%</td>
+              <td class="behaviours-description">
+                <p>
+                  <strong
+                    >Representative or Agent fails to address prospect's
+                    question.</strong
+                  >
+                  We detect missed questions or vague answers by linking
+                  responses to prior questions and flagging vagueness or
+                  non-answers in the text, with hesitation timing as a light
+                  cue.
+                </p>
+              </td>
               <td class="behaviour-spider-column">
                 <div class="spider-graph-wrapper">
                   <div class="spider-graph text timing">
@@ -348,6 +386,7 @@ block bodyWrapper %}
                 </div>
               </td>
               <td class="behaviour-models-column">Speech Pattern Analyzer</td>
+              <td class="behaviour-confidence-column">85%</td>
             </tr>
             <tr>
               <td class="behaviour-column">
@@ -355,12 +394,18 @@ block bodyWrapper %}
                   >{% include "assets/behaviour-icon-kiki.html" %} Empathetic
                   Responding</a
                 >
-                <p>
-                  Showing understanding and concern for others' perspectives
-                </p>
-                <p>Confidence: 78%</p>
               </td>
-              <td class="behaviour-confidence-column">78%</td>
+              <td class="behaviours-description">
+                <p>
+                  <strong
+                    >Showing understanding and concern for others'
+                    perspectives.</strong
+                  >
+                  We detect empathy through emotional alignment and explicit
+                  acknowledgement (emotion + text), backed by warm tone and
+                  steady delivery (timbre/volume).
+                </p>
+              </td>
               <td class="behaviour-spider-column">
                 <div class="spider-graph-wrapper">
                   <div class="spider-graph emotion text timbre volume">
@@ -382,6 +427,7 @@ block bodyWrapper %}
                 </div>
               </td>
               <td class="behaviour-models-column"></td>
+              <td class="behaviour-confidence-column">78%</td>
             </tr>
           </tbody>
         </table>
@@ -395,10 +441,22 @@ block bodyWrapper %}
     include "components/models.html"-->
       </div>
       <div class="ids__space L"></div>
-      <div class="transcript-container">
+
+      <div class="transcript-header-wrapper">
         <h2>Transcript</h2>
+        <button type="button" class="transcript-toggle-button">Hide</button>
+      </div>
+      <div class="ids__space S"></div>
+      <div class="transcript-container">
         {% include "components/transcript-clips.html" %}
-        <div class="ids__space M"></div>
+        <div class="ids__space S"></div>
+        <button
+          class="full-width-button share-trigger-button"
+          type="button"
+          aria-label="Share this conversation analysis">
+          <strong>Share this conversation analysis ↗</strong>
+        </button>
+        {% include "components/share-popover.html" %}
       </div>
       <div class="next-clip-wrapper">
         <div class="next-clip-container dark-mode">
@@ -412,14 +470,6 @@ block bodyWrapper %}
       </div>
     </div>
     <div class="ids__wrapper">
-      <button
-        class="full-width-button share-trigger-button"
-        type="button"
-        aria-label="Share this conversation analysis">
-        <strong>Share this conversation analysis ↗</strong>
-      </button>
-      {% include "components/share-popover.html" %}
-
       <div class="ids__space XL"></div>
       <h2>Give it a try</h2>
       {% include "components/upload-area.html" %}

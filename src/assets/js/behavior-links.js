@@ -7,7 +7,10 @@ export function initBehaviorLinkHandlers(sound, setAutoScrollEnabledFn, getSetPr
   detectedBehaviourLinks.forEach((link) => {
     link.addEventListener('click', function(e) {
       e.preventDefault();
-      const behaviorName = link.textContent.trim();
+      // Extract behavior name: clone the link, remove SVG icons, get text content, normalize whitespace
+      const linkClone = link.cloneNode(true);
+      linkClone.querySelectorAll('svg, .behaviour-icon').forEach(el => el.remove());
+      const behaviorName = linkClone.textContent.trim().replace(/\s+/g, ' ');
       const targetClip = findFirstClipWithBehavior(behaviorName);
       if (targetClip) {
         // Enable auto-scroll when clicking on behavior link

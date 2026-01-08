@@ -14,6 +14,7 @@ import { initFingerprintVisualization } from './fingerprint-visualization.js';
 import { initUploadForm, initUploadAreaStateSwitcher } from './upload-form.js';
 import { initEmotionsList } from './emotions-list.js';
 import { initSidebar } from './sidebar.js';
+import { initTranscriptToggle } from './transcript-toggle.js';
 
 // Initialize when DOM is ready
 function init() {
@@ -26,6 +27,7 @@ function init() {
   initUploadAreaStateSwitcher();
   initEmotionsList();
   initSidebar();
+  initTranscriptToggle();
   const audioPlayerResult = initAudioPlayer();
   
   if (!audioPlayerResult) {

@@ -36,7 +36,7 @@
 
     &.behaviours-summary {
       & .behaviour-column {
-        width: 16em;
+        width: 40%;
         padding-bottom: 0.5em;
 
         & p {
@@ -45,12 +45,14 @@
         }
       }
 
-      & .behaviour-confidence-column {
-        display: none;
+      & .behaviours-description {
+        width: 60%;
+        padding-bottom: 0.5em;
       }
 
-      & .behaviour-clips-column,
-      & .behaviour-models-column {
+      & .behaviour-models-column,
+      & .behaviour-spider-column,
+      & .behaviour-clips-column {
         display: none;
       }
     }

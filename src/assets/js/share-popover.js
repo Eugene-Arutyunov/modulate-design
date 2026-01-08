@@ -1,11 +1,11 @@
 export function initSharePopover() {
-  const triggerButton = document.querySelector('.share-trigger-button');
+  const triggerButtons = document.querySelectorAll('.share-trigger-button');
   const backdrop = document.querySelector('.share-popover-backdrop');
   const popover = document.querySelector('.share-popover');
   const closeButton = document.querySelector('.share-popover-close');
   const copyLinkButton = document.querySelector('[data-share-action="copy-link"]');
 
-  if (!triggerButton || !backdrop || !popover) return;
+  if (!triggerButtons.length || !backdrop || !popover) return;
 
   // Function to open popover
   function openPopover() {
@@ -21,10 +21,12 @@ export function initSharePopover() {
     document.body.style.overflow = '';
   }
 
-  // Open popover on trigger button click
-  triggerButton.addEventListener('click', function(e) {
-    e.preventDefault();
-    openPopover();
+  // Open popover on trigger button click (for all buttons)
+  triggerButtons.forEach((triggerButton) => {
+    triggerButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      openPopover();
+    });
   });
 
   // Close popover on close button click
