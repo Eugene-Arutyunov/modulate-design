@@ -1026,7 +1026,6 @@
 
     & .player-control-center:hover {
       background-color: rgba(var(--ids__bg-surface-RGB), 0.3);
-      filter: brightness(125%) saturate(125%);
       transition: background-color 0s ease;
 
       & .player-icon {

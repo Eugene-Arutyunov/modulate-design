@@ -274,18 +274,3 @@
     border-color: rgba(var(--ids__text-hover-RGB), 0.8);
   }
 }
-
-.schedule-form-button {
-  min-width: 13em;
-
-  &:disabled {
-    background-color: rgba(var(--ids__text-caption-RGB), 1);
-    color: rgba(var(--ids__text-RGB), 0.5);
-    cursor: not-allowed;
-
-    &:hover {
-      background-color: rgba(var(--ids__text-caption-RGB), 1);
-      color: rgba(var(--ids__text-RGB), 0.5);
-    }
-  }
-}

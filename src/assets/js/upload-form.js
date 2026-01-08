@@ -1,6 +1,6 @@
 export function initUploadForm() {
   const checkbox = document.getElementById('terms-checkbox');
-  const submitButton = document.querySelector('.upload-form .schedule-form-button');
+  const submitButton = document.querySelector('.upload-form .ids__form-button');
 
   if (!checkbox || !submitButton) {
     return;

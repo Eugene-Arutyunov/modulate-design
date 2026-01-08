@@ -4,47 +4,43 @@ block content %}
 <div class="ids__wrapper narrative-typography">
   <div class="ids__space M"></div>
 
-  <h1 class="L">
-    Introducing Velma — the first voice native Ensemble Listening Model
-  </h1>
+  <h1 class="L">Understand the meaning of every conversation</h1>
   <!-- {% include "components/fingerprint-visualization.html" %} -->
 
   <div class="ids__space S"></div>
 
   <p class="loud text-with-icons">
-    Modulate’s Velma is the first and only voice-native Ensemble Listening Model
-    built to understand human speech in all its depth and nuance — going beyond
-    transcription to interpret<span
+    Modulate is introducing Velma 2.0 — the only voice-native AI model designed
+    to understand human speech in all its depth and nuance. Velma goes way
+    beyond traditional LLMs to interpret<span
       style="width: 0.15em; display: inline-block"></span>
     {% include "assets/emotion-icon.html" %} emotion, auditory {% include
-    "assets/behaviour-icon-kiki.html" %} behaviors, and context in every
-    conversation.
+    "assets/behaviour-icon-kiki.html" %} behaviors, and context to unpack the
+    full meaning of every conversation.
   </p>
   <div class="ids__space S"></div>
   <div class="demo-recordings-section">
     {% include "components/demo-recordings-promo-table.html" %}
-    <a href="/upload" class="link-button">Upload your audio</a>
+    <div class="ids__space S"></div>
+    {% include "components/upload-area.html" %}
   </div>
   <div class="ids__space M"></div>
   <div class="ids__text-width">
-    <h2>Velma</h2>
+    <h2>Modulate Platform</h2>
     <p>
-      Velma 2.0 is the world's leading AI model for voice understanding,
-      outperforming OpenAI, Google, and other LLM-focused incumbents by
-      leveraging a fundamentally new AI architecture - the Ensemble Listening
-      Model (ELM). Modulate's platform, powered by Velma, supports AAA game
-      studios and Fortune 500 companies at massive scale, providing a
-      customizable, reliable, and contextually rich way to understand what's
-      happening across a vast call ecosystem.
+      Modulate’s platform leverages Velma 2.0. — the #1 AI model for
+      understanding conversations — to help companies improve customer
+      experiences, reduce risks as a moderation layer across an organization's
+      entire conversation base.
     </p>
     <p>
-      Our inspector lets you see the depth of Velma's analysis for yourself.
-      Select a pre-loaded conversation or upload your own audio, and you'll be
-      treated to much more than a transcript - in fact, you'll see an
-      interactive, visual breakdown of key moments in the conversation.
+      Modulate Platform is x100 cheaper and more accurate for conversation
+      analysis at scale.
     </p>
+    <p>Trusted by Rockstar, Activision and many Fortune 500 companies.</p>
+  </div>
 
-    <div class="ids__space S"></div>
+    <!-- <div class="ids__space S"></div>
     <h2>Why Velma over LLMs?</h2>
     <p>
       Understanding audio is fundamentally more complex than text because audio
@@ -69,11 +65,11 @@ block content %}
       results. The result is an unprecedented contextual understanding of any
       voice conversation.
     </p>
-  </div>
-  <figure>
-    <img src="/assets/Screenshot-2026-01-07-at-19.23.42.jpg" alt="ELM" />
-  </figure>
-  <div class="ids__text-width">
+  </div> -->
+    <figure>
+      <img src="/assets/Screenshot2025.png" alt="ELM" />
+    </figure>
+    <!-- <div class="ids__text-width">
     <p>
       Velma uses over 100 component models, each one leading in its own way. The
       world's best synthetic voice detection, emotion detection, transcription
@@ -114,10 +110,11 @@ block content %}
       best-in-class real-time conversational insights to your platform? Get in
       touch below.
     </p>
+  </div> -->
+
+    <div class="ids__space L"></div>
+    {% include "components/cta.html" %}
   </div>
 
-  <div class="ids__space L"></div>
-  {% include "components/cta.html" %}
+  {% endblock %}
 </div>
-
-{% endblock %}

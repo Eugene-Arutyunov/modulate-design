@@ -1,0 +1,52 @@
+.ids__form-button {
+  padding: 0.5em 1.5em;
+  background-color: rgba(var(--ids__text-hover-RGB), 0.9);
+  color: rgb(var(--ids__text-RGB));
+  border: none;
+  font-family: var(--sans);
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: rgb(var(--ids__text-hover-RGB));
+    transition: background-color 0s ease;
+  }
+
+  &:active {
+    background-color: rgb(var(--ids__bg-accent-RGB));
+  }
+
+  &:disabled {
+    background-color: rgba(var(--ids__text-caption-RGB), 1);
+    color: rgba(var(--ids__text-RGB), 0.5);
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: rgba(var(--ids__text-caption-RGB), 1);
+      color: rgba(var(--ids__text-RGB), 0.5);
+    }
+  }
+}
+
+.ids__form-textfield {
+  flex: 1;
+  padding: 0.4em 0.6em;
+  border: 0px solid rgba(var(--ids__text-RGB), 0.2);
+  border-radius: 0.1em;
+  font-family: var(--sans);
+  font-size: 1em;
+  background-color: rgba(var(--ids__background-RGB), 1);
+  color: rgb(var(--ids__text-RGB));
+  transition: border-color 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-color: rgba(var(--ids__text-link-RGB), 0.5);
+  }
+
+  &::placeholder {
+    color: rgba(var(--ids__text-RGB), 0.5);
+  }
+}

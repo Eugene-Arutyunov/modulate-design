@@ -1,7 +1,14 @@
 .footer {
-  margin-top: 5em;
-  padding: 4em;
+  margin-top: 12em;
+  padding: 10em;
   text-align: center;
   font-size: 0.8em;
   background-color: rgba(var(--ids__bg-surface-RGB), 1);
+
+  & .footer-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-bottom: 1em;
+  }
 }
