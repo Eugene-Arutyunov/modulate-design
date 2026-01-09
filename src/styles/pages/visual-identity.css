@@ -100,6 +100,7 @@
   padding: 0.5em 0.5em 2.36em 0.5em;
   font-size: 0.7em;
   line-height: 1;
+  min-height: 7em;
 }
 
 /* Скрыть RGB значения на странице visual-identity */
