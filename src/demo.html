@@ -432,8 +432,8 @@ block bodyWrapper %}
           </tbody>
         </table>
 
-        <a href="/upload" class="full-width-button"
-          >Learn more: <strong>How we detect behaviors ↗</strong></a
+        <a href="#cta-container" class="full-width-button"
+          ><strong>Set up your own behaviors</strong></a
         >
       </div>
       <div>
@@ -481,15 +481,16 @@ block bodyWrapper %}
       <div class="ids__space XL"></div>
 
       <div class="ids__space" style="height: 0.5em"></div>
-      <div class="ids__text-width">
-        <p>
-          Modulate proactively detects key behaviors to help customers manage
-          risk and improve experiences for their employees and users alike.
-        </p>
+      <div id="cta-container">
+        <div class="ids__text-width">
+          <p>
+            Modulate proactively detects key behaviors to help customers manage
+            risk and improve experiences for their employees and users alike.
+          </p>
+        </div>
+        <div class="ids__space XS"></div>
+        {% include "components/cta.html" %}
       </div>
-      <div class="ids__space XS"></div>
-
-      {% include "components/cta.html" %}
       <div class="ids__space XL"></div>
     </div>
     {% endblock %} {% include 'footer.html' %}

@@ -2,23 +2,33 @@
 block content %}
 
 <div class="ids__wrapper narrative-typography">
-  <div class="ids__space M"></div>
+  <div class="ids__space L"></div>
 
-  <h1 class="L">Understand the meaning of every conversation</h1>
+  <h1 class="L">Understand the meaning of every conversation</h1>
   <!-- {% include "components/fingerprint-visualization.html" %} -->
-  
+
   <div class="ids__space S"></div>
 
   <p class="loud text-with-icons">
     Modulate is introducing Velma 2.0 — the only voice-native AI model designed
-    to understand human speech in all its depth and nuance. Velma goes way
+    to understand human speech in all its depth and nuance. Velma goes way
     beyond traditional LLMs to interpret<span
       style="width: 0.15em; display: inline-block"></span>
-    <span class="nobr">{% include "assets/emotion-icon.html" %} emotion,</span> auditory <span class="nobr">{% include
-    "assets/behaviour-icon-kiki.html" %} behaviors,</span> and context to unpack the
-    full meaning of every conversation.
+    <span class="nobr">{% include "assets/emotion-icon.html" %} emotion,</span>
+    auditory
+    <span class="nobr"
+      >{% include "assets/behaviour-icon-kiki.html" %} behaviors,</span
+    >
+    and context to unpack the full meaning of every conversation.
   </p>
   <div class="ids__space S"></div>
+  <div class="ids__text-width">
+    <p>
+      Want a preview of what Modulate can do? Choose a pre-loaded conversation
+      or upload your own audi or video — and see the insights Velma delivers.
+    </p>
+  </div>
+
   <div class="demo-recordings-section">
     {% include "components/demo-recordings-promo-table.html" %}
     <a href="/conversations" class="full-width-button">More conversations</a>
@@ -39,9 +49,12 @@ block content %}
       analysis at scale.
     </p>
     <p>Trusted by Rockstar, Activision and many Fortune 500 companies.</p>
+    <figure>
+      <img src="/assets/image.png" alt="Accuracy Vs. Cost" />
+    </figure>
   </div>
 
-    <!-- <div class="ids__space S"></div>
+  <!-- <div class="ids__space S"></div>
     <h2>Why Velma over LLMs?</h2>
     <p>
       Understanding audio is fundamentally more complex than text because audio
@@ -67,10 +80,8 @@ block content %}
       voice conversation.
     </p>
   </div> -->
-    <figure>
-      <img src="/assets/Screenshot2025.png" alt="ELM" />
-    </figure>
-    <!-- <div class="ids__text-width">
+
+  <!-- <div class="ids__text-width">
     <p>
       Velma uses over 100 component models, each one leading in its own way. The
       world's best synthetic voice detection, emotion detection, transcription
@@ -113,9 +124,16 @@ block content %}
     </p>
   </div> -->
 
-    <div class="ids__space L"></div>
-    {% include "components/cta.html" %}
-  </div>
+  <div class="ids__space L"></div>
+  {% include "components/cta.html" %}
+  <!-- <script src="https://js.hsforms.net/forms/embed/22677265.js" defer></script>
+  <div
+    class="hs-form-frame"
+    data-region="na1"
+    style="width: 100%; height: 100%"
+    data-form-id="aa1ba44a-7871-4703-9c1b-60e4220cc24f"
+    data-portal-id="22677265"></div>
+</div> -->
 
   {% endblock %}
 </div>

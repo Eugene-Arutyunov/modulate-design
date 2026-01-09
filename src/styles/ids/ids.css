@@ -24,7 +24,7 @@
 
     &.loud {
       font-family: var(--gothic);
-      font-size: 1.7em;
+      font-size: 1.4em;
       line-height: 1.1;
       font-weight: 450;
       color: rgba(var(--ids__text-accent-RGB), 1);
