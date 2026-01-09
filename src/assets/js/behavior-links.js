@@ -1,7 +1,7 @@
 import { findFirstClipWithBehavior, getClipStartTime, scrollToClipCenter } from './utils.js';
 
 // Initialize behavior link handlers
-export function initBehaviorLinkHandlers(sound, setAutoScrollEnabledFn, getSetProgrammaticScrollCallbackFn) {
+export function initBehaviorLinkHandlers(sound, setAutoScrollEnabledFn, getSetProgrammaticScrollCallbackFn, setInitiatedFromBehaviourColumnFn) {
   // Handle detected-behaviour links
   const detectedBehaviourLinks = document.querySelectorAll('.detected-behaviour');
   detectedBehaviourLinks.forEach((link) => {
@@ -16,6 +16,10 @@ export function initBehaviorLinkHandlers(sound, setAutoScrollEnabledFn, getSetPr
         // Enable auto-scroll when clicking on behavior link
         if (setAutoScrollEnabledFn) {
           setAutoScrollEnabledFn(true);
+        }
+        // Mark that playback was initiated from behaviour-column
+        if (setInitiatedFromBehaviourColumnFn) {
+          setInitiatedFromBehaviourColumnFn(true);
         }
         
         const setProgrammaticScrollCallback = getSetProgrammaticScrollCallbackFn ? getSetProgrammaticScrollCallbackFn() : null;
@@ -65,6 +69,10 @@ export function initBehaviorLinkHandlers(sound, setAutoScrollEnabledFn, getSetPr
           // Enable auto-scroll when clicking on behavior link
           if (setAutoScrollEnabledFn) {
             setAutoScrollEnabledFn(true);
+          }
+          // Mark that playback was initiated from behaviour-column
+          if (setInitiatedFromBehaviourColumnFn) {
+            setInitiatedFromBehaviourColumnFn(true);
           }
           
           const setProgrammaticScrollCallback = getSetProgrammaticScrollCallbackFn ? getSetProgrammaticScrollCallbackFn() : null;

@@ -29,7 +29,7 @@ function findAllBehaviorClips() {
 }
 
 // Initialize behavior navigation
-export function initBehaviorNavigation(sound, setAutoScrollEnabledFn, getSetProgrammaticScrollCallbackFn) {
+export function initBehaviorNavigation(sound, setAutoScrollEnabledFn, getSetProgrammaticScrollCallbackFn, setInitiatedFromBehaviourColumnFn) {
   const nextClipLinkElement = document.querySelector('.clip-link.next-clip-link');
   const previousClipLinkElement = document.querySelector('.clip-link.previous-clip-link');
   const nextClipLink = nextClipLinkElement ? nextClipLinkElement.querySelector('a.next-clip-link') : null;
@@ -103,6 +103,10 @@ export function initBehaviorNavigation(sound, setAutoScrollEnabledFn, getSetProg
     // Enable auto-scroll
     if (setAutoScrollEnabledFn) {
       setAutoScrollEnabledFn(true);
+    }
+    // Mark that playback was initiated from behaviour-column
+    if (setInitiatedFromBehaviourColumnFn) {
+      setInitiatedFromBehaviourColumnFn(true);
     }
     
     // Scroll to clip

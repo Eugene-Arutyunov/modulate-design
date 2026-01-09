@@ -5,7 +5,7 @@ import { scrollToClipCenter } from './utils.js';
 import { updateEmotionCaption, fadeOutEmotionCaption } from './emotions.js';
 
 // Initialize transcript clips interaction (click and hover sync)
-export function initTranscriptClipsInteraction(sound, clipMetadata, updatePlayingClipFn, getCurrentClipIndexFn, getAutoScrollEnabledFn, setAutoScrollEnabledFn, getSetProgrammaticScrollCallbackFn) {
+export function initTranscriptClipsInteraction(sound, clipMetadata, updatePlayingClipFn, getCurrentClipIndexFn, getAutoScrollEnabledFn, setAutoScrollEnabledFn, getSetProgrammaticScrollCallbackFn, setInitiatedFromBehaviourColumnFn) {
   if (!sound) return null;
   
   const visualization = document.querySelector('.player-visualization');
@@ -193,9 +193,13 @@ export function initTranscriptClipsInteraction(sound, clipMetadata, updatePlayin
       
       const seekTime = getClipStartTime(clip);
       if (seekTime !== null && seekTime >= 0) {
-        // Enable auto-scroll when clicking on clip
+        // Enable auto-scroll when clicking on clip in transcript container
         if (setAutoScrollEnabledFn) {
           setAutoScrollEnabledFn(true);
+        }
+        // Mark that playback was initiated from behaviour-column
+        if (setInitiatedFromBehaviourColumnFn) {
+          setInitiatedFromBehaviourColumnFn(true);
         }
         
         sound.seek(seekTime);

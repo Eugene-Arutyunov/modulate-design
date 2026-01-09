@@ -45,7 +45,8 @@ function init() {
     getCurrentClipIndex,
     audioPlayerResult.getAutoScrollEnabled,
     audioPlayerResult.setAutoScrollEnabled,
-    audioPlayerResult.getSetProgrammaticScrollCallback
+    audioPlayerResult.getSetProgrammaticScrollCallback,
+    audioPlayerResult.setInitiatedFromBehaviourColumn
   );
   
   if (audioPlayerResult && audioPlayerResult.setClipMap) {
@@ -68,13 +69,15 @@ function init() {
   initBehaviorLinkHandlers(
     audioPlayerResult.sound,
     audioPlayerResult.setAutoScrollEnabled,
-    audioPlayerResult.getSetProgrammaticScrollCallback
+    audioPlayerResult.getSetProgrammaticScrollCallback,
+    audioPlayerResult.setInitiatedFromBehaviourColumn
   );
   
   initBehaviorNavigation(
     audioPlayerResult.sound,
     audioPlayerResult.setAutoScrollEnabled,
-    audioPlayerResult.getSetProgrammaticScrollCallback
+    audioPlayerResult.getSetProgrammaticScrollCallback,
+    audioPlayerResult.setInitiatedFromBehaviourColumn
   );
   
   initSharePopover();

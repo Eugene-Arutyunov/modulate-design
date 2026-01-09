@@ -22,6 +22,7 @@ export function initAudioPlayer() {
   
   // Auto-scroll tracking
   let autoScrollEnabled = true;
+  let initiatedFromBehaviourColumn = false; // Track if playback was initiated from behaviour-column
   const scrollContainer = document.querySelector('.main-content') || window;
   const getScrollPosition = () => scrollContainer === window ? window.pageYOffset : scrollContainer.scrollTop;
   let lastScrollPosition = getScrollPosition();
@@ -56,16 +57,15 @@ export function initAudioPlayer() {
         audioPlayer.setAttribute('data-playback-started', 'true');
       }
       
-      autoScrollEnabled = true;
       startPositionUpdate();
       updatePlayPauseIcon();
       
-      // Immediately scroll to current clip when playback starts
+      // Update playing clip without scrolling when playback starts
       if (clipMetadata.length > 0 && clipMap) {
         const currentTime = sound.seek();
         const clipIndex = getCurrentClipIndex(currentTime, clipMetadata);
         if (clipIndex !== null) {
-          updatePlayingClip(clipIndex, clipMap, autoScrollEnabled, (flag) => { isProgrammaticScroll = flag; }, scrollToClipCenter);
+          updatePlayingClip(clipIndex, clipMap, false, null, scrollToClipCenter);
           currentClipIndex = clipIndex;
         }
       }
@@ -78,6 +78,8 @@ export function initAudioPlayer() {
         updatePlayingClip(null, clipMap, false, null, scrollToClipCenter);
         currentClipIndex = null;
       }
+      // Reset flag when paused
+      initiatedFromBehaviourColumn = false;
     },
     onend: function() {
       stopPositionUpdate();
@@ -88,6 +90,8 @@ export function initAudioPlayer() {
         updatePlayingClip(null, clipMap, false, null, scrollToClipCenter);
         currentClipIndex = null;
       }
+      // Reset flag when ended
+      initiatedFromBehaviourColumn = false;
     }
   });
 
@@ -237,11 +241,13 @@ export function initAudioPlayer() {
         updatePlayerPosition(currentTime);
         
         // Update playing clip based on current time
+        // Only scroll if playback was initiated from behaviour-column
         if (clipMetadata.length > 0 && clipMap) {
           const newClipIndex = getCurrentClipIndex(currentTime, clipMetadata);
           if (newClipIndex !== currentClipIndex) {
             currentClipIndex = newClipIndex;
-            updatePlayingClip(currentClipIndex, clipMap, autoScrollEnabled, (flag) => { isProgrammaticScroll = flag; }, scrollToClipCenter);
+            const shouldScroll = initiatedFromBehaviourColumn && autoScrollEnabled;
+            updatePlayingClip(currentClipIndex, clipMap, shouldScroll, (flag) => { isProgrammaticScroll = flag; }, scrollToClipCenter);
           }
         }
         
@@ -304,19 +310,16 @@ export function initAudioPlayer() {
         
         const seekTime = getClipStartTime(clip);
         if (seekTime !== null && seekTime >= 0) {
-          // Enable auto-scroll when clicking on clip
-          autoScrollEnabled = true;
-          
           sound.seek(seekTime);
           if (!sound.playing()) {
             sound.play();
           }
           
-          // Update playing clip immediately after seek (always update to ensure scroll happens)
+          // Update playing clip without scrolling when clicking on clip in player
           if (clipMetadata.length > 0 && clipMap) {
             const newClipIndex = getCurrentClipIndex(seekTime, clipMetadata);
             currentClipIndex = newClipIndex;
-            updatePlayingClip(currentClipIndex, clipMap, autoScrollEnabled, (flag) => { isProgrammaticScroll = flag; }, scrollToClipCenter);
+            updatePlayingClip(currentClipIndex, clipMap, false, null, scrollToClipCenter);
           }
         }
       });
@@ -374,6 +377,7 @@ export function initAudioPlayer() {
     setClipMap: (map) => { clipMap = map; },
     getAutoScrollEnabled: () => autoScrollEnabled,
     setAutoScrollEnabled: (enabled) => { autoScrollEnabled = enabled; },
+    setInitiatedFromBehaviourColumn: (value) => { initiatedFromBehaviourColumn = value; },
     getSetProgrammaticScrollCallback: () => (flag) => { isProgrammaticScroll = flag; }
   };
 }
