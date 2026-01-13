@@ -610,7 +610,7 @@
     height: var(--player-visualization-height);
     transition: height 0.2s ease;
     pointer-events: none;
-    z-index: 2; /* выше клипов, но ниже индикаторов позиции */
+    z-index: 2; /* Above clips, but below position indicators */
     overflow: visible;
 
     & .behaviour-indicator {
@@ -621,11 +621,11 @@
       gap: 0.1em;
       font-size: 0.8em;
       line-height: 1.2;
-      padding-bottom: 0; /* Убрали приподнятие, чтобы низ фона лейбла выровнялся с низом уровня */
-      z-index: 1; /* Базовый z-index для обычных индикаторов */
+      padding-bottom: 0; /* Removed padding to align label background bottom with level bottom */
+      z-index: 1; /* Base z-index for regular indicators */
 
-      /* Позиционирование по вертикали в зависимости от спикера */
-      /* Выравнивание по низу зоны каждого спикера */
+      /* Vertical positioning based on speaker */
+      /* Align to bottom of each speaker zone */
       &[data-speaker-index="1"] {
         bottom: calc(
           (var(--speaker-count) - 1) * (100% / var(--speaker-count))
@@ -657,7 +657,7 @@
         top: auto;
       }
 
-      /* Вертикальное расположение нескольких бихевиоров внутри одного клипа */
+      /* Vertical arrangement of multiple behaviours within a single clip */
       &[data-behaviour-index="1"] {
         transform: translateY(0);
       }
@@ -667,17 +667,17 @@
       &[data-behaviour-index="3"] {
         transform: translateY(calc(-2 * 1.2em));
       }
-      /* Ограничение до 3 бихевиоров на клип уже реализовано в JavaScript через slice(0, 3) */
+      /* Limit to 3 behaviours per clip is already implemented in JavaScript via slice(0, 3) */
 
       & .behaviour-icon {
         display: inline-block;
         width: 1em;
         height: 1em;
         flex-shrink: 0;
-        order: 2; /* Иконка всегда справа в flex порядке */
+        order: 2; /* Icon always on the right in flex order */
         position: relative;
         z-index: 1;
-        margin-top: -1px; /* Приподнять иконки примерно на пиксель для лучшего выравнивания с лейблами */
+        margin-top: -1px; /* Lift icons by approximately one pixel for better alignment with labels */
         transition: filter 0.1s ease;
 
         & svg {
@@ -686,13 +686,13 @@
           fill: white;
         }
 
-        /* Outline формы по умолчанию прозрачные */
+        /* Outline shapes are transparent by default */
         & .behaviour-icon__outline {
           fill: transparent;
         }
       }
 
-      /* Окрашивание outline в цвет эмоции клипа */
+      /* Color outline with clip emotion color */
       &[data-emotion="angry"] .behaviour-icon .behaviour-icon__outline {
         fill: rgba(var(--emotion-angry-RGB), 1);
         transition: fill 0.2s ease;
@@ -810,14 +810,14 @@
         transition: fill 0.2s ease;
       }
 
-      /* При ховере поднимаем z-index иконки и лейбла */
+      /* On hover, raise z-index of icon and label */
       &.visible {
         z-index: 10;
 
         & .behaviour-icon {
-          z-index: 15; /* Поднимаем выше фона лейбла (z-index: 12) */
+          z-index: 15; /* Raise above label background (z-index: 12) */
 
-          /* При появлении лейбла делаем outline прозрачным мгновенно */
+          /* When label appears, make outline transparent instantly */
           & .behaviour-icon__outline {
             fill: transparent;
             transition: fill 0s ease;
@@ -829,9 +829,9 @@
         }
       }
 
-      /* Фильтр яркости для всей иконки при подсветке клипа */
+      /* Brightness filter for entire icon when clip is highlighted */
       &.hover {
-        z-index: 20; /* Поднимаем весь индикатор выше всех при hover извне */
+        z-index: 20; /* Raise entire indicator above all on external hover */
 
         & .behaviour-icon {
           filter: brightness(140%) saturate(115%);
@@ -839,36 +839,36 @@
         }
       }
 
-      /* Комбинированный случай: hover + visible */
+      /* Combined case: hover + visible */
       &.hover.visible {
-        z-index: 20; /* Приоритет hover над visible */
+        z-index: 20; /* Hover takes priority over visible */
       }
 
       & .behaviour-label-text {
         white-space: nowrap;
         opacity: 0;
         visibility: hidden;
-        /* Убрана анимация - мгновенное появление/скрытие */
+        /* Animation removed - instant show/hide */
         font-weight: 600;
         color: white;
-        order: 3; /* Лейбл справа от иконки по умолчанию */
+        order: 3; /* Label to the right of icon by default */
         background-color: rgba(
           var(--ids__bg-surface-RGB),
           1
-        ); /* Непрозрачный фон вместо тени */
-        padding: 0.05em 0.2em;
+        ); /* Opaque background instead of shadow */
+        padding: 0.05em 0.4em;
         padding-left: calc(
           1em + 0.1em
-        ); /* Левый паддинг включает ширину иконки + gap, чтобы фон продлевался под иконку */
-        margin-top: 0.15em; /* Опустить лейбл еще больше относительно иконок */
+        ); /* Left padding includes icon width + gap, so background extends under icon */
+        margin-top: 0.15em; /* Lower label further relative to icons */
         margin-left: calc(
           -1em - 0.1em
-        ); /* Отрицательный margin чтобы фон перекрывал иконку */
+        ); /* Negative margin so background overlaps icon */
         position: relative;
         z-index: 2;
       }
 
-      /* Показывать подпись при ховере клипа */
+      /* Show label on clip hover */
       &.visible .behaviour-label-text {
         opacity: 1;
         visibility: visible;
@@ -889,6 +889,15 @@
         text-align: right;
         /* order is not needed, as absolute positioning removes the element from flex flow */
       }
+
+      & .behaviour-label-text .behaviour-count {
+        font-size: 0.85em;
+        font-weight: 700;
+        color: white;
+        margin-left: 0.05em;
+        display: inline;
+        vertical-align: baseline;
+      }
     }
   }
 
@@ -899,7 +908,7 @@
     transition: height 0.2s ease;
     pointer-events: none;
     z-index: 1;
-    display: none; /* скрыты, заменены на behaviour-indicators */
+    display: none; /* Hidden, replaced by behaviour-indicators */
 
     & .behaviour-label {
       position: absolute;
@@ -1329,10 +1338,10 @@
         font-size: 0.8em;
         line-height: 1.2;
         padding-bottom: 0;
-        z-index: 1; /* Базовый z-index для обычных индикаторов */
+        z-index: 1; /* Base z-index for regular indicators */
 
-        /* Позиционирование по вертикали в зависимости от спикера */
-        /* Выравнивание по низу зоны каждого спикера */
+        /* Vertical positioning based on speaker */
+        /* Align to bottom of each speaker zone */
         &[data-speaker-index="1"] {
           bottom: calc(
             (var(--speaker-count) - 1) * (100% / var(--speaker-count))
@@ -1364,7 +1373,7 @@
           top: auto;
         }
 
-        /* Вертикальное расположение нескольких бихевиоров внутри одного клипа */
+        /* Vertical arrangement of multiple behaviours within a single clip */
         &[data-behaviour-index="1"] {
           transform: translateY(0);
         }
@@ -1392,18 +1401,18 @@
             fill: white;
           }
 
-          /* Outline формы по умолчанию прозрачные */
+          /* Outline shapes are transparent by default */
           & .behaviour-icon__outline {
             fill: transparent;
           }
 
-          /* Transition для svg при возврате фильтра */
+          /* Transition for svg when filter returns */
           & svg {
             transition: filter 0.1s ease;
           }
         }
 
-        /* Окрашивание outline в цвет эмоции клипа для fingerprint-visualization */
+        /* Color outline with clip emotion color for fingerprint-visualization */
         &[data-emotion="angry"] .behaviour-icon .behaviour-icon__outline {
           fill: rgba(var(--emotion-angry-RGB), 1);
           transition: fill 0.2s ease;
@@ -1527,14 +1536,14 @@
           transition: fill 0.2s ease;
         }
 
-        /* При ховере поднимаем z-index иконки и лейбла */
+        /* On hover, raise z-index of icon and label */
         &.visible {
           z-index: 10;
 
           & .behaviour-icon {
             z-index: 15;
 
-            /* При появлении лейбла делаем outline прозрачным мгновенно */
+            /* When label appears, make outline transparent instantly */
             & .behaviour-icon__outline {
               fill: transparent;
               transition: fill 0s ease;
@@ -1546,9 +1555,9 @@
           }
         }
 
-        /* Фильтр яркости для всей иконки при подсветке клипа */
+        /* Brightness filter for entire icon when clip is highlighted */
         &.hover {
-          z-index: 20; /* Поднимаем весь индикатор выше всех при hover извне */
+          z-index: 20; /* Raise entire indicator above all on external hover */
 
           & .behaviour-icon {
             filter: brightness(140%) saturate(115%);
@@ -1556,9 +1565,9 @@
           }
         }
 
-        /* Комбинированный случай: hover + visible */
+        /* Combined case: hover + visible */
         &.hover.visible {
-          z-index: 20; /* Приоритет hover над visible */
+          z-index: 20; /* Hover takes priority over visible */
         }
 
         & .behaviour-label-text {
@@ -1577,7 +1586,7 @@
           z-index: 2;
         }
 
-        /* Показывать подпись при ховере клипа */
+        /* Show label on clip hover */
         &.visible .behaviour-label-text {
           opacity: 1;
           visibility: visible;

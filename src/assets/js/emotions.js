@@ -171,6 +171,23 @@ export function fadeOutClipTextCaption(captionSelector = '.clip-text-caption') {
   clipTextCaption.classList.remove('visible');
 }
 
+// Update clip text caption for currently playing clip
+export function updateCurrentPlayingClipCaption(captionSelector = '.clip-text-caption') {
+  const audioPlayer = document.getElementById('audio-player');
+  if (!audioPlayer) return;
+  
+  const playPauseIcon = audioPlayer.querySelector('.player-icon[data-playing]');
+  const isPlaying = playPauseIcon && playPauseIcon.getAttribute('data-playing') === 'true';
+  
+  if (!isPlaying) return;
+  
+  // Find the currently playing clip
+  const playingClip = audioPlayer.querySelector('.transcript-clip.playing');
+  if (playingClip) {
+    updateClipTextCaption(playingClip, captionSelector);
+  }
+}
+
 // Function to determine emotion group priority for sorting
 export function getEmotionGroupPriority(emotionClass) {
   const emotionName = emotionClass.replace('emotion-', '');

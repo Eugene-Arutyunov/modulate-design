@@ -1,4 +1,4 @@
-import { updateEmotionCaption, updateClipTextCaption, fadeOutClipTextCaption } from './emotions.js';
+import { updateEmotionCaption, updateClipTextCaption, fadeOutClipTextCaption, updateCurrentPlayingClipCaption } from './emotions.js';
 
 /**
  * Initialize transcript visualization with behaviour indicators and emotion handling
@@ -84,6 +84,7 @@ export function initTranscriptVisualization(options) {
     if (behaviours.length === 0) return; // Skip if no behaviours
 
     const behavioursToShow = Array.from(behaviours).slice(0, 1); // Limit to 1
+    const totalBehavioursCount = behaviours.length;
 
     behavioursToShow.forEach((behaviour, behaviourIndex) => {
       const behaviourType = behaviour.getAttribute('data-behaviour-type');
@@ -168,6 +169,14 @@ export function initTranscriptVisualization(options) {
       const textLabel = document.createElement('span');
       textLabel.className = 'behaviour-label-text';
       textLabel.textContent = behaviourText;
+
+      // Add behaviour count inside text label if there are more than one behaviours
+      if (totalBehavioursCount > 1) {
+        const countLabel = document.createElement('span');
+        countLabel.className = 'behaviour-count';
+        countLabel.textContent = ` +${totalBehavioursCount - 1}`;
+        textLabel.appendChild(countLabel);
+      }
 
       indicator.appendChild(iconContainer);
       indicator.appendChild(textLabel);
@@ -293,15 +302,44 @@ export function initTranscriptVisualization(options) {
       // Add hover handlers to clips for clip text caption
       clips.forEach((clip) => {
         clip.addEventListener('mouseenter', () => {
-          updateClipTextCaption(clip, clipTextCaptionSelector);
+          // Only update caption on hover if player is not playing
+          const audioPlayer = document.getElementById('audio-player');
+          if (audioPlayer) {
+            const playPauseIcon = audioPlayer.querySelector('.player-icon[data-playing]');
+            const isPlaying = playPauseIcon && playPauseIcon.getAttribute('data-playing') === 'true';
+            if (!isPlaying) {
+              updateClipTextCaption(clip, clipTextCaptionSelector);
+            }
+          } else {
+            // If no audio player, always update on hover (static version)
+            updateClipTextCaption(clip, clipTextCaptionSelector);
+          }
         });
 
         clip.addEventListener('mouseleave', () => {
-          // For static version: only fade out when leaving entire visualization
-          // For player version: fade out immediately
-          if (!trackVisualizationArea || !isOverVisualization) {
-            // Fade out clip text caption
-            fadeOutClipTextCaption(clipTextCaptionSelector);
+          // Only fade out if player is not playing
+          const audioPlayer = document.getElementById('audio-player');
+          if (audioPlayer) {
+            const playPauseIcon = audioPlayer.querySelector('.player-icon[data-playing]');
+            const isPlaying = playPauseIcon && playPauseIcon.getAttribute('data-playing') === 'true';
+            if (!isPlaying) {
+              // For static version: only fade out when leaving entire visualization
+              // For player version: fade out immediately
+              if (!trackVisualizationArea || !isOverVisualization) {
+                // Fade out clip text caption
+                fadeOutClipTextCaption(clipTextCaptionSelector);
+              }
+            } else {
+              // If playing, restore caption for current playing clip
+              updateCurrentPlayingClipCaption(clipTextCaptionSelector);
+            }
+          } else {
+            // For static version: only fade out when leaving entire visualization
+            // For player version: fade out immediately
+            if (!trackVisualizationArea || !isOverVisualization) {
+              // Fade out clip text caption
+              fadeOutClipTextCaption(clipTextCaptionSelector);
+            }
           }
         });
       });

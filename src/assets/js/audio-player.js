@@ -2,6 +2,7 @@ import { formatTime, getClipStartTime } from './utils.js';
 import { getCurrentClipIndex, buildClipMetadata } from './clip-metadata.js';
 import { updatePlayingClip } from './clip-metadata.js';
 import { scrollToClipCenter } from './utils.js';
+import { updateClipTextCaption, fadeOutClipTextCaption } from './emotions.js';
 
 export function initAudioPlayer() {
   const audioPlayer = document.getElementById('audio-player');
@@ -19,6 +20,7 @@ export function initAudioPlayer() {
   let currentClipIndex = null;
   let clipMetadata = [];
   let clipMap = null;
+  let lastDisplayedClipIndex = null;
   
   // Auto-scroll tracking
   let autoScrollEnabled = true;
@@ -67,6 +69,12 @@ export function initAudioPlayer() {
         if (clipIndex !== null) {
           updatePlayingClip(clipIndex, clipMap, false, null, scrollToClipCenter);
           currentClipIndex = clipIndex;
+          // Update clip text caption for current playing clip
+          const pair = clipMap.get(clipIndex.toString());
+          if (pair && pair.visualization) {
+            updateClipTextCaption(pair.visualization, '.clip-text-caption');
+            lastDisplayedClipIndex = clipIndex;
+          }
         }
       }
     },
@@ -78,6 +86,9 @@ export function initAudioPlayer() {
         updatePlayingClip(null, clipMap, false, null, scrollToClipCenter);
         currentClipIndex = null;
       }
+      // Clear caption when paused
+      fadeOutClipTextCaption('.clip-text-caption');
+      lastDisplayedClipIndex = null;
       // Reset flag when paused
       initiatedFromBehaviourColumn = false;
     },
@@ -90,6 +101,9 @@ export function initAudioPlayer() {
         updatePlayingClip(null, clipMap, false, null, scrollToClipCenter);
         currentClipIndex = null;
       }
+      // Clear caption when ended
+      fadeOutClipTextCaption('.clip-text-caption');
+      lastDisplayedClipIndex = null;
       // Reset flag when ended
       initiatedFromBehaviourColumn = false;
     }
@@ -249,6 +263,15 @@ export function initAudioPlayer() {
             const shouldScroll = initiatedFromBehaviourColumn && autoScrollEnabled;
             updatePlayingClip(currentClipIndex, clipMap, shouldScroll, (flag) => { isProgrammaticScroll = flag; }, scrollToClipCenter);
           }
+          
+          // Update clip text caption for current playing clip
+          if (currentClipIndex !== null && currentClipIndex !== lastDisplayedClipIndex) {
+            const pair = clipMap.get(currentClipIndex.toString());
+            if (pair && pair.visualization) {
+              updateClipTextCaption(pair.visualization, '.clip-text-caption');
+              lastDisplayedClipIndex = currentClipIndex;
+            }
+          }
         }
         
         animationFrameId = requestAnimationFrame(update);
@@ -320,6 +343,14 @@ export function initAudioPlayer() {
             const newClipIndex = getCurrentClipIndex(seekTime, clipMetadata);
             currentClipIndex = newClipIndex;
             updatePlayingClip(currentClipIndex, clipMap, false, null, scrollToClipCenter);
+            // Update clip text caption for clicked clip if playing
+            if (sound.playing() && currentClipIndex !== null) {
+              const pair = clipMap.get(currentClipIndex.toString());
+              if (pair && pair.visualization) {
+                updateClipTextCaption(pair.visualization, '.clip-text-caption');
+                lastDisplayedClipIndex = currentClipIndex;
+              }
+            }
           }
         }
       });
