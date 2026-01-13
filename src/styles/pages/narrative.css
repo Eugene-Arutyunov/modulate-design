@@ -22,6 +22,7 @@
 
   & h2 {
     font-size: 2em;
+    line-height: 1.2;
     font-family: var(--gothic);
   }
 }

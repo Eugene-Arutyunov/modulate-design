@@ -54,86 +54,9 @@ block content %}
     </figure>
   </div>
 
-  <!-- <div class="ids__space S"></div>
-    <h2>Why Velma over LLMs?</h2>
-    <p>
-      Understanding audio is fundamentally more complex than text because audio
-      is a multi-dimensional communication medium. But LLMs are token-prediction
-      models, and rely on audio first being transcribed to text - losing all the
-      juicy bits that reveal the deeper meaning in the conversation.
-    </p>
-    <p>
-      Velma is voice-native. It is engineered to process the entire context of a
-      conversation, including emotions, auditory behaviors and social nuances,
-      providing a level understanding that is absent from other LLMs.
-    </p>
-
-    <div class="ids__space S"></div>
-    <h2>How Velma Listens</h2>
-    <p>
-      Velma isn't a standard giant black box AI model. Instead, Velma uses a new
-      architecture known as an ELM - Ensemble Listening Model. ELMs rely on a
-      collection of individual models, each specialized to look for particular
-      kinds of indicators, with an "orchestrator" model conducting the symphony
-      by calling the right models when they are needed and weaving together the
-      results. The result is an unprecedented contextual understanding of any
-      voice conversation.
-    </p>
-  </div> -->
-
-  <!-- <div class="ids__text-width">
-    <p>
-      Velma uses over 100 component models, each one leading in its own way. The
-      world's best synthetic voice detection, emotion detection, transcription
-      (especially for noisy, jargon-filled conversations in the real world!) and
-      more all come together into a single model which delivers reliable results
-      - and transparency into its decision making - all with more than 100x
-      reductions in compute and training requirements over pure LLMs!
-    </p>
-    <div class="ids__space S"></div>
-    <h2>Modulate is Beating Other Models</h2>
-    <div class="ids__space S"></div>
-
-    <div class="comparison-illustration">
-      <div class="bar modulate-bar">Modulate</div>
-      <div class="bar openai-bar">OpenAI</div>
-      <div class="bar google-bar">Google</div>
-      <div class="bar deepseek-bar">DeepSeek</div>
-    </div>
-
-    <div class="ids__space S"></div>
-
-    <div class="ids__space S"></div>
-    <h2>Modulate: Built in the wild, not a lab</h2>
-    <p>
-      Modulate is a frontier voice AI developer and the creator of Velma.
-      Starting out in video games, powering titles including Call of Duty and
-      Grand Theft Auto Online, Modulate is the world's leader in conversational
-      intelligence - especially when it comes to dynamic, emotive, noisy, and
-      downright messy conversations as are the norm in the real world. To date,
-      Modulate has provided insights into hundreds of millions of conversations,
-      protecting tens of millions of end users from fraud, abuse, and harassment
-      while improving efficiency, retention, and wellbeing for enterprises, call
-      centers, and online platforms.
-    </p>
-    <p>
-      Velma is now available through Modulate's enterprise platform or (in beta)
-      through direct API for select developers. Interested in adding
-      best-in-class real-time conversational insights to your platform? Get in
-      touch below.
-    </p>
-  </div> -->
-
   <div class="ids__space L"></div>
-  {% include "components/cta.html" %}
-  <!-- <script src="https://js.hsforms.net/forms/embed/22677265.js" defer></script>
-  <div
-    class="hs-form-frame"
-    data-region="na1"
-    style="width: 100%; height: 100%"
-    data-form-id="aa1ba44a-7871-4703-9c1b-60e4220cc24f"
-    data-portal-id="22677265"></div>
-</div> -->
-
-  {% endblock %}
+  {% set ctaTitle = 'Talk to us' %} {% set ctaDescription = 'We help teams
+  analyze real customer conversations to detect fraud, agent risk, and AI
+  failures — in real time.' %} {% include "components/cta.html" %}
 </div>
+{% endblock %}

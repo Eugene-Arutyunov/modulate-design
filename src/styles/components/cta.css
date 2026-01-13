@@ -29,12 +29,20 @@
 
 .cta-section {
   background-color: rgba(var(--ids__bg-accent-RGB), 0.1);
+
   /* height: 100%; */
-  padding: 1em 1em 1em 1em;
+
+  & .cta-section-wrapper {
+    padding: 1em;
+  }
+
+  & .cta-form-text-wrapper {
+    padding: 40px 40px 0 40px;
+  }
 
   &.form {
     background-color: rgba(var(--ids__bg-surface-RGB), 1);
-    padding: 1em 3em 2em 1em;
+    padding: 0 1em 1em 0;
   }
 }
 
