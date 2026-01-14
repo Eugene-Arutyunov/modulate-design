@@ -274,3 +274,17 @@
     border-color: rgba(var(--ids__text-hover-RGB), 0.8);
   }
 }
+
+.upload-error-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(var(--ids__UI-error-RGB), 1);
+  color: rgba(var(--ids__text-inverted-RGB), 1);
+  text-align: center;
+  padding: 2em;
+
+  & p {
+    margin: 0;
+  }
+}
