@@ -36,7 +36,7 @@ IT Services
 Streamer Rants on Politics and Censorship
 Social
 Media & Broadcasting
-03:49
+04:24
 
 Angry Caller Demands Update on Late Delivery
 Customer Support

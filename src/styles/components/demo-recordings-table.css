@@ -286,6 +286,7 @@
   & tbody {
     & .col-fingerprint {
       width: 25%;
+      padding-right: 0.8em;
     }
 
     & .col-title {
