@@ -1,13 +1,13 @@
 .cta {
-  display: flex;
-  --gap: 0.5em;
-  gap: var(--gap);
+  /* display: flex; */
+  /* --gap: 0.5em; */
+  /* gap: var(--gap); */
 
   @media (width < 768px) {
     flex-direction: column;
   }
 
-  & .cta-column {
+  /* & .cta-column {
     display: flex;
     flex-direction: column;
     gap: var(--gap);
@@ -24,7 +24,7 @@
         width: 100%;
       }
     }
-  }
+  } */
 }
 
 .cta-section {
