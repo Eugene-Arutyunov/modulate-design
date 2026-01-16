@@ -133,15 +133,7 @@
   }
 }
 
-.share-button-progress-wrapper {
-  position: relative;
-}
-
 .progress-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
   overflow: hidden;
   transition: max-height 0.8s ease;
   max-height: 1000px;
