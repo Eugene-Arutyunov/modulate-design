@@ -15,6 +15,10 @@
       gap: 0.3em;
       text-decoration: none;
 
+      &:hover .nav-logo-container svg {
+        transition: fill 0s ease;
+      }
+
       &.nav-link-button {
         color: rgba(var(--ids__text-inverted-RGB), 1);
         background-color: rgba(var(--ids__bg-accent-RGB), 1);
@@ -39,13 +43,16 @@
 }
 
 .nav-logo-container {
+  position: relative;
   display: flex;
   align-items: center;
-  height: 1.3em;
+  height: 1.5em;
+  bottom: -0.2em;
   
-  & img {
+  & svg {
     height: 100%;
     width: auto;
+    transition: fill 0.5s ease;
   }
 }
 

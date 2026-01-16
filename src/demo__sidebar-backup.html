@@ -1,4 +1,8 @@
-{% extends 'layout.html' %} {% set pageTitle = 'Modulate Platform Demo' %} {% block content %}
+{% extends 'layout.html' %} {% set pageTitle = 'Modulate Platform Demo' %} {%
+block bodyWrapper %}
+<div class="demo-wrapper">
+  <div class="main-content">
+    {% include 'header.html' %} {% block content %}
 
     <div class="ids__wrapper">
       <div class="ids__space M"></div>
@@ -504,10 +508,27 @@
       <div id="cta-container">{% include "components/cta.html" %}</div>
       <div class="ids__space XL"></div>
     </div>
-    
-  
-  
-
+    {% endblock %} {% include 'footer.html' %}
+  </div>
+  <div class="sidebar sidebar-closed">
+    <div class="sidebar-content">
+      <div class="sidebar-header">
+        <div class="sidebar-header-wrapper">
+          <h2>Transcript</h2>
+          <button
+            class="sidebar-close"
+            type="button"
+            aria-label="Close sidebar">
+            {% include "assets/close-icon.html" %}
+          </button>
+        </div>
+      </div>
+      <div class="transcript-container">
+        {% include "components/transcript-clips.html" %}
+      </div>
+    </div>
+  </div>
+</div>
 <script>
   // Демонстрация прогресс-индикатора
   (function() {
