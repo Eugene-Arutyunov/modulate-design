@@ -68,24 +68,32 @@ block bodyWrapper %}
         </div>
       </div>
       <div class="ids__space S"></div>
-      <button
-        class="full-width-button share-trigger-button"
-        type="button"
-        aria-label="Share this conversation analysis">
-        <strong>Share this conversation analysis ↗</strong>
-      </button>
+      <div class="share-button-progress-wrapper">
+        <button
+          class="full-width-button share-trigger-button"
+          type="button"
+          aria-label="Share this conversation analysis">
+          <strong>Share this conversation analysis ↗</strong>
+        </button>
+        <div class="progress-wrapper">
+          <div class="progress">
+            <div class="in-progress">{% include "assets/check-icon-with-wrapper.html" %}Transcript</div>
+            <div class="in-progress">{% include "assets/check-icon-with-wrapper.html" %}Speakers</div>
+            <div class="in-progress">{% include "assets/check-icon-with-wrapper.html" %}Emotions</div>
+            <div class="in-progress">{% include "assets/check-icon-with-wrapper.html" %}Roles</div>
+            <div class="in-progress">{% include "assets/check-icon-with-wrapper.html" %}Behaviors</div>
+            <div class="in-progress">{% include "assets/check-icon-with-wrapper.html" %}Summary</div>
+          </div>
+        </div>
+      </div>
       {% include "components/share-popover.html" %}
       <div class="ids__space S"></div>
-      <div class="progress ids__rounded">
-        <span>✔️Transcript</span>
-        <span>✔️Speakers Emotions</span>
-        <span>Roles</span>
-        <span>Behaviors</span>
-        <span>Summary</span>
-      </div>
       <div class="ids__space S"></div>
       <div class="summary-container">
         <h2>Speech Summary</h2>
+        
+
+
         <p>
           Customer disputed a missing delivery and requested a refund. Support
           specialist initially refused but eventually processed both refund and
@@ -521,4 +529,34 @@ block bodyWrapper %}
     </div>
   </div>
 </div>
+<script>
+  // Демонстрация прогресс-индикатора
+  (function() {
+    const progressItems = document.querySelectorAll('.progress > div');
+    const progressWrapper = document.querySelector('.progress-wrapper');
+    let currentIndex = 0;
+
+    function markNextAsDone() {
+      if (currentIndex < progressItems.length) {
+        progressItems[currentIndex].classList.remove('in-progress');
+        progressItems[currentIndex].classList.add('done');
+        currentIndex++;
+        
+        if (currentIndex < progressItems.length) {
+          setTimeout(markNextAsDone, 1800);
+        } else {
+          // После последнего элемента через 1 секунду запускаем анимацию исчезновения
+          setTimeout(function() {
+            if (progressWrapper) {
+              progressWrapper.classList.add('hiding');
+            }
+          }, 1000);
+        }
+      }
+    }
+
+    // Запуск демонстрации через небольшую задержку после загрузки
+    setTimeout(markNextAsDone, 500);
+  })();
+</script>
 {% endblock %}

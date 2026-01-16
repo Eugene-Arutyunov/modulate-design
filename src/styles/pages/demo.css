@@ -91,10 +91,6 @@
   }
 }
 
-body:has(.demo-wrapper) {
-  /* overflow: hidden; */
-  /* height: 100vh; */
-}
 
 .mobile-only {
   @media (width >= 768px) {
@@ -128,16 +124,89 @@ body:has(.demo-wrapper) {
   }
 }
 
+@keyframes progress-pulse {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.share-button-progress-wrapper {
+  position: relative;
+}
+
+.progress-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  transition: max-height 0.8s ease;
+  max-height: 1000px;
+}
+
+.progress-wrapper.hiding {
+  max-height: 0;
+}
+
 .progress {
   background-color: rgba(var(--ids__bg-surface-RGB), 1);
-  padding: 0.5em 1em;
+  padding: 0.6em 0.7em;
+  border-radius: 0.3em;
 
   font-size: 0.8em;
   color: rgba(var(--ids__text-RGB), 0.7);
   display: flex;
-  gap: 0.5em;
+  align-items: baseline;
+  gap: 0.9em;
+  
 
-  & span {
+  & > div {
     display: flex;
+    align-items: baseline;
+    gap: 0.15em;
+  }
+
+  & .check-icon-wrapper {
+    overflow: hidden;
+    width: 0;
+    transition: width 0.5s ease;
+  }
+
+  & .check-icon {
+    width: 1em;
+    height: 1em;
+    position: relative;
+    display: inline-flex;
+    align-items: baseline;
+    bottom: -0.1em;
+
+    & svg {
+      width: 100%;
+      height: 100%;
+
+      & polyline {
+        transition: stroke-dashoffset 0.7s ease;
+      }
+    }
+  }
+
+  & > div.in-progress {
+    animation: progress-pulse 1.5s ease-in-out infinite;
+  }
+
+  & > div.done {
+    opacity: 1;
+    animation: none;
+
+    & .check-icon-wrapper {
+      width: 1.05em;
+    }
+
+    & .check-icon svg polyline {
+      stroke-dashoffset: 0;
+    }
   }
 }
