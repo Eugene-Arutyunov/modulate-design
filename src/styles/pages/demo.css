@@ -127,3 +127,17 @@ body:has(.demo-wrapper) {
     transition: border-color 0s ease, color 0s ease;
   }
 }
+
+.progress {
+  background-color: rgba(var(--ids__bg-surface-RGB), 1);
+  padding: 0.5em 1em;
+
+  font-size: 0.8em;
+  color: rgba(var(--ids__text-RGB), 0.7);
+  display: flex;
+  gap: 0.5em;
+
+  & span {
+    display: flex;
+  }
+}

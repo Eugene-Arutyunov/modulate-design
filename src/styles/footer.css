@@ -8,7 +8,7 @@
   & .footer-columns {
     display: flex;
     justify-content: space-between;
-    gap: 18%;
+    gap: 28%;
   }
 
   & .footer-nav {
