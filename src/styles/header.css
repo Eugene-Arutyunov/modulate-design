@@ -9,6 +9,10 @@
     gap: 1.8em;
     flex-wrap: wrap;
 
+    @media (width < 768px) {
+      gap: 1em;
+    }
+
     & .nav-link {
       display: flex;
       align-items: baseline;
@@ -62,4 +66,20 @@
 
 .nav-spacer {
   flex: 1;
+}
+
+@media (width < 768px) {
+  .header {
+    & nav {
+      flex-wrap: nowrap;
+
+      & .nav-link-mobile-hidden {
+        display: none;
+      }
+
+      & .nav-logo-modulate {
+        display: none;
+      }
+    }
+  }
 }

@@ -1,7 +1,3 @@
-{% set nav = [ { title: 'Conversations', href: '/conversations/' }, { title:
-'ELM ↗', href: 'https://ensemblelisteningmodel.com' }, { title:'Velma ↗', href:
-'https://modulate.ai/velma' }] %}
-
 <div class="ids__wrapper">
   <header class="header">
     <nav class="nav">
@@ -9,14 +5,16 @@
         <div class="nav-logo-container">
           {% include "assets/modulate-icon.html" %}
         </div>
-        Modulate Velma Preview
+        <span class="nav-logo-modulate">Modulate </span>Velma Preview
       </a>
       <div class="nav-spacer"></div>
-      {% for link in nav %} {% if link.href == page.url %}
-      <span class="nav-link">{{ link.title }}</span>
+      {% if '/conversations/' == page.url %}
+      <span class="nav-link">Conversations</span>
       {% else %}
-      <a href="{{ link.href }}" class="nav-link">{{ link.title }}</a>
-      {% endif %} {% endfor %}
+      <a href="/conversations/" class="nav-link">Conversations</a>
+      {% endif %}
+      <a href="https://ensemblelisteningmodel.com" class="nav-link nav-link-mobile-hidden">ELM ↗</a>
+      <a href="https://modulate.ai/velma" class="nav-link nav-link-mobile-hidden">Velma ↗</a>
       <a href="/upload/" class="nav-link nav-link-button ids__rounded"
         >Upload audio</a
       >

@@ -53,7 +53,7 @@ html {
   /* Font-size calculation using variables */
 
   --mobile-font-size-min: 13;
-  --mobile-font-size-max: 34;
+  --mobile-font-size-max: 32;
 
   --desktop-font-size-min: 9.7;
   --desktop-font-size-max: 19.8;
