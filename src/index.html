@@ -10,15 +10,17 @@ block content %}
   <div class="ids__space S"></div>
 
   <p class="loud text-with-icons">
-    Introducing Velma 2.0 — the only voice-native AI model designed to
-    understand human speech in all its depth and nuances. Velma’s ELM
-    architecture transcends traditional LLMs to interpret tone,<span
+    Introducing Velma — the only voice-native AI model designed to
+    understand human speech in all its depth and nuance. Velma’s ELM
+    architecture transcends traditional LLMs to interpret <span
       style="width: 0.15em; display: inline-block"></span>
     <span class="nobr">{% include "assets/emotion-icon.html" %} emotion,</span>
     <span class="nobr"
       >{% include "assets/behaviour-icon-kiki.html" %} behaviors,</span
-    >
-    intent and context to unpack the full meaning of every conversation.
+    > tone, intent, and context to unpack the full meaning of every conversation.
+  </p>
+  <p class="loud">
+    See Velma in action:
   </p>
 
   <div class="ids__space S"></div>
@@ -26,32 +28,22 @@ block content %}
   <div class="demo-recordings-section">
     {% include "components/demo-recordings-promo-table.html" %}
     <a href="/conversations" class="full-width-button">More conversations</a>
-    <div class="ids__space L"></div>
-    <div class="ids__text-width">
-      <p>
-        <strong>Try Velma 2.0 with you own conversation.</strong>
-        Upload your audio or video file to preview Velma’s capabilities,
-        including diarization, emotion, intent and behavior detection.
-      </p>
-    </div>
-    <div class="ids__space S"></div>
+    
+    <div class="ids__space M"></div>
     {% include "components/upload-area.html" %}
   </div>
   <div class="ids__space L"></div>
-  <div class="ids__text-width">
-    <h2>Modulate</h2>
+  <div class="ids__space M"></div>
+  
+    <h2>About Modulate</h2>
     <p>
       Modulate helps enterprises including Fortune 500 companies understand
-      over 20 million minutes of voice per day. Companies are improving customer
-      experiences, reducing risks such as fraud and harassment, detecting rogue
-      voice agents and much more.
+      over 20 million minutes of voice per day. With Velma, our customers can improve their customer experiences, reduce risks such as fraud and harassment, detect rogue agents, and much more.
     </p>
-    <p>
-      Velma 2.0, Modulate’s breakthrough
+    <p>Velma uses 
       <a href="https://ensemblelisteningmodel.com/" target="_blank"
-        >Ensemble Listening Model (ELM),</a
-      >
-      outperforms foundation models, like LLMs, on accuracy and cost across
+        >Ensemble Listening Model (ELM)</a
+      > technology to outperform foundation models, like LLMs, on accuracy and cost across
       multiple benchmarks. Velma is the #1 AI model for understanding
       conversations.
     </p>
@@ -59,11 +51,12 @@ block content %}
       href="https://modulate.ai/velma"
       class="full-width-button"
       target="_blank"
-      >Learn more about Velma 2.0</a
+      >Learn more about Velma</a
     >
-  </div>
+  
 
   <div class="ids__space L"></div>
+  <div class="ids__space M"></div>
   {% set ctaTitle = 'Talk to us' %} {% set ctaDescription = 'We help teams
   analyze real customer conversations to detect fraud, agent risk, and AI
   failures — in real time.' %} {% include "components/cta.html" %}
