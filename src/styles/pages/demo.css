@@ -153,6 +153,10 @@
   display: flex;
   align-items: baseline;
   gap: 0.9em;
+
+  @media (width < 768px) {
+    flex-wrap: wrap;
+  }
   
 
   & > div {
