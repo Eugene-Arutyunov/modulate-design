@@ -21,7 +21,7 @@
       }
     }
 
-    & td:not(.behaviour-column) {
+    & td {
       font-size: 0.8em;
     }
 
@@ -37,7 +37,11 @@
     &.behaviours-summary {
       & .behaviour-column {
         width: 40%;
-        padding-bottom: 0.5em;
+        padding-bottom: 0.625em;
+
+        & .detected-behaviour {
+          font-size: 1.25em;
+        }
 
         & p {
           margin-top: 0.5em;
@@ -344,4 +348,24 @@ a.detected-behaviour {
   & .spider-text {
     width: 15em;
   }
+}
+
+@keyframes progress-pulse {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.skeleton-bar {
+  width: 100%;
+  height: 1em;
+  background-color: rgba(var(--ids__text-RGB), 0.15);
+  border-radius: 0.2em;
+  display: block;
+  margin-top: 0.2em;
+  margin-bottom: 0.7em;
+  animation: progress-pulse 2.5s ease-in-out infinite;
 }
