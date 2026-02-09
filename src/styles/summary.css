@@ -359,6 +359,11 @@ a.detected-behaviour {
   }
 }
 
+.skeleton-bar-wrapper {
+  font-size: 0.8em;
+  width: 60%;
+}
+
 .skeleton-bar {
   width: 100%;
   height: 1em;
