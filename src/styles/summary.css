@@ -351,7 +351,8 @@ a.detected-behaviour {
 }
 
 @keyframes progress-pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.2;
   }
   50% {
@@ -362,6 +363,10 @@ a.detected-behaviour {
 .skeleton-bar-wrapper {
   font-size: 0.8em;
   width: 60%;
+
+  @media (width < 768px) {
+    font-size: 0.7em;
+  }
 }
 
 .skeleton-bar {
@@ -373,4 +378,7 @@ a.detected-behaviour {
   margin-top: 0.2em;
   margin-bottom: 0.7em;
   animation: progress-pulse 2.5s ease-in-out infinite;
+  @media (width < 768px) {
+    font-size: 0.8em;
+  }
 }
